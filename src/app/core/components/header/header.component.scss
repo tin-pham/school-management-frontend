@@ -1,0 +1,93 @@
+.navbar {
+  height: 56px;
+  background-color: #111111;
+
+  @media screen and (max-width: 1550px) {
+    height: 45px;
+  }
+
+  .navbar-is-mobile & {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+
+  .navbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  .navbar-brand {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-right: 0.7rem;
+    margin-left: 1.75rem;
+  }
+
+  .logo-icon {
+    width: 62px;
+    height: 36px;
+
+    path {
+      fill: #007bd0;
+    }
+
+    @media screen and (max-width: 1550px) {
+      width: 50px;
+    }
+  }
+
+  .auth-icon {
+    width: 10rem;
+    height: auto;
+
+    @media screen and (max-width: 1550px) {
+      width: 8rem;
+    }
+  }
+}
+
+.size-18 {
+  font-size: 18px;
+}
+
+.size-16 {
+  font-size: 16px;
+}
+
+.z-1000 {
+  z-index: 1001;
+}
+
+#header-menu-button {
+  padding-left: 5px;
+
+  &:hover {
+    background: #333333;
+  }
+}
+
+#header-menu-button[aria-expanded='true'] {
+  background: #333333;
+}
+
+.logout {
+  padding: 0 5px;
+  line-height: 25px;
+
+  &:hover {
+    background: #333333;
+  }
+}
+
+.permission {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.profile {
+  background: white !important;
+
+  &:hover {
+    background: #f5f5f5 !important;
+  }
+}

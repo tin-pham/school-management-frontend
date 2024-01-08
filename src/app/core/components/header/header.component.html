@@ -1,0 +1,24 @@
+<mat-toolbar class="navbar" color="primary">
+  <div>
+    <span class="navbar-brand">School</span>
+    <span class="navbar-spacer"></span>
+  </div>
+  <div class="right-menu d-flex">
+    <div>
+      <button mat-button id="header-menu-button" class="size-16 pr-1">
+        {{ fullName }}
+      </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below" class="p-y" [hasBackdrop]="false">
+        <div>
+          <button mat-menu-item class="text-center sub-menu border-bottom permission" disabled>
+            {{ roleName | translate }}
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+    <div>
+      <span class="size-16">|</span>
+      <button mat-button class="size-16 logout">{{ 'RIGHT_MENU.LOGOUT' | translate }}</button>
+    </div>
+  </div>
+</mat-toolbar>

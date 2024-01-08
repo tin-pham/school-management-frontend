@@ -1,0 +1,16 @@
+<div class="navbar-container">
+  <!-- Top navbar -->
+  <app-header></app-header>
+
+  <mat-sidenav-container class="navbar-sidenav-container" [class]="isShow ? 'isCollapsed' : 'isHidden'" autosize>
+    <!-- Side nav -->
+    <mat-sidenav #snav mode="side" disableClose="true" [opened]="true" class="sidenav">
+      <app-sidebar-menu (isShowMenu)="onShowMenu($event)"></app-sidebar-menu>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content class="sidenav-content">
+      <ng-content select="router-outlet"></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

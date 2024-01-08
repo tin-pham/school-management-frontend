@@ -1,0 +1,12 @@
+.idea
+node_modules
+.vscode
+*.d.ts
+*.js
+*.spec.ts
+test.ts
+main.ts
+polyfills.ts
+src/environment
+*.scss
+index.html

@@ -1,0 +1,66 @@
+{
+  "root": false,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json",
+          "e2e/tsconfig.json"
+        ],
+        "createDefaultProgram": true,
+        "sourceType": "module"
+      },
+      "rules": {
+        "no-control-regex": "off",
+        "no-misleading-character-class": "off",
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-useless-constructor": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/key-spacing": "off",
+        "no-prototype-builtins": "off",
+        "no-useless-escape": "off",
+        "no-console": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
+        "no-duplicate-imports": "error",
+        "import/order": "error",
+        "max-len": [
+          "warn",
+          {
+            "code": 400
+          }
+        ],
+        "max-lines-per-function": [
+          "warn",
+          {
+            "max": 75
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+$blue: #007bd0;
+$breakpoint-xs: 'screen and (max-width: 768px)';
+
+.is-first-time-bg {
+  background-color: #fff !important;
+}
+
+.app-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  background-color: rgba(#fff, 0.6);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999999999999999999999;
+
+  &-text {
+    font-weight: 600;
+    color: $blue;
+    font-size: 21px;
+    opacity: 0;
+    -webkit-mask-image: linear-gradient(to left, #0000 38%, #000 40%);
+    -webkit-mask-size: 300%;
+    -webkit-animation: text-wipe 2s infinite linear forwards;
+    animation: text-wipe 2s infinite linear forwards;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    @media #{$breakpoint-xs} {
+      font-size: 14px;
+    }
+  }
+
+  &.inside {
+    position: absolute;
+    background-color: rgba(#fff, 0.9);
+
+    svg {
+      width: 70px;
+    }
+
+    .app-spinner-text {
+      font-size: 11px;
+    }
+  }
+
+  /* stylelint-disable no-descending-specificity, selector-max-id */
+  svg {
+    width: 150px;
+
+    @media #{$breakpoint-xs} {
+      width: 100px;
+    }
+
+    #back-cloud {
+      -webkit-animation: cloud-stroke 1s forwards infinite;
+      animation: cloud-stroke 1s forwards infinite;
+      fill: #fff;
+      stroke: $blue;
+      stroke-width: 11;
+      stroke-dasharray: 800;
+    }
+  }
+}
+
+@-webkit-keyframes cloud-stroke {
+  0% {
+    stroke-dashoffset: 1600;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cloud-stroke {
+  0% {
+    stroke-dashoffset: 1600;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes text-wipe {
+  0% {
+    opacity: 1;
+    -webkit-mask-position: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-mask-position: 300%;
+  }
+}
+
+@keyframes text-wipe {
+  0% {
+    opacity: 1;
+    -webkit-mask-position: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-mask-position: 300%;
+  }
+}
