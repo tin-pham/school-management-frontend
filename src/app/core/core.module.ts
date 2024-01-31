@@ -4,11 +4,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoaderService } from './services/translate-loader.service';
+import { BaseService } from './services/api/base.service';
 
-//const COMPONENTS = [LayoutComponent, HeaderComponent, SidebarMenuComponent, SpinnerComponent];
-
-export const createTranslateLoader = (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateLoaderService(http);
+}
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ export const createTranslateLoader = (http: HttpClient) => new TranslateHttpLoad
       },
     }),
   ],
+  providers: [BaseService],
   exports: [CommonModule, TranslateModule, BrowserModule, BrowserAnimationsModule, HttpClientModule],
 })
 export class CoreModule {}

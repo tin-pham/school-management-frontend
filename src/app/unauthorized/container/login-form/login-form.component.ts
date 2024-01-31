@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
+import { ToastrService } from '@shared/toastr/toastr.service';
+import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -14,10 +17,10 @@ export class LoginFormComponent {
   returnUrl: string;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    //private authenticationService: AuthenticationService,
-    //private alertService: AlertService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly authService: AuthService,
+    private toast: ToastrService,
   ) {
     // redirect to home if already logged in
     // if (this.authenticationService.currentUserValue) {
@@ -33,24 +36,21 @@ export class LoginFormComponent {
   onSubmit() {
     this.submitted = true;
 
-    // Add your validation logic here if necessary
     if (!this.username || !this.password) {
-      // Handle the error state
       return;
     }
 
     this.loading = true;
-    // this.authenticationService
-    //   .login(this.f.username.value, this.f.password.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate([this.returnUrl]);
-    //     },
-    //     error => {
-    //       this.alertService.error(error);
-    //       this.loading = false;
-    //     },
-    //   );
+    this.authService
+      .login({
+        username: this.username,
+        password: this.password,
+      })
+      .pipe(first())
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: () => this.toast.success('Login successfully!'),
+        error: (exception: Error) => this.toast.error(exception.message),
+      });
   }
 }
