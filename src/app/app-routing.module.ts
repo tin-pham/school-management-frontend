@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('@pages/pages.module').then(m => m.PagesModule),
+    path: 'login',
+    loadChildren: () => import('./unauthorized/unauthorized.module').then(m => m.UnauthorizedModule),
   },
 ];
 

@@ -1,0 +1,31 @@
+<h2>Đăng nhập</h2>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="username">Tên đăng nhập</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      [(ngModel)]="username"
+      #usernameRef="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && usernameRef.invalid }" />
+  </div>
+  <div class="mb-3">
+    <label for="password">Mật khẩu</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="password"
+      #passwordRef="ngModel"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && passwordRef.invalid }" />
+  </div>
+  <div class="mb-3">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+      Đăng nhập
+    </button>
+  </div>
+</form>

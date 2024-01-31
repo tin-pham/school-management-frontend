@@ -19,6 +19,10 @@ export class SidebarMenuComponent implements OnInit {
     this.getMenu();
   }
 
+  getMenu() {
+    this.loading = false;
+  }
+
   onShowSubMenu(item: any) {
     this.showMenuItem = true;
     if (!this.showMenu) {
@@ -35,10 +39,6 @@ export class SidebarMenuComponent implements OnInit {
         return menu;
       });
     }
-  }
-
-  getMenu() {
-    this.loading = false;
   }
 
   onNavigate(item: any, subMenu: any) {

@@ -1,17 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { MaterialModule } from './material/material.module';
-import { LayoutComponent } from './layouts/layout.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-const COMPONENTS = [LayoutComponent, HeaderComponent, SidebarMenuComponent, SpinnerComponent];
+//const COMPONENTS = [LayoutComponent, HeaderComponent, SidebarMenuComponent, SpinnerComponent];
+
+export const createTranslateLoader = (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, TranslateModule],
-  declarations: [...COMPONENTS],
-  exports: [CommonModule, TranslateModule, ...COMPONENTS],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'vn',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  exports: [CommonModule, TranslateModule, BrowserModule, BrowserAnimationsModule, HttpClientModule],
 })
 export class CoreModule {}
