@@ -3,5 +3,5 @@ export interface IException {
   timestamp: Date;
   path: string;
   message: string;
-  code: string; //  this
+  code: string;
 }

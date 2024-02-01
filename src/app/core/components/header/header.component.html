@@ -1,24 +1,30 @@
-<mat-toolbar class="navbar" color="primary">
-  <div>
-    <span class="navbar-brand">School</span>
-    <span class="navbar-spacer"></span>
+<mat-toolbar color="primary" class="toolbar">
+  <div class="left-items">
+    <span class="navbar-brand mb-0 h1">Elearning</span>
   </div>
-  <div class="right-menu d-flex">
-    <div>
-      <button mat-button id="header-menu-button" class="size-16 pr-1">
-        {{ fullName }}
-      </button>
-      <mat-menu #belowMenu="matMenu" yPosition="below" class="p-y" [hasBackdrop]="false">
-        <div>
-          <button mat-menu-item class="text-center sub-menu border-bottom permission" disabled>
-            {{ roleName | translate }}
-          </button>
-        </div>
-      </mat-menu>
-    </div>
-    <div>
-      <span class="size-16">|</span>
-      <button mat-button class="size-16 logout">{{ 'RIGHT_MENU.LOGOUT' | translate }}</button>
-    </div>
+
+  <div class="search-container">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Tìm kiếm khóa học, bài viết, video, ..." />
+    </mat-form-field>
   </div>
+
+  <div class="right-items">
+    <mat-icon class="search" (click)="showMobileSearch()">search</mat-icon>
+    <mat-icon>account_circle</mat-icon>
+  </div>
+
+  <mat-toolbar class="mobile-header" *ngIf="mobileSearchVisibility">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon class="back" id="back-arrow" (click)="hideMobileSearch()">arrow_back</mat-icon>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field subscriptSizing="dynamic" class="mobile-search">
+          <input matInput id="search-field" type="text" placeholder="Enter Search Term" name="search" />
+        </mat-form-field>
+      </mat-list-item>
+    </mat-list>
+  </mat-toolbar>
 </mat-toolbar>

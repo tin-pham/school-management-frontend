@@ -14,8 +14,8 @@ export class BaseService {
     private readonly translate: TranslateService,
   ) {}
 
-  post(url: string, body: any) {
-    return this.http.post(this.BASE_URL + url, body).pipe(catchError(this.handleError.bind(this)));
+  post<T>(url: string, body: any) {
+    return this.http.post<T>(this.BASE_URL + url, body).pipe(catchError(this.handleError.bind(this)));
   }
 
   handleError(error: HttpErrorResponse) {

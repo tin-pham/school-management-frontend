@@ -21,16 +21,11 @@ export class LoginFormComponent {
     private readonly router: Router,
     private readonly authService: AuthService,
     private toast: ToastrService,
-  ) {
-    // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
-  }
+  ) {}
 
   ngOnInit() {
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   onSubmit() {
@@ -46,11 +41,18 @@ export class LoginFormComponent {
         username: this.username,
         password: this.password,
       })
-      .pipe(first())
-      .pipe(finalize(() => (this.loading = false)))
+      .pipe(
+        first(),
+        finalize(() => (this.loading = false)),
+      )
       .subscribe({
-        next: () => this.toast.success('Login successfully!'),
+        next: () => {
+          this.toast.success('Đăng nhập thành công');
+          this.router.navigate(['/home']);
+        },
         error: (exception: Error) => this.toast.error(exception.message),
       });
+
+    // Save to localstorage
   }
 }

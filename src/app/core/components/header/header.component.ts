@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  fullName = '';
-  roleName = '';
+  mobileSearchVisibility = false;
+
+  showMobileSearch() {
+    this.mobileSearchVisibility = true;
+  }
+
+  hideMobileSearch() {
+    this.mobileSearchVisibility = false;
+  }
 }
