@@ -1,47 +1,68 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { ROLE } from '@core/constants/role.constant';
+import { LoginUserRO } from '@core/models/ro/auth.ro';
+import { AuthService } from '@core/services/api/auth.service';
+import { Subject, takeUntil } from 'rxjs';
+
 @Component({
   selector: 'app-sidebar-menu',
   styleUrls: ['./sidebar-menu.component.scss'],
   templateUrl: './sidebar-menu.component.html',
 })
-export class SidebarMenuComponent implements OnInit {
+export class SidebarMenuComponent implements OnInit, OnDestroy {
   @Output() isShowMenu = new EventEmitter();
-  menuItems: any[] = [];
-  showMenuItem = false;
-  showMenu = false;
-  loading = true;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+  _user: LoginUserRO = null;
 
-  menuExpand = new Subject();
-  firstChild = '';
+  private destroy$ = new Subject<void>();
 
-  ngOnInit(): void {
-    this.getMenu();
+  constructor(
+    private readonly observer: BreakpointObserver,
+    private readonly cd: ChangeDetectorRef,
+    private readonly _authServicee: AuthService,
+  ) {}
+
+  ngAfterViewInit() {
+    this.observer.observe(['(max-width: 800px)']).subscribe(res => {
+      if (res.matches) {
+        this.sidenav.mode = 'over';
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+
+      this.cd.detectChanges();
+    });
   }
 
-  getMenu() {
-    this.loading = false;
+  toggle() {
+    this.sidenav.toggle();
   }
 
-  onShowSubMenu(item: any) {
-    this.showMenuItem = true;
-    if (!this.showMenu) {
-      this.showMenu = true;
-      this.isShowMenu.next(true);
-    } else {
-      item.expanded = !item.expanded;
-      this.menuItems = this.menuItems.map(menu => {
-        if (menu.isActive) {
-          menu.expandIcon = menu.expanded ? 'up-gray' : 'down-gray';
-        } else {
-          menu.expandIcon = menu.expanded ? 'up-white' : 'down-white';
-        }
-        return menu;
-      });
-    }
+  ngOnInit() {
+    this._authServicee.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
+      this._user = user;
+      this.isShowMenu.emit(this._user);
+    });
   }
 
-  onNavigate(item: any, subMenu: any) {
-    console.log(item, subMenu);
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  isAdmin() {
+    return this._user?.roles.includes(ROLE.ADMIN);
+  }
+
+  isTeacher() {
+    return this._user?.roles.includes(ROLE.TEACHER);
+  }
+
+  isStudent() {
+    return this._user?.roles.includes(ROLE.STUDENT);
   }
 }

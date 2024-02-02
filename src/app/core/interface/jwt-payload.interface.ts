@@ -1,7 +1,7 @@
 import { ROLE } from '@core/constants/role.constant';
 
 export interface IJwtPayload {
-  id: number;
+  userId: number;
   username: string;
   email: string;
   phone: string;

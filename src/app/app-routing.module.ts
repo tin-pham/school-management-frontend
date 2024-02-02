@@ -1,18 +1,23 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { authGuard } from '@core/guards/auth.guard';
-import { roleGuard } from '@core/guards/role.guard';
-import { ROLE } from '@core/constants/role.constant';
+import { SidebarMenuComponent } from '@core/components/sidebar-menu/sidebar-menu.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
-    loadChildren: () => import('./unauthorized/unauthorized.module').then(m => m.UnauthorizedModule),
+    path: '',
+    component: SidebarMenuComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./authorized/authorized.module').then(m => m.AuthorizedModule),
+      },
+    ],
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    canActivate: [authGuard, roleGuard([ROLE.STUDENT])],
+    path: 'login',
+    loadChildren: () => import('./unauthorized/unauthorized.module').then(m => m.UnauthorizedModule),
   },
 ];
 

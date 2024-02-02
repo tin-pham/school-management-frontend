@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { jwtDecode } from 'jwt-decode';
-import { tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { API } from '@core/constants/api.constant';
 import { LoginDTO } from '@core/models/dto/auth.dto';
-import { LoginRO } from '@core/models/ro/auth.ro';
+import { LoginRO, LoginUserRO } from '@core/models/ro/auth.ro';
 import { IJwtPayload } from '@core/interface/jwt-payload.interface';
 import { BaseService } from './base.service';
 
@@ -13,6 +13,8 @@ const LOGIN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.SIGNIN.ROUTE;
 
 @Injectable()
 export class AuthService extends BaseService {
+  user$ = new BehaviorSubject<LoginUserRO>(null);
+
   constructor(http: HttpClient, translator: TranslateService) {
     super(http, translator);
   }
@@ -22,6 +24,7 @@ export class AuthService extends BaseService {
       tap((response: LoginRO) => {
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('refreshToken', response.refreshToken);
+        this.user$.next(response.user);
       }),
     );
   }
@@ -37,6 +40,15 @@ export class AuthService extends BaseService {
     if (isExpired) {
       return false;
     }
+
+    this.user$.next({
+      id: decodedToken.userId,
+      username: decodedToken.username,
+      email: decodedToken.email,
+      phone: decodedToken.phone,
+      roles: decodedToken.roles,
+      displayName: decodedToken.displayName,
+    });
 
     return true;
   }

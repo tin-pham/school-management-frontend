@@ -1,5 +1,6 @@
 <mat-toolbar color="primary" class="toolbar">
   <div class="left-items">
+    <mat-icon class="menu" (click)="onToggleSidebar()">menu</mat-icon>
     <span class="navbar-brand mb-0 h1">Elearning</span>
   </div>
 
@@ -22,7 +23,7 @@
       </mat-list-item>
       <mat-list-item>
         <mat-form-field subscriptSizing="dynamic" class="mobile-search">
-          <input matInput id="search-field" type="text" placeholder="Enter Search Term" name="search" />
+          <input matInput id="search-field" type="text" placeholder="Tìm kiếm.." name="search" />
         </mat-form-field>
       </mat-list-item>
     </mat-list>

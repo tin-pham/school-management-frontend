@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -14,5 +14,11 @@ export class HeaderComponent {
 
   hideMobileSearch() {
     this.mobileSearchVisibility = false;
+  }
+
+  @Output() toggleSidebar = new EventEmitter();
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
+    console.log('oke');
   }
 }

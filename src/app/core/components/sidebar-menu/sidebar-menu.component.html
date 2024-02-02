@@ -1,61 +1,26 @@
-<div id="sidebar" class="sidebar-container" [class]="showMenu ? 'isCollapsed' : 'isHidden'">
-  <mat-nav-list>
-    <mat-list-item class="parent menu-icon" [ngClass]="{ 'back-icon': showMenu }">
-      <div class="is_project-nav-collapsed" *ngIf="!showMenu; else backIcon">
-        <div id="projectNavTrigger" class="" aria-hidden="true">
-          <span class="trigger-icon">
-            <span class="trigger-icon__inner">
-              <span class="trigger-icon__line"></span>
-              <span class="_assistive-text"></span>
-            </span>
-          </span>
-        </div>
-      </div>
-      <ng-template #backIcon>
-        <div id="backTrigger" aria-hidden="true">
-          <span class="trigger-back-icon">
-            <span class="trigger-back-icon__inner">
-              <span class="trigger-back-icon__line"></span>
-              <span class="_assistive-text"></span>
-            </span>
-          </span>
-        </div>
-      </ng-template>
-    </mat-list-item>
-    <ng-container *ngFor="let item of menuItems">
-      <mat-list-item
-        *ngIf="item.children"
-        class="parent"
-        [ngClass]="{ expanded: item.expanded && !item.isActive, activated: item.isActive }"
-        (click)="onShowSubMenu(item)">
-        <mat-icon [svgIcon]="item.icon"></mat-icon>
-        <span class="menu-title" [ngClass]="{ show: showMenuItem }" *ngIf="showMenuItem">{{ item.title }}</span>
-        <mat-icon class="expand-icon" [svgIcon]="item.expandIcon"></mat-icon>
-      </mat-list-item>
-      <div class="row m-0">
-        <div class="col-2" [ngClass]="{ 'submenu-left-content': item.expanded && showMenu, 'text-white ': item.isActive }"></div>
-        <div
-          class="col-10 submenu-right-content"
-          [ngClass]="{ 'top-border bg-white': item.isActive }"
-          *ngIf="item.children && showMenu && item.expanded">
-          <mat-nav-list class="child-list active p-0">
-            <a
-              mat-list-item
-              mat-line
-              [class]="item.isActive ? 'submenu-active' : 'child-active'"
-              [ngClass]="{ 'text-underline': child.active }"
-              (click)="onNavigate(item, child)"
-              *ngFor="let child of item.children; last as isLast">
-              <span class="child-title ellipsis">{{ child.title }}</span>
-              <mat-divider class="text-white" *ngIf="!isLast"></mat-divider>
-            </a>
-          </mat-nav-list>
-        </div>
-      </div>
-    </ng-container>
-  </mat-nav-list>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
 
-<div class="progress-loader div-position" *ngIf="loading">
-  <app-spinner></app-spinner>
-</div>
+    <h4 class="name">{{ _user?.displayName || _user?.username }}</h4>
+    <p class="designation" *ngFor="let role of _user?.roles">{{ role }}</p>
+
+    <mat-divider></mat-divider>
+    <div *ngIf="isAdmin()">
+      <button mat-button class="menu-button" routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/student">
+        <mat-icon>person</mat-icon>
+        <span>Học sinh</span>
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
