@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { TranslateService } from '@ngx-translate/core';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, tap } from 'rxjs';
 import { API } from '@core/constants/api.constant';
-import { LoginDTO } from '@core/models/dto/auth.dto';
-import { LoginRO, LoginUserRO } from '@core/models/ro/auth.ro';
 import { IJwtPayload } from '@core/interface/jwt-payload.interface';
+import { LoginRO, LoginUserRO } from '@shared/models/ro/auth.ro';
+import { LoginDTO } from '@shared/models/dto/auth.dto';
 import { BaseService } from './base.service';
 
 const LOGIN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.SIGNIN.ROUTE;
@@ -15,8 +13,18 @@ const LOGIN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.SIGNIN.ROUTE;
 export class AuthService extends BaseService {
   user$ = new BehaviorSubject<LoginUserRO>(null);
 
-  constructor(http: HttpClient, translator: TranslateService) {
-    super(http, translator);
+  getToken() {
+    return localStorage.getItem('accessToken');
+  }
+
+  refreshToken() {
+    const refreshToken = localStorage.getItem('refreshToken');
+    return this.post('/refresh-token', { refreshToken: refreshToken }).pipe(
+      tap((tokens: any) => {
+        localStorage.setItem('accessToken', tokens.accessToken);
+        localStorage.setItem('refreshToken', tokens.refreshToken);
+      }),
+    );
   }
 
   login(dto: LoginDTO) {
@@ -27,6 +35,13 @@ export class AuthService extends BaseService {
         this.user$.next(response.user);
       }),
     );
+  }
+
+  logout() {
+    // Clear local storage and handle logout
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    // Redirect to login page or handle logout as needed
   }
 
   isAuthenticated() {

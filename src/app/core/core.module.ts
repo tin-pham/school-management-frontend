@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpBackend, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -15,7 +15,7 @@ import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.com
 
 const COMPONENTS = [HeaderComponent, SidebarMenuComponent];
 
-export function createTranslateLoader(http: HttpClient) {
+export function createTranslateLoader(http: HttpBackend) {
   return new TranslateLoaderService(http);
 }
 
@@ -32,7 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient],
+        deps: [HttpBackend],
       },
     }),
   ],

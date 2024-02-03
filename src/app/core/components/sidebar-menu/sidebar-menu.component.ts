@@ -2,8 +2,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ROLE } from '@core/constants/role.constant';
-import { LoginUserRO } from '@core/models/ro/auth.ro';
 import { AuthService } from '@core/services/api/auth.service';
+import { LoginUserRO } from '@shared/models/ro/auth.ro';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
