@@ -21,6 +21,16 @@ const routes: Routes = [
         loadChildren: () => import('./feature/student/student.module').then(m => m.StudentModule),
         canActivate: [roleGuard([ROLE.ADMIN])],
       },
+      {
+        path: 'course',
+        loadChildren: () => import('./feature/course/course.module').then(m => m.CourseModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
+      {
+        path: 'category',
+        loadChildren: () => import('./feature/category/category.module').then(m => m.CategoryModule),
+        canActivate: [roleGuard([ROLE.TEACHER])],
+      },
     ],
   },
 ];
