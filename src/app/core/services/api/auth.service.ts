@@ -8,6 +8,7 @@ import { LoginDTO } from '@shared/models/dto/auth.dto';
 import { BaseService } from './base.service';
 
 const LOGIN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.SIGNIN.ROUTE;
+const REFRESH_TOKEN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.REFRESH_TOKEN.ROUTE;
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -18,11 +19,9 @@ export class AuthService extends BaseService {
   }
 
   refreshToken() {
-    const refreshToken = localStorage.getItem('refreshToken');
-    return this.post('/refresh-token', { refreshToken: refreshToken }).pipe(
+    return this.post(REFRESH_TOKEN_URL).pipe(
       tap((tokens: any) => {
         localStorage.setItem('accessToken', tokens.accessToken);
-        localStorage.setItem('refreshToken', tokens.refreshToken);
       }),
     );
   }

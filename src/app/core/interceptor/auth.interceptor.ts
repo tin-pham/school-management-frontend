@@ -18,7 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(error => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handle401Error(request, next);
+          // Check if the request is a login request
+          if (this.isLoginRequest(request)) {
+            // If it's a login request, don't attempt to refresh the token
+            return throwError(() => error);
+          } else {
+            // For other requests, attempt to handle the 401 error
+            return this.handle401Error(request, next);
+          }
         } else {
           return throwError(() => error);
         }
@@ -60,5 +67,11 @@ export class AuthInterceptor implements HttpInterceptor {
         }),
       );
     }
+  }
+
+  private isLoginRequest(request: HttpRequest<any>): boolean {
+    // Implement logic to determine if the request is a login request
+    // For example, check if the URL ends with '/login' or matches a specific pattern
+    return request.url.endsWith('/login'); // Adjust this condition based on your app's login URL
   }
 }
