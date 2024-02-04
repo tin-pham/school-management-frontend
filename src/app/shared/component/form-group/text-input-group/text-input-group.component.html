@@ -1,0 +1,11 @@
+<div class="mb-3">
+  <mat-label [class.asterix]="required">{{ label }}</mat-label>
+  <input
+    type="text"
+    [id]="name"
+    [name]="name"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    #usernameRef="ngModel"
+    class="form-control" />
+</div>

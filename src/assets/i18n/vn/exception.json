@@ -1,5 +1,11 @@
 {
   "AUTH": {
     "USERNAME_OR_PASSWORD_INVALID": "Tên đăng nhập hoặc mật khẩu không đúng"
+  },
+  "CATEGORY": {
+    "ALREADY_EXIST": "Danh mục đã tồn tại",
+    "NAME": {
+      "IS_NOT_EMPTY": "Tên danh mục không được để trống"
+    }
   }
 }

@@ -18,3 +18,9 @@ export class CategoryGetListDataRO {
 export class CategoryGetListRO extends PaginateRO<CategoryGetListDataRO> {
   data: CategoryGetListDataRO[];
 }
+
+export class CategoryStoreRO {
+  id: number;
+  name: string;
+  description: string;
+}

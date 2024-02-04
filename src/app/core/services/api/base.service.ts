@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { BASE_URL } from '@core/constants/api.constant';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from '@shared/toastr/toastr.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, map } from 'rxjs/operators';
 
@@ -12,13 +13,14 @@ export class BaseService {
   constructor(
     private readonly http: HttpClient,
     private readonly translate: TranslateService,
+    private readonly toastService: ToastrService,
   ) {}
 
-  post<T>(url: string, body?: any) {
+  protected post<T>(url: string, body?: any) {
     return this.http.post<T>(this.BASE_URL + url, body).pipe(catchError(this.handleError.bind(this)));
   }
 
-  get<T>(url: string, paramsObj?: any) {
+  protected get<T>(url: string, paramsObj?: any) {
     let params = new HttpParams();
     const token = localStorage.getItem('accessToken');
     const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
@@ -32,17 +34,25 @@ export class BaseService {
     return this.http.get<T>(this.BASE_URL + url, { params, headers }).pipe(catchError(this.handleError.bind(this)));
   }
 
-  handleError(error: HttpErrorResponse) {
-    const errorTranslationKey = error.error.code.replace('_', '.');
-    return this.translate.get(errorTranslationKey).pipe(
-      map((translatedError: string) => {
-        throw new Error(translatedError);
-      }),
-      catchError(transError => {
-        return throwError(() => transError);
-      }),
-    );
+  private handleError(error: HttpErrorResponse) {
+    if (Array.isArray(error.error.code)) {
+      error.error.code.forEach(code => {
+        this.translate.get(code).subscribe((translatedError: string) => {
+          this.toastService.error(translatedError); // Use the toastService to notify the user
+        });
+      });
+      // You may want to throw an error or handle this scenario differently
+      return throwError(() => new Error('Multiple errors occurred'));
+    } else {
+      return this.translate.get(error.error.code).pipe(
+        map((translatedError: string) => {
+          this.toastService.error(translatedError); // Notify single error
+          throw new Error(translatedError);
+        }),
+        catchError(transError => {
+          return throwError(() => transError);
+        }),
+      );
+    }
   }
-
-  isAuthenticated() {}
 }

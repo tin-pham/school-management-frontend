@@ -1,0 +1,5 @@
+<form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+  <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="name" [required]="true"></app-text-input-group>
+  <app-textarea-group [name]="'description'" [label]="'Mô tả'" [(value)]="description"></app-textarea-group>
+  <app-primary-button>Tạo</app-primary-button>
+</form>

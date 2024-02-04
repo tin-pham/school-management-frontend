@@ -1,0 +1,12 @@
+<div class="mb-3">
+  <mat-label>{{ label }}</mat-label>
+  <textarea
+    matInput
+    [id]="name"
+    [name]="name"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    #usernameRef="ngModel"
+    class="form-control">
+  </textarea>
+</div>
