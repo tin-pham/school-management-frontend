@@ -13,9 +13,8 @@ mat-sidenav {
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
-
   padding: 10px 25px;
-
+  overflow-y: auto; /* Ensures content within can scroll if too long */
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -25,7 +24,14 @@ mat-sidenav {
 }
 
 mat-sidenav-container {
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - 65px);
+}
+
+mat-sidenav-content {
+  flex-grow: 1;
+  overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
 .menu-button {

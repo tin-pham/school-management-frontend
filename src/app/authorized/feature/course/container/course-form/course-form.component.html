@@ -1,0 +1,24 @@
+<form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+  <app-text-input-group
+    (valueChange)="saveToTemporaryStorage()"
+    [name]="'name'"
+    [label]="'Tên'"
+    [(value)]="dto.name"
+    [required]="true"></app-text-input-group>
+  <app-textarea-group
+    (valueChange)="saveToTemporaryStorage()"
+    [name]="'description'"
+    [label]="'Mô tả'"
+    [(value)]="dto.description"></app-textarea-group>
+  <app-select-multiple-search
+    (selectedChange)="saveToTemporaryStorage()"
+    [placeholder]="'Danh mục'"
+    [options]="categories"
+    [(selected)]="dto.categoryIds"></app-select-multiple-search>
+  <app-file-input-group
+    [accept]="'image/*'"
+    [value]="image"
+    (valueChange)="onFileInputChange($event)"
+    [label]="'Hình ảnh'"></app-file-input-group>
+  <app-primary-button>Tạo</app-primary-button>
+</form>

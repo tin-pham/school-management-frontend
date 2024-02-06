@@ -16,13 +16,22 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   _user: LoginUserRO = null;
 
+  @ViewChild(SidebarMenuComponent) sidebarMenu!: SidebarMenuComponent;
+  isAuthenticated = false;
+
   private destroy$ = new Subject<void>();
 
   constructor(
     private readonly observer: BreakpointObserver,
     private readonly cd: ChangeDetectorRef,
-    private readonly _authServicee: AuthService,
-  ) {}
+    private readonly _authService: AuthService,
+  ) {
+    this.isAuthenticated = this._authService.isAuthenticated();
+  }
+
+  onToggleSidebar() {
+    this.toggle();
+  }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe(res => {
@@ -39,11 +48,12 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   }
 
   toggle() {
+    console.log('oke2');
     this.sidenav.toggle();
   }
 
   ngOnInit() {
-    this._authServicee.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
+    this._authService.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
       this._user = user;
       this.isShowMenu.emit(this._user);
     });

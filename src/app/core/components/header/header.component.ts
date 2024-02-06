@@ -19,6 +19,5 @@ export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter();
   onToggleSidebar() {
     this.toggleSidebar.emit();
-    console.log('oke');
   }
 }

@@ -6,6 +6,16 @@ const routes: Routes = [
   {
     path: '',
     component: CourseComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./page/course-list/course-list.module').then(m => m.CourseListModule),
+      },
+      {
+        path: 'create',
+        loadChildren: () => import('./page/course-create/course-create.module').then(m => m.CourseCreateModule),
+      },
+    ],
   },
 ];
 

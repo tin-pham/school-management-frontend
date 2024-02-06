@@ -1,0 +1,8 @@
+<label>{{ placeholder }}</label>
+<mat-form-field class="example-form-field">
+  <mat-select [(ngModel)]="selected" (selectionChange)="onSelectedChange($event.value)">
+    <input matInput type="text" (input)="onKey($event)" class="example-input" />
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let option of filteredOptions" [value]="option.id">{{ option.name }}</mat-option>
+  </mat-select>
+</mat-form-field>

@@ -4,6 +4,11 @@ export class CategoryGetListDTO extends PaginateDTO {
   withCourse?: boolean;
   withCourseCount?: boolean;
   search?: string;
+
+  constructor(data?: CategoryGetListDTO) {
+    super(data);
+    Object.assign(this, data);
+  }
 }
 
 export class CategoryStoreDTO {
