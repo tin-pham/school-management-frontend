@@ -34,6 +34,18 @@ export class BaseService {
     return this.http.get<T>(this.BASE_URL + url, { params, headers }).pipe(catchError(this.handleError.bind(this)));
   }
 
+  protected patch<T>(url: string, body?: any) {
+    const token = localStorage.getItem('accessToken');
+    const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
+    return this.http.patch<T>(this.BASE_URL + url, body, { headers }).pipe(catchError(this.handleError.bind(this)));
+  }
+
+  protected _delete<T>(url: string) {
+    const token = localStorage.getItem('accessToken');
+    const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
+    return this.http.delete<T>(this.BASE_URL + url, { headers }).pipe(catchError(this.handleError.bind(this)));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (Array.isArray(error.error.code)) {
       error.error.code.forEach(code => {

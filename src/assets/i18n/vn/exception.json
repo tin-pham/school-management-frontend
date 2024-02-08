@@ -6,6 +6,9 @@
     "ALREADY_EXIST": "Danh mục đã tồn tại",
     "NAME": {
       "IS_NOT_EMPTY": "Tên danh mục không được để trống"
+    },
+    "DESCRIPTION": {
+      "IS_NOT_EMPTY": "Mô tả danh mục không được để trống"
     }
   },
   "COURSE": {

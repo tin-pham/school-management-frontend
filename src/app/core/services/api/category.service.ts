@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CategoryGetListDTO, CategoryStoreDTO } from '@shared/models/dto/category.dto';
+import { CategoryGetListDTO, CategoryStoreDTO, CategoryUpdateDTO } from '@shared/models/dto/category.dto';
 import { API } from '@core/constants/api.constant';
-import { CategoryGetListRO, CategoryStoreRO } from '@shared/models/ro/category.ro';
+import { CategoryGetDetailRO, CategoryGetListRO, CategoryStoreRO, CategoryUpdateRO } from '@shared/models/ro/category.ro';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BaseService } from './base.service';
 
@@ -19,5 +19,17 @@ export class CategoryService extends BaseService {
 
   store(dto: CategoryStoreDTO) {
     return this.post<CategoryStoreRO>(API.CATEGORY.CONTROLLER + API.CATEGORY.STORE.ROUTE, dto);
+  }
+
+  getDetail(id: string): Observable<CategoryGetDetailRO> {
+    return this.get<CategoryGetDetailRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.GET_DETAIL.ROUTE.replace(':id', id));
+  }
+
+  update(id: number, dto: CategoryUpdateDTO): Observable<CategoryUpdateRO> {
+    return this.patch<CategoryUpdateRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.UPDATE.ROUTE.replace(':id', id.toString()), dto);
+  }
+
+  delete(id: number) {
+    return this._delete(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.DELETE.ROUTE.replace(':id', id.toString()));
   }
 }

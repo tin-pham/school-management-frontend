@@ -1,0 +1,5 @@
+<div>
+  <mat-icon *ngIf="!edit" (click)="onEditChange()">edit</mat-icon>
+  <mat-icon *ngIf="edit" (click)="onCancel()">cancel</mat-icon>
+  <mat-icon *ngIf="edit" (click)="onConfirm()">check_box</mat-icon>
+</div>

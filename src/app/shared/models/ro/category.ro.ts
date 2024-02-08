@@ -24,3 +24,32 @@ export class CategoryStoreRO {
   name: string;
   description: string;
 }
+
+export class CategoryGetDetailDataCourseRO {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+}
+
+export class CategoryGetDetailRO {
+  id: number;
+  name: string;
+  description: string;
+  courses?: CategoryGetDetailDataCourseRO[];
+  courseCount?: number;
+
+  constructor(data?: CategoryGetDetailRO) {
+    Object.assign(this, data);
+  }
+}
+
+export class CategoryUpdateRO {
+  id: number;
+  name: string;
+  description: string;
+
+  constructor(data?: CategoryUpdateRO) {
+    Object.assign(this, data);
+  }
+}

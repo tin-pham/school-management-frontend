@@ -15,7 +15,16 @@ export class CategoryStoreDTO {
   name: string;
   description?: string;
 
-  constructor(data: CategoryStoreDTO) {
+  constructor(data?: CategoryStoreDTO) {
+    Object.assign(this, data);
+  }
+}
+
+export class CategoryUpdateDTO {
+  name: string;
+  description: string;
+
+  constructor(data?: CategoryUpdateDTO) {
     Object.assign(this, data);
   }
 }

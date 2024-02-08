@@ -1,3 +1,10 @@
+import { PaginateDTO } from './paginate.dto';
+
+export class CourseGetListDTO extends PaginateDTO {
+  studentId?: string;
+  categoryId?: number;
+}
+
 export class CourseStoreDTO {
   name: string;
   description?: string;

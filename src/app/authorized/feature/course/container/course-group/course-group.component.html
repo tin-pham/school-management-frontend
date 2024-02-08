@@ -1,6 +1,6 @@
 <div>
   <h2>{{ category.name }}</h2>
-  <app-course-toolbar></app-course-toolbar>
+  <app-course-toolbar (delete)="onDeleteCategory()" [categoryId]="category.id"></app-course-toolbar>
 </div>
 <app-course-card
   *ngFor="let course of category.courses"

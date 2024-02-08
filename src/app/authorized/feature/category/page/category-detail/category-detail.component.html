@@ -1,0 +1,3 @@
+<app-category-detail-toolbar [(edit)]="edit" (cancel)="onCancel()" (confirm)="onUpdate()"></app-category-detail-toolbar>
+<app-category-edit *ngIf="edit" [(edit)]="edit" [onUpdate]="updateSubject.asObservable()" [(category)]="category"></app-category-edit>
+<app-category-group [coursePaginated]="coursePaginated" [isEdit]="edit" [category]="category"></app-category-group>

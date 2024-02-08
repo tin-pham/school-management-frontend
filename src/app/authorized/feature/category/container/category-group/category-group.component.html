@@ -1,0 +1,21 @@
+<div *ngIf="!isEdit">
+  <h2>{{ category?.name }}</h2>
+  <p>{{ category?.description }}</p>
+</div>
+<div *ngIf="coursePaginated">
+  <app-course-card
+    [option]="courseCardOption"
+    *ngFor="let course of coursePaginated.data"
+    [isEdit]="isEdit"
+    [imageUrl]="course.imageUrl"
+    [alt]="course.name"
+    [name]="course.name"
+    [description]="course.description"></app-course-card>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"
+    aria-label="Select page of users"></mat-paginator>
+</div>

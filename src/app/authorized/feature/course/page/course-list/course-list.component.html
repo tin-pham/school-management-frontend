@@ -1,1 +1,13 @@
-<app-course-group *ngFor="let category of categories" [category]="category"></app-course-group>
+<app-course-group
+  (categoryDeleted)="onCategoryDeleted($event)"
+  *ngFor="let category of categories"
+  [category]="category"></app-course-group>
+<div>
+  <h2>Khóa học khác</h2>
+  <app-course-card
+    *ngFor="let course of uncategorizedCourses"
+    [imageUrl]="course.imageUrl"
+    [alt]="course.name"
+    [name]="course.name"
+    [description]="course.description"></app-course-card>
+</div>

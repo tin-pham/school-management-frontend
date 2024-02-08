@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   exports: [
@@ -30,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgxMatSelectSearchModule,
     MatOptionModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 })
 export class MaterialModule {}

@@ -12,3 +12,14 @@ export class CourseUpdateRO {
   description?: string;
   imageUrl?: string;
 }
+
+export class CourseGetListDataRO {
+  id: number;
+  name: string;
+  description?: string;
+  imageUrl?: string;
+}
+
+export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {
+  data: CourseGetListDataRO[];
+}

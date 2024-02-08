@@ -1,5 +1,5 @@
 <span>
   <mat-icon routerLink="/course/create">library_add</mat-icon>
-  <mat-icon>edit</mat-icon>
-  <mat-icon>delete</mat-icon>
+  <mat-icon [routerLink]="['/category', categoryId]">edit</mat-icon>
+  <mat-icon (click)="onDelete()">delete</mat-icon>
 </span>
