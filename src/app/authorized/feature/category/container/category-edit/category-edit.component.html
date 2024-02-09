@@ -1,5 +1,9 @@
 <div>
   <app-text-input-group [label]="'Tên'" [name]="'name'" [(value)]="dto.name"></app-text-input-group>
   <app-textarea-group [label]="'Mô tả'" [name]="'description'" [(value)]="dto.description"></app-textarea-group>
-  <a class="btn btn-primary" (click)="addCourse()">Thêm khóa học</a>
+  <!-- <a class="btn btn-primary" (click)="addCourse()">Thêm khóa học</a> -->
+  <div>
+    <button mat-raised-button color="primary" (click)="confirmUpdate()">Xác nhận</button>
+    <button mat-raised-button color="warn" (click)="cancel()">Hủy</button>
+  </div>
 </div>

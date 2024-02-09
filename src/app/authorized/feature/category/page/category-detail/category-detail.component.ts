@@ -4,7 +4,6 @@ import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
 import { CategoryGetDetailRO } from '@shared/models/ro/category.ro';
 import { CourseGetListRO } from '@shared/models/ro/course.ro';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-category-detail',
@@ -15,7 +14,6 @@ export class CategoryDetailComponent implements OnInit {
   category: CategoryGetDetailRO;
   coursePaginated: CourseGetListRO;
   edit = false;
-  updateSubject = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -41,12 +39,7 @@ export class CategoryDetailComponent implements OnInit {
       });
   }
 
-  onUpdate() {
-    console.log('onUpdate');
-    this.updateSubject.next();
-  }
-
-  onCancel() {
-    this.edit = false;
+  onEdit() {
+    this.edit = true;
   }
 }

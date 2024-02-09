@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryGetDetailRO } from '@shared/models/ro/category.ro';
-import { EMPTY, Observable, ReplaySubject, Subject, catchError, switchMap, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CategoryService } from '@core/services/api/category.service';
 import { ToastrService } from '@shared/toastr/toastr.service';
 import { CategoryUpdateDTO } from '@shared/models/dto/category.dto';
@@ -12,10 +12,8 @@ import { UncategorizeCourseDialogComponent } from '../uncategorize-course-dialog
   templateUrl: './category-edit.component.html',
   styleUrls: ['./category-edit.component.scss'],
 })
-export class CategoryEditComponent implements OnInit, OnDestroy {
-  private destroyed$ = new ReplaySubject<void>(1);
+export class CategoryEditComponent {
   private _category: CategoryGetDetailRO;
-  private update$ = new Subject<void>();
 
   @Input()
   set category(value: CategoryGetDetailRO) {
@@ -45,33 +43,22 @@ export class CategoryEditComponent implements OnInit, OnDestroy {
     private _categoryService: CategoryService,
   ) {}
 
-  ngOnInit() {
-    this.update$
-      .pipe(
-        takeUntil(this.destroyed$),
-        switchMap(() => this._categoryService.update(this.category.id, this.dto).pipe(catchError(() => EMPTY))),
-      )
-      .subscribe({
-        next: response => {
-          this.toast.success('Cập nhật danh mục thành công');
-          this.onCategoryChange(response);
-          this.editChange.emit(false);
-        },
-      });
+  addCourse() {
+    this.dialog.open(UncategorizeCourseDialogComponent).afterClosed().subscribe();
+  }
 
-    this.onUpdate.pipe(takeUntil(this.destroyed$)).subscribe(() => {
-      console.log('onUpdate inside');
-      this.update$.next();
+  confirmUpdate() {
+    // Update
+    this._categoryService.update(this.category.id, this.dto).subscribe({
+      next: response => {
+        this.toast.success('Cập nhật danh mục này');
+        this.onCategoryChange(response);
+        this.editChange.emit(false);
+      },
     });
   }
 
-  ngOnDestroy() {
-    this.destroyed$.next();
-    this.destroyed$.complete();
-    this.update$.complete();
-  }
-
-  addCourse() {
-    this.dialog.open(UncategorizeCourseDialogComponent).afterClosed().subscribe();
+  cancel() {
+    this.editChange.emit(false);
   }
 }
