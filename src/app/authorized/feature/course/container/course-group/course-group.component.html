@@ -1,10 +1,15 @@
 <div>
-  <h2>{{ category.name }}</h2>
-  <app-course-toolbar (delete)="onDeleteCategory()" [categoryId]="category.id"></app-course-toolbar>
+  <div>
+    <h2>{{ category.name }}</h2>
+    <app-course-toolbar (delete)="onDeleteCategory()" [categoryId]="category.id"></app-course-toolbar>
+  </div>
+  <app-course-card
+    *ngFor="let course of category.courses"
+    [routerLink]="['/course', course.id]"
+    [imageUrl]="course.imageUrl"
+    [alt]="course.name"
+    [name]="course.name"
+    [description]="course.description"></app-course-card>
+
+  <a [routerLink]="['/category', category.id]" class="link-opacity-100" role="button">Xem thêm</a>
 </div>
-<app-course-card
-  *ngFor="let course of category.courses"
-  [imageUrl]="course.imageUrl"
-  [alt]="course.name"
-  [name]="course.name"
-  [description]="course.description"></app-course-card>

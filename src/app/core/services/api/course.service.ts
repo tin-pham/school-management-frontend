@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { API } from '@core/constants/api.constant';
 import { CourseGetListDTO, CourseStoreDTO, CourseUpdateDTO } from '@shared/models/dto/course.dto';
-import { CourseStoreRO, CourseUpdateRO } from '@shared/models/ro/course.ro';
+import { CourseGetDetailRO, CourseStoreRO, CourseUpdateRO } from '@shared/models/ro/course.ro';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class CourseService extends BaseService {
+  getDetail(id: number): Observable<CourseGetDetailRO> {
+    return this.get<CourseGetDetailRO>(API.COURSE.CONTROLLER + '/' + API.COURSE.GET_DETAIL.ROUTE.replace(':id', id.toString()));
+  }
+
   getList(dto?: CourseGetListDTO) {
     return this.get(API.COURSE.CONTROLLER + API.COURSE.GET_LIST.ROUTE, dto);
   }

@@ -6,6 +6,7 @@
   <h2>Khóa học khác</h2>
   <app-course-card
     *ngFor="let course of uncategorizedCourses"
+    [routerLink]="['/course', course.id]"
     [imageUrl]="course.imageUrl"
     [alt]="course.name"
     [name]="course.name"

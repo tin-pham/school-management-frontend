@@ -23,3 +23,13 @@ export class CourseGetListDataRO {
 export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {
   data: CourseGetListDataRO[];
 }
+
+export class CourseGetDetailRO {
+  id: number;
+  name: string;
+  description?: string;
+  imageUrl?: string;
+  constructor(data?: CourseGetDetailRO) {
+    Object.assign(this, data);
+  }
+}

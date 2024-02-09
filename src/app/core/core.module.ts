@@ -12,8 +12,9 @@ import { AuthService } from './services/api/auth.service';
 import { RoleService } from './services/role.service';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
-const COMPONENTS = [HeaderComponent, SidebarMenuComponent];
+const COMPONENTS = [HeaderComponent, SidebarMenuComponent, ConfirmDialogComponent];
 
 export function createTranslateLoader(http: HttpBackend) {
   return new TranslateLoaderService(http);

@@ -13,6 +13,7 @@
   },
   "COURSE": {
     "ALREADY_EXIST": "Khóa học đã tồn tại",
+    "NOT_FOUND": "Khóa học không tìm thấy",
     "NAME": {
       "IS_NOT_EMPTY": "Tên khóa học không được để trống"
     }
