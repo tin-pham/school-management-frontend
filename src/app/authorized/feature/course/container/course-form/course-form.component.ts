@@ -51,7 +51,6 @@ export class CourseFormComponent implements OnInit {
   }
 
   saveToTemporaryStorage(): void {
-    console.log('hey');
     this.cacheStorage.set(this.dto);
   }
 
@@ -72,7 +71,7 @@ export class CourseFormComponent implements OnInit {
         switchMap(response => {
           // Only call update if the first switchMap returned a response
           if (response) {
-            return this._courseService.update({ imageUrl: response.data });
+            return this._courseService.update(response.id, { imageUrl: response.data });
           } else {
             return of(null); // Return an observable that immediately completes if there was no initial response
           }

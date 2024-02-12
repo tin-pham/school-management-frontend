@@ -34,10 +34,12 @@ export class BaseService {
     return this.http.get<T>(this.BASE_URL + url, { params, headers }).pipe(catchError(this.handleError.bind(this)));
   }
 
-  protected patch<T>(url: string, body?: any) {
+  protected patch<T>(url: string, id: number, body?: any) {
     const token = localStorage.getItem('accessToken');
     const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
-    return this.http.patch<T>(this.BASE_URL + url, body, { headers }).pipe(catchError(this.handleError.bind(this)));
+    return this.http
+      .patch<T>(this.BASE_URL + url.replace(':id', id.toString()), body, { headers })
+      .pipe(catchError(this.handleError.bind(this)));
   }
 
   protected _delete<T>(url: string) {

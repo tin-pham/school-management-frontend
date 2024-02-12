@@ -26,7 +26,7 @@ export class CategoryService extends BaseService {
   }
 
   update(id: number, dto: CategoryUpdateDTO): Observable<CategoryUpdateRO> {
-    return this.patch<CategoryUpdateRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.UPDATE.ROUTE.replace(':id', id.toString()), dto);
+    return this.patch<CategoryUpdateRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.UPDATE.ROUTE, id, dto);
   }
 
   delete(id: number) {

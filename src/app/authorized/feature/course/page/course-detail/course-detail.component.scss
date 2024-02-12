@@ -1,0 +1,29 @@
+.detail {
+  width: 100%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    'header sidebar'
+    'list sidebar';
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'sidebar'
+      'list';
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+  }
+
+  .list {
+    grid-area: list;
+  }
+}

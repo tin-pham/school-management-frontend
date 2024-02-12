@@ -29,6 +29,8 @@ export class CourseGetDetailRO {
   name: string;
   description?: string;
   imageUrl?: string;
+  categoryIds?: number[];
+
   constructor(data?: CourseGetDetailRO) {
     Object.assign(this, data);
   }

@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'course-detail-header.component.html',
 })
 export class CourseDetailHeaderComponent {
+  @Input() courseId: number;
   @Input() name: string;
   @Input() description: string;
 }

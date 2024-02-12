@@ -1,4 +1,7 @@
 <div>
-  <h1>{{ name }}</h1>
+  <span class="d-flex align-middle">
+    <h1>{{ name }}</h1>
+    <mat-icon [routerLink]="['/course', courseId, 'edit']">edit</mat-icon>
+  </span>
   <p>{{ description }}</p>
 </div>

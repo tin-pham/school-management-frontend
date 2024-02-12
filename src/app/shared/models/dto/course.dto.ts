@@ -5,6 +5,10 @@ export class CourseGetListDTO extends PaginateDTO {
   categoryId?: number;
 }
 
+export class CourseGetDetailDTO {
+  withCategoryIds?: boolean;
+}
+
 export class CourseStoreDTO {
   name: string;
   description?: string;

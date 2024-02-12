@@ -14,6 +14,7 @@
   "COURSE": {
     "ALREADY_EXIST": "Khóa học đã tồn tại",
     "NOT_FOUND": "Khóa học không tìm thấy",
+    "GET_DETAIL_FAILED": "Không thể truy cập khóa học, vui lòng thử lại sau",
     "NAME": {
       "IS_NOT_EMPTY": "Tên khóa học không được để trống"
     }

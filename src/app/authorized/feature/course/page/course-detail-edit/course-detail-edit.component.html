@@ -1,0 +1,9 @@
+<div *ngIf="course">
+  <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="course.name" [required]="true"></app-text-input-group>
+  <app-textarea-group [name]="'description'" [label]="'Mô tả'" [(value)]="course.description"></app-textarea-group>
+  <app-select-multiple-search
+    [placeholder]="'Danh mục'"
+    [options]="categories"
+    [(selected)]="course.categoryIds"></app-select-multiple-search>
+  <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+</div>

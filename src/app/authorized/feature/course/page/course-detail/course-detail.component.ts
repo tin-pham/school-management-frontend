@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '@core/services/api/course.service';
 import { CourseGetDetailRO } from '@shared/models/ro/course.ro';
@@ -8,7 +8,7 @@ import { CourseGetDetailRO } from '@shared/models/ro/course.ro';
   styleUrls: ['course-detail.component.scss'],
   templateUrl: 'course-detail.component.html',
 })
-export class CourseDetailComponent implements OnInit {
+export class CourseDetailComponent {
   course: CourseGetDetailRO;
 
   constructor(
@@ -18,7 +18,6 @@ export class CourseDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log('oke');
 
     this._courseService.getDetail(id).subscribe({
       next: response => {
