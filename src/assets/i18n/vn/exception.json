@@ -18,5 +18,8 @@
     "NAME": {
       "IS_NOT_EMPTY": "Tên khóa học không được để trống"
     }
+  },
+  "SECTION": {
+    "GET_LIST_FAILED": "Không thể lấy danh sách học phần, vui quay lại sau"
   }
 }

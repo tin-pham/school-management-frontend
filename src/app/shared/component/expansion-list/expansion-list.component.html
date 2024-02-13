@@ -1,0 +1,18 @@
+<mat-nav-list>
+  <mat-list-item>
+    <a matLine>{{ title }}</a>
+    <span class="align-middle">
+      <mat-icon *ngIf="!toggle" (click)="toggle = !toggle">expand_more</mat-icon>
+      <mat-icon *ngIf="toggle" (click)="toggle = !toggle">expand_less</mat-icon>
+      <mat-icon [routerLink]="editRoute">edit</mat-icon>
+    </span>
+  </mat-list-item>
+
+  <div [hidden]="!toggle">
+    <mat-selection-list>
+      <mat-list-option *ngFor="let item of items" checkboxPosition="before">
+        {{ item }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</mat-nav-list>
