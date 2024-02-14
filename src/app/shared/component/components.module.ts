@@ -14,6 +14,7 @@ import { FilesInputGroupComponent } from './form-group/files-input-group/files-i
 import { FileInputGroupComponent } from './form-group/file-input-group/file-input-group.component';
 import { SelectMultipleSearchComponent } from './form-group/select-multiple-search/select-multiple-search.component';
 import { ExpansionListComponent } from './expansion-list/expansion-list.component';
+import { BasicListComponent } from './basic-list/basic-list.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -26,6 +27,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   FileInputGroupComponent,
   SelectMultipleSearchComponent,
   ExpansionListComponent,
+  BasicListComponent,
 ];
 
 @NgModule({

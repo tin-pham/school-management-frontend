@@ -5,6 +5,9 @@ export class LessonStoreDTO {
   body: string;
   sectionId: number;
   videoUrl?: string;
+  constructor(data: LessonStoreDTO) {
+    Object.assign(this, data);
+  }
 }
 
 export class LessonGetListDTO extends PaginateDTO {

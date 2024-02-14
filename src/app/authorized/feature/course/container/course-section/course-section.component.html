@@ -2,7 +2,10 @@
   [expandIcon]="true"
   [editIcon]="true"
   [deleteIcon]="true"
+  [addIcon]="true"
   (delete)="delete()"
   [editRoute]="'/course/' + courseId + '/section/' + section.id"
+  [addRoute]="'/course/' + courseId + '/section/' + section.id + '/lesson'"
   [title]="section.name"
-  [items]="lessonTitles"></app-expansion-list>
+  [items]="lessonItems"
+  (onEditClick)="editLesson($event)"></app-expansion-list>

@@ -1,15 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { IBasicListItem } from '../basic-list/basic-list.component';
 
 @Component({
   selector: 'app-expansion-list',
   styleUrls: ['./expansion-list.component.scss'],
   templateUrl: './expansion-list.component.html',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ExpansionListComponent {
   @Input() title: string;
-  @Input() items: string[] = [];
+  @Input() items: IBasicListItem[] = [];
   @Input() editRoute: string;
   @Input() addRoute: string;
   @Input() addIcon: boolean;
@@ -35,5 +37,10 @@ export class ExpansionListComponent {
 
       this.delete.emit();
     });
+  }
+
+  @Output() onEditClick = new EventEmitter<number>();
+  clickEdit(id: number) {
+    this.onEditClick.emit(id);
   }
 }

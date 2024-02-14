@@ -9,6 +9,7 @@ export class TextareaGroupComponent {
   @Input() name: string;
   @Input() label: string;
   @Input() value: string;
+  @Input() required = false;
   @Output() valueChange = new EventEmitter<string>();
 
   onValueChange(value: string) {

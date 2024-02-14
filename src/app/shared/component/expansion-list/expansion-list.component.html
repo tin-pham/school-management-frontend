@@ -5,16 +5,12 @@
       <mat-icon *ngIf="!toggle && expandIcon" (click)="toggle = !toggle">expand_more</mat-icon>
       <mat-icon *ngIf="toggle && expandIcon" (click)="toggle = !toggle">expand_less</mat-icon>
       <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon>
-      <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>
       <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon>
+      <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>
     </span>
   </mat-list-item>
 
   <div [hidden]="!toggle">
-    <mat-selection-list>
-      <mat-list-option *ngFor="let item of items" checkboxPosition="before">
-        {{ item }}
-      </mat-list-option>
-    </mat-selection-list>
+    <app-basic-list (onEditClick)="clickEdit($event)" [editIcon]="true" [items]="items"></app-basic-list>
   </div>
 </mat-nav-list>

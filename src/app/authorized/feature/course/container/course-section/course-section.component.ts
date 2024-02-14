@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SectionService } from '@core/services/api/section.service';
+import { IBasicListItem } from '@shared/component/basic-list/basic-list.component';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
@@ -11,11 +12,12 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class CourseSectionComponent implements OnInit {
   private _section: SectionGetListDataRO;
-  lessonTitles: string[];
+  lessonItems: IBasicListItem[];
   courseId: string;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private toast: ToastrService,
     private _sectionService: SectionService,
   ) {}
@@ -27,7 +29,10 @@ export class CourseSectionComponent implements OnInit {
   @Input()
   set section(section: SectionGetListDataRO) {
     this._section = section;
-    this.lessonTitles = section.lessons.map(lesson => lesson.title);
+    this.lessonItems = section.lessons.map(lesson => ({
+      id: lesson.id,
+      name: lesson.title,
+    }));
   }
 
   get section() {
@@ -41,5 +46,9 @@ export class CourseSectionComponent implements OnInit {
       this.toast.success('Xóa học phần thành công');
       this.onDelete.emit(response.id);
     });
+  }
+
+  editLesson(id: number) {
+    this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id, 'edit']);
   }
 }

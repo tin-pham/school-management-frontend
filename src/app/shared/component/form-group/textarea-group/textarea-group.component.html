@@ -1,5 +1,5 @@
 <div class="mb-3">
-  <label [for]="name" class="form-label">{{ label }}</label>
+  <label [for]="name" class="form-label" [class.asterix]="required">{{ label }}</label>
   <textarea
     spellcheck="false"
     matInput
