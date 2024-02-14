@@ -20,6 +20,23 @@
     }
   },
   "SECTION": {
-    "GET_LIST_FAILED": "Không thể lấy danh sách học phần, vui quay lại sau"
+    "GET_LIST_FAILED": "Không thể lấy danh sách học phần, vui quay lại sau",
+    "NAME": {
+      "IS_NOT_EMPTY": "Học phần không được để trống"
+    }
+  },
+  "LESSON": {
+    "TITLE": {
+      "IS_NOT_EMPTY": "Tên bài học không được trống"
+    },
+    "BODY": {
+      "IS_NOT_EMPTY": "Nội dung bài học không được trống"
+    },
+    "SECTION_ID": {
+      "IS_NOT_EMPTY": "Id phần học không được để trống"
+    },
+    "VIDEO_URL": {
+      "FORMAT_IS_NOT_VALID": "Định dạng địa chỉ không hợp lệ"
+    }
   }
 }

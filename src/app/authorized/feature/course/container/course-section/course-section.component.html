@@ -1,4 +1,8 @@
 <app-expansion-list
+  [expandIcon]="true"
+  [editIcon]="true"
+  [deleteIcon]="true"
+  (delete)="delete()"
   [editRoute]="'/course/' + courseId + '/section/' + section.id"
   [title]="section.name"
   [items]="lessonTitles"></app-expansion-list>

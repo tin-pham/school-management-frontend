@@ -27,6 +27,10 @@ const routes: Routes = [
         path: ':id/section/:sectionId',
         loadChildren: () => import('./page/course-section-detail/course-section-detail.module').then(m => m.CourseSectionDetailModule),
       },
+      {
+        path: ':id/section',
+        loadChildren: () => import('./page/course-section-create/course-section-create.module').then(m => m.CourseSectionCreateModule),
+      },
     ],
   },
 ];

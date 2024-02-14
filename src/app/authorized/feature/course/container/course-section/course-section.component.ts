@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SectionService } from '@core/services/api/section.service';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-course-section',
@@ -12,7 +14,11 @@ export class CourseSectionComponent implements OnInit {
   lessonTitles: string[];
   courseId: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private toast: ToastrService,
+    private _sectionService: SectionService,
+  ) {}
 
   ngOnInit() {
     this.courseId = this.route.snapshot.params['id'];
@@ -26,5 +32,14 @@ export class CourseSectionComponent implements OnInit {
 
   get section() {
     return this._section;
+  }
+
+  @Output() onDelete = new EventEmitter();
+
+  delete() {
+    this._sectionService.delete(this.section.id).subscribe(response => {
+      this.toast.success('Xóa học phần thành công');
+      this.onDelete.emit(response.id);
+    });
   }
 }

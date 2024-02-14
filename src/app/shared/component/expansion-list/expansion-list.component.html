@@ -2,9 +2,11 @@
   <mat-list-item>
     <a matLine>{{ title }}</a>
     <span class="align-middle">
-      <mat-icon *ngIf="!toggle" (click)="toggle = !toggle">expand_more</mat-icon>
-      <mat-icon *ngIf="toggle" (click)="toggle = !toggle">expand_less</mat-icon>
-      <mat-icon [routerLink]="editRoute">edit</mat-icon>
+      <mat-icon *ngIf="!toggle && expandIcon" (click)="toggle = !toggle">expand_more</mat-icon>
+      <mat-icon *ngIf="toggle && expandIcon" (click)="toggle = !toggle">expand_less</mat-icon>
+      <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon>
+      <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>
+      <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon>
     </span>
   </mat-list-item>
 

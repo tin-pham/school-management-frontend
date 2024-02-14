@@ -10,6 +10,7 @@ import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
 })
 export class CourseSectionListComponent implements OnInit {
   sections: SectionGetListDataRO[];
+  courseId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,6 +19,7 @@ export class CourseSectionListComponent implements OnInit {
 
   ngOnInit() {
     const courseId = +this.route.snapshot.paramMap.get('id');
+    this.courseId = courseId.toString();
 
     this.sectionService
       .getList({
@@ -29,5 +31,12 @@ export class CourseSectionListComponent implements OnInit {
           this.sections = response.data;
         },
       });
+  }
+
+  onSectionDelete(id: number) {
+    const index = this.sections.findIndex(section => section.id === id);
+    if (index > -1) {
+      this.sections.splice(index, 1);
+    }
   }
 }

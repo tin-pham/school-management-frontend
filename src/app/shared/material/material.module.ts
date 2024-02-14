@@ -14,6 +14,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   exports: [
@@ -32,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatOptionModule,
     MatSelectModule,
     MatDialogModule,
+    MatDividerModule,
   ],
 })
 export class MaterialModule {}

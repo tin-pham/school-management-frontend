@@ -21,10 +21,16 @@ export class SectionGetListRO extends PaginateRO<SectionGetListDataRO> {
   data: SectionGetListDataRO[];
 }
 
+export class SectionGetDetailLessonRO {
+  id: number;
+  title: string;
+}
+
 export class SectionGetDetailRO {
   id: number;
   name: string;
   courseId: number;
+  lessons: SectionGetDetailLessonRO[];
 }
 
 export class SectionUpdateRO {
