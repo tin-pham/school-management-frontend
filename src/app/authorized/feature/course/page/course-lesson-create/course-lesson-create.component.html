@@ -1,6 +1,3 @@
 <div>
-  <app-text-input-group [label]="'Tiêu đề'" [name]="'title'" [(value)]="title" [required]="true"></app-text-input-group>
-  <app-textarea-group [label]="'Nội dung bài học'" [name]="'body'" [(value)]="body"></app-textarea-group>
-  <app-text-input-group [label]="'Đường dẫn video'" [name]="'videoUrl'" [(value)]="videoUrl"></app-text-input-group>
-  <app-primary-button (click)="create()">Tạo</app-primary-button>
+  <app-lesson-form [buttonAction]="'Tạo'" [(title)]="title" [(body)]="body" [(videoUrl)]="videoUrl" (onSubmit)="create()"></app-lesson-form>
 </div>

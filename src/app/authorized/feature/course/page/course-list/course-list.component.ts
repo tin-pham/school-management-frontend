@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
 import { CategoryGetListDTO } from '@shared/models/dto/category.dto';
-import { CourseGetListDTO } from '@shared/models/dto/course.dto';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
-import { CourseGetListDataRO, CourseGetListRO } from '@shared/models/ro/course.ro';
+import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 
 @Component({
   selector: 'app-course-list',
@@ -23,6 +22,7 @@ export class CourseListComponent implements OnInit {
   ngOnInit() {
     const dto = new CategoryGetListDTO({
       limit: 5,
+      withCourse: true,
     });
     this.categoryService.getList(dto).subscribe({
       next: response => {

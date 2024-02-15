@@ -11,9 +11,9 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class CourseLessonCreateComponent implements OnInit {
   title: string;
-  sectionId: number;
   body: string;
   videoUrl: string;
+  sectionId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +32,9 @@ export class CourseLessonCreateComponent implements OnInit {
       videoUrl: this.videoUrl,
       sectionId: this.sectionId,
     });
-    this._lessonService.store(dto).subscribe(() => this.toast.success('Tạo bài học thành công'));
+    this._lessonService.store(dto).subscribe(() => {
+      this.toast.success('Tạo bài học thành công');
+      window.history.back();
+    });
   }
 }

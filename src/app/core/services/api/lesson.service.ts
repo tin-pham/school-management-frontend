@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LessonGetListDTO, LessonStoreDTO, LessonUpdateDTO } from '@shared/models/dto/lesson.dto';
 import { Observable } from 'rxjs';
-import { LessonDeleteRO, LessonGetListRO, LessonStoreRO, LessonUpdateRO } from '@shared/models/ro/lesson.ro';
+import { LessonDeleteRO, LessonGetDetailRO, LessonGetListRO, LessonStoreRO, LessonUpdateRO } from '@shared/models/ro/lesson.ro';
 import { API } from '@core/constants/api.constant';
 import { BaseService } from './base.service';
 
@@ -9,6 +9,10 @@ import { BaseService } from './base.service';
 export class LessonService extends BaseService {
   store(dto: LessonStoreDTO): Observable<LessonStoreRO> {
     return this.post<LessonStoreRO>(API.LESSON.CONTROLLER + '/' + API.LESSON.STORE.ROUTE, dto);
+  }
+
+  getDetail(id: number): Observable<LessonGetDetailRO> {
+    return this.get<LessonGetDetailRO>(API.LESSON.CONTROLLER + '/' + API.LESSON.GET_DETAIL.ROUTE.replace(':id', id.toString()));
   }
 
   getList(dto: LessonGetListDTO): Observable<LessonGetListRO> {

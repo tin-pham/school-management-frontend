@@ -18,5 +18,7 @@ export class LessonUpdateDTO {
   title?: string;
   body?: string;
   videoUrl?: string;
-  sectionId?: number | null;
+  constructor(data: LessonUpdateDTO) {
+    Object.assign(this, data);
+  }
 }

@@ -1,0 +1,19 @@
+<form>
+  <app-text-input-group
+    (valueChange)="onTitleChange($event)"
+    [label]="'Tiêu đề'"
+    [name]="'title'"
+    [(value)]="title"
+    [required]="true"></app-text-input-group>
+  <app-textarea-group
+    (valueChange)="onBodyChange($event)"
+    [label]="'Nội dung bài học'"
+    [name]="'body'"
+    [(value)]="body"></app-textarea-group>
+  <app-text-input-group
+    (valueChange)="onVideoUrlChange($event)"
+    [label]="'Đường dẫn video'"
+    [name]="'videoUrl'"
+    [(value)]="videoUrl"></app-text-input-group>
+  <app-primary-button (click)="submit()">{{ buttonAction }}</app-primary-button>
+</form>

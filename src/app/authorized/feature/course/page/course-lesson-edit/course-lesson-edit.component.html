@@ -1,1 +1,8 @@
-<div>hello from lesson edit</div>
+<div *ngIf="lesson">
+  <app-lesson-form
+    (onSubmit)="update()"
+    [buttonAction]="'Cập nhật'"
+    [(title)]="lesson.title"
+    [(body)]="lesson.body"
+    [(videoUrl)]="lesson.videoUrl"></app-lesson-form>
+</div>

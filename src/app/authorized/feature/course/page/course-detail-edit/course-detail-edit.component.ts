@@ -40,6 +40,7 @@ export class CourseDetailEditComponent implements OnInit {
     this._courseService.update(this.course.id, this.course).subscribe({
       next: () => {
         this.toast.success('Cập nhật khóa học thành công');
+        window.history.back();
       },
     });
   }
