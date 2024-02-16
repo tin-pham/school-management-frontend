@@ -15,8 +15,14 @@ export class BasicListComponent {
   @Input() editIcon: boolean;
   @Input() editRoute: string;
 
-  @Output() onEditClick = new EventEmitter<number>();
-  clickEdit(id: number) {
-    this.onEditClick.emit(id);
+  @Output() editClick = new EventEmitter<number>();
+  clickEdit(id: number, event: MouseEvent) {
+    event.stopPropagation();
+    this.editClick.emit(id);
+  }
+
+  @Output() itemClick = new EventEmitter<number>();
+  clickItem(id: number) {
+    this.itemClick.emit(id);
   }
 }

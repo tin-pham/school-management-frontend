@@ -5,8 +5,18 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { ToastrModule } from './toastr/toastr.module';
 import { SharedComponentsModule } from './component/components.module';
+import { VideoModule } from './component/video/video.module';
 
-const SHARED_MODULES = [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, ToastrModule, SharedComponentsModule, RouterModule];
+const SHARED_MODULES = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MaterialModule,
+  ToastrModule,
+  SharedComponentsModule,
+  RouterModule,
+  VideoModule,
+];
 
 @NgModule({
   imports: [...SHARED_MODULES],

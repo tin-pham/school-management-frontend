@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('./page/course-lesson-create/course-lesson-create.module').then(m => m.CourseLessonCreateModule),
       },
       {
+        path: ':id/section/:sectionId/lesson/:lessonId',
+        loadChildren: () => import('./page/course-lesson-detail/course-lesson-detail.module').then(m => m.CourseLessonDetailModule),
+      },
+      {
         path: ':id/section/:sectionId/lesson/:lessonId/edit',
         loadChildren: () => import('./page/course-lesson-edit/course-lesson-edit.module').then(m => m.CourseLessonEditModule),
       },

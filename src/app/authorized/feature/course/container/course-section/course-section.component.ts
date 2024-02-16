@@ -51,4 +51,8 @@ export class CourseSectionComponent implements OnInit {
   editLesson(id: number) {
     this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id, 'edit']);
   }
+
+  navigateToDetail(id: number) {
+    this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id]);
+  }
 }

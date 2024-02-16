@@ -1,0 +1,14 @@
+<div *ngIf="lesson" class="lesson-detail">
+  <h1>{{ lesson.title }}</h1>
+  <div class="body grid">
+    <div *ngIf="lesson.videoUrl" class="lesson-video grid-item box_1">
+      <app-video class="video" [videoUrl]="lesson.videoUrl"></app-video>
+    </div>
+
+    <app-lesson-tab class="lesson-tab grid-item box_2"></app-lesson-tab>
+
+    <div class="section-list grid-item box_3">
+      <app-course-section-list></app-course-section-list>
+    </div>
+  </div>
+</div>

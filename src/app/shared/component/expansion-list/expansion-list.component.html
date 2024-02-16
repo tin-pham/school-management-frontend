@@ -11,6 +11,11 @@
   </mat-list-item>
 
   <div [hidden]="!toggle">
-    <app-basic-list class="item-list" (onEditClick)="clickEdit($event)" [editIcon]="true" [items]="items"></app-basic-list>
+    <app-basic-list
+      class="item-list"
+      (itemClick)="onItemClicked($event)"
+      (editClick)="onEditClicked($event)"
+      [editIcon]="true"
+      [items]="items"></app-basic-list>
   </div>
 </mat-nav-list>

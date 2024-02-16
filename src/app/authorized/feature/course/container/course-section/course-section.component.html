@@ -8,4 +8,5 @@
   [addRoute]="'/course/' + courseId + '/section/' + section.id + '/lesson'"
   [title]="section.name"
   [items]="lessonItems"
-  (onEditClick)="editLesson($event)"></app-expansion-list>
+  (editClicked)="editLesson($event)"
+  (itemClicked)="navigateToDetail($event)"></app-expansion-list>

@@ -30,8 +30,10 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   BasicListComponent,
 ];
 
+const SHARED_MODULES: Array<Type<any>> = [CommonModule, MaterialModule, MaterialFileInputModule, FormsModule, RouterModule];
+
 @NgModule({
-  imports: [CommonModule, FormsModule, MaterialModule, MaterialFileInputModule, RouterModule],
+  imports: [...SHARED_MODULES],
   declarations: [...SHARED_COMPONENTS],
   exports: [...SHARED_COMPONENTS],
 })

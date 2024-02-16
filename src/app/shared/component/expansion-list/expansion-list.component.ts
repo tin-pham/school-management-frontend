@@ -39,8 +39,14 @@ export class ExpansionListComponent {
     });
   }
 
-  @Output() onEditClick = new EventEmitter<number>();
-  clickEdit(id: number) {
-    this.onEditClick.emit(id);
+  @Output() editClicked = new EventEmitter<number>();
+  onEditClicked(id: number) {
+    this.editClicked.emit(id);
+  }
+
+  @Output() itemClicked = new EventEmitter<number>();
+  onItemClicked(id: number) {
+    console.log(id);
+    this.itemClicked.emit(id);
   }
 }
