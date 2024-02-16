@@ -5,7 +5,21 @@
       <app-video class="video" [videoUrl]="lesson.videoUrl"></app-video>
     </div>
 
-    <app-lesson-tab class="lesson-tab grid-item box_2"></app-lesson-tab>
+    <div class="grid-item box_2">
+      <nav mat-tab-nav-bar>
+        <a
+          mat-tab-link
+          *ngFor="let link of navLinks"
+          [routerLink]="link.link"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [active]="rla.isActive">
+          {{ link.label }}
+        </a>
+      </nav>
+
+      <router-outlet></router-outlet>
+    </div>
 
     <div class="section-list grid-item box_3">
       <app-course-section-list></app-course-section-list>

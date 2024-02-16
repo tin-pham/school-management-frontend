@@ -5,6 +5,7 @@ import { LessonBodyRoutingModule } from './lesson-body-routing.module';
 
 @NgModule({
   declarations: [LessonBodyComponent],
+  exports: [LessonBodyComponent],
   imports: [LessonBodyRoutingModule, SharedModule],
   providers: [],
 })

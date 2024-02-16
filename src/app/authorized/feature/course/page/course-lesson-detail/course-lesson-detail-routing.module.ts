@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('../../container/lesson-tab/lesson-tab.module').then(m => m.LessonTabModule),
+        loadChildren: () => import('../../page/lesson-body/lesson-body.module').then(m => m.LessonBodyModule),
       },
     ],
   },
