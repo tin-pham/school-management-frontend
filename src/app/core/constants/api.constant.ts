@@ -256,6 +256,10 @@ export const API = {
   LESSON_ATTACHMENT: {
     TAGS: 'LessonAttachment',
     CONTROLLER: 'lesson-attachment',
+    GET_LIST: {
+      ROUTE: '',
+      OPERATION: 'Get list lesson attachments',
+    },
     BULK_STORE: {
       ROUTE: '',
       OPERATION: 'Bulk store lesson attachment',

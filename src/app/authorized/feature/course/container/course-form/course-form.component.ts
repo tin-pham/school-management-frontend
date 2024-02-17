@@ -17,6 +17,7 @@ import { of, switchMap } from 'rxjs';
 export class CourseFormComponent implements OnInit {
   private cacheStorage: CacheStorageFacet;
 
+  courseId: number;
   dto = new CourseStoreDTO();
   image: File;
   imageUrl: string;
@@ -58,7 +59,8 @@ export class CourseFormComponent implements OnInit {
     this._courseService
       .store(this.dto)
       .pipe(
-        switchMap(() => {
+        switchMap(response => {
+          this.courseId = response.id;
           if (this.image) {
             return this._s3Service.bulkUpload({
               files: [this.image],
@@ -71,7 +73,7 @@ export class CourseFormComponent implements OnInit {
         switchMap(response => {
           // Only call update if the first switchMap returned a response
           if (response) {
-            return this._courseService.update(response.id, { imageUrl: response.data });
+            return this._courseService.update(this.courseId, { imageUrl: response.data[0].url });
           } else {
             return of(null); // Return an observable that immediately completes if there was no initial response
           }

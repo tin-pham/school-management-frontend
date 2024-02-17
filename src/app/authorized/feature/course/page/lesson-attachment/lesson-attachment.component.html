@@ -1,0 +1,13 @@
+<div>
+  <div>
+    <app-lesson-download *ngFor="let attachment of attachments" [attachment]="attachment"></app-lesson-download>
+  </div>
+
+  <app-files-input-group
+    [accept]="'*'"
+    [files]="attachmentsCreating"
+    (filesChange)="onFilesChange($event)"
+    [label]="'Đính kèm'"></app-files-input-group>
+
+  <app-primary-button (click)="upload()">Tải lên</app-primary-button>
+</div>

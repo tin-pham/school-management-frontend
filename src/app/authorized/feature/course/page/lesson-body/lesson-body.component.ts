@@ -17,7 +17,6 @@ export class LessonBodyComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('lessonId');
-
     this._lessonService.getDetail(id).subscribe(response => (this.body = response.body));
   }
 }

@@ -35,6 +35,11 @@
   grid-column: 3;
   border: 1px solid black;
 }
+
+.nav {
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   .box_3 {
     display: none;

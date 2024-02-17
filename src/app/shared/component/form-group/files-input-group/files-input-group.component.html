@@ -1,4 +1,4 @@
 <div class="mb-3">
-  <mat-label>{{ label }}</mat-label>
-  <ngx-mat-file-input (ngModelChange)="onFileInputChange()" [(ngModel)]="fileInput" [name]="name" multiple></ngx-mat-file-input>
+  <label class="form-label">{{ label }}</label>
+  <input class="form-control" [accept]="accept" type="file" (change)="onFilesChange($event)" [name]="name" multiple />
 </div>

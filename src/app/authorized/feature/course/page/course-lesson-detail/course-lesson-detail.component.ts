@@ -25,7 +25,12 @@ export class CourseLessonDetailComponent implements OnInit {
     this._lessonService.getDetail(lessonId).subscribe(data => (this.lesson = data));
 
     this.router.events.subscribe(() => {
-      this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(link => this.router.url.indexOf(link.link[0]) !== -1));
+      const fullPath = this.router.url;
+      this.activeLinkIndex = this.navLinks.findIndex(navLink => {
+        // Construct the full path for each nav link to compare with the current URL
+        const navLinkPath = Array.isArray(navLink.link) ? navLink.link.join('/') : navLink.link;
+        return fullPath.includes(navLinkPath);
+      });
     });
 
     this.route.parent.params.subscribe(params => {

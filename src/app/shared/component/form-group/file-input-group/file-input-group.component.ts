@@ -13,7 +13,6 @@ export class FileInputGroupComponent {
   @Output() valueChange = new EventEmitter<any>();
 
   onValueChange(event) {
-    console.log(event.target.files);
     this.valueChange.emit(event);
   }
 }

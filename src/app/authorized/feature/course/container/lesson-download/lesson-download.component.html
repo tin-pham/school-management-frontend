@@ -1,0 +1,15 @@
+<div class="item" *ngIf="attachment">
+  <app-video-file *ngIf="isVideo()" class="svg"></app-video-file>
+  <app-code-file *ngIf="isCode()" class="svg"></app-code-file>
+  <app-basic-file *ngIf="!isVideo() && !isCode()" class="svg"></app-basic-file>
+
+  <div class="filename">
+    <p>{{ attachment.name }}</p>
+    <div class="filedata">
+      <span>2 files</span>
+      <span>●</span>
+      <span>{{ attachment.size }}</span>
+    </div>
+  </div>
+  <app-primary-button class="button">Download</app-primary-button>
+</div>

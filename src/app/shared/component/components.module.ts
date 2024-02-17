@@ -15,6 +15,9 @@ import { FileInputGroupComponent } from './form-group/file-input-group/file-inpu
 import { SelectMultipleSearchComponent } from './form-group/select-multiple-search/select-multiple-search.component';
 import { ExpansionListComponent } from './expansion-list/expansion-list.component';
 import { BasicListComponent } from './basic-list/basic-list.component';
+import { BasicFileComponent } from './icon/basic-file/basic-file.component';
+import { VideoFileComponent } from './icon/video-file/video-file.component';
+import { CodeFileComponent } from './icon/code-file/code-file.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -28,6 +31,9 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   SelectMultipleSearchComponent,
   ExpansionListComponent,
   BasicListComponent,
+  BasicFileComponent,
+  VideoFileComponent,
+  CodeFileComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [CommonModule, MaterialModule, MaterialFileInputModule, FormsModule, RouterModule];
