@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LessonAttachmentBulkStoreDTO, LessonAttachmentGetListDTO } from '@shared/models/dto/lesson-attachment.dto';
+import {
+  LessonAttachmentBulkDeleteDTO,
+  LessonAttachmentBulkStoreDTO,
+  LessonAttachmentGetListDTO,
+} from '@shared/models/dto/lesson-attachment.dto';
 import { API } from '@core/constants/api.constant';
 import { LessonAttachmentGetListRO } from '@shared/models/ro/lesson-attachment.ro';
 import { Observable } from 'rxjs';
@@ -14,5 +18,9 @@ export class LessonAttachmentService extends BaseService {
 
   getList(dto: LessonAttachmentGetListDTO): Observable<LessonAttachmentGetListRO> {
     return this.get<LessonAttachmentGetListRO>(API.LESSON_ATTACHMENT.CONTROLLER + '/' + API.LESSON_ATTACHMENT.GET_LIST.ROUTE, dto);
+  }
+
+  bulkDelete(dto: LessonAttachmentBulkDeleteDTO): Observable<ResultRO> {
+    return this._delete<ResultRO>(API.LESSON_ATTACHMENT.CONTROLLER + '/' + API.LESSON_ATTACHMENT.BULK_DELETE.ROUTE, dto);
   }
 }

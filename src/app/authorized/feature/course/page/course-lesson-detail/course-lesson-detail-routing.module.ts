@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'attachment',
         loadChildren: () => import('../../page/lesson-attachment/lesson-attachment.module').then(m => m.LessonAttachmentModule),
       },
+      {
+        path: 'assignment',
+        loadChildren: () => import('../../page/lesson-assignment/lesson-assignment.module').then(m => m.LessonAssignmentModule),
+      },
     ],
   },
 ];

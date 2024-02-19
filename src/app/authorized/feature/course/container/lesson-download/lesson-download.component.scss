@@ -15,13 +15,13 @@
   transform: scale(1.025);
 }
 
-.item > .button {
-  margin-left: auto;
-}
-
 .item:hover .svg {
   color: #4758b8;
   fill: red;
+}
+
+.item > .right {
+  margin-left: auto;
 }
 
 // .item button {

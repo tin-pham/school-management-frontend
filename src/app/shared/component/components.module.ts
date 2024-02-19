@@ -18,11 +18,14 @@ import { BasicListComponent } from './basic-list/basic-list.component';
 import { BasicFileComponent } from './icon/basic-file/basic-file.component';
 import { VideoFileComponent } from './icon/video-file/video-file.component';
 import { CodeFileComponent } from './icon/code-file/code-file.component';
+import { WarnButtonComponent } from './button/warn-button/warn-button.component';
+import { DatePickerComponent } from './form-group/date-picker/date-picker.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
   TextInputGroupComponent,
   PrimaryButtonComponent,
+  WarnButtonComponent,
   TextareaGroupComponent,
   ImageCardComponent,
   SelectSearchComponent,
@@ -34,6 +37,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   BasicFileComponent,
   VideoFileComponent,
   CodeFileComponent,
+  DatePickerComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [CommonModule, MaterialModule, MaterialFileInputModule, FormsModule, RouterModule];

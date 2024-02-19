@@ -42,10 +42,28 @@ export class BaseService {
       .pipe(catchError(this.handleError.bind(this)));
   }
 
-  protected _delete<T>(url: string) {
+  protected _delete<T>(url: string, query?: any) {
     const token = localStorage.getItem('accessToken');
-    const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
-    return this.http.delete<T>(this.BASE_URL + url, { headers }).pipe(catchError(this.handleError.bind(this)));
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.append('Authorization', `Bearer ${token}`);
+    }
+
+    let params = new HttpParams();
+    if (query) {
+      // Assuming 'query' can be an object with multiple key-value pairs
+      Object.keys(query).forEach(key => {
+        // If the value is an array, join it with commas
+        const value = query[key];
+        if (Array.isArray(value)) {
+          params = params.append(key, value.join(','));
+        } else {
+          params = params.append(key, value);
+        }
+      });
+    }
+
+    return this.http.delete<T>(this.BASE_URL + url, { headers, params }).pipe(catchError(this.handleError.bind(this)));
   }
 
   private handleError(error: HttpErrorResponse) {

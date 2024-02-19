@@ -236,6 +236,10 @@ export const API = {
   ATTACHMENT: {
     TAGS: 'Attachment',
     CONTROLLER: 'attachment',
+    BULK_STORE: {
+      ROUTE: '',
+      OPERATION: 'Bulk store attachment',
+    },
     BULK_DELETE: {
       ROUTE: '',
       OPERATION: 'Bulk delete attachment',
@@ -243,14 +247,6 @@ export const API = {
     GET_LIST: {
       ROUTE: '',
       OPERATION: 'Get list attachments',
-    },
-    UPLOAD: {
-      ROUTE: '',
-      OPERATION: 'Upload attachment',
-    },
-    GET_DETAIL: {
-      ROUTE: ':id',
-      OPERATION: 'Get attachment detail',
     },
   },
   LESSON_ATTACHMENT: {

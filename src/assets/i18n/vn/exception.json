@@ -14,6 +14,7 @@
   "COURSE": {
     "ALREADY_EXIST": "Khóa học đã tồn tại",
     "NOT_FOUND": "Khóa học không tìm thấy",
+    "DOES_NOT_EXIST": "Khóa học không tồn tại",
     "GET_DETAIL_FAILED": "Không thể truy cập khóa học, vui lòng thử lại sau",
     "NAME": {
       "IS_NOT_EMPTY": "Tên khóa học không được để trống"
@@ -26,6 +27,7 @@
     }
   },
   "LESSON": {
+    "DOES_NOT_EXIST": "Bài học không tồn tại",
     "TITLE": {
       "IS_NOT_EMPTY": "Tên bài học không được trống"
     },
@@ -37,6 +39,17 @@
     },
     "VIDEO_URL": {
       "FORMAT_IS_NOT_VALID": "Định dạng địa chỉ không hợp lệ"
+    }
+  },
+  "ASSIGNMENT": {
+    "NAME": {
+      "IS_NOT_EMPTY": "Tên bài giao không được trống"
+    },
+    "DESCRIPTION": {
+      "IS_NOT_EMPTY": "Nội dung bài giao không được trống"
+    },
+    "DUE_DATE": {
+      "IS_NOT_EMPTY": "Hạn nộp bài không được trống"
     }
   }
 }

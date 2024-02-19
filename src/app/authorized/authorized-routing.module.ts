@@ -31,6 +31,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/category/category.module').then(m => m.CategoryModule),
         canActivate: [roleGuard([ROLE.TEACHER])],
       },
+      {
+        path: 'assignment',
+        loadChildren: () => import('./feature/assignment/assignment.module').then(m => m.AssignmentModule),
+        canActivate: [roleGuard([ROLE.TEACHER])],
+      },
     ],
   },
 ];

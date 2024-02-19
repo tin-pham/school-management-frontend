@@ -1,0 +1,12 @@
+<div class="file-submission" *ngIf="attachment" [matTooltip]="attachment.name">
+  <mat-icon>insert_drive_file</mat-icon>
+  <div class="file-info">
+    <span class="file-title" >{{ attachment.name | truncate: 10 }}</span>
+    <span class="file-status">{{ attachment.createdAt | date: 'dd/MM/yyyy' }}</span>
+  </div>
+
+  <div class="buttons">
+    <mat-icon (click)="delete()" class="delete" role="button">close</mat-icon>
+    <mat-icon class="download" role="button">download</mat-icon>
+  </div>
+</div>

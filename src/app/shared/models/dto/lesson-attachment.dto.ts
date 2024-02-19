@@ -18,6 +18,10 @@ export class LessonAttachmentBulkStoreDTO {
 
 export class LessonAttachmentBulkDeleteDTO {
   ids: number[];
+
+  constructor(data?: LessonAttachmentBulkDeleteDTO) {
+    Object.assign(this, data);
+  }
 }
 
 export class LessonAttachmentGetListDTO extends PaginateDTO {

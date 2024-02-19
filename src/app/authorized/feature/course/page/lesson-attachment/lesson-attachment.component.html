@@ -1,6 +1,15 @@
 <div>
   <div>
-    <app-lesson-download *ngFor="let attachment of attachments" [attachment]="attachment"></app-lesson-download>
+    <app-lesson-download (onDelete)="onDelete()" *ngFor="let attachment of attachments" [attachment]="attachment"></app-lesson-download>
+
+    <mat-paginator
+      *ngIf="totalItems > 0"
+      [pageSizeOptions]="[5, 10]"
+      [pageIndex]="page - 1"
+      [pageSize]="itemsPerPage"
+      [length]="totalItems"
+      (page)="handlePageChange($event)"
+      aria-label="Select page of users"></mat-paginator>
   </div>
 
   <app-files-input-group

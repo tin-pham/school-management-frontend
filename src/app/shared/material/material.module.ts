@@ -11,11 +11,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   exports: [
@@ -36,6 +38,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatDividerModule,
     MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTooltipModule,
   ],
+  providers: [MatDatepickerModule],
 })
 export class MaterialModule {}

@@ -1,0 +1,17 @@
+<div>
+  <app-lesson-assignment-item
+    [routerLink]="['/assignment', assignment.id]"
+    (onDelete)="delete(assignment.id)"
+    *ngFor="let assignment of assignments"
+    [assignment]="assignment"></app-lesson-assignment-item>
+
+  <mat-paginator
+    *ngIf="totalItems > 0"
+    [pageSizeOptions]="[5, 10]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"
+    aria-label="Select page of users"></mat-paginator>
+  <app-primary-button [routerLink]="['/assignment/create']" [queryParams]="{ lessonId: lessonId }">Tạo submit</app-primary-button>
+</div>

@@ -1,24 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
-import { LessonAttachmentService } from '@core/services/api/lesson-attachment.service';
-import { LessonAttachmentBulkDeleteDTO } from '@shared/models/dto/lesson-attachment.dto';
 import { LessonAttachmentGetListDataRO } from '@shared/models/ro/lesson-attachment.ro';
-import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
-  selector: 'app-lesson-download',
-  styleUrls: ['lesson-download.component.scss'],
-  templateUrl: 'lesson-download.component.html',
+  selector: 'app-file-download',
+  styleUrls: ['./file-download.component.scss'],
+  templateUrl: './file-download.component.html',
 })
-export class LessonDownloadComponent {
+export class FileDownloadComponent {
   @Input() attachment: LessonAttachmentGetListDataRO;
 
-  constructor(
-    private toast: ToastrService,
-    private dialog: MatDialog,
-    private _lessonAttachmentService: LessonAttachmentService,
-  ) {}
+  constructor(private dialog: MatDialog) {}
 
   isVideo() {
     const regex = '\b(?:mp4|avi|mov)\b';
@@ -32,10 +25,6 @@ export class LessonDownloadComponent {
 
   @Output() onDelete = new EventEmitter();
   delete() {
-    const dto = new LessonAttachmentBulkDeleteDTO({
-      ids: [this.attachment.id],
-    });
-
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -47,10 +36,7 @@ export class LessonDownloadComponent {
         return;
       }
 
-      this._lessonAttachmentService.bulkDelete(dto).subscribe(() => {
-        this.onDelete.emit();
-        this.toast.success('Xóa đính kèm thành công');
-      });
+      this.onDelete.emit();
     });
   }
 }

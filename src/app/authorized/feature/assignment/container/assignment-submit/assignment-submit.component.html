@@ -1,0 +1,11 @@
+<div class="work-card">
+  <div class="work-header">
+    <h2>Your work</h2>
+    <span class="status-missing">Missing</span>
+  </div>
+  <app-file-submission [attachment]="attachment" (onDelete)="delete()"></app-file-submission>
+
+  <app-file-input-group [value]="file" (valueChange)="onFileInputChange($event)" [label]="'Nộp bài'"></app-file-input-group>
+
+  <app-primary-button (click)="submit()">Nộp bài</app-primary-button>
+</div>

@@ -1,0 +1,13 @@
+<div class="assignment">
+  <div class="icon-container">
+    <mat-icon class="icon">assignment</mat-icon>
+  </div>
+  <div class="assignment-details">
+    <p class="assignment-name">{{ assignment.name }}</p>
+    <p class="assignment-due">Hạn nộp: {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
+  </div>
+
+  <div class="buttons">
+    <app-warn-button (click)="delete()">Xóa</app-warn-button>
+  </div>
+</div>

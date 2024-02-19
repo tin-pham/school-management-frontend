@@ -46,7 +46,7 @@ export class CourseLessonDetailComponent implements OnInit {
         },
         {
           label: 'Bài tập',
-          link: [this.basePath, 'exercise'],
+          link: [this.basePath, 'assignment'],
         },
         {
           label: 'Bình luận',
