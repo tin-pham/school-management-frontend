@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { S3UploadDTO } from '@shared/models/dto/s3.dto';
+import { S3DeleteDTO, S3UploadDTO } from '@shared/models/dto/s3.dto';
 import { API } from '@core/constants/api.constant';
 import { Observable } from 'rxjs';
 import { S3UploadRO } from '@shared/models/ro/s3.ro';
+import { ResultRO } from '@shared/models/ro/result.ro';
 import { BaseService } from './base.service';
 
 @Injectable()
@@ -17,5 +18,9 @@ export class S3Service extends BaseService {
     // Append name
     formData.append('directoryPath', dto.directoryPath);
     return this.post(API.S3.CONTROLLER + '/' + API.S3.BULK_UPLOAD.ROUTE, formData);
+  }
+
+  bulkDelete(dto: S3DeleteDTO): Observable<ResultRO> {
+    return this._delete<ResultRO>(API.S3.CONTROLLER + '/' + API.S3.BULK_DELETE.ROUTE, dto);
   }
 }

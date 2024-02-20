@@ -1,5 +1,12 @@
 import { PaginateDTO } from './paginate.dto';
 
+export class AttachmentStoreDTO {
+  url: string;
+  name: string;
+  size: string;
+  type: string;
+}
+
 export class AttachmentBulkStoreFileDTO {
   url: string;
   name: string;

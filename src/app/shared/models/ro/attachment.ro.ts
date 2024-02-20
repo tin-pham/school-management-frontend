@@ -12,3 +12,11 @@ export class AttachmentGetListDataRO {
 export class AttachmentGetListRO extends PaginateRO<AttachmentGetListDataRO> {
   data: AttachmentGetListDataRO[];
 }
+
+export class AttachmentStoreRO {
+  id: number;
+  url: string;
+  name: string;
+  type: string;
+  size: string;
+}

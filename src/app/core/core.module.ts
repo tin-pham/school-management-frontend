@@ -13,6 +13,7 @@ import { RoleService } from './services/role.service';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { UserService } from './services/api/user.service';
 
 const COMPONENTS = [HeaderComponent, SidebarMenuComponent, ConfirmDialogComponent];
 
@@ -38,7 +39,7 @@ export function createTranslateLoader(http: HttpBackend) {
     }),
   ],
   declarations: [...COMPONENTS],
-  providers: [BaseService, AuthService, RoleService],
+  providers: [BaseService, AuthService, RoleService, UserService],
   exports: [CommonModule, TranslateModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, ...COMPONENTS],
 })
 export class CoreModule {}

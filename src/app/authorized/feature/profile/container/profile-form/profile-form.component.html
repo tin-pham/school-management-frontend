@@ -1,0 +1,68 @@
+<div class="container" *ngIf="userUpdating && user">
+  <h1>Sửa thông tin</h1>
+  <hr />
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      <div class="text-center">
+        <img [src]="user.image.url || '//placehold.it/100'" class="rounded-circle user-avatar" alt="avatar" />
+        <app-file-input-group
+          (valueChange)="onFileInputChange($event)"
+          [label]="'Cập nhật avatar'"
+          [name]="'avatar'"
+          [accept]="'image/*'"></app-file-input-group>
+      </div>
+    </div>
+
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+      <h3>Thông tin cá nhân</h3>
+      <form class="form-horizontal g-3" role="form" #profileForm="ngForm">
+        <div class="row mb-3">
+          <label class="col-lg-3 col-form-label">Tên hiển thị:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" [(ngModel)]="userUpdating.displayName" name="displayName" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-lg-3 col-form-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" [(ngModel)]="userUpdating.email" name="email" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-lg-3 col-form-label">Số điện thoại:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" [(ngModel)]="userUpdating.phone" name="phone" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" [(ngModel)]="user.username" name="username" readonly disabled />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">Mật khẩu:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" [(ngModel)]="userUpdating.password" name="password" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label">Xác nhận mật khẩu:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" [(ngModel)]="confirmPassword" name="confirmPassword" />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="col-md-3 col-form-label"></label>
+          <div class="col-md-8">
+            <button type="button" class="btn btn-primary" (click)="update()">Lưu thay đổi</button>
+            <span></span>
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Hủy</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

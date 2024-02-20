@@ -1,0 +1,6 @@
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* This will ensure the image covers the area without stretching, cropping it if necessary */
+  object-position: top;
+}

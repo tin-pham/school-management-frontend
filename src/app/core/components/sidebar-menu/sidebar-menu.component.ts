@@ -3,7 +3,9 @@ import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output, 
 import { MatSidenav } from '@angular/material/sidenav';
 import { ROLE } from '@core/constants/role.constant';
 import { AuthService } from '@core/services/api/auth.service';
+import { UserService } from '@core/services/api/user.service';
 import { LoginUserRO } from '@shared/models/ro/auth.ro';
+import { UserGetProfileRO } from '@shared/models/ro/user.ro';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -15,6 +17,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   @Output() isShowMenu = new EventEmitter();
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   _user: LoginUserRO = null;
+  profile: UserGetProfileRO;
 
   @ViewChild(SidebarMenuComponent) sidebarMenu!: SidebarMenuComponent;
   isAuthenticated = false;
@@ -25,12 +28,20 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
     private readonly observer: BreakpointObserver,
     private readonly cd: ChangeDetectorRef,
     private readonly _authService: AuthService,
+    private readonly _userService: UserService,
   ) {
     this.isAuthenticated = this._authService.isAuthenticated();
   }
 
-  onToggleSidebar() {
-    this.toggle();
+  ngOnInit() {
+    this._authService.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
+      this._user = user;
+      this.isShowMenu.emit(this._user);
+    });
+    this._userService.profile$.pipe(takeUntil(this.destroy$)).subscribe(profile => {
+      console.log(profile);
+      this.profile = profile;
+    });
   }
 
   ngAfterViewInit() {
@@ -47,21 +58,17 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggle() {
-    console.log('oke2');
-    this.sidenav.toggle();
-  }
-
-  ngOnInit() {
-    this._authService.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
-      this._user = user;
-      this.isShowMenu.emit(this._user);
-    });
-  }
-
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  onToggleSidebar() {
+    this.toggle();
+  }
+
+  toggle() {
+    this.sidenav.toggle();
   }
 
   isAdmin() {

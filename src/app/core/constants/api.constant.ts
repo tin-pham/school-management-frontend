@@ -16,13 +16,13 @@ export const API = {
   USER: {
     TAGS: 'User',
     CONTROLLER: 'user',
-    STORE: {
-      ROUTE: '',
-      OPERATION: 'Store user',
+    GET_PROFILE: {
+      ROUTE: 'profile',
+      OPERATION: 'Get profile',
     },
-    STORE_BY_API_KEY: {
-      ROUTE: 'store-by-api-key',
-      OPERATION: 'Store user by api key',
+    UPDATE_PROFILE: {
+      ROUTE: 'profile',
+      OPERATION: 'Update profile',
     },
   },
   HEALTH: {
@@ -236,12 +236,16 @@ export const API = {
   ATTACHMENT: {
     TAGS: 'Attachment',
     CONTROLLER: 'attachment',
-    BULK_STORE: {
+    STORE: {
       ROUTE: '',
+      OPERATION: 'Store attachment',
+    },
+    BULK_STORE: {
+      ROUTE: 'bulk',
       OPERATION: 'Bulk store attachment',
     },
     BULK_DELETE: {
-      ROUTE: '',
+      ROUTE: 'bulk',
       OPERATION: 'Bulk delete attachment',
     },
     GET_LIST: {
