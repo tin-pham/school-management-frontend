@@ -6,7 +6,7 @@
     </div>
 
     <div class="grid-item box_2">
-      <nav mat-tab-nav-bar class="nav">
+      <nav mat-tab-nav-bar class="nav" [tabPanel]="tabPanel">
         <a
           mat-tab-link
           *ngFor="let link of navLinks"
@@ -18,7 +18,9 @@
         </a>
       </nav>
 
-      <router-outlet></router-outlet>
+      <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+      </mat-tab-nav-panel>
     </div>
 
     <div class="section-list grid-item box_3">

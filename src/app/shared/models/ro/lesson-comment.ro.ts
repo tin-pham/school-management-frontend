@@ -12,11 +12,22 @@ export class LessonCommentStoreRO {
   }
 }
 
+export class LessonCommentGetListDataCreatedByImageRO {
+  id: number;
+  url: string;
+}
+
+export class LessonCommentGetListDataCreatedByRO {
+  id: number;
+  displayName: string;
+  image: LessonCommentGetListDataCreatedByImageRO;
+}
+
 export class LessonCommentGetListDataRO {
   id: number;
   body: string;
-  lessonId: number;
-  createdBy: number;
+  createdByUser: LessonCommentGetListDataCreatedByRO;
+  createdAt: Date;
   parentId?: number;
 }
 

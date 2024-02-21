@@ -22,7 +22,6 @@ export class CourseListComponent implements OnInit {
   ngOnInit() {
     const dto = new CategoryGetListDTO({
       limit: 5,
-      withCourse: true,
     });
     this.categoryService.getList(dto).subscribe({
       next: response => {

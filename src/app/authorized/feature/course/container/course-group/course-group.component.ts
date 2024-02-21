@@ -1,6 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from '@core/services/api/category.service';
+import { CourseService } from '@core/services/api/course.service';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
+import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
@@ -8,14 +11,22 @@ import { ToastrService } from '@shared/toastr/toastr.service';
   styleUrls: ['course-group.component.scss'],
   templateUrl: 'course-group.component.html',
 })
-export class CourseGroupComponent {
+export class CourseGroupComponent implements OnInit {
   @Input() category: CategoryGetListDataRO;
   @Output() categoryDeleted = new EventEmitter();
 
+  courses: CourseGetListDataRO[];
+
   constructor(
     private toast: ToastrService,
+    private router: Router,
+    private _courseService: CourseService,
     private _categoryService: CategoryService,
   ) {}
+
+  ngOnInit() {
+    this._courseService.getList({ categoryId: this.category.id }).subscribe(response => (this.courses = response.data));
+  }
 
   onDeleteCategory() {
     this._categoryService.delete(this.category.id).subscribe({
@@ -24,5 +35,9 @@ export class CourseGroupComponent {
         this.categoryDeleted.emit(this.category.id);
       },
     });
+  }
+
+  routeToAddCourse() {
+    this.router.navigate(['/course/create'], { queryParams: { categoryId: this.category.id } });
   }
 }

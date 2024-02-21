@@ -1,12 +1,12 @@
 <div>
   <div>
     <h2>{{ category.name }}</h2>
-    <app-course-toolbar (delete)="onDeleteCategory()" [categoryId]="category.id"></app-course-toolbar>
+    <app-course-toolbar (addCourse)="routeToAddCourse()" (delete)="onDeleteCategory()" [categoryId]="category.id"></app-course-toolbar>
   </div>
   <app-course-card
-    *ngFor="let course of category.courses"
+    *ngFor="let course of courses"
     [routerLink]="['/course', course.id]"
-    [imageUrl]="course.imageUrl"
+    [imageUrl]="course.image.url"
     [alt]="course.name"
     [name]="course.name"
     [description]="course.description"></app-course-card>

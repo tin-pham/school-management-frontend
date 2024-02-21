@@ -7,8 +7,9 @@
   <app-course-card
     *ngFor="let course of uncategorizedCourses"
     [routerLink]="['/course', course.id]"
-    [imageUrl]="course.imageUrl"
+    [imageUrl]="course.image.url"
     [alt]="course.name"
     [name]="course.name"
     [description]="course.description"></app-course-card>
+  <mat-icon routerLink="/course/create">library_add</mat-icon>
 </div>

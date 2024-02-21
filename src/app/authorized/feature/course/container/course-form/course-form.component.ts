@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
 import { S3Service } from '@core/services/api/s3.service';
@@ -26,6 +26,7 @@ export class CourseFormComponent implements OnInit {
   constructor(
     private toast: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
     private _categoryService: CategoryService,
     private _courseService: CourseService,
     private _s3Service: S3Service,
@@ -38,6 +39,7 @@ export class CourseFormComponent implements OnInit {
     this._categoryService.getList().subscribe({
       next: response => {
         this.categories = response.data;
+        this.dto.categoryIds = [+this.route.snapshot.queryParamMap.get('categoryId')];
       },
     });
     this.restoreCacheStorage();
@@ -64,7 +66,7 @@ export class CourseFormComponent implements OnInit {
           if (this.image) {
             return this._s3Service.bulkUpload({
               files: [this.image],
-              directoryPath: 'course/image',
+              directoryPath: 'course',
             });
           } else {
             return of(null); // Return an observable that immediately completes if no image is set

@@ -21,8 +21,8 @@ export class CategoryService extends BaseService {
     return this.post<CategoryStoreRO>(API.CATEGORY.CONTROLLER + API.CATEGORY.STORE.ROUTE, dto);
   }
 
-  getDetail(id: string): Observable<CategoryGetDetailRO> {
-    return this.get<CategoryGetDetailRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.GET_DETAIL.ROUTE.replace(':id', id));
+  getDetail(id: number): Observable<CategoryGetDetailRO> {
+    return this.get<CategoryGetDetailRO>(API.CATEGORY.CONTROLLER + '/' + API.CATEGORY.GET_DETAIL.ROUTE.replace(':id', id.toString()));
   }
 
   update(id: number, dto: CategoryUpdateDTO): Observable<CategoryUpdateRO> {

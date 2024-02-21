@@ -29,4 +29,10 @@ export class CourseToolbarComponent {
       this.delete.emit();
     });
   }
+
+  @Output() addCourse = new EventEmitter<void>();
+
+  onAddCourse() {
+    this.addCourse.emit();
+  }
 }

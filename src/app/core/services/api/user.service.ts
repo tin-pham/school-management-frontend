@@ -12,7 +12,6 @@ export class UserService extends BaseService {
   profile$ = new BehaviorSubject<UserGetProfileRO>(null);
 
   setProfile(user: UserGetProfileRO) {
-    console.log(user);
     this.profile$.next(user);
   }
 

@@ -5,7 +5,7 @@
         <img [src]="avatarUrl" />
         <span class="stat grey"></span>
       </div>
-      <h5>Floyd Miles</h5>
+      <h5>{{ displayName }}</h5>
     </div>
     <button class="btn dropdown"><i class="ri-more-line"></i></button>
   </div>
@@ -17,6 +17,6 @@
   <div class="footer">
     <a href="#">Reply</a>
     <div class="divider"></div>
-    <span class="is-mute">6 hour</span>
+    <span class="is-mute">{{ dateAgo }}</span>
   </div>
 </div>

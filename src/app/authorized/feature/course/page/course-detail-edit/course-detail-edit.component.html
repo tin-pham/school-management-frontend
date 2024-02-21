@@ -5,5 +5,7 @@
     [placeholder]="'Danh mục'"
     [options]="categories"
     [(selected)]="course.categoryIds"></app-select-multiple-search>
+
+  <app-file-input-group [value]="image" (valueChange)="onFileInputChange($event)" [label]="'Hình ảnh'"></app-file-input-group>
   <app-primary-button (click)="update()">Cập nhật</app-primary-button>
 </div>

@@ -23,18 +23,21 @@ export class LessonCommentComponent implements OnInit {
 
   ngOnInit() {
     this.lessonId = +this.route.snapshot.params['lessonId'];
+    this.commentCreating.lessonId = this.lessonId;
     this.loadComments();
   }
 
   comment() {
     this._lessonCommentService.store(this.commentCreating).subscribe(() => {
       this.toast.success('Bình luận thành công');
+      this.loadComments();
     });
   }
 
   loadComments() {
     this._lessonCommentService.getList({ lessonId: this.lessonId }).subscribe(data => {
       this.comments = data.data;
+      console.log(this.comments);
     });
   }
 }

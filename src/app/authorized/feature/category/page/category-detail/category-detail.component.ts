@@ -24,7 +24,7 @@ export class CategoryDetailComponent implements OnInit {
   ngOnInit() {
     this.edit = false;
 
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
     this._categoryService.getDetail(id).subscribe(data => {
       this.category = data;
     });

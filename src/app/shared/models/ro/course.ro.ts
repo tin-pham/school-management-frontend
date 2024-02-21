@@ -4,34 +4,47 @@ export class CourseStoreRO {
   id: number;
   name: string;
   description?: string;
-  imageUrl?: string;
+  imageId?: number;
 }
 
-export class CourseUpdateRO {
-  name?: string;
-  description?: string;
-  imageUrl?: string;
+export class CourseGetListImageRO {
+  id: number;
+  url: string;
 }
 
 export class CourseGetListDataRO {
   id: number;
   name: string;
   description?: string;
-  imageUrl?: string;
+  imageId?: number;
+  image?: CourseGetListImageRO;
 }
 
 export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {
   data: CourseGetListDataRO[];
 }
 
+export class CourseGetDetailImageRO {
+  id: number;
+  url: string;
+}
+
 export class CourseGetDetailRO {
   id: number;
   name: string;
   description?: string;
-  imageUrl?: string;
-  categoryIds?: number[];
+  imageId?: number;
+  image?: CourseGetDetailImageRO;
+  categoryIds: number[];
+}
 
-  constructor(data?: CourseGetDetailRO) {
-    Object.assign(this, data);
-  }
+export class CourseUpdateRO {
+  id: number;
+  name: string;
+  description?: string;
+  imageId?: number;
+}
+
+export class CourseDeleteRO {
+  id: number;
 }
