@@ -17,13 +17,13 @@ export class BaseService {
   ) {}
 
   protected post<T>(url: string, body?: any) {
-    return this.http.post<T>(this.BASE_URL + url, body).pipe(catchError(this.handleError.bind(this)));
+    const headers = this.getHeaders();
+    return this.http.post<T>(this.BASE_URL + url, body, { headers }).pipe(catchError(this.handleError.bind(this)));
   }
 
   protected get<T>(url: string, paramsObj?: any) {
     let params = new HttpParams();
-    const token = localStorage.getItem('accessToken');
-    const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
+    const headers = this.getHeaders();
 
     if (paramsObj) {
       Object.keys(paramsObj).forEach(key => {
@@ -35,8 +35,7 @@ export class BaseService {
   }
 
   protected patch<T>(url: string, id: number, body?: any) {
-    const token = localStorage.getItem('accessToken');
-    const headers = token ? new HttpHeaders('Authorization' + `Bearer ${token}`) : null;
+    const headers = this.getHeaders();
     return this.http
       .patch<T>(this.BASE_URL + url.replace(':id', id.toString()), body, { headers })
       .pipe(catchError(this.handleError.bind(this)));
@@ -64,6 +63,15 @@ export class BaseService {
     }
 
     return this.http.delete<T>(this.BASE_URL + url, { headers, params }).pipe(catchError(this.handleError.bind(this)));
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('accessToken');
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.append('Authorization', `Bearer ${token}`);
+    }
+    return headers;
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -23,9 +23,6 @@
       [ngClass]="{ 'is-invalid': submitted && passwordRef.invalid }" />
   </div>
   <div class="mb-3">
-    <button [disabled]="loading" class="btn btn-primary">
-      <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-      Đăng nhập
-    </button>
+    <button class="btn btn-primary">Đăng nhập</button>
   </div>
 </form>

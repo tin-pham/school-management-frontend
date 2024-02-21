@@ -7,6 +7,9 @@ import { UserService } from '@core/services/api/user.service';
 import { LoginUserRO } from '@shared/models/ro/auth.ro';
 import { UserGetProfileRO } from '@shared/models/ro/user.ro';
 import { Subject, takeUntil } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -25,10 +28,12 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
-    private readonly observer: BreakpointObserver,
-    private readonly cd: ChangeDetectorRef,
-    private readonly _authService: AuthService,
-    private readonly _userService: UserService,
+    private observer: BreakpointObserver,
+    private cd: ChangeDetectorRef,
+    private dialog: MatDialog,
+    private router: Router,
+    private _authService: AuthService,
+    private _userService: UserService,
   ) {
     this.isAuthenticated = this._authService.isAuthenticated();
   }
@@ -39,7 +44,6 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
       this.isShowMenu.emit(this._user);
     });
     this._userService.profile$.pipe(takeUntil(this.destroy$)).subscribe(profile => {
-      console.log(profile);
       this.profile = profile;
     });
   }
@@ -61,6 +65,23 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  logOut() {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this._authService.logout();
+      this.router.navigate(['/login']);
+    });
   }
 
   onToggleSidebar() {

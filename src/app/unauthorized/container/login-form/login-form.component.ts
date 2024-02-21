@@ -12,7 +12,6 @@ import { finalize, first } from 'rxjs';
 export class LoginFormComponent {
   username: string = '';
   password: string = '';
-  loading = false;
   submitted = false;
   returnUrl: string;
 
@@ -35,22 +34,16 @@ export class LoginFormComponent {
       return;
     }
 
-    this.loading = true;
     this.authService
       .login({
         username: this.username,
         password: this.password,
       })
-      .pipe(
-        first(),
-        finalize(() => (this.loading = false)),
-      )
       .subscribe({
         next: () => {
           this.toast.success('Đăng nhập thành công');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         },
-        error: (exception: Error) => this.toast.error(exception.message),
       });
 
     // Save to localstorage
