@@ -52,4 +52,11 @@ export class LessonCommentComponent implements OnInit {
     // Filter out only top-level comments (those without a parentId)
     return Array.from(commentMap.values()).filter(comment => comment.parentId === null);
   }
+
+  delete(id: number) {
+    this._lessonCommentService.delete(id).subscribe(response => {
+      this.toast.success('Xóa bình luận thành công');
+      this.comments = this.comments.filter(comment => comment.id !== response.id);
+    });
+  }
 }

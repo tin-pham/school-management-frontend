@@ -17,4 +17,9 @@ export class CommentTextboxComponent {
   onComment() {
     this.comment.emit(this.content);
   }
+
+  @Output() cancel = new EventEmitter();
+  onCancel() {
+    this.cancel.emit();
+  }
 }

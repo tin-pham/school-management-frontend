@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { IReplyState, LessonCommentService } from '@core/services/api/lesson-comment.service';
 import { LessonCommentStoreDTO } from '@shared/models/dto/lesson-comment.dto';
 import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
@@ -19,6 +19,7 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
   isReplying: IReplyState;
 
   commentBoxVisiblity = false;
+  isEditing = false;
 
   constructor(
     private toast: ToastrService,
@@ -43,6 +44,41 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  @Output() onDelete = new EventEmitter<void>();
+  delete() {
+    this.onDelete.emit();
+  }
+
+  handleDelete(id: number) {
+    this._lessonCommentService.delete(id).subscribe(response => {
+      this.toast.success('Xóa bình luận thành công');
+      this.comment.replies = this.comment.replies.filter(comment => comment.id !== response.id);
+    });
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
+  }
+
+  toggleEdit() {
+    this.isEditing = true;
+  }
+
+  edit() {
+    this._lessonCommentService.update(this.comment.id, this.comment).subscribe(updatedComment => {
+      this.comment = {
+        ...this.comment,
+        ...updatedComment,
+      };
+      this.isEditing = false;
+      this.toast.success('Cập nhật bình luận thành công');
+    });
+  }
+
+  clearReply() {
+    this.commentCreating.body = '';
+  }
+
   reply() {
     const dto = new LessonCommentStoreDTO({
       body: this.commentCreating.body,
@@ -55,11 +91,11 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
         ...newComment,
         depth: this.comment.depth + 1,
       });
-      this.replying();
+      this.toggleReply();
     });
   }
 
-  replying() {
+  toggleReply() {
     this._lessonCommentService.setIsReplying({
       isReplying: !this.commentBoxVisiblity,
       commentId: this.comment.id, // This comment's ID

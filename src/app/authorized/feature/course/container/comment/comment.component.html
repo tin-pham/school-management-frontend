@@ -15,8 +15,23 @@
     </p>
   </div>
   <div class="footer">
-    <a (click)="onReplyClick()">Phản hồi</a>
+    <a (click)="onReplyClick()" role="button">
+      <mat-icon class="align-middle">reply</mat-icon>
+      Phản hồi</a
+    >
+    <div class="divider"></div>
+    <a role="button" (click)="onEditClick()">
+      <mat-icon class="align-middle">edit</mat-icon>
+      Sửa
+    </a>
+
+    <div class="divider"></div>
+    <a role="button" (click)="onDeleteClick()">
+      <mat-icon class="align-middle">delete</mat-icon>
+      Xóa
+    </a>
     <div class="divider"></div>
     <span class="is-mute">{{ dateAgo }}</span>
+    <div class="divider"></div>
   </div>
 </div>

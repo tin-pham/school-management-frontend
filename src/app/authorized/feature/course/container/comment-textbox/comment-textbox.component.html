@@ -1,4 +1,7 @@
 <div class="textbox">
   <app-textarea-group [name]="'content'" [(value)]="content" (change)="onContentChange()"></app-textarea-group>
-  <app-primary-button class="button" (click)="onComment()">Bình luận</app-primary-button>
+  <div class="button">
+    <app-primary-button (click)="onComment()">Bình luận</app-primary-button>
+    <app-warn-button (click)="onCancel()">Hủy</app-warn-button>
+  </div>
 </div>
