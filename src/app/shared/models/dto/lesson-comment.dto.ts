@@ -12,6 +12,7 @@ export class LessonCommentStoreDTO {
 
 export class LessonCommentGetListDTO extends PaginateDTO {
   lessonId: number;
+  commentId?: number;
 
   constructor(data?: LessonCommentGetListDTO) {
     super(data);

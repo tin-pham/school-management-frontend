@@ -1,22 +1,15 @@
-<div class="comment" [class.reply]="isReply">
-  <div class="user-banner">
-    <div class="user">
-      <div class="avatar">
-        <img [src]="avatarUrl" />
-        <span class="stat grey"></span>
-      </div>
-      <h5>{{ displayName }}</h5>
-    </div>
-    <button class="btn dropdown"><i class="ri-more-line"></i></button>
-  </div>
-  <div class="content">
-    <p>
-      {{ content }}
-    </p>
-  </div>
-  <div class="footer">
-    <a href="#">Reply</a>
-    <div class="divider"></div>
-    <span class="is-mute">{{ dateAgo }}</span>
-  </div>
+<app-comment
+  (replyClick)="replying()"
+  [avatarUrl]="comment.userImageUrl"
+  [displayName]="comment.userDisplayName"
+  [content]="comment.body"
+  [dateAgo]="dateAgo"
+  [depth]="comment.depth"></app-comment>
+
+<div *ngIf="commentBoxVisiblity" [ngStyle]="{ 'margin-left': (comment.depth + 1) * 60 + 'px' }">
+  <app-comment-textbox [(content)]="commentCreating.body" (comment)="reply()"></app-comment-textbox>
+</div>
+
+<div class="replies">
+  <app-comment-box *ngFor="let comment of comment.replies" [comment]="comment"></app-comment-box>
 </div>

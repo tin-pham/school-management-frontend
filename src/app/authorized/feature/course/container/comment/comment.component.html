@@ -1,0 +1,22 @@
+<div class="comment" [ngStyle]="{ 'margin-left': depth * 60 + 'px' }">
+  <div class="user-banner">
+    <div class="user">
+      <div class="avatar">
+        <img [src]="avatarUrl" />
+        <span class="stat grey"></span>
+      </div>
+      <h5>{{ displayName }}</h5>
+    </div>
+    <button class="btn dropdown"><i class="ri-more-line"></i></button>
+  </div>
+  <div class="content">
+    <p>
+      {{ content }}
+    </p>
+  </div>
+  <div class="footer">
+    <a (click)="onReplyClick()">Phản hồi</a>
+    <div class="divider"></div>
+    <span class="is-mute">{{ dateAgo }}</span>
+  </div>
+</div>

@@ -36,8 +36,20 @@ export class LessonCommentComponent implements OnInit {
 
   loadComments() {
     this._lessonCommentService.getList({ lessonId: this.lessonId }).subscribe(data => {
-      this.comments = data.data;
-      console.log(this.comments);
+      this.comments = this.transformComments(data.data);
     });
+  }
+
+  transformComments(comments: any[]): any[] {
+    const commentMap = new Map(comments.map(comment => [comment.id, { ...comment, replies: [] }]));
+
+    comments.forEach(comment => {
+      if (comment.parentId !== null && commentMap.has(comment.parentId)) {
+        commentMap.get(comment.parentId).replies.push(commentMap.get(comment.id));
+      }
+    });
+
+    // Filter out only top-level comments (those without a parentId)
+    return Array.from(commentMap.values()).filter(comment => comment.parentId === null);
   }
 }

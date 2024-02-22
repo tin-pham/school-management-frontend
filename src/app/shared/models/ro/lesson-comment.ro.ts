@@ -3,32 +3,33 @@ import { PaginateRO } from './paginate.ro';
 export class LessonCommentStoreRO {
   id: number;
   body: string;
-  lessonId: number;
+  createdAt: Date;
   createdBy: number;
+  lessonId: number;
   parentId?: number;
+  userId: number;
+  userDisplayName: string;
+  userImageUrl?: string;
 
   constructor(data?: LessonCommentStoreRO) {
     Object.assign(this, data);
   }
 }
 
-export class LessonCommentGetListDataCreatedByImageRO {
-  id: number;
-  url: string;
-}
-
-export class LessonCommentGetListDataCreatedByRO {
-  id: number;
-  displayName: string;
-  image: LessonCommentGetListDataCreatedByImageRO;
-}
-
 export class LessonCommentGetListDataRO {
   id: number;
   body: string;
-  createdByUser: LessonCommentGetListDataCreatedByRO;
   createdAt: Date;
+  createdBy: number;
+  lessonId: number;
   parentId?: number;
+  userId: number;
+  userDisplayName: string;
+  userImageUrl?: string;
+  depth: number;
+
+  // calculate
+  replies?: LessonCommentGetListDataRO[];
 }
 
 export class LessonCommentGetListRO extends PaginateRO<LessonCommentGetListDataRO> {

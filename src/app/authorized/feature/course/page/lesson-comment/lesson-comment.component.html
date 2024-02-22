@@ -1,31 +1,7 @@
 <div class="block">
   <app-comment-header></app-comment-header>
   <app-comment-textbox [(content)]="commentCreating.body" (comment)="comment()"></app-comment-textbox>
-  <app-comment-box
-    *ngFor="let comment of comments"
-    [createdAt]="comment.createdAt"
-    [displayName]="comment.createdByUser.displayName"
-    [content]="comment.body"
-    [avatarUrl]="comment.createdByUser.image.url"></app-comment-box>
-  <app-comment-box
-    [content]="
-      'Actually, now that I try out the links on my message, above, none of them take me to the secure site. Only my shortcut on my desktop, which I created years ago.'
-    "
-    [avatarUrl]="'https://randomuser.me/api/portraits/men/86.jpg'"
-    [displayName]="'Floyd Miles'"></app-comment-box>
-  <mat-divider></mat-divider>
-  <app-comment-box
-    [displayName]="'Floyd Miles'"
-    [content]="'Before installing this plugin please put back again your wordpress and site url back to http.'"
-    [avatarUrl]="'https://randomuser.me/api/portraits/men/86.jpg'"></app-comment-box>
-  <mat-divider></mat-divider>
-  <app-comment-box
-    [displayName]="'John Cena'"
-    [content]="'Thanks for your reply'"
-    [avatarUrl]="
-      'https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=3759e09a5b9fbe53088b23c615b6312e'
-    "
-    [isReply]="true"></app-comment-box>
+  <app-comment-box *ngFor="let comment of comments" [comment]="comment"></app-comment-box>
   <div class="load">
     <span><i class="ri-refresh-line"></i>Loading</span>
   </div>
