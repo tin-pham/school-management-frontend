@@ -1,0 +1,9 @@
+<div *ngIf="assignment">
+  <h1>Sửa bài tập</h1>
+  <form>
+    <app-text-input-group [label]="'Tiêu đề'" [(value)]="assignment.name" [name]="'name'"></app-text-input-group>
+    <app-textarea-group [label]="'Nội dung'" [(value)]="assignment.description" [name]="'description'"></app-textarea-group>
+    <app-date-picker [label]="'Ngày hết hạn'" [name]="'dueDate'" [(value)]="assignment.dueDate"></app-date-picker>
+    <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+  </form>
+</div>

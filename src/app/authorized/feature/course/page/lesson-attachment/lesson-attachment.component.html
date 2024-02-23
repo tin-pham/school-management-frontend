@@ -12,11 +12,13 @@
       aria-label="Select page of users"></mat-paginator>
   </div>
 
-  <app-files-input-group
-    [accept]="'*'"
-    [files]="attachmentsCreating"
-    (filesChange)="onFilesChange($event)"
-    [label]="'Đính kèm'"></app-files-input-group>
+  <div *ngIf="!isStudent()">
+    <app-files-input-group
+      [accept]="'*'"
+      [files]="attachmentsCreating"
+      (filesChange)="onFilesChange($event)"
+      [label]="'Đính kèm'"></app-files-input-group>
 
-  <app-primary-button (click)="upload()">Tải lên</app-primary-button>
+    <app-primary-button (click)="upload()">Tải lên</app-primary-button>
+  </div>
 </div>

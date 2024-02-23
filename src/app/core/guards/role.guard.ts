@@ -16,7 +16,7 @@ export function roleGuard(allowedRoles: ROLE[]): CanActivateFn {
     if (isAuthorized) {
       return true;
     } else {
-      router.navigate(['/403']);
+      router.navigate(['/403'], { replaceUrl: true, skipLocationChange: true });
       return false;
     }
   };

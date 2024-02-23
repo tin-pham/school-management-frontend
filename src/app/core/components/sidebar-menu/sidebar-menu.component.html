@@ -28,6 +28,18 @@
         <span>Danh mục</span>
       </button>
     </div>
+
+    <div *ngIf="isStudent()">
+      <button mat-button class="menu-button" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Trang chủ</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/course">
+        <mat-icon>book</mat-icon>
+        <span>Khóa học</span>
+      </button>
+    </div>
     <mat-divider></mat-divider>
 
     <div>

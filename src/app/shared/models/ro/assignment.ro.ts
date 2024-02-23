@@ -37,7 +37,8 @@ export class AssignmentGetDetailRO {
   id: number;
   name: string;
   description: string;
-  dueDate: Date;
+  dueDate: string;
+  createdByDisplayName: string;
 
   constructor(data?: AssignmentGetDetailRO) {
     Object.assign(this, data);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ROLE } from '@core/constants/role.constant';
 import { AuthService } from '@core/services/api/auth.service';
 import { ToastrService } from '@shared/toastr/toastr.service';
 import { finalize, first } from 'rxjs';
@@ -40,9 +41,13 @@ export class LoginFormComponent {
         password: this.password,
       })
       .subscribe({
-        next: () => {
+        next: response => {
           this.toast.success('Đăng nhập thành công');
-          this.router.navigate(['/']);
+          if (response.user.roles.includes(ROLE.ADMIN)) {
+            this.router.navigate(['/dashboard']);
+          } else if (response.user.roles.includes(ROLE.STUDENT)) {
+            this.router.navigate(['/home']);
+          }
         },
       });
 

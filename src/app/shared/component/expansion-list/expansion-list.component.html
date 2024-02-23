@@ -4,6 +4,8 @@
     <span class="align-middle">
       <mat-icon *ngIf="!toggle && expandIcon" (click)="toggle = !toggle">expand_more</mat-icon>
       <mat-icon *ngIf="toggle && expandIcon" (click)="toggle = !toggle">expand_less</mat-icon>
+    </span>
+    <span *ngIf="!isStudent()" class="align-middle">
       <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon>
       <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon>
       <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>

@@ -19,6 +19,10 @@ export const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./unauthorized/unauthorized.module').then(m => m.UnauthorizedModule),
   },
+  {
+    path: '403',
+    loadChildren: () => import('./forbidden/forbidden.module').then(m => m.ForbiddenModule),
+  },
 ];
 
 const config: ExtraOptions = {

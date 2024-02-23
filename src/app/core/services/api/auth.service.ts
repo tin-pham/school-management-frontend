@@ -5,6 +5,7 @@ import { API } from '@core/constants/api.constant';
 import { IJwtPayload } from '@core/interface/jwt-payload.interface';
 import { LoginRO, LoginUserRO } from '@shared/models/ro/auth.ro';
 import { LoginDTO } from '@shared/models/dto/auth.dto';
+import { ROLE } from '@core/constants/role.constant';
 import { BaseService } from './base.service';
 
 const LOGIN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.SIGNIN.ROUTE;
@@ -13,6 +14,7 @@ const REFRESH_TOKEN_URL = API.AUTH.CONTROLLER + '/' + API.AUTH.REFRESH_TOKEN.ROU
 @Injectable()
 export class AuthService extends BaseService {
   user$ = new BehaviorSubject<LoginUserRO>(null);
+  roles$ = new BehaviorSubject<string[]>([]);
 
   getToken() {
     return localStorage.getItem('accessToken');
@@ -32,6 +34,7 @@ export class AuthService extends BaseService {
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('refreshToken', response.refreshToken);
         this.user$.next(response.user);
+        this.roles$.next(response.user.roles);
       }),
     );
   }
@@ -75,5 +78,27 @@ export class AuthService extends BaseService {
 
     const decodedToken = jwtDecode(accessToken) as IJwtPayload;
     return decodedToken.roles;
+  }
+
+  getUserId() {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      return null;
+    }
+
+    const decodedToken = jwtDecode(accessToken) as IJwtPayload;
+    return decodedToken.userId;
+  }
+
+  isStudent() {
+    return this.getCurrentRoles().includes(ROLE.STUDENT);
+  }
+
+  isAdmin() {
+    return this.getCurrentRoles().includes(ROLE.ADMIN);
+  }
+
+  isTeacher() {
+    return this.getCurrentRoles().includes(ROLE.TEACHER);
   }
 }

@@ -117,22 +117,6 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
     });
   }
 
-  get dateAgo() {
-    const now = new Date();
-    const createdAtDate = new Date(this.comment.createdAt);
-    const seconds = Math.floor((now.getTime() - createdAtDate.getTime()) / 1000);
-
-    if (seconds < 60) {
-      return 'Bây giờ';
-    } else if (seconds < 3600) {
-      return `${Math.floor(seconds / 60)} phút trước`;
-    } else if (seconds < 86400) {
-      return `${Math.floor(seconds / 3600)} giờ trước`;
-    } else {
-      return `${Math.floor(seconds / 86400)} ngày trước`;
-    }
-  }
-
   transformComments(comments: any[]): any[] {
     const commentMap = new Map(comments.map(comment => [comment.id, { ...comment, replies: [] }]));
 

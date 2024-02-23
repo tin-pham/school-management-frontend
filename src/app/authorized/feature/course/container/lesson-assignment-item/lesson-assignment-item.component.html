@@ -8,6 +8,6 @@
   </div>
 
   <div class="buttons">
-    <app-warn-button (click)="delete()">Xóa</app-warn-button>
+    <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
   </div>
 </div>

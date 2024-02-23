@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { AuthService } from '@core/services/api/auth.service';
+import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
 
 @Component({
   selector: 'app-comment-item',
@@ -8,17 +10,14 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/con
   templateUrl: 'comment-item.component.html',
 })
 export class CommentItemComponent {
-  @Input() commentId: number;
-  @Input() content: string;
-  @Input() avatarUrl: string;
-  @Input() displayName: string;
-  @Input() dateAgo: string;
-  @Input() depth: number = 0;
-  @Input() haveReplies: boolean = true;
+  @Input() comment: LessonCommentGetListDataRO;
 
   minimizeVisible = true;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private _authService: AuthService,
+  ) {}
 
   @Output() minimizeClick = new EventEmitter();
   onMinimizeClick() {
@@ -57,5 +56,29 @@ export class CommentItemComponent {
 
       this.deleteClick.emit();
     });
+  }
+
+  isYourComment() {
+    return this._authService.getUserId() === this.comment.userId;
+  }
+
+  get dateAgo() {
+    const now = new Date();
+    const createdAtDate = new Date(this.comment.createdAt);
+    const seconds = Math.floor((now.getTime() - createdAtDate.getTime()) / 1000);
+
+    if (seconds < 60) {
+      return 'Bây giờ';
+    } else if (seconds < 3600) {
+      return `${Math.floor(seconds / 60)} phút trước`;
+    } else if (seconds < 86400) {
+      return `${Math.floor(seconds / 3600)} giờ trước`;
+    } else {
+      return `${Math.floor(seconds / 86400)} ngày trước`;
+    }
+  }
+
+  haveReplies() {
+    return this.comment.replies && this.comment.replies.length > 0;
   }
 }

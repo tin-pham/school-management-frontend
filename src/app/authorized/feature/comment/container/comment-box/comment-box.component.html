@@ -1,16 +1,11 @@
 <app-comment-item
   *ngIf="!isEditing"
-  [haveReplies]="comment.replies.length > 0"
+  [comment]="comment"
   (minimizeClick)="minimizeComments()"
   (expandClick)="expandComments()"
   (replyClick)="toggleReply()"
   (editClick)="toggleEdit()"
-  (deleteClick)="delete()"
-  [avatarUrl]="comment.userImageUrl"
-  [displayName]="comment.userDisplayName"
-  [content]="comment.body"
-  [dateAgo]="dateAgo"
-  [depth]="comment.depth"></app-comment-item>
+  (deleteClick)="delete()"></app-comment-item>
 
 <div *ngIf="isEditing" [ngStyle]="{ 'margin-left': comment.depth * 60 + 'px' }">
   <app-comment-textbox [(content)]="comment.body" (comment)="edit()" (cancel)="cancelEdit()"></app-comment-textbox>

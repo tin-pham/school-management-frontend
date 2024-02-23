@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { AuthService } from '@core/services/api/auth.service';
 import { IBasicListItem } from '../basic-list/basic-list.component';
 
 @Component({
@@ -21,7 +22,14 @@ export class ExpansionListComponent {
   toggle: boolean;
   @Output() delete = new EventEmitter<void>();
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private _authService: AuthService,
+  ) {}
+
+  isStudent() {
+    return this._authService.isStudent();
+  }
 
   onDelete() {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');

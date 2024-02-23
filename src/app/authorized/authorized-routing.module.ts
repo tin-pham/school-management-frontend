@@ -34,7 +34,6 @@ const routes: Routes = [
       {
         path: 'assignment',
         loadChildren: () => import('./feature/assignment/assignment.module').then(m => m.AssignmentModule),
-        canActivate: [roleGuard([ROLE.TEACHER])],
       },
       {
         path: 'profile',
@@ -44,6 +43,11 @@ const routes: Routes = [
       {
         path: 'comment',
         loadChildren: () => import('./feature/comment/comment.module').then(m => m.CommentModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./feature/home/home.module').then(m => m.HomeModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
     ],

@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { LessonAttachmentService } from '@core/services/api/lesson-attachment.service';
+import { AttachmentService } from '@core/services/api/attachment.service';
+import { AuthService } from '@core/services/api/auth.service';
 import { S3Service } from '@core/services/api/s3.service';
 import { LessonAttachmentBulkStoreDTO, LessonAttachmentGetListDTO } from '@shared/models/dto/lesson-attachment.dto';
 import { LessonAttachmentGetListDataRO } from '@shared/models/ro/lesson-attachment.ro';
@@ -27,7 +28,8 @@ export class LessonAttachmentComponent implements OnInit {
     private toast: ToastrService,
     private cd: ChangeDetectorRef,
     private _s3Service: S3Service,
-    private _lessonAttachmentService: LessonAttachmentService,
+    private _attachmentService: AttachmentService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class LessonAttachmentComponent implements OnInit {
             files: response.data,
           });
 
-          return this._lessonAttachmentService.bulkStore(dto);
+          return this._attachmentService.bulkStore(dto);
         }),
         tap(() =>
           this.loadAttachments({
@@ -82,7 +84,7 @@ export class LessonAttachmentComponent implements OnInit {
 
   loadAttachments(dto: LessonAttachmentGetListDTO) {
     const { limit, page, lessonId } = dto;
-    this._lessonAttachmentService.getList({ limit, page, lessonId }).subscribe({
+    this._attachmentService.getList({ limit, page, lessonId }).subscribe({
       next: response => {
         this.attachments = response.data;
         this.totalItems = response.meta.totalItems;
@@ -97,5 +99,9 @@ export class LessonAttachmentComponent implements OnInit {
       page: this.page,
       lessonId: this.lessonId,
     });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

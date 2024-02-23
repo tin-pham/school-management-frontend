@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { AuthService } from '@core/services/api/auth.service';
 import { AssignmentGetListDataRO } from '@shared/models/ro/assignment.ro';
 
 @Component({
@@ -11,7 +12,10 @@ import { AssignmentGetListDataRO } from '@shared/models/ro/assignment.ro';
 export class LessonAssignmentItemComponent {
   @Input() assignment: AssignmentGetListDataRO;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private _authService: AuthService,
+  ) {}
 
   @Output() onDelete = new EventEmitter<void>();
 
@@ -29,5 +33,9 @@ export class LessonAssignmentItemComponent {
 
       this.onDelete.emit();
     });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

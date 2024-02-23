@@ -84,6 +84,9 @@ export class BaseService {
       // You may want to throw an error or handle this scenario differently
       return throwError(() => new Error('Multiple errors occurred'));
     } else {
+      if (error.status === 403) {
+        this.toastService.error('Bạn không có quyền thực hiện hành động này');
+      }
       return this.translate.get(error.error.code).pipe(
         map((translatedError: string) => {
           this.toastService.error(translatedError); // Notify single error

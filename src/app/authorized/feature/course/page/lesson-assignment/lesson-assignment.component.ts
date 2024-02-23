@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@core/services/api/assignment.service';
+import { AuthService } from '@core/services/api/auth.service';
 import { AssignmentGetListDTO } from '@shared/models/dto/assignment.dto';
 import { AssignmentGetListDataRO, AssignmentGetListRO } from '@shared/models/ro/assignment.ro';
 
@@ -22,6 +23,7 @@ export class LessonAssignmentComponent implements OnInit {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private _assignmentService: AssignmentService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -64,5 +66,9 @@ export class LessonAssignmentComponent implements OnInit {
         });
       },
     });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

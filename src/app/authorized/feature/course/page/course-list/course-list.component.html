@@ -11,5 +11,5 @@
     [alt]="course.name"
     [name]="course.name"
     [description]="course.description"></app-course-card>
-  <mat-icon routerLink="/course/create">library_add</mat-icon>
+  <mat-icon *ngIf="!isStudent()" routerLink="/course/create">library_add</mat-icon>
 </div>

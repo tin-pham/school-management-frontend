@@ -13,5 +13,7 @@
     [length]="totalItems"
     (page)="handlePageChange($event)"
     aria-label="Select page of users"></mat-paginator>
-  <app-primary-button [routerLink]="['/assignment/create']" [queryParams]="{ lessonId: lessonId }">Tạo submit</app-primary-button>
+  <app-primary-button *ngIf="!isStudent()" [routerLink]="['/assignment/create']" [queryParams]="{ lessonId: lessonId }"
+    >Tạo assignment</app-primary-button
+  >
 </div>

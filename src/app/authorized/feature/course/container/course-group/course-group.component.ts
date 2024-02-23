@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
@@ -22,6 +23,7 @@ export class CourseGroupComponent implements OnInit {
     private router: Router,
     private _courseService: CourseService,
     private _categoryService: CategoryService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -39,5 +41,9 @@ export class CourseGroupComponent implements OnInit {
 
   routeToAddCourse() {
     this.router.navigate(['/course/create'], { queryParams: { categoryId: this.category.id } });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

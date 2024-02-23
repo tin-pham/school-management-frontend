@@ -16,5 +16,5 @@ export class AssignmentGetListDTO extends PaginateDTO {
 export class AssignmentUpdateDTO {
   name: string;
   description: string;
-  dueDate: Date;
+  dueDate: string;
 }

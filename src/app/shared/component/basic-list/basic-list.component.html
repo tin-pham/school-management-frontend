@@ -1,6 +1,6 @@
 <mat-list role="list" class="list">
   <mat-list-item role="listitem" class="list-item" *ngFor="let item of items" (click)="clickItem(item.id)"
     >{{ item.name }}
-    <mat-icon *ngIf="editIcon" (click)="clickEdit(item.id, $event)">edit</mat-icon>
+    <mat-icon *ngIf="editIcon && !isStudent()" (click)="clickEdit(item.id, $event)">edit</mat-icon>
   </mat-list-item>
 </mat-list>

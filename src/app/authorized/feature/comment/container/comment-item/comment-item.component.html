@@ -1,42 +1,42 @@
-<div class="comment" [ngStyle]="{ 'margin-left': depth * 60 + 'px' }">
+<div class="comment" [ngStyle]="{ 'margin-left': comment.depth * 60 + 'px' }">
   <div class="user-banner">
     <div class="user">
       <div class="avatar">
-        <img [src]="avatarUrl" />
+        <img [src]="comment.userImageUrl" />
         <span class="stat grey"></span>
       </div>
-      <h5>{{ displayName }}</h5>
+      <h5>{{ comment.userDisplayName }}</h5>
     </div>
     <button class="btn dropdown"><i class="ri-more-line"></i></button>
   </div>
   <div class="content">
     <p>
-      {{ content }}
+      {{ comment.body }}
     </p>
   </div>
   <div class="footer">
-    <a *ngIf="minimizeVisible && haveReplies" (click)="onMinimizeClick()" role="button">
+    <a *ngIf="minimizeVisible && haveReplies()" (click)="onMinimizeClick()" role="button">
       <mat-icon class="align-middle">expand_less</mat-icon>
       Thu nhỏ</a
     >
     <div *ngIf="haveReplies" class="divider"></div>
-    <a *ngIf="!minimizeVisible && haveReplies" (click)="onExpandClick()" role="button">
+    <a *ngIf="!minimizeVisible && haveReplies()" (click)="onExpandClick()" role="button">
       <mat-icon class="align-middle">expand_more</mat-icon>
       Mở rộng</a
     >
-    <div *ngIf="haveReplies" class="divider"></div>
+    <div *ngIf="haveReplies()" class="divider"></div>
     <a (click)="onReplyClick()" role="button">
       <mat-icon class="align-middle">reply</mat-icon>
       Phản hồi</a
     >
     <div class="divider"></div>
-    <a role="button" (click)="onEditClick()">
+    <a *ngIf="isYourComment()" role="button" (click)="onEditClick()">
       <mat-icon class="align-middle">edit</mat-icon>
       Sửa
     </a>
 
     <div class="divider"></div>
-    <a role="button" (click)="onDeleteClick()">
+    <a *ngIf="isYourComment()" role="button" (click)="onDeleteClick()">
       <mat-icon class="align-middle">delete</mat-icon>
       Xóa
     </a>

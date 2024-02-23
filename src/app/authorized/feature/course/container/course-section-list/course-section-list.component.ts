@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { SectionService } from '@core/services/api/section.service';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
 
@@ -14,14 +15,15 @@ export class CourseSectionListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private sectionService: SectionService,
+    private _sectionService: SectionService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
     const courseId = +this.route.snapshot.paramMap.get('id');
     this.courseId = courseId.toString();
 
-    this.sectionService
+    this._sectionService
       .getList({
         courseId,
         withLesson: true,
@@ -38,5 +40,9 @@ export class CourseSectionListComponent implements OnInit {
     if (index > -1) {
       this.sections.splice(index, 1);
     }
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

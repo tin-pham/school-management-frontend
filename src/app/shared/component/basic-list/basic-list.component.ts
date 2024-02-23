@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AuthService } from '@core/services/api/auth.service';
 
 export interface IBasicListItem {
   id: number;
@@ -14,6 +15,12 @@ export class BasicListComponent {
   @Input() items: IBasicListItem[];
   @Input() editIcon: boolean;
   @Input() editRoute: string;
+
+  constructor(private _authService: AuthService) {}
+
+  isStudent() {
+    return this._authService.isStudent();
+  }
 
   @Output() editClick = new EventEmitter<number>();
   clickEdit(id: number, event: MouseEvent) {

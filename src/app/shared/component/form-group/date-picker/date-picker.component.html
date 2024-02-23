@@ -1,6 +1,6 @@
 <div>
   <mat-form-field>
-    <mat-label>Choose a date</mat-label>
+    <mat-label>{{ label }}</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="value" (ngModelChange)="onValueChange($event)" [name]="name" [id]="name" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
