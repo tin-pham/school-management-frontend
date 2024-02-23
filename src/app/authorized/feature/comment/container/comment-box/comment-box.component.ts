@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { IReplyState, LessonCommentService } from '@core/services/api/lesson-comment.service';
 import { LessonCommentStoreDTO } from '@shared/models/dto/lesson-comment.dto';
 import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
@@ -19,10 +20,12 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
   isReplying: IReplyState;
 
   commentBoxVisiblity = false;
+  replyCommentsVisibility = true;
   isEditing = false;
 
   constructor(
     private toast: ToastrService,
+    private router: Router,
     private _lessonCommentService: LessonCommentService,
   ) {}
 
@@ -42,6 +45,18 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  routeCommentDetail() {
+    this.router.navigate(['comment', this.comment.id]);
+  }
+
+  minimizeComments() {
+    this.replyCommentsVisibility = false;
+  }
+
+  expandComments() {
+    this.replyCommentsVisibility = true;
   }
 
   @Output() onDelete = new EventEmitter<void>();

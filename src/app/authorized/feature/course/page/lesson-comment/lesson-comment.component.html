@@ -2,7 +2,4 @@
   <app-comment-header></app-comment-header>
   <app-comment-textbox [(content)]="commentCreating.body" (comment)="comment()"></app-comment-textbox>
   <app-comment-box (onDelete)="delete(comment.id)" *ngFor="let comment of comments" [comment]="comment"></app-comment-box>
-  <div class="load">
-    <span><i class="ri-refresh-line"></i>Loading</span>
-  </div>
 </div>

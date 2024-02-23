@@ -1,5 +1,8 @@
-<app-comment
+<app-comment-item
   *ngIf="!isEditing"
+  [haveReplies]="comment.replies.length > 0"
+  (minimizeClick)="minimizeComments()"
+  (expandClick)="expandComments()"
   (replyClick)="toggleReply()"
   (editClick)="toggleEdit()"
   (deleteClick)="delete()"
@@ -7,7 +10,7 @@
   [displayName]="comment.userDisplayName"
   [content]="comment.body"
   [dateAgo]="dateAgo"
-  [depth]="comment.depth"></app-comment>
+  [depth]="comment.depth"></app-comment-item>
 
 <div *ngIf="isEditing" [ngStyle]="{ 'margin-left': comment.depth * 60 + 'px' }">
   <app-comment-textbox [(content)]="comment.body" (comment)="edit()" (cancel)="cancelEdit()"></app-comment-textbox>
@@ -17,6 +20,10 @@
   <app-comment-textbox [(content)]="commentCreating.body" (comment)="reply()" (cancel)="clearReply()"></app-comment-textbox>
 </div>
 
-<div *ngIf="comment.replies && !isEditing" class="replies">
+<div *ngIf="comment.depth === 2" class="load">
+  <span role="button" (click)="routeCommentDetail()">Tải thêm...</span>
+</div>
+
+<div *ngIf="comment.replies && !isEditing && replyCommentsVisibility && comment.depth < 2" class="replies">
   <app-comment-box (onDelete)="handleDelete(reply.id)" *ngFor="let reply of comment.replies" [comment]="reply"></app-comment-box>
 </div>

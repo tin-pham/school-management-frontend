@@ -41,6 +41,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/profile/profile.module').then(m => m.ProfileModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
+      {
+        path: 'comment',
+        loadChildren: () => import('./feature/comment/comment.module').then(m => m.CommentModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
     ],
   },
 ];

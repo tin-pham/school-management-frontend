@@ -3,19 +3,34 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-comment',
-  styleUrls: ['comment.component.scss'],
-  templateUrl: 'comment.component.html',
+  selector: 'app-comment-item',
+  styleUrls: ['comment-item.component.scss'],
+  templateUrl: 'comment-item.component.html',
 })
-export class CommentComponent {
+export class CommentItemComponent {
   @Input() commentId: number;
   @Input() content: string;
   @Input() avatarUrl: string;
   @Input() displayName: string;
   @Input() dateAgo: string;
   @Input() depth: number = 0;
+  @Input() haveReplies: boolean = true;
+
+  minimizeVisible = true;
 
   constructor(private dialog: MatDialog) {}
+
+  @Output() minimizeClick = new EventEmitter();
+  onMinimizeClick() {
+    this.minimizeVisible = false;
+    this.minimizeClick.emit();
+  }
+
+  @Output() expandClick = new EventEmitter();
+  onExpandClick() {
+    this.minimizeVisible = true;
+    this.expandClick.emit();
+  }
 
   @Output() replyClick = new EventEmitter();
   onReplyClick() {

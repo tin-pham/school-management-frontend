@@ -15,6 +15,16 @@
     </p>
   </div>
   <div class="footer">
+    <a *ngIf="minimizeVisible && haveReplies" (click)="onMinimizeClick()" role="button">
+      <mat-icon class="align-middle">expand_less</mat-icon>
+      Thu nhỏ</a
+    >
+    <div *ngIf="haveReplies" class="divider"></div>
+    <a *ngIf="!minimizeVisible && haveReplies" (click)="onExpandClick()" role="button">
+      <mat-icon class="align-middle">expand_more</mat-icon>
+      Mở rộng</a
+    >
+    <div *ngIf="haveReplies" class="divider"></div>
     <a (click)="onReplyClick()" role="button">
       <mat-icon class="align-middle">reply</mat-icon>
       Phản hồi</a

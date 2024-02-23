@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
-import { CommentComponent } from './comment.component';
+import { CommentItemComponent } from './comment-item.component';
 
-const COMPONENTS = [CommentComponent];
+const COMPONENTS = [CommentItemComponent];
 
 @NgModule({
   imports: [SharedModule],
@@ -10,4 +10,4 @@ const COMPONENTS = [CommentComponent];
   providers: [],
   exports: [...COMPONENTS],
 })
-export class CommentModule {}
+export class CommentItemModule {}

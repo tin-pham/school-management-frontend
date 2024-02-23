@@ -14,7 +14,7 @@
     "paths": {
       "@core/*": ["app/core/*"],
       "@pages/*": ["app/pages/*"],
-      "@features/*": ["app/features/*"],
+      "@features/*": ["app/authorized/feature/*"],
       "@shared/*": ["app/shared/*"],
       "@environments/*": ["environments/*"]
     },
