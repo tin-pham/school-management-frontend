@@ -2,7 +2,10 @@
   <div class="thumpnail">
     <img *ngIf="imageUrl" [src]="imageUrl" />
   </div>
-  <button mat-raised-button color="primary">Đăng ký ngay</button>
+  <div *ngIf="isStudent()">
+    <app-primary-button *ngIf="!isRegisted" (click)="registerClick()">Đăng ký</app-primary-button>
+    <app-warn-button *ngIf="isRegisted" (click)="unRegisterClick()">Hủy đăng ký</app-warn-button>
+  </div>
 
   <ul>
     <li>Trình độ cơ bản</li>

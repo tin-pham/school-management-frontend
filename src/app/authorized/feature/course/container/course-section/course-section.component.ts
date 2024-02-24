@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CourseStudentService } from '@core/services/api/course-student.service';
 import { SectionService } from '@core/services/api/section.service';
 import { IBasicListItem } from '@shared/component/basic-list/basic-list.component';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
@@ -13,17 +14,18 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class CourseSectionComponent implements OnInit {
   private _section: SectionGetListDataRO;
   lessonItems: IBasicListItem[];
-  courseId: string;
+  courseId: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
     private _sectionService: SectionService,
+    private _courseStudentService: CourseStudentService,
   ) {}
 
   ngOnInit() {
-    this.courseId = this.route.snapshot.params['id'];
+    this.courseId = +this.route.snapshot.params['id'];
   }
 
   @Input()
@@ -53,6 +55,8 @@ export class CourseSectionComponent implements OnInit {
   }
 
   navigateToDetail(id: number) {
-    this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id]);
+    this._courseStudentService.checkRegistered({ courseId: this.courseId }).subscribe(() => {
+      this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id]);
+    });
   }
 }

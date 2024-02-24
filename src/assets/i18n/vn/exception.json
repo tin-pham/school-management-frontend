@@ -51,5 +51,8 @@
     "DUE_DATE": {
       "IS_NOT_EMPTY": "Hạn nộp bài không được trống"
     }
+  },
+  "COURSE_STUDENT": {
+    "NOT_REGISTERED": "Học sinh chưa đăng ký vào khóa học này"
   }
 }
