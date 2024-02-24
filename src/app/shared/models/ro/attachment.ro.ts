@@ -19,4 +19,5 @@ export class AttachmentStoreRO {
   name: string;
   type: string;
   size: string;
+  createdAt: Date;
 }

@@ -1,7 +1,7 @@
 import { PaginateDTO } from './paginate.dto';
 
 export class CourseGetListDTO extends PaginateDTO {
-  studentId?: string;
+  userId?: number;
   categoryId?: number;
 }
 

@@ -5,7 +5,9 @@
       <div class="assignment-info">
         <h1 class="assignment-title">
           {{ assignment.name }}
-          <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle">edit</mat-icon>
+          <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle"
+            >edit</mat-icon
+          >
         </h1>
         <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
         <p class="assignment-points">100 points</p>
@@ -16,5 +18,5 @@
     </div>
   </div>
 
-  <app-assignment-submit class="submit"></app-assignment-submit>
+  <app-assignment-submit [assignmentId]="assignmentId" [(attachment)]="attachment" class="submit"></app-assignment-submit>
 </div>

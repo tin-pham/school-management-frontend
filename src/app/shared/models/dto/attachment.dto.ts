@@ -5,6 +5,12 @@ export class AttachmentStoreDTO {
   name: string;
   size: string;
   type: string;
+  lessonId?: number;
+  assignmentId?: number;
+
+  constructor(data?: AttachmentStoreDTO) {
+    Object.assign(this, data);
+  }
 }
 
 export class AttachmentBulkStoreFileDTO {

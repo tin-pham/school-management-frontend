@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@core/services/api/assignment.service';
+import { AttachmentService } from '@core/services/api/attachment.service';
 import { AuthService } from '@core/services/api/auth.service';
+import { AttachmentGetListDTO } from '@shared/models/dto/attachment.dto';
 import { AssignmentGetDetailRO } from '@shared/models/ro/assignment.ro';
+import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -12,10 +15,12 @@ import { AssignmentGetDetailRO } from '@shared/models/ro/assignment.ro';
 export class AssignmentDetailComponent implements OnInit {
   assignment: AssignmentGetDetailRO;
   assignmentId: number;
+  attachment: AttachmentGetListDataRO;
 
   constructor(
     private route: ActivatedRoute,
     private _assignmentService: AssignmentService,
+    private _attachmentService: AttachmentService,
     private _authService: AuthService,
   ) {}
 
@@ -27,6 +32,16 @@ export class AssignmentDetailComponent implements OnInit {
     this.assignmentId = this.route.snapshot.params['id'];
     this._assignmentService.getDetail(this.assignmentId).subscribe(assignment => {
       this.assignment = assignment;
+    });
+    this.loadAttachments();
+  }
+
+  loadAttachments() {
+    const dto = new AttachmentGetListDTO({
+      assignmentId: this.assignmentId,
+    });
+    this._attachmentService.getList(dto).subscribe(attachment => {
+      this.attachment = attachment.data[0];
     });
   }
 }
