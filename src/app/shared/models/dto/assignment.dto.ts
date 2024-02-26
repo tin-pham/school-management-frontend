@@ -11,6 +11,7 @@ export class AssignmentStoreDTO {
 export class AssignmentGetListDTO extends PaginateDTO {
   lessonId?: number;
   courseId?: number;
+  createdBy?: number;
 }
 
 export class AssignmentUpdateDTO {

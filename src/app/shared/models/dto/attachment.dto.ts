@@ -33,9 +33,14 @@ export class AttachmentBulkDeleteDTO {
 export class AttachmentGetListDTO extends PaginateDTO {
   lessonId?: number;
   assignmentId?: number;
+  creeatedBy?: number;
 
   constructor(data?: AttachmentGetListDTO) {
     super(data);
     Object.assign(this, data);
   }
+}
+
+export class AttachmentGetDetailDTO {
+  assignmentId?: number;
 }

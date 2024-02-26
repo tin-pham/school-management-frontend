@@ -5,7 +5,7 @@
     <!-- left column -->
     <div class="col-md-3">
       <div class="text-center">
-        <img [src]="user.image.url || '//placehold.it/100'" class="rounded-circle user-avatar" alt="avatar" />
+        <img [src]="user.imageUrl || '//placehold.it/100'" class="rounded-circle user-avatar" alt="avatar" />
         <app-file-input-group
           (valueChange)="onFileInputChange($event)"
           [label]="'Cập nhật avatar'"

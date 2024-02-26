@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
-import { S3Service } from '@core/services/api/s3.service';
-import { AttachmentService } from '@core/services/api/attachment.service';
+import { UserImageService } from '@core/services/api/user-image.service';
 import { ProfileFormComponent } from './profile-form.component';
 
 const COMPONENTS = [ProfileFormComponent];
@@ -9,7 +8,7 @@ const COMPONENTS = [ProfileFormComponent];
 @NgModule({
   imports: [SharedModule],
   declarations: [...COMPONENTS],
-  providers: [S3Service, AttachmentService],
+  providers: [UserImageService],
   exports: [...COMPONENTS],
 })
 export class ProfileFormModule {}

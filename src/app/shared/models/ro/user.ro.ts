@@ -1,18 +1,12 @@
 import { PaginateRO } from './paginate.ro';
 
-export class UserGetProfileImageRO {
-  id: number;
-  url: string;
-}
-
 export class UserGetProfileRO {
   id: number;
   username: string;
   email?: string;
   phone?: string;
   displayName: string;
-  imageId: number;
-  image?: UserGetProfileImageRO;
+  imageUrl?: string;
 
   constructor(data?: UserGetProfileRO) {
     Object.assign(this, data);

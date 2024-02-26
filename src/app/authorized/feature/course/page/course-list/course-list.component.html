@@ -7,7 +7,7 @@
   <app-course-card
     *ngFor="let course of uncategorizedCourses"
     [routerLink]="['/course', course.id]"
-    [imageUrl]="course.image.url"
+    [imageUrl]="course.imageUrl"
     [alt]="course.name"
     [name]="course.name"
     [description]="course.description"></app-course-card>

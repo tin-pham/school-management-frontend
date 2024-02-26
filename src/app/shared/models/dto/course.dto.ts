@@ -12,7 +12,6 @@ export class CourseGetDetailDTO {
 export class CourseStoreDTO {
   name: string;
   description?: string;
-  imageUrl?: string;
   categoryIds?: number[];
 
   constructor(data?: CourseStoreDTO) {
@@ -23,7 +22,6 @@ export class CourseStoreDTO {
 export class CourseUpdateDTO {
   name?: string;
   description?: string;
-  imageUrl?: string;
   constructor(data?: CourseUpdateDTO) {
     Object.assign(this, data);
   }

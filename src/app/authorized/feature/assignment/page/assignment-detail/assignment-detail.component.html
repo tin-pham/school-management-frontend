@@ -18,5 +18,11 @@
     </div>
   </div>
 
-  <app-assignment-submit [assignmentId]="assignmentId" [(attachment)]="attachment" class="submit"></app-assignment-submit>
+  <app-assignment-submit
+    [isMissing]="isMissing()"
+    [assignmentId]="assignmentId"
+    [(attachment)]="attachment"
+    class="submit"></app-assignment-submit>
 </div>
+
+<app-assignment-submitted-list [assignmentId]="assignmentId"></app-assignment-submitted-list>

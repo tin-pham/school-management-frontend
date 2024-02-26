@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@core/services/api/assignment.service';
 import { AttachmentService } from '@core/services/api/attachment.service';
 import { AuthService } from '@core/services/api/auth.service';
+import { Assignment } from '@shared/models/class/assignment';
 import { AttachmentGetListDTO } from '@shared/models/dto/attachment.dto';
 import { AssignmentGetDetailRO } from '@shared/models/ro/assignment.ro';
 import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
@@ -33,15 +34,21 @@ export class AssignmentDetailComponent implements OnInit {
     this._assignmentService.getDetail(this.assignmentId).subscribe(assignment => {
       this.assignment = assignment;
     });
-    this.loadAttachments();
+    this.loadAttachment();
   }
 
-  loadAttachments() {
+  loadAttachment() {
     const dto = new AttachmentGetListDTO({
       assignmentId: this.assignmentId,
+      creeatedBy: this._authService.getUserId(),
     });
     this._attachmentService.getList(dto).subscribe(attachment => {
       this.attachment = attachment.data[0];
     });
+  }
+
+  isMissing() {
+    const assignment = new Assignment(this.assignment.dueDate, this.attachment.createdAt.toString());
+    return assignment.isMissing();
   }
 }

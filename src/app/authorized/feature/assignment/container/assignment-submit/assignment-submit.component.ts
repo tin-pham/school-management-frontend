@@ -14,11 +14,12 @@ export class AssignmentSubmitComponent {
   @Input() dueDate: string;
   @Input() attachment: AttachmentGetListDataRO;
   @Input() assignmentId: number;
+  @Input() isMissing: boolean;
   @Output() attachmentChange = new EventEmitter();
 
   file: File;
 
-  onAttachmentChange(attachment: AttachmentGetListDataRO) {
+  onAttachmentChange(attachment: Partial<AttachmentGetListDataRO>) {
     this.attachmentChange.emit(attachment);
   }
 

@@ -10,17 +10,10 @@ export class CategoryStoreRO {
   }
 }
 
-export class CategoryGetListDataCourseImageRO {
-  id: number;
-  url: string;
-}
-
 export class CategoryGetListDataCourseRO {
   id: number;
   name: string;
   description: string;
-  imageId: number;
-  image: CategoryGetListDataCourseImageRO;
 }
 
 export class CategoryGetListDataRO {

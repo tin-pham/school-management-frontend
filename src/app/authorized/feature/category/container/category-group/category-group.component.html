@@ -7,7 +7,7 @@
     [option]="courseCardOption"
     *ngFor="let course of coursePaginated.data"
     [isEdit]="isEdit"
-    [imageUrl]="course.image.url"
+    [imageUrl]="course.imageUrl"
     [alt]="course.name"
     [name]="course.name"
     [description]="course.description"></app-course-card>

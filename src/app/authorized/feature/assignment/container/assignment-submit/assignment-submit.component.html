@@ -2,9 +2,9 @@
   <div class="work-header">
     <h2>Your work</h2>
     <div>
-      <span class="status-missing">Quá hạn</span>
-      <span class="status-completed">Đã nộp</span>
-      <span *ngIf="!attachment" class="status-in-progress">Chưa nộp</span>
+      <span *ngIf="isMissing" class="status-missing">Quá hạn</span>
+      <span *ngIf="attachment && !isMissing" class="status-completed">Đã nộp</span>
+      <span *ngIf="!attachment && !isMissing" class="status-in-progress">Chưa nộp</span>
     </div>
   </div>
   <app-file-submission [attachment]="attachment" (onDelete)="delete()"></app-file-submission>

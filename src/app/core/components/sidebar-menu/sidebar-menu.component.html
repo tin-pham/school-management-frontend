@@ -1,7 +1,7 @@
 <app-header *ngIf="isAuthenticated" (toggleSidebar)="onToggleSidebar()"></app-header>
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <img routerLink="/profile" class="avatar mat-elevation-z8" [src]="profile?.image.url" role="button" />
+    <img routerLink="/profile" class="avatar mat-elevation-z8" [src]="profile?.imageUrl" role="button" />
 
     <h4 class="name">{{ _user?.displayName || _user?.username }}</h4>
     <p class="designation" *ngFor="let role of _user?.roles">{{ role }}</p>

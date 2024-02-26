@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '@core/services/api/category.service';
+import { CourseImageService } from '@core/services/api/course-image.service';
 import { CourseService } from '@core/services/api/course.service';
-import { S3Service } from '@core/services/api/s3.service';
 import { CacheStorageFacet, CacheStorageService } from '@core/services/cache.service';
 import { SelectSearchOption } from '@shared/component/form-group/select-search/select-search.component';
 import { CourseStoreDTO } from '@shared/models/dto/course.dto';
@@ -29,7 +29,7 @@ export class CourseFormComponent implements OnInit {
     private route: ActivatedRoute,
     private _categoryService: CategoryService,
     private _courseService: CourseService,
-    private _s3Service: S3Service,
+    private _courseImageService: CourseImageService,
     cacheService: CacheStorageService,
   ) {
     this.cacheStorage = cacheService.forKey('course-create');
@@ -64,20 +64,9 @@ export class CourseFormComponent implements OnInit {
         switchMap(response => {
           this.courseId = response.id;
           if (this.image) {
-            return this._s3Service.bulkUpload({
-              files: [this.image],
-              directoryPath: 'course',
-            });
+            return this._courseImageService.upsert(this.courseId, { files: [this.image] });
           } else {
             return of(null); // Return an observable that immediately completes if no image is set
-          }
-        }),
-        switchMap(response => {
-          // Only call update if the first switchMap returned a response
-          if (response) {
-            return this._courseService.update(this.courseId, { imageUrl: response.data[0].url });
-          } else {
-            return of(null); // Return an observable that immediately completes if there was no initial response
           }
         }),
       )

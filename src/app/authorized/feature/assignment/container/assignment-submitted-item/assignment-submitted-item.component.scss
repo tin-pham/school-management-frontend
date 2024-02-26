@@ -1,0 +1,31 @@
+.file-submission {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+
+  .file-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .file-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  .buttons {
+    margin-left: auto;
+
+    .delete {
+      color: #ff0000;
+    }
+
+    .download {
+      color: #007bff;
+    }
+  }
+}

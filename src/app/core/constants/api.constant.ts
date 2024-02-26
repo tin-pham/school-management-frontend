@@ -252,6 +252,10 @@ export const API = {
       ROUTE: '',
       OPERATION: 'Get list attachments',
     },
+    GET_DETAIL: {
+      ROUTE: ':id',
+      OPERATION: 'Get attachment detail',
+    },
   },
   LESSON_ATTACHMENT: {
     TAGS: 'LessonAttachment',
@@ -535,6 +539,26 @@ export const API = {
     DELETE: {
       ROUTE: ':id',
       OPERATION: 'Delete category',
+    },
+  },
+  COURSE_IMAGE: {
+    TAGS: 'CourseImage',
+    CONTROLLER: 'course-image',
+    UPSERT: {
+      ROUTE: 'upsert/:courseId',
+      OPERATION: 'Upsert course image',
+    },
+  },
+  USER_IMAGE: {
+    TAGS: 'UserImage',
+    CONTROLLER: 'user-image',
+    UPSERT: {
+      ROUTE: 'upsert',
+      OPERATION: 'Upsert user image',
+    },
+    DELETE: {
+      ROUTE: ':id',
+      OPERATION: 'Delete user image',
     },
   },
 };

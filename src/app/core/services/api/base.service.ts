@@ -16,6 +16,14 @@ export class BaseService {
     private readonly toastService: ToastrService,
   ) {}
 
+  getFileFormData(files: File[]) {
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append('files', file);
+    }
+    return formData;
+  }
+
   protected post<T>(url: string, body?: any) {
     const headers = this.getHeaders();
     return this.http.post<T>(this.BASE_URL + url, body, { headers }).pipe(catchError(this.handleError.bind(this)));

@@ -10,7 +10,7 @@ export class AuthorizedComponent implements OnInit {
   constructor(private _userService: UserService) {}
 
   ngOnInit() {
-    this._userService.getProfile({ withImage: true }).subscribe(response => {
+    this._userService.getProfile().subscribe(response => {
       this._userService.setProfile(response);
     });
   }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { AuthService } from '@core/services/api/auth.service';
 import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
 
 @Component({
@@ -12,7 +13,10 @@ export class FileSubmissionComponent {
   @Input() attachment: AttachmentGetListDataRO;
   @Output() onDelete = new EventEmitter();
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private _authService: AuthService,
+  ) {}
 
   delete() {
     const dialogData = new ConfirmDialogModel('Xác nhận', ' bạn có muốn xác nhận xóa không?');
@@ -28,5 +32,9 @@ export class FileSubmissionComponent {
 
       this.onDelete.emit();
     });
+  }
+
+  isYourFile() {
+    return this._authService.getUserId() === this.attachment.createdBy;
   }
 }
