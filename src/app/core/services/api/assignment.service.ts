@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AssignmentGetListDTO, AssignmentStoreDTO, AssignmentUpdateDTO } from '@shared/models/dto/assignment.dto';
-import { AssignmentGetDetailRO, AssignmentGetListRO, AssignmentStoreRO, AssignmentUpdateRO } from '@shared/models/ro/assignment.ro';
+import {
+  AssignmentGetDetailRO,
+  AssignmentGetListRO,
+  AssignmentGetSubmissionRO,
+  AssignmentStoreRO,
+  AssignmentUpdateRO,
+} from '@shared/models/ro/assignment.ro';
 import { Observable } from 'rxjs';
 import { API } from '@core/constants/api.constant';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class AssignmentService extends BaseService {
-  update(id: number, dto: AssignmentUpdateDTO): Observable<AssignmentUpdateRO> {
+  update(id: number, dto: Partial<AssignmentUpdateDTO>): Observable<AssignmentUpdateRO> {
     return this.patch<AssignmentUpdateRO>(API.ASSIGNMENT.CONTROLLER + '/' + API.ASSIGNMENT.UPDATE.ROUTE, id, dto);
   }
 
@@ -25,5 +31,9 @@ export class AssignmentService extends BaseService {
 
   delete(id: number) {
     return this._delete(API.ASSIGNMENT.CONTROLLER + '/' + API.ASSIGNMENT.DELETE.ROUTE.replace(':id', id.toString()));
+  }
+
+  getSubmission(id: number): Observable<AssignmentGetSubmissionRO> {
+    return this.get(API.ASSIGNMENT.CONTROLLER + '/' + API.ASSIGNMENT.GET_SUBMISSION.ROUTE.replace(':id', id.toString()));
   }
 }

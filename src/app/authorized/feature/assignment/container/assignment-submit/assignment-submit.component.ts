@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AttachmentService } from '@core/services/api/attachment.service';
-import { S3Service } from '@core/services/api/s3.service';
+import { AssignmentGetSubmissionRO } from '@shared/models/ro/assignment.ro';
 import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
-import { ToastrService } from '@shared/toastr/toastr.service';
-import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-assignment-submit',
@@ -12,46 +9,28 @@ import { switchMap, tap } from 'rxjs';
 })
 export class AssignmentSubmitComponent {
   @Input() dueDate: string;
-  @Input() attachment: AttachmentGetListDataRO;
+  @Input() submission: AssignmentGetSubmissionRO;
   @Input() assignmentId: number;
   @Input() isMissing: boolean;
-  @Output() attachmentChange = new EventEmitter();
+  @Output() submissionChange = new EventEmitter();
 
   file: File;
 
-  onAttachmentChange(attachment: Partial<AttachmentGetListDataRO>) {
-    this.attachmentChange.emit(attachment);
+  onSubmissionChange(attachment: Partial<AttachmentGetListDataRO>) {
+    this.submissionChange.emit(attachment);
   }
-
-  constructor(
-    private toast: ToastrService,
-    private _s3Service: S3Service,
-    private _attachmentService: AttachmentService,
-  ) {}
 
   onFileInputChange(event) {
     this.file = event.target.files[0];
   }
 
-  submit() {
-    this._s3Service
-      .bulkUpload({ files: [this.file], directoryPath: 'assignment' })
-      .pipe(
-        switchMap(response =>
-          this._attachmentService.store({
-            ...response.data[0],
-            assignmentId: this.assignmentId,
-          }),
-        ),
-        tap(response => this.onAttachmentChange(response)),
-      )
-      .subscribe(() => this.toast.success('Nộp bài thành công'));
+  @Output() onSubmitClick = new EventEmitter<File>();
+  submitClick() {
+    this.onSubmitClick.emit(this.file);
   }
 
-  delete() {
-    this._attachmentService.bulkDelete({ ids: [this.attachment.id] }).subscribe(() => {
-      this.toast.success('Xóa bài nộp thành công');
-      this.onAttachmentChange(null);
-    });
+  @Output() onDeleteClick = new EventEmitter();
+  deleteClick() {
+    this.onDeleteClick.emit();
   }
 }

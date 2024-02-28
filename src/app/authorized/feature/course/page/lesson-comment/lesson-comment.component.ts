@@ -13,6 +13,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class LessonCommentComponent implements OnInit {
   commentCreating = new LessonCommentStoreDTO();
   comments: LessonCommentGetListDataRO[];
+  commentCount: number;
   lessonId: number;
 
   constructor(
@@ -37,6 +38,7 @@ export class LessonCommentComponent implements OnInit {
   loadComments() {
     this._lessonCommentService.getList({ lessonId: this.lessonId }).subscribe(data => {
       this.comments = this.transformComments(data.data);
+      this.commentCount = data.meta.totalItems;
     });
   }
 

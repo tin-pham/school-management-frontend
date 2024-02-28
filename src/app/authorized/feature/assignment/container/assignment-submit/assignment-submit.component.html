@@ -1,19 +1,19 @@
 <div class="work-card">
   <div class="work-header">
-    <h2>Your work</h2>
+    <h2>Bài nộp của bạn</h2>
     <div>
       <span *ngIf="isMissing" class="status-missing">Quá hạn</span>
-      <span *ngIf="attachment && !isMissing" class="status-completed">Đã nộp</span>
-      <span *ngIf="!attachment && !isMissing" class="status-in-progress">Chưa nộp</span>
+      <span *ngIf="submission && !isMissing" class="status-completed">Đã nộp</span>
+      <span *ngIf="!submission && !isMissing" class="status-in-progress">Chưa nộp</span>
     </div>
   </div>
-  <app-file-submission [attachment]="attachment" (onDelete)="delete()"></app-file-submission>
+  <app-file-submission [isMissing]="isMissing" [submission]="submission" (onDelete)="deleteClick()"></app-file-submission>
 
   <app-file-input-group
-    *ngIf="!attachment"
+    *ngIf="!submission"
     [value]="file"
     (valueChange)="onFileInputChange($event)"
     [label]="'Nộp bài'"></app-file-input-group>
 
-  <app-primary-button *ngIf="!attachment" (click)="submit()">Nộp bài</app-primary-button>
+  <app-primary-button *ngIf="!submission" (click)="submitClick()">Nộp bài</app-primary-button>
 </div>

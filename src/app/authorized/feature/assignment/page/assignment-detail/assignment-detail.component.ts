@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AssignmentSubmitService } from '@core/services/api/assignment-submit.service';
 import { AssignmentService } from '@core/services/api/assignment.service';
-import { AttachmentService } from '@core/services/api/attachment.service';
 import { AuthService } from '@core/services/api/auth.service';
 import { Assignment } from '@shared/models/class/assignment';
-import { AttachmentGetListDTO } from '@shared/models/dto/attachment.dto';
-import { AssignmentGetDetailRO } from '@shared/models/ro/assignment.ro';
-import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
+import { AssignmentSubmitStoreDTO } from '@shared/models/dto/assignment-submit.dto';
+import { AssignmentGetDetailRO, AssignmentGetSubmissionRO } from '@shared/models/ro/assignment.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -16,13 +16,14 @@ import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
 export class AssignmentDetailComponent implements OnInit {
   assignment: AssignmentGetDetailRO;
   assignmentId: number;
-  attachment: AttachmentGetListDataRO;
+  submission: AssignmentGetSubmissionRO;
 
   constructor(
     private route: ActivatedRoute,
+    private toast: ToastrService,
     private _assignmentService: AssignmentService,
-    private _attachmentService: AttachmentService,
     private _authService: AuthService,
+    private _assignmentSubmitService: AssignmentSubmitService,
   ) {}
 
   isStudent() {
@@ -38,17 +39,31 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   loadAttachment() {
-    const dto = new AttachmentGetListDTO({
-      assignmentId: this.assignmentId,
-      creeatedBy: this._authService.getUserId(),
-    });
-    this._attachmentService.getList(dto).subscribe(attachment => {
-      this.attachment = attachment.data[0];
+    this._assignmentService.getSubmission(this.assignmentId).subscribe(submission => {
+      this.submission = submission;
     });
   }
 
   isMissing() {
-    const assignment = new Assignment(this.assignment.dueDate, this.attachment.createdAt.toString());
+    const assignment = new Assignment(this.assignment.dueDate, this.submission.attachmentCreatedAt.toString());
     return assignment.isMissing();
+  }
+
+  submit(file: File) {
+    const dto = new AssignmentSubmitStoreDTO({
+      file,
+      assignmentId: this.assignmentId,
+    });
+    this._assignmentSubmitService.store(dto).subscribe(() => {
+      this.toast.success('Nộp bài thành công');
+      this.loadAttachment();
+    });
+  }
+
+  delete() {
+    this._assignmentSubmitService.delete(this.submission.id).subscribe(() => {
+      this.toast.success('Xóa bài nộp thành công');
+      this.submission = null;
+    });
   }
 }

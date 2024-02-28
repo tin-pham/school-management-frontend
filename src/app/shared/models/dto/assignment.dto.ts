@@ -5,13 +5,11 @@ export class AssignmentStoreDTO {
   description: string;
   dueDate: string;
   lessonId?: number;
-  courseId?: number;
+  exerciseIds?: number[];
 }
 
 export class AssignmentGetListDTO extends PaginateDTO {
   lessonId?: number;
-  courseId?: number;
-  createdBy?: number;
 }
 
 export class AssignmentUpdateDTO {

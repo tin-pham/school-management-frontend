@@ -19,9 +19,11 @@
   </div>
 
   <app-assignment-submit
-    [isMissing]="isMissing()"
+    (onSubmitClick)="submit($event)"
+    (onDeleteClick)="delete()"
+    [isMissing]="submission && isMissing()"
     [assignmentId]="assignmentId"
-    [(attachment)]="attachment"
+    [(submission)]="submission"
     class="submit"></app-assignment-submit>
 </div>
 

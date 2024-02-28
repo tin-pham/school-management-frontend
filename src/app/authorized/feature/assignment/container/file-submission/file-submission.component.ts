@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
-import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
+import { AssignmentGetSubmissionRO } from '@shared/models/ro/assignment.ro';
 
 @Component({
   selector: 'app-file-submission',
@@ -10,7 +10,8 @@ import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
   templateUrl: './file-submission.component.html',
 })
 export class FileSubmissionComponent {
-  @Input() attachment: AttachmentGetListDataRO;
+  @Input() submission: AssignmentGetSubmissionRO;
+  @Input() isMissing: boolean;
   @Output() onDelete = new EventEmitter();
 
   constructor(
@@ -34,7 +35,17 @@ export class FileSubmissionComponent {
     });
   }
 
+  download() {
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', this.submission.attachmentUrl);
+    link.setAttribute('download', this.submission.attachmentName);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
   isYourFile() {
-    return this._authService.getUserId() === this.attachment.createdBy;
+    return this._authService.getUserId() === this.submission.attachmentCreatedBy;
   }
 }

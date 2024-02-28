@@ -1,5 +1,5 @@
 <div class="block">
-  <app-comment-header></app-comment-header>
+  <app-comment-header [commentCount]="commentCount"></app-comment-header>
   <app-comment-textbox [(content)]="commentCreating.body" (comment)="comment()"></app-comment-textbox>
   <app-comment-box (onDelete)="delete(comment.id)" *ngFor="let comment of comments" [comment]="comment"></app-comment-box>
 </div>

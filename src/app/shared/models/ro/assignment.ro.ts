@@ -52,3 +52,11 @@ export class AssignmentDeleteRO {
     Object.assign(this, data);
   }
 }
+
+export class AssignmentGetSubmissionRO {
+  id: number;
+  attachmentUrl: string;
+  attachmentName: string;
+  attachmentCreatedAt: Date;
+  attachmentCreatedBy: number;
+}
