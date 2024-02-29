@@ -35,16 +35,6 @@ export class FileSubmissionComponent {
     });
   }
 
-  download() {
-    const link = document.createElement('a');
-    link.setAttribute('target', '_blank');
-    link.setAttribute('href', this.submission.attachmentUrl);
-    link.setAttribute('download', this.submission.attachmentName);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }
-
   isYourFile() {
     return this._authService.getUserId() === this.submission.attachmentCreatedBy;
   }

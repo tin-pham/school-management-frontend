@@ -18,13 +18,7 @@
     </div>
   </div>
 
-  <app-assignment-submit
-    (onSubmitClick)="submit($event)"
-    (onDeleteClick)="delete()"
-    [isMissing]="submission && isMissing()"
-    [assignmentId]="assignmentId"
-    [(submission)]="submission"
-    class="submit"></app-assignment-submit>
+  <app-assignment-submit *ngIf="isStudent()" [assignment]="assignment" [(submission)]="submission" class="submit"></app-assignment-submit>
 </div>
 
-<app-assignment-submitted-list [assignmentId]="assignmentId"></app-assignment-submitted-list>
+<app-assignment-report></app-assignment-report>

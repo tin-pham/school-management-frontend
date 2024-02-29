@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.status-count div {
+  margin-right: 10px;
+}
+
+.status-count {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em; /* Adjust the base font size if needed */
+}
+
+.count-number {
+  font-size: 2em; /* Makes the number larger */
+  margin-right: 5px; /* Add some spacing between the number and text */
+}
