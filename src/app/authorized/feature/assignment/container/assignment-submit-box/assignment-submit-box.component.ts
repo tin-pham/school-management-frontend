@@ -9,11 +9,11 @@ import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
-  selector: 'app-assignment-submit',
-  styleUrls: ['./assignment-submit.component.scss'],
-  templateUrl: './assignment-submit.component.html',
+  selector: 'app-assignment-submit-box',
+  styleUrls: ['./assignment-submit-box.component.scss'],
+  templateUrl: './assignment-submit-box.component.html',
 })
-export class AssignmentSubmitComponent implements OnInit {
+export class AssignmentSubmitBoxComponent implements OnInit {
   @Input() dueDate: string;
   @Input() submission: AssignmentGetSubmissionRO;
   @Input() assignment: AssignmentGetDetailRO;

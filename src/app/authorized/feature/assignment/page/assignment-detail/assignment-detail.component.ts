@@ -30,4 +30,8 @@ export class AssignmentDetailComponent implements OnInit {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  showReport() {
+    return this._authService.isTeacher() || this._authService.isAdmin();
+  }
 }

@@ -33,4 +33,9 @@ export class AssignmentReportListComponent {
   optionChange(value: string) {
     this.onOptionChange.emit(value);
   }
+
+  @Output() onAttachmentClick = new EventEmitter<number>();
+  attachmentClick(attachmentId: number) {
+    this.onAttachmentClick.emit(attachmentId);
+  }
 }

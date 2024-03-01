@@ -50,6 +50,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/home/home.module').then(m => m.HomeModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
+      {
+        path: 'assignment-submit',
+        loadChildren: () => import('./feature/assignment-submit/assignment-submit.module').then(m => m.AssignmentSubmitModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
     ],
   },
 ];

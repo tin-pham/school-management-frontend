@@ -19,3 +19,12 @@ export class AssignmentSubmitGetStatisticRO {
   lateCount: number;
   missingCount: number;
 }
+
+export class AssignmentSubmitGetDetailRO {
+  id: number;
+  createdAt: Date;
+  createdBy: number;
+  attachmentUrl: string;
+  attachmentName: string;
+  studentName: string;
+}

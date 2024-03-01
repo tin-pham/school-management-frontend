@@ -18,7 +18,11 @@
     </div>
   </div>
 
-  <app-assignment-submit *ngIf="isStudent()" [assignment]="assignment" [(submission)]="submission" class="submit"></app-assignment-submit>
+  <app-assignment-submit-box
+    *ngIf="isStudent()"
+    [assignment]="assignment"
+    [(submission)]="submission"
+    class="submit"></app-assignment-submit-box>
 </div>
 
-<app-assignment-report [assignmentId]="assignmentId"></app-assignment-report>
+<app-assignment-report *ngIf="showReport()" [assignmentId]="assignmentId"></app-assignment-report>

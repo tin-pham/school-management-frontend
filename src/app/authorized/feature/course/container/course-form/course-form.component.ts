@@ -39,7 +39,10 @@ export class CourseFormComponent implements OnInit {
     this._categoryService.getList().subscribe({
       next: response => {
         this.categories = response.data;
-        this.dto.categoryIds = [+this.route.snapshot.queryParamMap.get('categoryId')];
+        const categoryId = +this.route.snapshot.queryParamMap.get('categoryId');
+        if (categoryId) {
+          this.dto.categoryIds = [categoryId];
+        }
       },
     });
     this.restoreCacheStorage();

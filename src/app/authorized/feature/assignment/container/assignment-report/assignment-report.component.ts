@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AssignmentSubmitService } from '@core/services/api/assignment-submit.service';
 import { AssignmentSubmitGetListDTO } from '@shared/models/dto/assignment-submit.dto';
 import { AssignmentSubmitGetListDataRO, AssignmentSubmitGetStatisticRO } from '@shared/models/ro/assignment-submit.ro';
@@ -14,7 +15,10 @@ export class AssignmentReportComponent implements OnInit {
   statistic: AssignmentSubmitGetStatisticRO;
   submissions: AssignmentSubmitGetListDataRO[] = [];
 
-  constructor(private _assignmentSubmitService: AssignmentSubmitService) {}
+  constructor(
+    private router: Router,
+    private _assignmentSubmitService: AssignmentSubmitService,
+  ) {}
 
   ngOnInit() {
     this._assignmentSubmitService.getStatistic({ assignmentId: this.assignmentId }).subscribe(statistic => {
@@ -50,5 +54,9 @@ export class AssignmentReportComponent implements OnInit {
     this._assignmentSubmitService.getList(dto).subscribe(response => {
       this.submissions = response.data;
     });
+  }
+
+  routeToSubmission(submissionId: number) {
+    this.router.navigate(['/assignment-submit', submissionId]);
   }
 }

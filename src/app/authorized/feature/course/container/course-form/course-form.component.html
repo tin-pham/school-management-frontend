@@ -11,6 +11,7 @@
     [label]="'Mô tả'"
     [(value)]="dto.description"></app-textarea-group>
   <app-select-multiple-search
+    *ngIf="categories && categories.length > 0"
     (selectedChange)="saveToTemporaryStorage()"
     [placeholder]="'Danh mục'"
     [options]="categories"

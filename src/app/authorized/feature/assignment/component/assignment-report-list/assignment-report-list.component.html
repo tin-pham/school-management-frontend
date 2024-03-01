@@ -9,7 +9,7 @@
             <img class="student-avatar" src="https://via.placeholder.com/50" alt="" />
             {{ submission.studentName }}
           </div>
-          <div class="attachment-info" role="button">{{ submission.attachmentName }}</div>
+          <div class="attachment-info" role="button" (click)="attachmentClick(submission.id)">{{ submission.attachmentName }}</div>
           <div class="status-info">{{ submission.attachmentCreatedAt | date: 'dd/MM/yyyy' }}</div>
         </div>
       </div>

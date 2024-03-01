@@ -23,6 +23,7 @@ import { WarnButtonComponent } from './button/warn-button/warn-button.component'
 import { DatePickerComponent } from './form-group/date-picker/date-picker.component';
 import { DateTimePickerComponent } from './form-group/date-time-picker/date-time-picker.component';
 import { SelectListComponent } from './form-group/select-list/select-list.component';
+import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -43,6 +44,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   DatePickerComponent,
   DateTimePickerComponent,
   SelectListComponent,
+  DocumentViewerComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

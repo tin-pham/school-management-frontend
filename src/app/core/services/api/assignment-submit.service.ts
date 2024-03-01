@@ -7,11 +7,19 @@ import {
 import { Observable } from 'rxjs';
 import { ResultRO } from '@shared/models/ro/result.ro';
 import { API } from '@core/constants/api.constant';
-import { AssignmentSubmitGetListRO, AssignmentSubmitGetStatisticRO } from '@shared/models/ro/assignment-submit.ro';
+import {
+  AssignmentSubmitGetDetailRO,
+  AssignmentSubmitGetListRO,
+  AssignmentSubmitGetStatisticRO,
+} from '@shared/models/ro/assignment-submit.ro';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class AssignmentSubmitService extends BaseService {
+  getDetail(id: number): Observable<AssignmentSubmitGetDetailRO> {
+    return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_DETAIL.ROUTE.replace(':id', id.toString()));
+  }
+
   getList(dto: AssignmentSubmitGetListDTO): Observable<AssignmentSubmitGetListRO> {
     return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_LIST.ROUTE, dto);
   }

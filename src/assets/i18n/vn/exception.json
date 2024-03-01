@@ -54,5 +54,8 @@
   },
   "COURSE_STUDENT": {
     "NOT_REGISTERED": "Học sinh chưa đăng ký vào khóa học này"
+  },
+  "MIME": {
+    "FORMAT_IS_NOT_VALID": "Định dạng đính kèm không hợp lệ"
   }
 }
