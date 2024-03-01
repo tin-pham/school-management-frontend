@@ -1,18 +1,23 @@
-<div class="header">
+<div class="header" *ngIf="statistic">
   <h1>Danh sách bài nộp</h1>
   <div class="status-count">
     <div>
-      <div class="count-number">3</div>
+      <div class="count-number">{{ statistic.submitCount }}</div>
       Đã nộp
     </div>
     <div class="vr"></div>
     <div>
-      <div class="count-number">2</div>
+      <div class="count-number">{{ statistic.correctCount }}</div>
+      Nộp đúng
+    </div>
+    <div class="vr"></div>
+    <div>
+      <div class="count-number">{{ statistic.missingCount }}</div>
       Chưa nộp
     </div>
     <div class="vr"></div>
     <div>
-      <div class="count-number">2</div>
+      <div class="count-number">{{ statistic.lateCount }}</div>
       Nộp trễ
     </div>
   </div>

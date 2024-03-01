@@ -392,6 +392,10 @@ export const API = {
   ASSIGNMENT: {
     TAGS: 'Assignment',
     CONTROLLER: 'assignment',
+    GET_STATISTIC: {
+      ROUTE: ':id/statistic',
+      OPERATION: 'Get assignment statistic',
+    },
     STORE: {
       ROUTE: '',
       OPERATION: 'Store assignment',
@@ -583,6 +587,10 @@ export const API = {
     GET_DETAIL: {
       ROUTE: ':id',
       OPERATION: 'Get assignment submit detail',
+    },
+    GET_STATISTIC: {
+      ROUTE: 'statistic',
+      OPERATION: 'Get assignment submit statistic',
     },
   },
 };

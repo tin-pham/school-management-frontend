@@ -5,8 +5,17 @@ export class AssignmentSubmitGetListDataRO {
   attachmentUrl: string;
   attachmentName: string;
   attachmentCreatedAt: string;
+  attachmentCreatedBy: number;
+  studentName: string;
 }
 
 export class AssignmentSubmitGetListRO extends PaginateRO<AssignmentSubmitGetListDataRO> {
   data: AssignmentSubmitGetListDataRO[];
+}
+
+export class AssignmentSubmitGetStatisticRO {
+  submitCount: number;
+  correctCount: number;
+  lateCount: number;
+  missingCount: number;
 }

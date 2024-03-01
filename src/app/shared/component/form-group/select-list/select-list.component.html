@@ -1,0 +1,4 @@
+<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" (change)="optionChange($event)">
+  <option selected>{{ label }}</option>
+  <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select>

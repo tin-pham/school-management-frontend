@@ -11,4 +11,10 @@ export class AssignmentSubmitStoreDTO {
 
 export class AssignmentSubmitGetListDTO extends PaginateDTO {
   assignmentId?: number;
+  isLate?: boolean;
+  isCorrect?: boolean;
+}
+
+export class AssignmentSubmitGetStatisticDTO {
+  assignmentId: number;
 }

@@ -4,6 +4,7 @@ import { MaterialModule } from '@shared/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { RouterModule } from '@angular/router';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { ClearableInputComponent } from './clearable-input/clearable-input.component';
 import { TextInputGroupComponent } from './form-group/text-input-group/text-input-group.component';
 import { PrimaryButtonComponent } from './button/primary-button/primary-button.component';
@@ -20,6 +21,8 @@ import { VideoFileComponent } from './icon/video-file/video-file.component';
 import { CodeFileComponent } from './icon/code-file/code-file.component';
 import { WarnButtonComponent } from './button/warn-button/warn-button.component';
 import { DatePickerComponent } from './form-group/date-picker/date-picker.component';
+import { DateTimePickerComponent } from './form-group/date-time-picker/date-time-picker.component';
+import { SelectListComponent } from './form-group/select-list/select-list.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -38,9 +41,19 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   VideoFileComponent,
   CodeFileComponent,
   DatePickerComponent,
+  DateTimePickerComponent,
+  SelectListComponent,
 ];
 
-const SHARED_MODULES: Array<Type<any>> = [CommonModule, MaterialModule, MaterialFileInputModule, FormsModule, RouterModule];
+const SHARED_MODULES: Array<Type<any>> = [
+  CommonModule,
+  MaterialModule,
+  MaterialFileInputModule,
+  FormsModule,
+  RouterModule,
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+];
 
 @NgModule({
   imports: [...SHARED_MODULES],

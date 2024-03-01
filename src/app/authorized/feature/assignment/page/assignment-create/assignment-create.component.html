@@ -1,7 +1,7 @@
 <form>
   <app-text-input-group [required]="true" [label]="'Tiêu đề'" [name]="'name'" [(value)]="dto.name"></app-text-input-group>
   <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group>
-  <app-date-picker [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
+  <app-date-picker [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
 
   <app-primary-button (click)="create()">Tạo</app-primary-button>
 </form>

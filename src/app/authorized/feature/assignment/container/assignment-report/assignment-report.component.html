@@ -1,2 +1,2 @@
-<app-assignment-report-header></app-assignment-report-header>
-<app-assignment-report-list></app-assignment-report-list>
+<app-assignment-report-header [statistic]="statistic"></app-assignment-report-header>
+<app-assignment-report-list (onOptionChange)="optionChange($event)" [submissions]="submissions"></app-assignment-report-list>

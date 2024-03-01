@@ -21,4 +21,4 @@
   <app-assignment-submit *ngIf="isStudent()" [assignment]="assignment" [(submission)]="submission" class="submit"></app-assignment-submit>
 </div>
 
-<app-assignment-report></app-assignment-report>
+<app-assignment-report [assignmentId]="assignmentId"></app-assignment-report>

@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/datetime-picker": "^16.0.1",
     "@angular/animations": "^17.0.0",
     "@angular/cdk": "^17.0.4",
     "@angular/common": "^17.0.0",
@@ -28,6 +29,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.2",
     "jwt-decode": "^4.0.0",
+    "ng-pick-datetime": "^7.0.0",
     "ngx-mat-select-search": "^7.0.5",
     "ngx-material-file-input": "^4.0.1",
     "ngx-toastr": "^18.0.0",

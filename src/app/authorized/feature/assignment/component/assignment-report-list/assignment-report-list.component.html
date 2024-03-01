@@ -1,15 +1,16 @@
-<div class="container">
+<app-select-list (onOptionChange)="optionChange($event)" [options]="options"></app-select-list>
+<div class="container-fluid">
   <div class="row">
     <!-- Report Card 1 -->
-    <div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let submission of submissions">
       <div class="report-card">
         <div class="report-info">
           <div class="student-name">
             <img class="student-avatar" src="https://via.placeholder.com/50" alt="" />
-            Demo Student01
+            {{ submission.studentName }}
           </div>
-          <div class="attachment-info">2 attachments</div>
-          <div class="status-info">Turned in</div>
+          <div class="attachment-info" role="button">{{ submission.attachmentName }}</div>
+          <div class="status-info">{{ submission.attachmentCreatedAt | date: 'dd/MM/yyyy' }}</div>
         </div>
       </div>
     </div>

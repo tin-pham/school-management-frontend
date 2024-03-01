@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AssignmentSubmitStoreDTO } from '@shared/models/dto/assignment-submit.dto';
+import {
+  AssignmentSubmitGetListDTO,
+  AssignmentSubmitGetStatisticDTO,
+  AssignmentSubmitStoreDTO,
+} from '@shared/models/dto/assignment-submit.dto';
 import { Observable } from 'rxjs';
 import { ResultRO } from '@shared/models/ro/result.ro';
 import { API } from '@core/constants/api.constant';
+import { AssignmentSubmitGetListRO, AssignmentSubmitGetStatisticRO } from '@shared/models/ro/assignment-submit.ro';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class AssignmentSubmitService extends BaseService {
+  getList(dto: AssignmentSubmitGetListDTO): Observable<AssignmentSubmitGetListRO> {
+    return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_LIST.ROUTE, dto);
+  }
+
   store(dto: AssignmentSubmitStoreDTO): Observable<ResultRO> {
     const formData = new FormData();
     formData.append('file', dto.file);
@@ -16,5 +25,9 @@ export class AssignmentSubmitService extends BaseService {
 
   delete(id: number): Observable<ResultRO> {
     return this._delete(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.DELETE.ROUTE.replace(':id', id.toString()));
+  }
+
+  getStatistic(dto: AssignmentSubmitGetStatisticDTO): Observable<AssignmentSubmitGetStatisticRO> {
+    return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_STATISTIC.ROUTE, dto);
   }
 }
