@@ -1,0 +1,6 @@
+<form>
+  <app-number-input-group [(value)]="dto.grade" [min]="0" [max]="100" [required]="true" [label]="'Điểm'"></app-number-input-group>
+  <app-textarea-group [(value)]="dto.message" [label]="'Nhận xét'"></app-textarea-group>
+
+  <app-primary-button (click)="gradeClick()">Chấm điểm</app-primary-button>
+</form>

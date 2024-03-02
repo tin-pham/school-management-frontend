@@ -1,0 +1,13 @@
+<div class="mb-3">
+  <label [for]="name" class="form-label" [class.asterix]="required">{{ label }}</label>
+  <input
+    spellcheck="false"
+    type="number"
+    [id]="name"
+    [name]="name"
+    [min]="min"
+    [max]="max"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    class="form-control" />
+</div>

@@ -592,5 +592,21 @@ export const API = {
       ROUTE: 'statistic',
       OPERATION: 'Get assignment submit statistic',
     },
+    GET_GRADE: {
+      ROUTE: ':id/grade',
+      OPERATION: 'Get assignment submit grade',
+    },
+  },
+  ASSIGNMENT_SUBMIT_GRADE: {
+    TAGS: 'AssignmentSubmitGrade',
+    CONTROLLER: 'assignment-submit-grade',
+    STORE: {
+      ROUTE: '',
+      OPERATION: 'Store assignment submit grade',
+    },
+    DELETE: {
+      ROUTE: ':id',
+      OPERATION: 'Delete assignment submit grade',
+    },
   },
 };

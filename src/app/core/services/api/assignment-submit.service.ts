@@ -9,6 +9,7 @@ import { ResultRO } from '@shared/models/ro/result.ro';
 import { API } from '@core/constants/api.constant';
 import {
   AssignmentSubmitGetDetailRO,
+  AssignmentSubmitGetGradeRO,
   AssignmentSubmitGetListRO,
   AssignmentSubmitGetStatisticRO,
 } from '@shared/models/ro/assignment-submit.ro';
@@ -37,5 +38,9 @@ export class AssignmentSubmitService extends BaseService {
 
   getStatistic(dto: AssignmentSubmitGetStatisticDTO): Observable<AssignmentSubmitGetStatisticRO> {
     return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_STATISTIC.ROUTE, dto);
+  }
+
+  getGrade(id: number): Observable<AssignmentSubmitGetGradeRO> {
+    return this.get(API.ASSIGNMENT_SUBMIT.CONTROLLER + '/' + API.ASSIGNMENT_SUBMIT.GET_GRADE.ROUTE.replace(':id', id.toString()));
   }
 }

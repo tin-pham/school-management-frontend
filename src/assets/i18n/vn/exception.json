@@ -57,5 +57,12 @@
   },
   "MIME": {
     "FORMAT_IS_NOT_VALID": "Định dạng đính kèm không hợp lệ"
+  },
+  "ASSIGNMENT_SUBMIT_GRADE": {
+    "GRADE": {
+      "IS_NOT_EMPTY": "Điểm không được trống",
+      "MAX_IS_100": "Điểm tối đa là 100",
+      "MIN_IS_0": "Điểm tối thieu là 0"
+    }
   }
 }

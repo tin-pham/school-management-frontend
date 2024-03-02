@@ -16,7 +16,7 @@ export class BaseService {
     private readonly toastService: ToastrService,
   ) {}
 
-  getFileFormData(files: File[]) {
+  protected getFileFormData(files: File[]) {
     const formData = new FormData();
     for (const file of files) {
       formData.append('files', file);

@@ -1,4 +1,5 @@
-<form>
-  <app-text-input-group [required]="true" [label]="'Điểm'"></app-text-input-group>
-  <app-textarea-group [label]="'Nhận xét'"></app-textarea-group>
-</form>
+<div class="grade">
+  <p class="grade-point">Điểm: {{ grade?.grade }}</p>
+  <p class="grade-message">{{ grade?.message }}</p>
+  <app-warn-button *ngIf="warnButtonShow()" (click)="deleteClick()">Chấm lại</app-warn-button>
+</div>

@@ -27,4 +27,12 @@ export class AssignmentSubmitGetDetailRO {
   attachmentUrl: string;
   attachmentName: string;
   studentName: string;
+  userImageUrl: string;
+}
+
+export class AssignmentSubmitGetGradeRO {
+  id: number;
+  message: string;
+  grade: number;
+  assignmentSubmitId: number;
 }

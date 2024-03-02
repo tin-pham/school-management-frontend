@@ -24,6 +24,7 @@ import { DatePickerComponent } from './form-group/date-picker/date-picker.compon
 import { DateTimePickerComponent } from './form-group/date-time-picker/date-time-picker.component';
 import { SelectListComponent } from './form-group/select-list/select-list.component';
 import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
+import { NumberInputGroupComponent } from './form-group/number-input-group/number-input-group.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -45,6 +46,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   DateTimePickerComponent,
   SelectListComponent,
   DocumentViewerComponent,
+  NumberInputGroupComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [
