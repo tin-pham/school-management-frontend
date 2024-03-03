@@ -60,3 +60,14 @@ export class AssignmentGetSubmissionRO {
   attachmentCreatedAt: Date;
   attachmentCreatedBy: number;
 }
+
+export class AssignmentGetMyListDataRO {
+  id: number;
+  name: string;
+  description: string;
+  dueDate: Date;
+}
+
+export class AssignmentGetMyListRO extends PaginateRO<AssignmentGetMyListDataRO> {
+  data: AssignmentGetMyListDataRO[];
+}

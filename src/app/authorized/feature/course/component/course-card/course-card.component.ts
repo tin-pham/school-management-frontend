@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IImageCardOption } from '@shared/component/image-card/image-card.component';
+import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 
 @Component({
   selector: 'app-course-card',
@@ -7,10 +8,13 @@ import { IImageCardOption } from '@shared/component/image-card/image-card.compon
   templateUrl: 'course-card.component.html',
 })
 export class CourseCardComponent {
-  @Input() imageUrl: string;
-  @Input() alt: string;
-  @Input() name: string;
-  @Input() description: string;
   @Input() isEdit: boolean;
   @Input() option: IImageCardOption;
+
+  @Input() course: CourseGetListDataRO;
+
+  @Output() onDelete = new EventEmitter();
+  delete() {
+    this.onDelete.emit();
+  }
 }

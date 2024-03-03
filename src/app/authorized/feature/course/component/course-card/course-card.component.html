@@ -1,8 +1,16 @@
-<app-image-card
-  role="button"
-  [option]="option"
-  [isEdit]="isEdit"
-  [src]="imageUrl"
-  [alt]="alt"
-  [name]="name"
-  [description]="description"></app-image-card>
+<div class="course-card" *ngIf="course">
+  <app-image-card
+    (onDeleteClick)="delete()"
+    class="image-card"
+    role="button"
+    [option]="option"
+    [isEdit]="isEdit"
+    [src]="course.imageUrl"
+    [alt]="course.name"
+    [name]="course.name"
+    [description]="course.description"></app-image-card>
+
+  <div class="assignment-button">
+    <mat-icon class="assignment">assignment</mat-icon>
+  </div>
+</div>

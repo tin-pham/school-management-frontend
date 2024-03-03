@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <app-course-card
+      class="col-6 col-md-4"
+      (onDelete)="delete(course.id)"
+      *ngFor="let course of courses"
+      [routerLink]="['/course', course.id]"
+      [course]="course"
+      [isEdit]="!isStudent()"
+      [option]="options"></app-course-card>
+  </div>
+</div>

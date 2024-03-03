@@ -17,3 +17,5 @@ export class AssignmentUpdateDTO {
   description: string;
   dueDate: string;
 }
+
+export class AssignmentGetMyListDTO extends PaginateDTO {}

@@ -3,13 +3,9 @@
   *ngFor="let category of categories"
   [category]="category"></app-course-group>
 <div>
-  <h2>Khóa học khác</h2>
-  <app-course-card
-    *ngFor="let course of uncategorizedCourses"
-    [routerLink]="['/course', course.id]"
-    [imageUrl]="course.imageUrl"
-    [alt]="course.name"
-    [name]="course.name"
-    [description]="course.description"></app-course-card>
-  <mat-icon *ngIf="!isStudent()" routerLink="/course/create">library_add</mat-icon>
+  <div class="title">
+    <h2>Khóa học khác</h2>
+    <mat-icon class="icon" *ngIf="!isStudent()" routerLink="/course/create">library_add</mat-icon>
+  </div>
+  <app-course-cards (onDelete)="delete($event)" [courses]="uncategorizedCourses" [options]="courseCardOption"></app-course-cards>
 </div>

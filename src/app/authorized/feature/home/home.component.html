@@ -1,10 +1,12 @@
 <div>
   <h2>Khóa học của tôi</h2>
-  <app-course-card
-    *ngFor="let course of myCourses"
-    [routerLink]="['/course', course.id]"
-    [imageUrl]="course.imageUrl"
-    [alt]="course.name"
-    [name]="course.name"
-    [description]="course.description"></app-course-card>
+  <div class="container">
+    <div class="row">
+      <app-course-card
+        class="col-6 col-md-4"
+        *ngFor="let course of myCourses"
+        [routerLink]="['/course', course.id]"
+        [course]="course"></app-course-card>
+    </div>
+  </div>
 </div>

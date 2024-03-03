@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
+import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
 import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
@@ -17,6 +18,11 @@ export class CourseGroupComponent implements OnInit {
   @Output() categoryDeleted = new EventEmitter();
 
   courses: CourseGetListDataRO[];
+
+  courseCardOption: IImageCardOption = {
+    haveDelete: true,
+    haveClose: true,
+  };
 
   constructor(
     private toast: ToastrService,
@@ -45,5 +51,12 @@ export class CourseGroupComponent implements OnInit {
 
   isStudent() {
     return this._authService.isStudent();
+  }
+
+  deleteCourse(courseId: number) {
+    this._courseService.delete(courseId).subscribe(() => {
+      this.toast.success('Xóa khóa học này');
+      this.courses = this.courses.filter(course => course.id !== courseId);
+    });
   }
 }

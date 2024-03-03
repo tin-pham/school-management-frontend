@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AssignmentGetListDTO, AssignmentStoreDTO, AssignmentUpdateDTO } from '@shared/models/dto/assignment.dto';
+import { AssignmentGetListDTO, AssignmentGetMyListDTO, AssignmentStoreDTO, AssignmentUpdateDTO } from '@shared/models/dto/assignment.dto';
 import {
   AssignmentGetDetailRO,
   AssignmentGetListRO,
+  AssignmentGetMyListRO,
   AssignmentGetSubmissionRO,
   AssignmentStoreRO,
   AssignmentUpdateRO,
@@ -35,5 +36,9 @@ export class AssignmentService extends BaseService {
 
   getSubmission(id: number): Observable<AssignmentGetSubmissionRO> {
     return this.get(API.ASSIGNMENT.CONTROLLER + '/' + API.ASSIGNMENT.GET_SUBMISSION.ROUTE.replace(':id', id.toString()));
+  }
+
+  getMyList(dto?: AssignmentGetMyListDTO): Observable<AssignmentGetMyListRO> {
+    return this.post(API.ASSIGNMENT.CONTROLLER + '/' + API.ASSIGNMENT.GET_MY_LIST.ROUTE, dto);
   }
 }

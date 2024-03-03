@@ -1,9 +1,9 @@
 <div>
-  <app-lesson-assignment-item
+  <app-assignment-item
     [routerLink]="['/assignment', assignment.id]"
     (onDelete)="delete(assignment.id)"
     *ngFor="let assignment of assignments"
-    [assignment]="assignment"></app-lesson-assignment-item>
+    [assignment]="assignment"></app-assignment-item>
 
   <mat-paginator
     *ngIf="totalItems > 0"

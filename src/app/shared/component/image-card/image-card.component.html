@@ -1,7 +1,7 @@
 <div class="card">
   <div *ngIf="isEdit" class="card-tool">
-    <mat-icon *ngIf="option.haveDelete">delete</mat-icon>
-    <mat-icon *ngIf="option.haveClose">close</mat-icon>
+    <mat-icon *ngIf="option.haveDelete" (click)="deleteClick($event)">delete</mat-icon>
+    <mat-icon *ngIf="option.haveClose" (click)="closeClick()">close</mat-icon>
     <input *ngIf="option.haveCheckbox" class="form-check-input" type="checkbox" [(ngModel)]="isCheck" (ngModelChange)="check()" />
   </div>
   <a class="card-image">

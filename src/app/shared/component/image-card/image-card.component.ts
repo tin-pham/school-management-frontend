@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 
 export interface IImageCardOption {
   haveDelete?: boolean;
@@ -24,8 +26,34 @@ export class ImageCardComponent {
     haveCheckbox: false,
   };
 
+  constructor(private dialog: MatDialog) {}
+
   @Output() checkChange = new EventEmitter();
   check() {
     this.checkChange.emit();
+  }
+
+  @Output() onCloseClick = new EventEmitter();
+  closeClick() {
+    this.onCloseClick.emit();
+  }
+
+  @Output() onDeleteClick = new EventEmitter();
+  deleteClick(event: any) {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Xác nhận xóa khóa học?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.onDeleteClick.emit();
+    });
+
+    event.stopPropagation();
   }
 }

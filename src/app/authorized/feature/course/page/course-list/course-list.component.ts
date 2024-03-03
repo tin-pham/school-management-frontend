@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '@core/services/api/auth.service';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
+import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CategoryGetListDTO } from '@shared/models/dto/category.dto';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
 import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
-import { Subject, takeUntil } from 'rxjs';
+import { ToastrService } from '@shared/toastr/toastr.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -17,7 +19,12 @@ export class CourseListComponent implements OnInit, OnDestroy {
   categories: CategoryGetListDataRO[] = [];
   uncategorizedCourses: CourseGetListDataRO[] = [];
 
+  courseCardOption: IImageCardOption = {
+    haveDelete: true,
+  };
+
   constructor(
+    private toast: ToastrService,
     private _categoryService: CategoryService,
     private _courseService: CourseService,
     private _authService: AuthService,
@@ -58,5 +65,12 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   isStudent() {
     return this._authService.isStudent();
+  }
+
+  delete(courseId: number) {
+    this._courseService.delete(courseId).subscribe(response => {
+      this.toast.success('Xóa khóa học thành công');
+      this.uncategorizedCourses = this.uncategorizedCourses.filter(course => course.id !== response.id);
+    });
   }
 }

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
       })
       .subscribe(response => {
         this.myCourses = response.data;
+        console.log(this.myCourses);
       });
   }
 }

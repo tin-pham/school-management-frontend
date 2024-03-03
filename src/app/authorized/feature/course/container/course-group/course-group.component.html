@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div *ngIf="category && courses">
+  <div class="title">
     <h2>{{ category.name }}</h2>
     <app-course-toolbar
       *ngIf="!isStudent()"
@@ -7,13 +7,17 @@
       (delete)="onDeleteCategory()"
       [categoryId]="category.id"></app-course-toolbar>
   </div>
-  <app-course-card
-    *ngFor="let course of courses"
-    [routerLink]="['/course', course.id]"
-    [imageUrl]="course.imageUrl"
-    [alt]="course.name"
-    [name]="course.name"
-    [description]="course.description"></app-course-card>
+  <div class="row">
+    <app-course-cards [courses]="courses" [options]="courseCardOption" (onDelete)="deleteCourse($event)"></app-course-cards>
 
-  <a [routerLink]="['/category', category.id]" class="link-opacity-100" role="button">Xem thêm</a>
+    <a
+      *ngIf="courses.length !== 0"
+      [routerLink]="['/category', category.id]"
+      class="view-more link-opacity-100 text-center text-md-end d-block"
+      role="button"
+      >Xem thêm</a
+    >
+  </div>
+
+  <mat-divider class="mb-3"></mat-divider>
 </div>

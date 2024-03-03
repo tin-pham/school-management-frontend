@@ -1,5 +1,4 @@
 .card-image {
-  display: block;
   background: #fff center center no-repeat;
   background-size: cover;
   img {
@@ -10,8 +9,8 @@
 
 .card-tool {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0;
+  right: 0;
   z-index: 1;
   mat-icon {
     font-size: 1.5rem;
@@ -19,9 +18,7 @@
 }
 
 .card {
-  display: inline-block;
-  width: 90%;
-  max-width: 20rem;
+  position: relative;
   margin: 1rem;
   font-size: 1rem;
   text-decoration: none;

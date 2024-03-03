@@ -1,0 +1,6 @@
+<div>
+  <app-assignment-item
+    [routerLink]="['/assignment', assignment.id]"
+    *ngFor="let assignment of assignments"
+    [assignment]="assignment"></app-assignment-item>
+</div>

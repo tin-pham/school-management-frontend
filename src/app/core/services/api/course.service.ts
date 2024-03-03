@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API } from '@core/constants/api.constant';
 import { CourseGetDetailDTO, CourseGetListDTO, CourseStoreDTO, CourseUpdateDTO } from '@shared/models/dto/course.dto';
-import { CourseGetDetailRO, CourseGetListRO, CourseStoreRO, CourseUpdateRO } from '@shared/models/ro/course.ro';
+import { CourseDeleteRO, CourseGetDetailRO, CourseGetListRO, CourseStoreRO, CourseUpdateRO } from '@shared/models/ro/course.ro';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 
@@ -21,5 +21,9 @@ export class CourseService extends BaseService {
 
   update(id: number, dto?: CourseUpdateDTO): Observable<CourseUpdateRO> {
     return this.patch<CourseUpdateRO>(API.COURSE.CONTROLLER + '/' + API.COURSE.UPDATE.ROUTE, id, dto);
+  }
+
+  delete(id: number): Observable<CourseDeleteRO> {
+    return this._delete<CourseDeleteRO>(API.COURSE.CONTROLLER + '/' + API.COURSE.DELETE.ROUTE.replace(':id', id.toString()));
   }
 }

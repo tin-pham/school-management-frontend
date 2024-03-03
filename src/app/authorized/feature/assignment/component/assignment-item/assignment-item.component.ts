@@ -5,11 +5,11 @@ import { AuthService } from '@core/services/api/auth.service';
 import { AssignmentGetListDataRO } from '@shared/models/ro/assignment.ro';
 
 @Component({
-  selector: 'app-lesson-assignment-item',
-  styleUrls: ['lesson-assignment-item.component.scss'],
-  templateUrl: 'lesson-assignment-item.component.html',
+  selector: 'app-assignment-item',
+  styleUrls: ['assignment-item.component.scss'],
+  templateUrl: 'assignment-item.component.html',
 })
-export class LessonAssignmentItemComponent {
+export class AssignmentItemComponent {
   @Input() assignment: AssignmentGetListDataRO;
 
   constructor(

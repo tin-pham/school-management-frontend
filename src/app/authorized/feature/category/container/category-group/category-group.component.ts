@@ -5,6 +5,7 @@ import { IImageCardOption } from '@shared/component/image-card/image-card.compon
 import { CourseGetListDTO } from '@shared/models/dto/course.dto';
 import { CategoryGetDetailRO } from '@shared/models/ro/category.ro';
 import { CourseGetListRO } from '@shared/models/ro/course.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-category-group',
@@ -25,8 +26,9 @@ export class CategoryGroupComponent {
   page = 1;
 
   constructor(
-    private courseService: CourseService,
     private cd: ChangeDetectorRef,
+    private toast: ToastrService,
+    private _courseService: CourseService,
   ) {}
 
   @Input()
@@ -55,11 +57,17 @@ export class CategoryGroupComponent {
 
   loadCourses(dto: CourseGetListDTO) {
     const { limit, page, categoryId } = dto;
-    this.courseService.getList({ limit, page, categoryId }).subscribe({
+    this._courseService.getList({ limit, page, categoryId }).subscribe({
       next: response => {
         this.totalItems = response.meta.totalItems;
         this.cd.markForCheck();
       },
+    });
+  }
+
+  delete(courseId: number) {
+    this._courseService.delete(courseId).subscribe(() => {
+      this.toast.success('Xóa khóa học thành công');
     });
   }
 }

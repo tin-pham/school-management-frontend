@@ -420,6 +420,10 @@ export const API = {
       ROUTE: ':id/submission',
       OPERATION: 'Get assignment submission',
     },
+    GET_MY_LIST: {
+      ROUTE: 'my-list',
+      OPERATION: 'Get my list assignments',
+    },
   },
   COURSE_ASSIGNMENT: {
     TAGS: 'CourseAssignment',
