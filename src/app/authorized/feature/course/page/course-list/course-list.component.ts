@@ -7,7 +7,7 @@ import { CategoryGetListDTO } from '@shared/models/dto/category.dto';
 import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
 import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -46,9 +46,13 @@ export class CourseListComponent implements OnInit, OnDestroy {
       })
       .subscribe({
         next: response => {
-          this.uncategorizedCourses = response.data;
+          this._courseService.setUncategorizedCourses(response.data);
         },
       });
+
+    this._courseService.uncategorizedCourses$.pipe(takeUntil(this.destroy$)).subscribe(response => {
+      this.uncategorizedCourses = response;
+    });
   }
 
   ngOnDestroy() {

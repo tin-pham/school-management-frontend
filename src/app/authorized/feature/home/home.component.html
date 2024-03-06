@@ -1,12 +1,4 @@
 <div>
   <h2>Khóa học của tôi</h2>
-  <div class="container">
-    <div class="row">
-      <app-course-card
-        class="col-6 col-md-4"
-        *ngFor="let course of myCourses"
-        [routerLink]="['/course', course.id]"
-        [course]="course"></app-course-card>
-    </div>
-  </div>
+  <app-course-cards [assignmentIcon]="true" [courses]="myCourses"></app-course-cards>
 </div>

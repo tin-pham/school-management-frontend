@@ -7,4 +7,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.assignment-count {
+  position: absolute;
+  top: -10px; /* Adjust according to the size of your icon */
+  right: -10px; /* Adjust according to the size of your icon */
+  background-color: red;
+  color: white;
+  font-size: 12px; /* Adjust based on your preference */
+  height: 20px; /* Adjust based on your preference */
+  width: 20px; /* Adjust based on your preference */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

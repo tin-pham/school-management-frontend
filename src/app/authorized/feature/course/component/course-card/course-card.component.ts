@@ -10,11 +10,22 @@ import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 export class CourseCardComponent {
   @Input() isEdit: boolean;
   @Input() option: IImageCardOption;
-
   @Input() course: CourseGetListDataRO;
+  @Input() assignmentIcon: boolean = true;
 
   @Output() onDelete = new EventEmitter();
   delete() {
     this.onDelete.emit();
+  }
+
+  @Output() onRemove = new EventEmitter();
+  remove() {
+    this.onRemove.emit();
+  }
+
+  @Output() onAssignmentClick = new EventEmitter();
+  assignmentClick(event) {
+    this.onAssignmentClick.emit();
+    event.stopPropagation();
   }
 }

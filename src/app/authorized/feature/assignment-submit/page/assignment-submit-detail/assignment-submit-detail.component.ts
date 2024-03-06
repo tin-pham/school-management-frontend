@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentSubmitGradeService } from '@core/services/api/assignment-submit-grade.service';
 import { AssignmentSubmitService } from '@core/services/api/assignment-submit.service';
+import { AuthService } from '@core/services/api/auth.service';
 import { AssignmentSubmitGradeStoreDTO } from '@shared/models/dto/aassignment-submit-grade.dto';
 import { AssignmentStoreDTO } from '@shared/models/dto/assignment.dto';
 import { AssignmentSubmitGetDetailRO, AssignmentSubmitGetGradeRO } from '@shared/models/ro/assignment-submit.ro';
@@ -22,6 +23,7 @@ export class AssignmentSubmitDetailComponent implements OnInit {
     private toast: ToastrService,
     private _assignmentSubmitService: AssignmentSubmitService,
     private _assignmentSubmitGradeService: AssignmentSubmitGradeService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -46,5 +48,9 @@ export class AssignmentSubmitDetailComponent implements OnInit {
       this.toast.success('Chấm điểm thành công');
       this.grade = response;
     });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

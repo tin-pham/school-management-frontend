@@ -1,5 +1,6 @@
 <app-course-group
   (categoryDeleted)="onCategoryDeleted($event)"
+  [assignmentIcon]="!isStudent()"
   *ngFor="let category of categories"
   [category]="category"></app-course-group>
 <div>
@@ -7,5 +8,9 @@
     <h2>Khóa học khác</h2>
     <mat-icon class="icon" *ngIf="!isStudent()" routerLink="/course/create">library_add</mat-icon>
   </div>
-  <app-course-cards (onDelete)="delete($event)" [courses]="uncategorizedCourses" [options]="courseCardOption"></app-course-cards>
+  <app-course-cards
+    (onDelete)="delete($event)"
+    [assignmentIcon]="!isStudent()"
+    [courses]="uncategorizedCourses"
+    [options]="courseCardOption"></app-course-cards>
 </div>

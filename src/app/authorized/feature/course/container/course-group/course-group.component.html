@@ -4,11 +4,16 @@
     <app-course-toolbar
       *ngIf="!isStudent()"
       (addCourse)="routeToAddCourse()"
-      (delete)="onDeleteCategory()"
+      (delete)="deleteCategory()"
       [categoryId]="category.id"></app-course-toolbar>
   </div>
   <div class="row">
-    <app-course-cards [courses]="courses" [options]="courseCardOption" (onDelete)="deleteCourse($event)"></app-course-cards>
+    <app-course-cards
+      [assignmentIcon]="assignmentIcon"
+      [courses]="courses"
+      [options]="courseCardOption"
+      (onRemove)="removeCourseFromCategory($event)"
+      (onDelete)="deleteCourse($event)"></app-course-cards>
 
     <a
       *ngIf="courses.length !== 0"

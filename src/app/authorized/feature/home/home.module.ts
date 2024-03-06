@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CourseCardModule } from '@features/course/component/course-card/course-card.module';
 import { CourseService } from '@core/services/api/course.service';
 import { SharedModule } from '@shared/shared.module';
+import { CourseCardsModule } from '@features/course/component/course-cards/course-cards.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [HomeRoutingModule, CourseCardModule, SharedModule],
+  imports: [HomeRoutingModule, SharedModule, CourseCardsModule],
   providers: [CourseService],
 })
 export class HomeModule {}

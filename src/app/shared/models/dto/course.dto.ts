@@ -3,6 +3,7 @@ import { PaginateDTO } from './paginate.dto';
 export class CourseGetListDTO extends PaginateDTO {
   userId?: number;
   categoryId?: number;
+  withAssignmentCount?: boolean;
 }
 
 export class CourseGetDetailDTO {

@@ -613,4 +613,12 @@ export const API = {
       OPERATION: 'Delete assignment submit grade',
     },
   },
+  CATEGORY_COURSE: {
+    TAGS: 'CategoryCourse',
+    CONTROLLER: 'category-course',
+    DELETE: {
+      ROUTE: 'delete',
+      OPERATION: 'Delete category course',
+    },
+  },
 };

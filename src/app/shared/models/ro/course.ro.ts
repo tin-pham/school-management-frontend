@@ -11,6 +11,7 @@ export class CourseGetListDataRO {
   name: string;
   description?: string;
   imageUrl: string;
+  unsubmittedPendingCount?: number;
 }
 
 export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {

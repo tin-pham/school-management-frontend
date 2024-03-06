@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
@@ -11,12 +12,25 @@ import { CourseGetListDataRO } from '@shared/models/ro/course.ro';
 export class CourseCardsComponent {
   @Input() courses: CourseGetListDataRO[] = [];
   @Input() options: IImageCardOption;
+  @Input() assignmentIcon: boolean;
 
-  constructor(private _authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private _authService: AuthService,
+  ) {}
 
   @Output() onDelete = new EventEmitter();
   delete(courseId: number) {
     this.onDelete.emit(courseId);
+  }
+
+  @Output() onRemove = new EventEmitter();
+  remove(courseId: number) {
+    this.onRemove.emit(courseId);
+  }
+
+  routeToAssignment(courseId: number) {
+    this.router.navigate(['course', courseId, 'assignment']);
   }
 
   isStudent() {

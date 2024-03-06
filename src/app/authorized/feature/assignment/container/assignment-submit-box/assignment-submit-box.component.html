@@ -2,12 +2,16 @@
   <div class="work-header">
     <h2>Bài nộp của bạn</h2>
     <div>
-      <span *ngIf="isMissing" class="status-missing">Quá hạn</span>
-      <span *ngIf="submission && !isMissing" class="status-completed">Đã nộp</span>
-      <span *ngIf="!submission && !isMissing" class="status-in-progress">Chưa nộp</span>
+      <span *ngIf="isMissing(assignment)" class="status-missing">Quá hạn</span>
+      <span *ngIf="submission && !isMissing(assignment) && !isLate(assignment)" class="status-completed">Đã nộp</span>
+      <span *ngIf="!submission && !isMissing(assignment) && !isLate(assignment)" class="status-in-progress">Chưa nộp</span>
+      <span *ngIf="submission && isLate(assignment)" class="status-late">Nộp trễ</span>
     </div>
   </div>
-  <app-file-submission [isMissing]="submission && isMissing()" [submission]="submission" (onDelete)="delete()"></app-file-submission>
+  <app-file-submission
+    [isMissing]="submission && isMissing(assignment)"
+    [submission]="submission"
+    (onDelete)="delete()"></app-file-submission>
 
   <app-file-input-group
     *ngIf="!submission"

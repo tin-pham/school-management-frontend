@@ -10,11 +10,6 @@ const routes: Routes = [
     component: AssignmentComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('./page/assignment-home/assignment-home.module').then(m => m.AssignmentHomeModule),
-        canActivate: [roleGuard([ROLE.TEACHER, ROLE.STUDENT])],
-      },
-      {
         path: 'create',
         loadChildren: () => import('./page/assignment-create/assignment-create.module').then(m => m.AssignmentCreateModule),
         canActivate: [roleGuard([ROLE.TEACHER])],

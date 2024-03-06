@@ -35,7 +35,21 @@ export class ImageCardComponent {
 
   @Output() onCloseClick = new EventEmitter();
   closeClick() {
-    this.onCloseClick.emit();
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Xác nhận xóa khóa học khỏi danh mục này?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.onCloseClick.emit();
+    });
+
+    event.stopPropagation();
   }
 
   @Output() onDeleteClick = new EventEmitter();

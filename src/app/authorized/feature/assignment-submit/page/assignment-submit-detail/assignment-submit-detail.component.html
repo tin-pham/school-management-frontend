@@ -1,11 +1,14 @@
 <div class="detail" *ngIf="submission">
-  <app-document-viewer [url]="submission.attachmentUrl"></app-document-viewer>
+  <app-document-viewer class="document" [url]="submission.attachmentUrl"></app-document-viewer>
   <div>
     <div class="student" *ngIf="submission">
       <img class="student-image" [src]="submission.userImageUrl || 'https://via.placeholder.com/50'" [alt]="submission.studentName" />
       <span class="student-name">{{ submission.studentName }}</span>
     </div>
-    <app-assignment-submit-grade-form *ngIf="!grade" (onGradeClick)="submitGrade($event)"></app-assignment-submit-grade-form>
+    <app-assignment-submit-not-graded *ngIf="!grade && isStudent()"></app-assignment-submit-not-graded>
+    <app-assignment-submit-grade-form
+      *ngIf="!grade && !isStudent()"
+      (onGradeClick)="submitGrade($event)"></app-assignment-submit-grade-form>
     <app-assignment-submit-grade *ngIf="grade" [grade]="grade" (onDeleteClick)="delete()"></app-assignment-submit-grade>
   </div>
 </div>

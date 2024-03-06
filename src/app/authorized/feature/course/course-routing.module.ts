@@ -54,6 +54,11 @@ const routes: Routes = [
         loadChildren: () => import('./page/course-lesson-edit/course-lesson-edit.module').then(m => m.CourseLessonEditModule),
         canActivate: [roleGuard([ROLE.TEACHER])],
       },
+      {
+        path: ':id/assignment',
+        loadChildren: () => import('./page/course-assignment/course-assignment.module').then(m => m.CourseAssignmentModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
     ],
   },
 ];

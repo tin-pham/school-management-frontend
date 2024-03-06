@@ -27,6 +27,9 @@ export class AssignmentGetListDataRO {
   name: string;
   description: string;
   dueDate: Date;
+  submissionId?: number;
+  submissionDate?: Date;
+  submissionGrade?: number;
 }
 
 export class AssignmentGetListRO extends PaginateRO<AssignmentGetListDataRO> {
@@ -39,6 +42,9 @@ export class AssignmentGetDetailRO {
   description: string;
   dueDate: string;
   createdByDisplayName: string;
+  submissionId?: number;
+  submissionDate?: Date;
+  submissionGrade?: number;
 
   constructor(data?: AssignmentGetDetailRO) {
     Object.assign(this, data);

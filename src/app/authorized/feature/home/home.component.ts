@@ -20,10 +20,10 @@ export class HomeComponent implements OnInit {
     this._courseService
       .getList({
         userId: this._authService.getUserId(),
+        withAssignmentCount: true,
       })
       .subscribe(response => {
         this.myCourses = response.data;
-        console.log(this.myCourses);
       });
   }
 }

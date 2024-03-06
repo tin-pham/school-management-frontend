@@ -1,4 +1,4 @@
-<div class="assignment">
+<div class="assignment" [class.completed]="assignment.submissionId">
   <div class="icon-container">
     <mat-icon class="icon">assignment</mat-icon>
   </div>
@@ -9,5 +9,16 @@
 
   <div class="buttons">
     <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
+    <div *ngIf="isStudent()" class="d-flex">
+      <span *ngIf="isLate(assignment)">
+        <mat-icon class="late-icon">warning</mat-icon>
+        <p class="assignment-due late">Nộp trễ</p>
+      </span>
+      <span *ngIf="isMissing(assignment)">
+        <mat-icon class="missing-icon">error_outline</mat-icon>
+        <p class="assignment-due missing">Quên nộp</p>
+      </span>
+      <mat-icon *ngIf="assignment.submissionId" class="completed-icon">check_circle</mat-icon>
+    </div>
   </div>
 </div>

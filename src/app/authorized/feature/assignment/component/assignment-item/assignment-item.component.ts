@@ -38,4 +38,16 @@ export class AssignmentItemComponent {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  isLate(assignment: AssignmentGetListDataRO) {
+    const dueDate = new Date(assignment.dueDate);
+    const submissionDate = new Date(assignment.submissionDate);
+    return submissionDate > dueDate;
+  }
+
+  isMissing(assignment: AssignmentGetListDataRO) {
+    const dueDate = new Date(assignment.dueDate);
+    const currentDate = new Date();
+    return !assignment.submissionId && currentDate > dueDate;
+  }
 }

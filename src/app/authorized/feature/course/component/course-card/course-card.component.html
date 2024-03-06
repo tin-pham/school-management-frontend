@@ -1,6 +1,7 @@
 <div class="course-card" *ngIf="course">
   <app-image-card
     (onDeleteClick)="delete()"
+    (onCloseClick)="remove()"
     class="image-card"
     role="button"
     [option]="option"
@@ -10,7 +11,12 @@
     [name]="course.name"
     [description]="course.description"></app-image-card>
 
-  <div class="assignment-button">
-    <mat-icon class="assignment">assignment</mat-icon>
+  <div>
+    <div *ngIf="assignmentIcon" class="assignment-button">
+      <mat-icon class="assignment" role="button" (click)="assignmentClick($event)"
+        >assignment
+        <span *ngIf="course.unsubmittedPendingCount > 0" class="assignment-count">{{ course.unsubmittedPendingCount }}</span>
+      </mat-icon>
+    </div>
   </div>
 </div>

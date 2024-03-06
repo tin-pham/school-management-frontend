@@ -21,7 +21,8 @@
 }
 
 .status-missing {
-  background-color: #ffab00;
+  // red color
+  background-color: #d32f2f;
   color: white;
   padding: 2px 8px;
   font-size: 12px;
@@ -38,6 +39,15 @@
 
 .status-in-progress {
   background-color: #2196f3;
+  color: white;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.status-late {
+  // yellow warning
+  background-color: #ffab00;
   color: white;
   padding: 2px 8px;
   font-size: 12px;

@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AssignmentSubmitService } from '@core/services/api/assignment-submit.service';
 import { AssignmentService } from '@core/services/api/assignment.service';
 import { AuthService } from '@core/services/api/auth.service';
-import { Assignment } from '@shared/models/class/assignment';
 import { AssignmentSubmitStoreDTO } from '@shared/models/dto/assignment-submit.dto';
 import { AssignmentGetDetailRO, AssignmentGetSubmissionRO } from '@shared/models/ro/assignment.ro';
 import { AttachmentGetListDataRO } from '@shared/models/ro/attachment.ro';
@@ -35,8 +34,6 @@ export class AssignmentSubmitBoxComponent implements OnInit {
   loadAttachment() {
     this._assignmentService.getSubmission(this.assignment.id).subscribe(submission => {
       this.submission = submission;
-      console.log(this.assignment.id);
-      console.log(this.submission);
     });
   }
 
@@ -70,8 +67,15 @@ export class AssignmentSubmitBoxComponent implements OnInit {
     return this._authService.isStudent();
   }
 
-  isMissing() {
-    const assignment = new Assignment(this.assignment.dueDate, this.submission.attachmentCreatedAt.toString());
-    return assignment.isMissing();
+  isLate(assignment: AssignmentGetDetailRO) {
+    const dueDate = new Date(assignment.dueDate);
+    const submissionDate = new Date(assignment.submissionDate);
+    return submissionDate > dueDate;
+  }
+
+  isMissing(assignment: AssignmentGetDetailRO) {
+    const dueDate = new Date(assignment.dueDate);
+    const currentDate = new Date();
+    return !assignment.submissionId && currentDate > dueDate;
   }
 }
