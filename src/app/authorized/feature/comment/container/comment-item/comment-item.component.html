@@ -1,4 +1,4 @@
-<div class="comment" [ngStyle]="{ 'margin-left': comment.depth * 60 + 'px' }">
+<div class="comment" [class.highlighted]="highlighted" [ngStyle]="{ 'margin-left': comment.depth * 60 + 'px' }">
   <div class="user-banner">
     <div class="user">
       <div class="avatar">

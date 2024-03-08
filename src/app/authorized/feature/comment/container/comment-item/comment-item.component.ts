@@ -11,6 +11,7 @@ import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro'
 })
 export class CommentItemComponent {
   @Input() comment: LessonCommentGetListDataRO;
+  @Input() highlighted = false;
 
   minimizeVisible = true;
 

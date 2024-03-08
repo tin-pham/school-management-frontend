@@ -4,17 +4,19 @@
     <span class="navbar-brand mb-0 h1">Elearning</span>
   </div>
 
-  <div class="search-container">
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Search</mat-label>
-      <input matInput placeholder="Tìm kiếm khóa học, bài viết, video, ..." />
-    </mat-form-field>
-  </div>
+  <!-- <div class="search-container"> -->
+  <!--   <mat-form-field subscriptSizing="dynamic"> -->
+  <!--     <mat-label>Search</mat-label> -->
+  <!--     <input matInput placeholder="Tìm kiếm khóa học, bài viết, video, ..." /> -->
+  <!--   </mat-form-field> -->
+  <!-- </div> -->
 
-  <div class="right-items">
-    <mat-icon class="search" (click)="showMobileSearch()">search</mat-icon>
-    <mat-icon>account_circle</mat-icon>
-  </div>
+  <!-- <div class="right-items"> -->
+  <!--   <mat-icon class="search" (click)="showMobileSearch()">search</mat-icon> -->
+  <!--   <mat-icon>account_circle</mat-icon> -->
+  <!-- </div> -->
+
+  <app-notification-dropdown class="me-4"></app-notification-dropdown>
 
   <mat-toolbar class="mobile-header" *ngIf="mobileSearchVisibility">
     <mat-list>

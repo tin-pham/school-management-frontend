@@ -14,8 +14,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarMenuComponent } from './components/sidebar-menu/sidebar-menu.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { UserService } from './services/api/user.service';
+import { NotificationDropdownComponent } from './components/notification-dropdown/notification-dropdown.component';
+import { NotificationService } from './services/api/notification.service';
+import { UserNotificationService } from './services/api/user-notification.service';
 
-const COMPONENTS = [HeaderComponent, SidebarMenuComponent, ConfirmDialogComponent];
+const COMPONENTS = [HeaderComponent, SidebarMenuComponent, ConfirmDialogComponent, NotificationDropdownComponent];
 
 export function createTranslateLoader(http: HttpBackend) {
   return new TranslateLoaderService(http);
@@ -39,7 +42,7 @@ export function createTranslateLoader(http: HttpBackend) {
     }),
   ],
   declarations: [...COMPONENTS],
-  providers: [BaseService, AuthService, RoleService, UserService],
+  providers: [BaseService, AuthService, RoleService, UserService, NotificationService, UserNotificationService],
   exports: [CommonModule, TranslateModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, ...COMPONENTS],
 })
 export class CoreModule {}

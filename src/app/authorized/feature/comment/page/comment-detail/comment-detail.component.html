@@ -1,1 +1,12 @@
-<app-comment-box (onDelete)="delete(comment.id)" *ngFor="let comment of comments" [comment]="comment"></app-comment-box>
+<div *ngIf="lesson">
+  <a [routerLink]="['/', 'course', lesson.courseId, 'section', lesson.sectionId, 'lesson', lesson.id]"
+    ><mat-icon class="align-middle">arrow_back</mat-icon> {{ lesson?.title }}</a
+  >
+  <mat-divider class="mb-3"></mat-divider>
+  <app-comment-box
+    [highlightedCommentId]="highlightedCommentId"
+    [highlighted]="comment.id === highlightedCommentId"
+    (onDelete)="delete(comment.id)"
+    *ngFor="let comment of comments"
+    [comment]="comment"></app-comment-box>
+</div>

@@ -22,8 +22,9 @@ export class LessonGetDetailRO {
   id: number;
   title: string;
   body: string;
-  sectionId: number;
   videoUrl: string;
+  sectionId: number;
+  courseId: number;
 }
 
 export class LessonUpdateRO {

@@ -1,0 +1,59 @@
+<li class="nav-item dropdown" *ngIf="notificationsPaginated">
+  <button class="nav-link" data-bs-toggle="dropdown">
+    <mat-icon>notifications</mat-icon>
+    <span
+      *ngIf="notificationsPaginated.meta.totalItems"
+      class="position-absolute top-0 start-100 translate-middle badge bg-danger navbar-badge"
+      >{{ notificationsPaginated.meta.totalItems }}</span
+    >
+  </button>
+  <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end notification-dropdown">
+    <li>
+      <a
+        (click)="routeToNotification(notification)"
+        role="button"
+        class="dropdown-item"
+        *ngFor="let notification of notificationsPaginated.data">
+        <!-- Message Start -->
+        <div class="notification">
+          <div class="mb-1">
+            <div *ngIf="notification.commentOwnerId" class="d-flex align-items-center">
+              <img
+                [src]="notification.commentOwnerImageUrl || 'https://www.w3schools.com/bootstrap5/img_avatar4.png'"
+                [alt]="notification.commentOwnerDisplayName"
+                class="rounded-circle me-3"
+                style="width: 40px" />
+              <h3 class="dropdown-item-title mb-0">
+                {{ notification.commentOwnerDisplayName }}
+                <span class="float-end text-sm text-danger"><i class="fas fa-star"></i></span>
+              </h3>
+            </div>
+          </div>
+
+          <div *ngIf="notification.courseId" class="d-flex align-items-center">
+            <img
+              [src]="
+                'https://images.unsplash.com/photo-1633409361618-c73427e4e206?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              "
+              [alt]="notification.courseName"
+              class="rounded-circle me-3"
+              style="width: 40px" />
+
+            <h3 class="dropdown-item-title mb-0">
+              {{ notification.courseName }}
+              <span class="float-end text-sm text-danger"><i class="fas fa-star"></i></span>
+            </h3>
+          </div>
+          <div>
+            <p class="text-sm mb-0">{{ notification.content }}</p>
+            <p class="text-sm text-muted mb-0"><mat-icon class="me-1 align-middle">access_time</mat-icon> {{ dateAgo(notification) }}</p>
+          </div>
+        </div>
+        <!-- Message End -->
+      </a>
+    </li>
+    <li *ngIf="!notificationsPaginated.data.length"><hr class="dropdown-divider" /></li>
+    <!-- Repeat for each message, update the link and img source as needed -->
+    <li><a routerLink="/notification" class="dropdown-item dropdown-footer">Xem tất cả</a></li>
+  </ul>
+</li>

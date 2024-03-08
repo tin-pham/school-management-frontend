@@ -2,6 +2,7 @@
   display: grid;
   gap: 10px;
   padding: 12px;
+  background: white;
   .user-banner {
     display: flex;
     justify-content: space-between;
@@ -99,4 +100,20 @@ a {
 }
 p {
   line-height: 24px;
+}
+
+@keyframes pulseHighlight {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #e7e7e7;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+.highlighted {
+  animation: pulseHighlight 2s infinite ease-in-out;
 }

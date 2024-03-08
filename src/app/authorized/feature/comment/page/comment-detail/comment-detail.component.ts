@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LessonCommentService } from '@core/services/api/lesson-comment.service';
+import { LessonService } from '@core/services/api/lesson.service';
 import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
+import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
@@ -11,24 +13,31 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class CommentDetailComponent implements OnInit {
   comments: LessonCommentGetListDataRO[];
+  lesson: LessonGetDetailRO;
   commentId: number;
+  highlightedCommentId: number;
 
   constructor(
     private route: ActivatedRoute,
     private toast: ToastrService,
     private _lessonCommentService: LessonCommentService,
+    private _lessonService: LessonService,
   ) {}
 
   ngOnInit() {
     this.commentId = +this.route.snapshot.params['id'];
+    this.highlightedCommentId = +this.route.snapshot.queryParamMap.get('highlightedCommentId');
     this.loadComments(this.commentId);
   }
 
   loadComments(commentId: number) {
     this._lessonCommentService.getList({ commentId }).subscribe(data => {
-      console.log(data);
       this.comments = this.transformComments(data.data);
-      console.log(this.comments);
+      if (this.comments.length > 0) {
+        this._lessonService.getDetail(this.comments[0].lessonId).subscribe(lesson => {
+          this.lesson = lesson;
+        });
+      }
     });
   }
 

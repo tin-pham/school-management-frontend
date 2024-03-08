@@ -621,4 +621,32 @@ export const API = {
       OPERATION: 'Delete category course',
     },
   },
+  NOTIFICATION: {
+    TAGS: 'Notification',
+    CONTROLLER: 'notification',
+    GET_LIST: {
+      ROUTE: '',
+      OPERATION: 'Get list notifications',
+    },
+    STORE: {
+      ROUTE: '',
+      OPERATION: 'Store notification',
+    },
+    UPDATE: {
+      ROUTE: ':id',
+      OPERATION: 'Update notification',
+    },
+  },
+  USER_NOTIFICATION: {
+    TAGS: 'UserNotification',
+    CONTROLLER: 'user-notification',
+    BULK_UPDATE: {
+      ROUTE: 'bulk-update',
+      OPERATION: 'Bulk update user notification',
+    },
+    BULK_DELETE: {
+      ROUTE: 'bulk-delete',
+      OPERATION: 'Bulk delete user notification',
+    },
+  },
 };

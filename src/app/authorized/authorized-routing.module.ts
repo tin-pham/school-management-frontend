@@ -55,6 +55,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/assignment-submit/assignment-submit.module').then(m => m.AssignmentSubmitModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
+      {
+        path: 'notification',
+        loadChildren: () => import('./feature/notification/notification.module').then(m => m.NotificationModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
     ],
   },
 ];

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IReplyState, LessonCommentService } from '@core/services/api/lesson-comment.service';
 import { LessonCommentStoreDTO } from '@shared/models/dto/lesson-comment.dto';
 import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
+import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -13,6 +14,9 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class CommentBoxComponent implements OnInit, OnDestroy {
   @Input() comment: LessonCommentGetListDataRO;
+  @Input() highlighted = false;
+  @Input() highlightedCommentId: number;
+  lesson: LessonGetDetailRO;
 
   commentCreating = new LessonCommentStoreDTO();
 
