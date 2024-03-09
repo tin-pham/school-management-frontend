@@ -60,6 +60,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/notification/notification.module').then(m => m.NotificationModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
+      {
+        path: 'exercise',
+        loadChildren: () => import('./feature/exercise/exercise.module').then(m => m.ExerciseModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
     ],
   },
 ];

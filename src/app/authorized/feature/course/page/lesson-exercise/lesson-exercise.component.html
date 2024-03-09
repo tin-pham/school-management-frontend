@@ -1,0 +1,22 @@
+<div>
+  <app-exercise-item
+    [routerLink]="['/exercise', exercise.id]"
+    (onDelete)="delete(exercise.id)"
+    *ngFor="let exercise of exercises"
+    [exercise]="exercise"></app-exercise-item>
+
+  <mat-paginator
+    *ngIf="totalItems > 0"
+    [pageSizeOptions]="[5, 10]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"
+    aria-label="Select page of users"></mat-paginator>
+
+  <div class="d-flex" *ngIf="!isStudent()">
+    <app-primary-button [routerLink]="['/exercise/create']" [queryParams]="{ lessonId: lessonId }"
+      >Tạo bài tập trắc nghiệm</app-primary-button
+    >
+  </div>
+</div>

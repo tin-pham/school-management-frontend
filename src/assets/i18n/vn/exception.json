@@ -64,5 +64,16 @@
       "MAX_IS_100": "Điểm tối đa là 100",
       "MIN_IS_0": "Điểm tối thieu là 0"
     }
+  },
+  "EXERCISE": {
+    "NAME": {
+      "IS_NOT_EMPTY": "Tên bài trắc nghiệm không được trống"
+    },
+    "DIFFICULTY_ID": {
+      "IS_NOT_EMPTY": "Độ khó không được trống"
+    },
+    "LESSON_ID": {
+      "IS_NOT_EMPTY": "Bài học không được trống"
+    }
   }
 }

@@ -1,0 +1,15 @@
+<div class="exercise" [class.completed]="exercise.submissionId">
+  <div class="icon-container">
+    <mat-icon class="icon">exercise</mat-icon>
+  </div>
+  <div class="exercise-details">
+    <p class="exercise-name">{{ exercise.name }}</p>
+  </div>
+
+  <div class="buttons">
+    <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
+    <div *ngIf="isStudent()" class="d-flex">
+      <mat-icon *ngIf="exercise.submissionId" class="completed-icon">check_circle</mat-icon>
+    </div>
+  </div>
+</div>
