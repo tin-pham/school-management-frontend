@@ -21,5 +21,17 @@
     [value]="image"
     (valueChange)="onFileInputChange($event)"
     [label]="'Hình ảnh'"></app-file-input-group>
+  <app-select-list
+    [required]="true"
+    (onSelectedChange)="saveToTemporaryStorage()"
+    [name]="'level'"
+    [options]="levels"
+    [label]="'Cấp độ'"
+    [(selected)]="dto.levelId"></app-select-list>
+  <app-number-input-group
+    (valueChange)="saveToTemporaryStorage()"
+    [label]="'Giờ'"
+    [name]="'hours'"
+    [(value)]="dto.hours"></app-number-input-group>
   <app-primary-button>Tạo</app-primary-button>
 </form>

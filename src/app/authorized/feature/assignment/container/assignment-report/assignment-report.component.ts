@@ -27,7 +27,7 @@ export class AssignmentReportComponent implements OnInit {
     this.loadSubmissions({ assignmentId: this.assignmentId });
   }
 
-  optionChange(value: string) {
+  optionChange(value: string | number) {
     const dto: AssignmentSubmitGetListDTO = { assignmentId: this.assignmentId };
 
     switch (value) {

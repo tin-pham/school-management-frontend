@@ -4,6 +4,8 @@ export class CourseStoreRO {
   id: number;
   name: string;
   description?: string;
+  levelId?: number;
+  hours?: number;
 }
 
 export class CourseGetListDataRO {
@@ -12,6 +14,9 @@ export class CourseGetListDataRO {
   description?: string;
   imageUrl: string;
   unsubmittedPendingCount?: number;
+  levelName?: string;
+  levelId?: number;
+  hours?: number;
 }
 
 export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {
@@ -24,12 +29,18 @@ export class CourseGetDetailRO {
   description?: string;
   imageUrl?: string;
   categoryIds: number[];
+  levelName?: string;
+  levelId?: number;
+  hours?: number;
+  lessonCount?: number;
 }
 
 export class CourseUpdateRO {
   id: number;
   name: string;
   description?: string;
+  levelId?: number;
+  hours?: number;
 }
 
 export class CourseDeleteRO {

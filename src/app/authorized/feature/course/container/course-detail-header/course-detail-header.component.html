@@ -1,7 +1,7 @@
-<div>
+<div *ngIf="course">
   <span class="d-flex align-middle">
-    <h1>{{ name }}</h1>
-    <mat-icon *ngIf="!isStudent()" [routerLink]="['/course', courseId, 'edit']">edit</mat-icon>
+    <h1>{{ course.name }}</h1>
+    <mat-icon *ngIf="!isStudent()" [routerLink]="['/course', course.id, 'edit']">edit</mat-icon>
   </span>
-  <p>{{ description }}</p>
+  <p>{{ course.description }}</p>
 </div>

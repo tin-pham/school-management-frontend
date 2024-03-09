@@ -1,6 +1,10 @@
-<div class="d-flex flex-column justify-content-center">
-  <div class="thumpnail">
-    <img *ngIf="imageUrl" [src]="imageUrl" />
+<div *ngIf="course" class="d-flex flex-column justify-content-center">
+  <div class="thumpnail mb-2">
+    <img
+      [src]="
+        course.imageUrl ||
+        'https://plus.unsplash.com/premium_photo-1681319553238-9860299dfb0f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2Vic2l0ZXxlbnwwfHwwfHx8MA%3D%3D'
+      " />
   </div>
   <div *ngIf="isStudent()">
     <app-primary-button *ngIf="!isRegisted" (click)="registerClick()">Đăng ký</app-primary-button>
@@ -8,8 +12,14 @@
   </div>
 
   <ul>
-    <li>Trình độ cơ bản</li>
-    <li>Tổng số 30 bài học</li>
-    <li>Thời lượng 12 tiếng</li>
+    <li>
+      Trình độ <b>{{ course.levelName }}</b>
+    </li>
+    <li>
+      Tổng số <b>{{ course.lessonCount || 0 }} </b>bài học
+    </li>
+    <li>
+      Thời lượng <b>{{ course.hours }} </b>tiếng
+    </li>
   </ul>
 </div>

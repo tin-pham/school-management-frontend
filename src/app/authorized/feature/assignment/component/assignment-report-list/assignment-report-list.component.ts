@@ -29,8 +29,8 @@ export class AssignmentReportListComponent {
     },
   ];
 
-  @Output() onOptionChange = new EventEmitter<string>();
-  optionChange(value: string) {
+  @Output() onOptionChange = new EventEmitter<string | number>();
+  optionChange(value: string | number) {
     this.onOptionChange.emit(value);
   }
 

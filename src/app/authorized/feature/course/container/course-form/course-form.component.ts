@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseImageService } from '@core/services/api/course-image.service';
 import { CourseService } from '@core/services/api/course.service';
+import { LevelService } from '@core/services/api/level.service';
 import { CacheStorageFacet, CacheStorageService } from '@core/services/cache.service';
+import { ISelectOption } from '@shared/component/form-group/select-list/select-list.component';
 import { SelectSearchOption } from '@shared/component/form-group/select-search/select-search.component';
 import { CourseStoreDTO } from '@shared/models/dto/course.dto';
 import { ToastrService } from '@shared/toastr/toastr.service';
@@ -22,6 +24,7 @@ export class CourseFormComponent implements OnInit {
   image: File;
   imageUrl: string;
   categories: SelectSearchOption[] = [];
+  levels: ISelectOption[] = [];
 
   constructor(
     private toast: ToastrService,
@@ -30,6 +33,7 @@ export class CourseFormComponent implements OnInit {
     private _categoryService: CategoryService,
     private _courseService: CourseService,
     private _courseImageService: CourseImageService,
+    private _levelService: LevelService,
     cacheService: CacheStorageService,
   ) {
     this.cacheStorage = cacheService.forKey('course-create');
@@ -43,6 +47,11 @@ export class CourseFormComponent implements OnInit {
         if (categoryId) {
           this.dto.categoryIds = [categoryId];
         }
+      },
+    });
+    this._levelService.getList().subscribe({
+      next: response => {
+        this.levels = response.data.map(level => ({ label: level.name, value: level.id }));
       },
     });
     this.restoreCacheStorage();

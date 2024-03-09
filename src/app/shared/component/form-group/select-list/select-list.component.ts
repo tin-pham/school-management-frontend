@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export interface ISelectOption {
   label: string;
-  value: string;
+  value: any;
 }
 
 @Component({
@@ -13,9 +13,12 @@ export interface ISelectOption {
 export class SelectListComponent {
   @Input() options: ISelectOption[] = [];
   @Input() label: string;
+  @Input() name: string;
+  @Input() required: boolean;
 
-  @Output() onOptionChange = new EventEmitter<string>();
-  optionChange(event: any) {
-    this.onOptionChange.emit(event.target.value);
+  @Input() selected: string | number;
+  @Output() selectedChange = new EventEmitter();
+  onSelectedChange(value: any) {
+    this.selectedChange.emit(value);
   }
 }

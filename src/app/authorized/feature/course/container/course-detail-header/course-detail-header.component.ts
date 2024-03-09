@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '@core/services/api/auth.service';
+import { CourseGetDetailRO } from '@shared/models/ro/course.ro';
 
 @Component({
   selector: 'app-course-detail-header',
@@ -7,9 +8,7 @@ import { AuthService } from '@core/services/api/auth.service';
   templateUrl: 'course-detail-header.component.html',
 })
 export class CourseDetailHeaderComponent {
-  @Input() courseId: number;
-  @Input() name: string;
-  @Input() description: string;
+  @Input() course: CourseGetDetailRO;
 
   constructor(private _authService: AuthService) {}
 

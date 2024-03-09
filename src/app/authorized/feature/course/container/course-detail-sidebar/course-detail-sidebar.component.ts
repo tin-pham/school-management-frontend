@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
+import { CourseGetDetailRO } from '@shared/models/ro/course.ro';
 
 @Component({
   selector: 'app-course-detail-sidebar',
@@ -9,9 +10,8 @@ import { AuthService } from '@core/services/api/auth.service';
   templateUrl: 'course-detail-sidebar.component.html',
 })
 export class CourseDetailSidebarComponent {
-  @Input() name: string;
-  @Input() imageUrl: string;
-  @Input() courseId: number;
+  @Input() course: CourseGetDetailRO;
+  @Input() lessonCount: number;
   @Input() isRegisted: boolean;
 
   constructor(

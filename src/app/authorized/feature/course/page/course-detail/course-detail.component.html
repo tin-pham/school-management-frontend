@@ -1,16 +1,10 @@
 <div class="detail">
-  <app-course-detail-header
-    class="header"
-    [courseId]="course?.id"
-    [name]="course?.name"
-    [description]="course?.description"></app-course-detail-header>
+  <app-course-detail-header class="header" [course]="course"></app-course-detail-header>
   <app-course-detail-sidebar
     (onUnRegisterClick)="unRegister()"
     (onRegisterClick)="register()"
     [isRegisted]="isRegistered"
-    [courseId]="courseId"
     class="sidebar"
-    [name]="course?.name"
-    [imageUrl]="course?.imageUrl"></app-course-detail-sidebar>
+    [course]="course"></app-course-detail-sidebar>
   <app-course-section-list class="list"></app-course-section-list>
 </div>

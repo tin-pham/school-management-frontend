@@ -20,8 +20,6 @@ export class SelectMultipleSearchComponent {
 
   filteredOptions: SelectSearchOption[] = [];
 
-  constructor() {}
-
   @Input()
   set options(options: SelectSearchOption[]) {
     if (!options) return;

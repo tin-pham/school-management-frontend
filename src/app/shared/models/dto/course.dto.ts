@@ -1,5 +1,13 @@
 import { PaginateDTO } from './paginate.dto';
 
+export class CourseStoreDTO {
+  name: string;
+  description?: string;
+  categoryIds?: number[];
+  levelId: number;
+  hours: number;
+}
+
 export class CourseGetListDTO extends PaginateDTO {
   userId?: number;
   categoryId?: number;
@@ -10,20 +18,10 @@ export class CourseGetDetailDTO {
   withCategoryIds?: boolean;
 }
 
-export class CourseStoreDTO {
-  name: string;
-  description?: string;
-  categoryIds?: number[];
-
-  constructor(data?: CourseStoreDTO) {
-    Object.assign(this, data);
-  }
-}
-
 export class CourseUpdateDTO {
   name?: string;
   description?: string;
-  constructor(data?: CourseUpdateDTO) {
-    Object.assign(this, data);
-  }
+  categoryIds: number[];
+  levelId: number;
+  hours?: number;
 }
