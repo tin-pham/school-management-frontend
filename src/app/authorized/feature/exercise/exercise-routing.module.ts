@@ -11,6 +11,10 @@ const routes: Routes = [
         path: 'create',
         loadChildren: () => import('./page/exercise-create/exercise-create.module').then(m => m.ExerciseCreateModule),
       },
+      {
+        path: ':id',
+        loadChildren: () => import('./page/exercise-detail/exercise-detail.module').then(m => m.ExerciseDetailModule),
+      },
     ],
   },
 ];

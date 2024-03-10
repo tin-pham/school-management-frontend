@@ -75,5 +75,20 @@
     "LESSON_ID": {
       "IS_NOT_EMPTY": "Bài học không được trống"
     }
+  },
+  "QUESTION": {
+    "TEXT": {
+      "IS_NOT_EMPTY": "Tiêu đề câu hỏi không được trống"
+    },
+    "DIFFICULTY_ID": {
+      "IS_NOT_EMPTY": "Độ khó không được trống"
+    },
+    "OPTIONS": {
+      "IS_NOT_EMPTY": "Câu trả lời không được trống"
+    }
+  },
+  "QUESTION_OPTION": {
+    "IS_CORRECT_DUPLICATE": "Câu hỏi đơn không thể có nhiều câu trả lời đúng",
+    "TEXT_DUPLICATE": "Câu trả lời không được trùng nhau"
   }
 }

@@ -1,0 +1,605 @@
+$mcq-font-size: 16px;
+$mcq-font-color: #333;
+$mcq-directive-color: #416788;
+$mcq-directive-italic: italic;
+$mcq-directive-weight: bold;
+$mcq-selection-color: #e7eb90;
+$mcq-selection-correct-color: #cfffb0;
+$mcq-selection-incorrect-color: #c1666b;
+$mcq-selection-correct-border-color: #a5e57d;
+$mcq-selection-incorrect-border-color: #b3474d;
+$mcq-selection-incorrect-border-radius: 3px;
+$mcq-correct-check: $mcq-font-color;
+$mcq-incorrect-check: $mcq-font-color;
+/* =================================================================== */
+/* ========================[ MULTIPLE CHOICE ]======================== */
+/* =================================================================== */
+.mcq {
+  padding: 5px;
+  font-size: $mcq-font-size;
+
+  // Question styling
+  @at-root #{&}__question {
+  }
+
+  // Directive styling
+  @at-root #{&}__directive {
+    color: $mcq-directive-color;
+    font-style: $mcq-directive-italic;
+    font-weight: $mcq-directive-weight;
+  }
+
+  // ul styling
+  @at-root #{&}__selections {
+    list-style: none;
+    padding: 0;
+    padding-bottom: 10px;
+    margin: 0;
+  }
+
+  // list styling
+  @at-root #{&}__selection {
+    padding: 5px 0 0 20px;
+
+    input {
+      cursor: pointer;
+    }
+    label {
+      cursor: pointer;
+      font-weight: normal;
+    }
+  }
+
+  // list item selected
+  @at-root #{&}__selection--selected {
+    background-color: $mcq-selection-color;
+  }
+  // list item correct
+  @at-root #{&}__selection--correct::before {
+    font-family: 'Glyphicons Halflings';
+    content: '\e013';
+    color: $mcq-correct-check;
+    padding-right: 5px;
+    float: right;
+  }
+  @at-root #{&}__selection--correct {
+    background-color: $mcq-selection-correct-color;
+    border-left: 4px solid $mcq-selection-correct-border-color;
+    border-top-left-radius: $mcq-selection-incorrect-border-radius;
+    border-bottom-left-radius: $mcq-selection-incorrect-border-radius;
+    padding-left: 15px;
+  }
+  // list item incorrect
+  @at-root #{&}__selection--incorrect:before {
+    font-family: 'Glyphicons Halflings';
+    content: '\e014';
+    color: $mcq-correct-check;
+    padding-right: 5px;
+    float: right;
+  }
+  @at-root #{&}__selection--incorrect {
+    background-color: $mcq-selection-incorrect-color;
+    border-left: 4px solid $mcq-selection-incorrect-border-color;
+    border-top-left-radius: $mcq-selection-incorrect-border-radius;
+    border-bottom-left-radius: $mcq-selection-incorrect-border-radius;
+    padding-left: 15px;
+  }
+}
+
+/* =================================================================== */
+/* ======================[ VARIABLES FOR Fill IN ]==================== */
+/* =================================================================== */
+$fillin-font-size: 16px;
+$fillin-font-color: #333;
+$fillin-directive-color: #416788;
+$fillin-directive-italic: normal;
+$fillin-directive-weight: bold;
+$fillin-selection-color: #e7eb90;
+$fillin-selection-correct-color: #cfffb0;
+$fillin-selection-incorrect-color: #c1666b;
+$fillin-selection-correct-border-color: #a5e57d;
+$fillin-selection-incorrect-border-color: #b3474d;
+$fillin-selection-incorrect-border-radius: 3px;
+$fillin-correct-check: $mcq-font-color;
+$fillin-incorrect-check: $mcq-font-color;
+
+/* =================================================================== */
+/* =======================[ FILL IN THE BLANK ]======================= */
+/* =================================================================== */
+
+.fillin {
+  font-size: $fillin-font-size;
+
+  // Question styling
+  @at-root #{&}__question {
+  }
+
+  // Directive styling
+  @at-root #{&}__directive {
+    color: $fillin-directive-color;
+    font-style: $fillin-directive-italic;
+    font-weight: $fillin-directive-weight;
+  }
+
+  // div input holder
+  @at-root #{&}__input__holder {
+    position: relative;
+  }
+
+  // Input correct
+  @at-root #{&}__input--correct {
+    border-left: 5px solid $fillin-selection-correct-border-color;
+    background-color: $fillin-selection-correct-color;
+    content: 'correct input';
+  }
+
+  // Input incorrect
+  @at-root #{&}__input--incorrect {
+    border-left: 5px solid $fillin-selection-incorrect-border-color;
+    background-color: $fillin-selection-incorrect-color;
+  }
+
+  // div input correct mark
+  @at-root #{&}__input__holder--correct::after {
+    font-family: 'Glyphicons Halflings';
+    content: '\e013';
+    color: $mcq-correct-check;
+    padding-right: 5px;
+    margin-top: -25px;
+    float: right;
+  }
+
+  // div input incorrect mark
+  @at-root #{&}__input__holder--incorrect::after {
+    font-family: 'Glyphicons Halflings';
+    content: '\e014';
+    color: $mcq-correct-check;
+    padding-right: 5px;
+    margin-top: -25px;
+    float: right;
+  }
+
+  // Button
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+/* =================================================================== */
+/* =================[ VARIABLES FOR STACKED TRUE/FALSE ]============== */
+/* =================================================================== */
+$stackedTF-font-size: 16px;
+$stackedTF-font-size-first-child: 4;
+$stackedTF-font-color: #333;
+$stackedTF-directive-color: #416788;
+$stackedTF-directive-italic: italic;
+$stackedTF-directive-weight: bold;
+$stackedTF-selection-color: #e7eb90;
+$stackedTF-highlight-color: #f2f4ff;
+$stackedTF-selection-correct-color: #cfffb0;
+$stackedTF-selection-incorrect-color: #c1666b;
+$stackedTF-selection-correct-border-color: #a5e57d;
+$stackedTF-selection-incorrect-border-color: #b3474d;
+$stackedTF-selection-border-size: 3px;
+$stackedTF-correct-check-size: 15px;
+$stackedTF-correct-check: $mcq-font-color;
+$stackedTF-incorrect-check: $mcq-font-color;
+
+/* =================================================================== */
+/* =======================[ STACKED TRUE/FALSE ]====================== */
+/* =================================================================== */
+
+.stackedTF {
+  font-size: $stackedTF-font-size;
+
+  // Directive text
+  @at-root #{&}__directive {
+    color: $stackedTF-directive-color;
+    font-style: $stackedTF-directive-italic;
+    font-weight: $stackedTF-directive-weight;
+  }
+
+  // Center all items in the table but the second one
+  @at-root #{&}__table tr td:first-child {
+    font-weight: bold;
+    font-size: $stackedTF-font-size + $stackedTF-font-size-first-child;
+  }
+
+  // vertical align all items so it centers with the first td
+  @at-root #{&}__table tr td:not(first-child) {
+    vertical-align: middle;
+  }
+
+  // Center all items in the table but the second one
+  @at-root #{&}__table tr td:not(:nth-child(2)) {
+    text-align: center;
+  }
+  @at-root #{&}__table tr:first-child td:nth-child(2) {
+    text-align: center;
+  }
+
+  // Bolds the true and false
+  @at-root #{&}__table tr:first-child td {
+    font-weight: bold;
+  }
+
+  // adds highlight to the last two elements
+  @at-root #{&}__table tr:not(:first-of-type) td:nth-last-of-type(-n + 2):hover {
+    background-color: $stackedTF-highlight-color;
+    cursor: pointer;
+  }
+
+  // selected state
+  @at-root #{&}--selected {
+    background-color: $stackedTF-selection-color;
+    &:hover {
+      background-color: $stackedTF-selection-color !important;
+    }
+  }
+
+  // adds color to the correct items tr
+  @at-root #{&}--correctborder {
+    border-left: solid $stackedTF-selection-border-size $stackedTF-selection-correct-border-color;
+  }
+  // adds color to the incorrect items tr
+  @at-root #{&}--incorrectborder {
+    border-left: solid $stackedTF-selection-border-size $stackedTF-selection-incorrect-border-color;
+  }
+  // position of the radio button when its checked
+  @at-root #{&}--correct--mark input[type='radio'] {
+    position: relative;
+    left: 7px;
+  }
+  @at-root #{&}--incorrect--mark input[type='radio'] {
+    position: relative;
+    left: 8px;
+  }
+
+  // correct state & hover
+  @at-root #{&}--correct--mark {
+    background-color: $stackedTF-selection-correct-color;
+    cursor: default !important;
+    &:hover {
+      background-color: $stackedTF-selection-correct-color !important;
+    }
+  }
+
+  // correct state & hover
+  @at-root #{&}--incorrect--mark {
+    background-color: $stackedTF-selection-incorrect-color;
+    cursor: default !important;
+    &:hover {
+      background-color: $stackedTF-selection-incorrect-color !important;
+    }
+  }
+
+  // Correct check mark
+  @at-root #{&}--correct--mark::after {
+    font-family: 'Glyphicons Halflings';
+    font-size: $stackedTF-correct-check-size;
+    content: '\e013';
+    color: $mcq-correct-check;
+    position: relative;
+    float: right;
+    margin-top: -7px;
+  }
+
+  // Incorrect mark
+  @at-root #{&}--incorrect--mark::after {
+    font-family: 'Glyphicons Halflings';
+    font-size: $stackedTF-correct-check-size;
+    content: '\e014';
+    color: $mcq-correct-check;
+    position: relative;
+    float: right;
+    margin-top: -7px;
+  }
+}
+
+/* =================================================================== */
+/* ======================[ STACKED SORT VARABLES ]==================== */
+/* =================================================================== */
+$stackSort-font-size: 16px;
+$stackSort-font-size-first-child: 4;
+$stackSort-font-color: #333;
+$stackSort-directive-color: #416788;
+$stackSort-directive-italic: italic;
+$stackSort-directive-weight: bold;
+$stackSort-add-border: true;
+$stackSort-border-type: dotted;
+$stackSort-border-size: 1px;
+$stackSort-border-color: $stackSort-font-color;
+$stackSort-selection-color: #e7eb90;
+$stackSort-highlight-color: #f2f4ff;
+$stackSort-selection-correct-color: #cfffb0;
+$stackSort-selection-incorrect-color: #c1666b;
+$stackSort-selection-correct-border-color: #a5e57d;
+$stackSort-selection-incorrect-border-color: #b3474d;
+
+/* =================================================================== */
+/* ==========================[ STACKED SORT ]========================= */
+/* =================================================================== */
+
+.stacking-sort {
+  font-size: $stackSort-font-size;
+
+  // Directive text
+  @at-root #{&}__directive {
+    color: $stackSort-directive-color;
+    font-style: $stackSort-directive-italic;
+    font-weight: $stackSort-directive-weight;
+  }
+
+  @at-root #{&}__list {
+    list-style: none;
+    padding: 0;
+
+    li {
+      @if ($stackSort-add-border == true) {
+        border: $stackSort-border-type $stackSort-border-size $stackSort-border-color;
+      }
+      margin: 5px;
+      border-radius: 5px;
+      cursor: move;
+      padding: 7px;
+
+      &::before {
+        font-family: 'Glyphicons Halflings';
+        font-size: $stackedTF-correct-check-size;
+        content: '\e119';
+        vertical-align: middle;
+        color: #64646b;
+        margin-right: 5px;
+      }
+
+      /*&:hover{
+                background-color: $stackSort-highlight-color;
+            }*/
+    }
+  }
+
+  // Hover state for the li
+  @at-root #{&}--hover {
+    background-color: $stackSort-highlight-color;
+  }
+  // Select / Mouse down state for the li
+  @at-root #{&}--select {
+    background-color: $stackSort-selection-color;
+  }
+  // Correct state for the li
+  @at-root #{&}--correct {
+    background-color: $stackSort-selection-correct-color;
+    border-left: solid 4px $stackSort-selection-correct-border-color !important;
+    // Adding correct checkmark to the far right
+    &::after {
+      font-family: 'Glyphicons Halflings';
+      font-size: $stackedTF-correct-check-size;
+      content: '\e013';
+      color: #333;
+      float: right;
+      padding-right: 5px;
+      padding-top: 3px;
+    }
+  }
+  // Incorrect state for the li
+  @at-root #{&}--incorrect {
+    background-color: $stackSort-selection-incorrect-color;
+    border-left: solid 4px $stackSort-selection-incorrect-border-color !important;
+    // Adding incorrect checkmark to the far right
+    &::after {
+      font-family: 'Glyphicons Halflings';
+      font-size: $stackedTF-correct-check-size;
+      content: '\e014';
+      color: #333;
+      float: right;
+      padding-right: 5px;
+      padding-top: 3px;
+    }
+  }
+}
+
+/* =================================================================== */
+/* ====================[ FILL IN BLANKS VARABLES ]==================== */
+/* =================================================================== */
+$fillInBlanks-font-size: 16px;
+$fillInBlanks-font-color: #333;
+$fillInBlanks-directive-color: #416788;
+$fillInBlanks-directive-italic: italic;
+$fillInBlanks-directive-weight: bold;
+
+/* =================================================================== */
+/* =========================[ FILL IN BLANKS ]======================== */
+/* =================================================================== */
+
+.fill-in-blanks {
+  font-size: $stackSort-font-size;
+
+  // Directive text
+  @at-root #{&}__directive {
+    color: $fillInBlanks-directive-color;
+    font-style: $fillInBlanks-directive-italic;
+    font-weight: $fillInBlanks-directive-weight;
+  }
+
+  @at-root #{&}__table {
+    tr:first-child td {
+      font-weight: bold;
+      text-align: center;
+    }
+    tr td:first-child {
+      font-weight: bold;
+    }
+  }
+  @at-root #{&}__input {
+    width: 80%;
+    float: left;
+  }
+
+  @at-root #{&}__input__container--correct:after {
+    font-family: 'Glyphicons Halflings';
+    font-size: $stackedTF-correct-check-size;
+    content: '\e013';
+    vertical-align: middle;
+    color: #64646b;
+    float: left;
+  }
+  @at-root #{&}__input__container--incorrect:after {
+    font-family: 'Glyphicons Halflings';
+    font-size: $stackedTF-correct-check-size;
+    content: '\e014';
+    vertical-align: middle;
+    color: #64646b;
+    float: left;
+  }
+  .fill-in-blanks__input--correct {
+    border-left: 5px solid $fillin-selection-correct-border-color;
+    border-radius: 5px;
+    background-color: $fillin-selection-correct-color;
+  }
+  @at-root #{&}__input--incorrect {
+    border-left: 5px solid $fillin-selection-incorrect-border-color;
+    border-radius-top-left: 5px;
+    background-color: $fillin-selection-incorrect-color;
+  }
+}
+
+.dnd-match {
+  @at-root #{&}__response {
+    border: solid 1px #333;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+  }
+  @at-root #{&}__possible-list {
+    background-color: #b5bad0;
+    border: solid 1px #333;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  @at-root #{&}__row {
+    display: table-row;
+    bottom: 5px;
+  }
+  @at-root #{&}__col {
+    display: table-cell;
+    width: 8%;
+    padding: 5px;
+    text-align: center;
+  }
+  @at-root #{&}__left-static {
+    border: solid 1px #333;
+    padding: 15px;
+  }
+
+  @at-root #{&}__line {
+    background-color: #333;
+    height: 4px;
+    width: 100%;
+    position: relative;
+    display: block;
+    float: left;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      top: -2.7px;
+      left: -2px;
+      height: 0;
+      width: 0;
+      border: 0.4em solid #333;
+      border-radius: 50%;
+    }
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: -5px;
+      right: -2px;
+      height: 0;
+      width: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 7px solid #333;
+    }
+  }
+
+  @at-root #{&}__right {
+    border: dashed 2px #333;
+    padding: 15px;
+  }
+
+  @at-root #{&}__drag-item {
+    background-color: #e8e8e8;
+    cursor: move;
+    display: inline-block;
+    position: relative;
+    padding: 15px;
+    margin: 5px;
+    text-align: center;
+
+    &:before {
+      font-family: 'Glyphicons Halflings';
+      font-size: $stackedTF-correct-check-size;
+      content: '\e068';
+      color: #333;
+      float: left;
+      padding-right: 5px;
+    }
+  }
+
+  @at-root #{&}__right--hover {
+    border: solid 2px #c9a2af;
+    background-color: #ead1ce;
+  }
+
+  @at-root #{&}__right--dropped {
+    border: solid 2px #8a3a83;
+    background-color: #9f75a1;
+
+    &:before {
+      font-family: 'Glyphicons Halflings';
+      font-size: $stackedTF-correct-check-size;
+      content: '\e068';
+      color: #333;
+      float: left;
+      padding-right: 5px;
+    }
+  }
+
+  @at-root #{&}__right--correct {
+    border: none;
+    background-color: $mcq-selection-correct-color;
+    border-left: 4px solid $mcq-selection-correct-border-color;
+    border-top-left-radius: $mcq-selection-incorrect-border-radius;
+    border-bottom-left-radius: $mcq-selection-incorrect-border-radius;
+    padding-left: 15px;
+
+    &:after {
+      font-family: 'Glyphicons Halflings';
+      content: '\e013';
+      color: $mcq-correct-check;
+      padding-left: 5px;
+      float: right;
+    }
+  }
+
+  @at-root #{&}__right--incorrect {
+    border: none;
+    background-color: $mcq-selection-incorrect-color;
+    border-left: 4px solid $mcq-selection-incorrect-border-color;
+    border-top-left-radius: $mcq-selection-incorrect-border-radius;
+    border-bottom-left-radius: $mcq-selection-incorrect-border-radius;
+    padding-left: 15px;
+
+    &:after {
+      font-family: 'Glyphicons Halflings';
+      content: '\e014';
+      color: $mcq-correct-check;
+      padding-left: 5px;
+      float: right;
+    }
+  }
+  /* @at-root #{&}__response {} */
+}

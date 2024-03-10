@@ -1,0 +1,8 @@
+<li
+  class="question-option"
+  [class.selected]="status === IQuestionOptionStatus.SELECTED"
+  [class.correct]="status === IQuestionOptionStatus.CORRECT"
+  [class.incorrect]="status === IQuestionOptionStatus.INCORRECT">
+  <input [name]="name" type="radio" [(ngModel)]="value" />
+  <label for="name">{{ label }}</label>
+</li>

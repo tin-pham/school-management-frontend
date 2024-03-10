@@ -1,0 +1,9 @@
+<div *ngIf="questionCategory">
+  <h1 class="mb-3">{{ questionCategory.name }}</h1>
+  <mat-divider></mat-divider>
+  <div class="d-flex">
+    <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }" class="mt-3"
+      >Tạo câu hỏi</app-primary-button
+    >
+  </div>
+</div>

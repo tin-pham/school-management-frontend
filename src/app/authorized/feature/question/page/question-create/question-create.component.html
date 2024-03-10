@@ -1,0 +1,44 @@
+<form>
+  <h1 class="title">Tạo câu hỏi</h1>
+  <app-text-input-group [label]="'Tiêu đề'" [(value)]="dto.text" [name]="'text'" [required]="true"></app-text-input-group>
+
+  <app-select-list
+    [options]="difficulties"
+    [(selected)]="dto.difficultyId"
+    [label]="'Độ khó'"
+    [name]="'difficulty'"
+    [required]="true"></app-select-list>
+
+  <app-question-option-create
+    [required]="true"
+    [(options)]="dto.options"
+    [label]="'Câu trả lời'"
+    [name]="'option'"></app-question-option-create>
+  <!-- <div class="mcq"> -->
+  <!--   <h2>Single select</h2> -->
+  <!--   <p class="mcq__question">Here lies the question</p> -->
+  <!--   <p class="mcq__directive">here lies the directive</p> -->
+  <!--   <ul class="mcq__selections"> -->
+  <!--     <li class="mcq__selection"> -->
+  <!--       <input type="radio" id="mcq001_1" name="mcq001" value="" /> -->
+  <!--       <label for="mcq001_1">answer 1 (normal)</label> -->
+  <!--     </li> -->
+  <!--     <li class="mcq__selection mcq__selection--selected"> -->
+  <!--       <input type="radio" id="mcq001_2" name="mcq001" value="" checked /> -->
+  <!--       <label for="mcq001_2">answer 2 (selected)</label> -->
+  <!--     </li> -->
+  <!--     <li class="mcq__selection mcq__selection--correct"> -->
+  <!--       <input type="radio" id="mcq001_3" name="mcq001" value="" /> -->
+  <!--       <label for="mcq001_3">answer 3 (correct selected)</label> -->
+  <!--     </li> -->
+  <!--     <li class="mcq__selection mcq__selection--incorrect"> -->
+  <!--       <input type="radio" id="mcq001_4" name="mcq001" value="" disabled /> -->
+  <!--       <label for="mcq001_4">answer 4 (incorrect selected)</label> -->
+  <!--     </li> -->
+  <!--   </ul> -->
+  <!--   <button type="button" id="mcq001-submit" class="btn btn-primary">Submit</button> -->
+  <!-- </div> -->
+  <div class="d-flex">
+    <app-primary-button (click)="store()">Tạo</app-primary-button>
+  </div>
+</form>

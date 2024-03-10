@@ -1,0 +1,9 @@
+<div *ngIf="exercise">
+  <h1>{{ exercise.name }}</h1>
+  <p>{{ exercise.difficulty.name }}</p>
+
+  <div class="buttons d-flex">
+    <app-primary-button>Tạo câu hỏi</app-primary-button>
+    <app-secondary-button>Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
+  </div>
+</div>
