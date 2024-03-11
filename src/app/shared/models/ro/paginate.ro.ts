@@ -1,4 +1,4 @@
-export class PaginiateMetaRO {
+export class PaginateMetaRO {
   itemsPerPage: number;
   totalItems: number;
   totalPage: number;
@@ -7,5 +7,5 @@ export class PaginiateMetaRO {
 
 export abstract class PaginateRO<PaginateDataRO> {
   abstract data: PaginateDataRO[];
-  meta: PaginiateMetaRO;
+  meta: PaginateMetaRO;
 }

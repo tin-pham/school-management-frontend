@@ -22,7 +22,11 @@
     <mat-icon (click)="createShow = false" class="close">close</mat-icon>
   </div>
   <app-question-option
+    class="question-option"
     *ngFor="let option of options; let i = index"
+    [isMultipleChoice]="true"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"
-    [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option>
+    (onRemoveClick)="removeOption(i)"
+    [label]="getOptionLabel(i) + '. ' + option.text">
+  </app-question-option>
 </div>

@@ -28,4 +28,9 @@ export class QuestionOptionCreateComponent {
   getOptionLabel(index: number): string {
     return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
   }
+
+  removeOption(index: number) {
+    this.options.splice(index, 1);
+    this.optionsChange.emit(this.options);
+  }
 }

@@ -7,11 +7,18 @@ export class QuestionStoreRO {
   isMultipleChoice: boolean;
 }
 
+export class QuestionGetListOptionRO {
+  id: number;
+  text: string;
+  isCorrect: boolean;
+}
+
 export class QuestionGetListDataRO {
   id: number;
   text: string;
   difficultyId: number;
   isMultipleChoice: boolean;
+  options: QuestionGetListOptionRO[];
 }
 
 export class QuestionGetListRO extends PaginateRO<QuestionGetListDataRO> {

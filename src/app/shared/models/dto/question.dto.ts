@@ -13,7 +13,9 @@ export class QuestionStoreDTO {
   options?: QuestionStoreOptionDTO[];
 }
 
-export class QuestionGetListDTO extends PaginateDTO {}
+export class QuestionGetListDTO extends PaginateDTO {
+  questionCategoryId?: number;
+}
 
 export class QuestionUpdateDTO {
   text?: string;

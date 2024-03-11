@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
+import { QuestionService } from '@core/services/api/question.service';
+import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category.ro';
+import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
 
 @Component({
   selector: 'app-question-category-detail',
@@ -11,10 +14,17 @@ import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category
 export class QuestionCategoryDetailComponent implements OnInit {
   questionCategory: QuestionCategoryGetDetailRO;
   questionCategoryId: number;
+  questions: QuestionGetListDataRO[];
+
+  itemsPerPage = 5;
+  page = 1;
+  totalItems = 0;
 
   constructor(
     private route: ActivatedRoute,
+    private cd: ChangeDetectorRef,
     private _questionCategoryService: QuestionCategoryService,
+    private _questionService: QuestionService,
   ) {}
 
   ngOnInit() {
@@ -22,7 +32,28 @@ export class QuestionCategoryDetailComponent implements OnInit {
     this._questionCategoryService.getDetail(this.questionCategoryId).subscribe({
       next: response => {
         this.questionCategory = response;
+        this.loadQuestions({
+          questionCategoryId: this.questionCategoryId,
+          limit: this.itemsPerPage,
+          page: this.page,
+        });
       },
+    });
+  }
+
+  loadQuestions(dto: QuestionGetListDTO) {
+    this._questionService.getList(dto).subscribe(response => {
+      this.totalItems = response.meta.totalItems;
+      this.questions = response.data;
+      this.cd.markForCheck();
+    });
+  }
+
+  handlePageChange() {
+    this.loadQuestions({
+      questionCategoryId: this.questionCategoryId,
+      limit: this.itemsPerPage,
+      page: this.page,
     });
   }
 }

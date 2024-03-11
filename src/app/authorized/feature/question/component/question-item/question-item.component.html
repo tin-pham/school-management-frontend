@@ -1,0 +1,9 @@
+<div class="question-item">
+  <p class="text">{{ question.text }}</p>
+  <app-question-option
+    [showClose]="false"
+    *ngFor="let option of question.options"
+    [isMultipleChoice]="question.isMultipleChoice"
+    [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
+    [label]="option.text"></app-question-option>
+</div>

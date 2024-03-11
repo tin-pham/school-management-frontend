@@ -16,6 +16,8 @@ export class QuestionOptionComponent {
   @Input() status: IQuestionOptionStatus;
   @Input() name: string;
   @Input() label: string;
+  @Input() showClose: boolean = true;
+  @Input() isMultipleChoice: boolean;
 
   @Input() value: string;
   @Output() valueChange = new EventEmitter();
@@ -24,4 +26,9 @@ export class QuestionOptionComponent {
   }
 
   IQuestionOptionStatus = IQuestionOptionStatus;
+
+  @Output() onRemoveClick = new EventEmitter();
+  removeClick() {
+    this.onRemoveClick.emit();
+  }
 }

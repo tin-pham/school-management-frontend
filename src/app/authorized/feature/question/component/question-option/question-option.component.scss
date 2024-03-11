@@ -14,3 +14,14 @@
 .incorrect {
   background-color: #ffb3b3;
 }
+
+.question-option {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0; // Align to the top
+  right: 0; // Align to the right
+  cursor: pointer; // Optional: Changes the cursor on hover to indicate it's clickable
+}
