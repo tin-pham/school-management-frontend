@@ -9,6 +9,8 @@
   <mat-divider class="my-3"></mat-divider>
 
   <app-question-list
+    (onEdit)="routeToQuestion($event)"
+    (onDelete)="deleteQuestion($event)"
     (pageChange)="handlePageChange()"
     [questions]="questions"
     [itemsPerPage]="itemsPerPage"

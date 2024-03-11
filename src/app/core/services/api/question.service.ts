@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionGetListDTO, QuestionStoreDTO, QuestionUpdateDTO } from '@shared/models/dto/question.dto';
 import { Observable } from 'rxjs';
-import { QuestionGetListRO, QuestionStoreRO, QuestionUpdateRO } from '@shared/models/ro/question.ro';
+import { QuestionGetDetailRO, QuestionGetListRO, QuestionStoreRO, QuestionUpdateRO } from '@shared/models/ro/question.ro';
 import { API } from '@core/constants/api.constant';
 import { BaseService } from './base.service';
 
@@ -21,5 +21,9 @@ export class QuestionService extends BaseService {
 
   delete(id: number): Observable<QuestionGetListRO> {
     return this._delete<QuestionGetListRO>(API.QUESTION.CONTROLLER + '/' + API.QUESTION.DELETE.ROUTE.replace(':id', id.toString()));
+  }
+
+  getDetail(id: number): Observable<QuestionGetDetailRO> {
+    return this.get<QuestionGetListRO>(API.QUESTION.CONTROLLER + '/' + API.QUESTION.GET_DETAIL.ROUTE.replace(':id', id.toString()));
   }
 }

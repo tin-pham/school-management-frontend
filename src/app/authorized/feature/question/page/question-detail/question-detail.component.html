@@ -1,1 +1,21 @@
-detail
+<form>
+  <h1 class="title">Cập nhật câu hỏi</h1>
+  <app-text-input-group [label]="'Tiêu đề'" [(value)]="dto.text" [name]="'text'" [required]="true"></app-text-input-group>
+
+  <app-select-list
+    [options]="difficulties"
+    [(selected)]="dto.difficultyId"
+    [label]="'Độ khó'"
+    [name]="'difficulty'"
+    [required]="true"></app-select-list>
+
+  <!-- <app-question-option-create -->
+  <!--   [required]="true" -->
+  <!--   [(options)]="dto.options" -->
+  <!--   [label]="'Câu trả lời'" -->
+  <!--   [name]="'option'"></app-question-option-create> -->
+
+  <!-- <div class="d-flex"> -->
+  <!--   <app-primary-button (click)="store()">Tạo</app-primary-button> -->
+  <!-- </div> -->
+</form>

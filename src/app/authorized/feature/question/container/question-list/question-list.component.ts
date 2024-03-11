@@ -20,4 +20,14 @@ export class QuestionListComponent {
     this.itemsPerPage = event.pageSize;
     this.pageChange.emit();
   }
+
+  @Output() onDelete = new EventEmitter<number>();
+  delete(id: number) {
+    this.onDelete.emit(id);
+  }
+
+  @Output() onEdit = new EventEmitter<number>();
+  edit(id: number) {
+    this.onEdit.emit(id);
+  }
 }

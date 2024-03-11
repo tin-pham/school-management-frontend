@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./page/question-home/question-home.module').then(m => m.QuestionHomeModule),
       },
       {
+        path: ':id',
+        loadChildren: () => import('./page/question-detail/question-detail.module').then(m => m.QuestionDetailModule),
+      },
+      {
         path: 'create',
         loadChildren: () => import('./page/question-create/question-create.module').then(m => m.QuestionCreateModule),
       },

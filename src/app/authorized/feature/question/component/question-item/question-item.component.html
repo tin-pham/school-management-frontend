@@ -1,5 +1,11 @@
 <div class="question-item">
-  <p class="text">{{ question.text }}</p>
+  <p class="text">
+    {{ question.text }}
+    <span>
+      <mat-icon (click)="deleteClick()">delete</mat-icon>
+      <mat-icon (click)="editClick()">edit</mat-icon>
+    </span>
+  </p>
   <app-question-option
     [showClose]="false"
     *ngFor="let option of question.options"

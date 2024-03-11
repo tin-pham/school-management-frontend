@@ -1,5 +1,9 @@
 <div>
-  <app-question-item *ngFor="let question of questions" [question]="question"></app-question-item>
+  <app-question-item
+    (onEditClick)="edit($event)"
+    (onDeleteClick)="delete($event)"
+    *ngFor="let question of questions"
+    [question]="question"></app-question-item>
 
   <mat-paginator
     *ngIf="totalItems > 0"

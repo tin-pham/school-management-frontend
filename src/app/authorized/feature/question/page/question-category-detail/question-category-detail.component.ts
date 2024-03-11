@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category.ro';
 import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-question-category-detail',
@@ -21,7 +22,9 @@ export class QuestionCategoryDetailComponent implements OnInit {
   totalItems = 0;
 
   constructor(
+    private toast: ToastrService,
     private route: ActivatedRoute,
+    private router: Router,
     private cd: ChangeDetectorRef,
     private _questionCategoryService: QuestionCategoryService,
     private _questionService: QuestionService,
@@ -55,5 +58,20 @@ export class QuestionCategoryDetailComponent implements OnInit {
       limit: this.itemsPerPage,
       page: this.page,
     });
+  }
+
+  deleteQuestion(id: number) {
+    this._questionService.delete(id).subscribe(() => {
+      this.toast.success('Xóa câu hỏi thành công');
+      this.loadQuestions({
+        questionCategoryId: this.questionCategoryId,
+        limit: this.itemsPerPage,
+        page: this.page,
+      });
+    });
+  }
+
+  routeToQuestion(id: number) {
+    this.router.navigate(['/question', id]);
   }
 }
