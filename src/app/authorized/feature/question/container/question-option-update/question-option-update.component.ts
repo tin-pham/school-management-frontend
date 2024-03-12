@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuestionOptionService } from '@core/services/api/question-option.service';
 import { IQuestionOptionStatus } from '@features/question/component/question-option/question-option.component';
 import { QuestionOptionStoreDTO } from '@shared/models/dto/question-option.dto';
-import { QuestionStoreOptionDTO } from '@shared/models/dto/question.dto';
+import { QuestionUpdateOptionRO } from '@shared/models/dto/question.dto';
+import { QuestionGetDetailOptionRO } from '@shared/models/ro/question.ro';
 
 @Component({
   selector: 'app-question-option-update',
@@ -14,31 +14,47 @@ export class QuestionOptionUpdateComponent {
   @Input() name: string;
   @Input() label: string;
   @Input() required: boolean;
-  @Input() options: QuestionStoreOptionDTO[] = [];
-  @Output() optionsChange = new EventEmitter<QuestionStoreOptionDTO[]>();
+  @Input() options: QuestionGetDetailOptionRO[] = [];
+  @Output() optionsChange = new EventEmitter<QuestionGetDetailOptionRO[]>();
+
+  @Input() createOptions: QuestionUpdateOptionRO[] = [];
+  @Output() createOptionsChange = new EventEmitter<QuestionUpdateOptionRO[]>();
 
   option = new QuestionOptionStoreDTO();
   IQuestionOptionStatus = IQuestionOptionStatus;
+  createShow = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private _questionOptionService: QuestionOptionService,
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.option.questionId = +this.route.snapshot.paramMap.get('id');
+    this.option.isCorrect = false;
   }
 
   createOption() {
-    this._questionOptionService.store(this.option).subscribe();
+    if (this.option.text.trim() === '') return;
+    this.options.push(this.option);
+    this.createOptions.push(this.option);
+    this.option = new QuestionOptionStoreDTO();
     this.optionsChange.emit(this.options); // Emit the updated options array
+    this.createOptionsChange.emit(this.createOptions);
   }
 
   getOptionLabel(index: number): string {
     return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
   }
 
-  deleteOption(index: number) {
-    this._questionOptionService.delete(index).subscribe();
+  @Input() removeOptionIds: number[];
+  @Output() removeOptionIdsChange = new EventEmitter<number[]>();
+  removeOption(index: number) {
+    if (this.options[index].id) {
+      this.removeOptionIds.push(this.options[index].id);
+    } else {
+      this.createOptions = this.createOptions.filter(option => option.text !== this.options[index].text);
+      this.createOptionsChange.emit(this.createOptions);
+    }
+    this.options.splice(index, 1);
+    this.removeOptionIdsChange.emit(this.removeOptionIds);
+    this.optionsChange.emit(this.options);
   }
 }

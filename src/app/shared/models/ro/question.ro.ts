@@ -25,11 +25,18 @@ export class QuestionGetListRO extends PaginateRO<QuestionGetListDataRO> {
   data: QuestionGetListDataRO[];
 }
 
+export class QuestionGetDetailOptionRO {
+  id?: number;
+  text: string;
+  isCorrect: boolean;
+}
+
 export class QuestionGetDetailRO {
   id: number;
   text: string;
   difficultyId: number;
   isMultipleChoice: boolean;
+  options: QuestionGetDetailOptionRO[];
 }
 
 export class QuestionUpdateRO {

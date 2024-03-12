@@ -1,28 +1,26 @@
 <div class="mb-3">
   <label class="label" [for]="name" [class.asterix]="required">{{ label }}</label>
-
-  <app-text-input-group [label]="'Tiêu đề câu trả lời'" [(value)]="option.text" [name]="'option'"></app-text-input-group>
-  <div class="radio">
-    <div>
-      <label for="isCorrectTrue" class="me-1">Đúng</label>
-      <input type="radio" [name]="name + 'isCorrect'" id="isCorrectTrue" [(ngModel)]="option.isCorrect" [value]="true" />
+  <div *ngIf="!createShow" class="add" (click)="createShow = true">+</div>
+  <div class="update" *ngIf="createShow">
+    <app-text-input-group [label]="'Tiêu đề câu trả lời'" [(value)]="option.text" [name]="'option'"></app-text-input-group>
+    <div class="radio">
+      <mat-radio-group [(ngModel)]="option.isCorrect" [name]="name">
+        <mat-radio-button [value]="true">Đúng</mat-radio-button>
+        <mat-radio-button [value]="false">Sai</mat-radio-button>
+      </mat-radio-group>
     </div>
-
-    <div>
-      <label for="isCorrectFalse" class="me-1">Sai</label>
-      <input type="radio" [name]="name + 'isCorrect'" id="isCorrectFalse" [(ngModel)]="option.isCorrect" [value]="false" />
+    <mat-icon (click)="createShow = false" class="close">close</mat-icon>
+    <div class="d-flex">
+      <app-secondary-button (click)="createOption()">Thêm</app-secondary-button>
     </div>
   </div>
 
-  <div class="d-flex">
-    <app-secondary-button (click)="createOption()">Thêm</app-secondary-button>
-  </div>
   <app-question-option
     class="question-option"
     *ngFor="let option of options; let i = index"
     [isMultipleChoice]="true"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"
-    (onRemoveClick)="deleteOption(i)"
+    (onRemoveClick)="removeOption(i)"
     [label]="getOptionLabel(i) + '. ' + option.text">
   </app-question-option>
 </div>

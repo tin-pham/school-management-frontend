@@ -84,11 +84,20 @@
       "IS_NOT_EMPTY": "Độ khó không được trống"
     },
     "OPTIONS": {
-      "IS_NOT_EMPTY": "Câu trả lời không được trống"
-    }
+      "IS_NOT_EMPTY": "Câu trả lời không được trống",
+      "AT_LEAST_TWO_OPTION_IS_REQUIRED": "Phải có ít nhất hai câu trả lời"
+    },
+    "ALREADY_EXIST": "Câu hỏi đã tồn tại"
   },
   "QUESTION_OPTION": {
     "IS_CORRECT_DUPLICATE": "Câu hỏi đơn không thể có nhiều câu trả lời đúng",
-    "TEXT_DUPLICATE": "Câu trả lời không được trùng nhau"
+    "TEXT_DUPLICATE": "Câu trả lời không được trùng nhau",
+    "IS_CORRECT_TRUE_REQUIRED": "Phải có ít nhất một câu trả lời đúng",
+    "IS_CORRECT_DIVERSITY_REQUIRED": "Phải có đúng và sai"
+  },
+  "QUESTION_CATEGORY": {
+    "NAME": {
+      "IS_NOT_EMPTY": "Danh mục câu hỏi không được để trống"
+    }
   }
 }

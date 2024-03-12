@@ -17,9 +17,16 @@ export class QuestionGetListDTO extends PaginateDTO {
   questionCategoryId?: number;
 }
 
+export class QuestionUpdateOptionRO {
+  isCorrect: boolean;
+  text: string;
+}
+
 export class QuestionUpdateDTO {
   text?: string;
   difficultyId?: number;
   questionCategoryIds?: number[];
   isMultipleChoice?: boolean;
+  options: QuestionUpdateOptionRO[];
+  removeOptionIds?: number[];
 }

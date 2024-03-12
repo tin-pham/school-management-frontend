@@ -3,7 +3,11 @@ import { PaginateDTO } from './paginate.dto';
 export class QuestionOptionStoreDTO {
   text: string;
   isCorrect: boolean;
-  questionId: number;
+  questionId?: number;
+
+  constructor(data?: QuestionOptionStoreDTO) {
+    Object.assign(this, data);
+  }
 }
 
 export class QuestionOptionGetListDTO extends PaginateDTO {
