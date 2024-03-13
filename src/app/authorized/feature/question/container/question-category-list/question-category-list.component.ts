@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionCategoryGetListDTO } from '@shared/models/dto/question-category.dto';
@@ -11,6 +11,7 @@ import { QuestionCategoryGetListDataRO, QuestionCategoryGetListRO } from '@share
 })
 export class QuestionCategoryListComponent {
   questionCategories: QuestionCategoryGetListDataRO[];
+  @Input() excludeExerciseId: number;
 
   itemsPerPage = 5;
   page = 1;
@@ -22,19 +23,31 @@ export class QuestionCategoryListComponent {
   ) {}
 
   ngOnInit() {
-    this.loadQuestionCategories({
+    const dto = new QuestionCategoryGetListDTO({
       limit: this.itemsPerPage,
       page: this.page,
     });
+
+    if (this.excludeExerciseId) {
+      dto.excludeByExerciseId = this.excludeExerciseId;
+    }
+
+    this.loadQuestionCategories(dto);
   }
 
   handlePageChange(event: PageEvent) {
     this.page = event.pageIndex + 1;
     this.itemsPerPage = event.pageSize;
-    this.loadQuestionCategories({
+
+    const dto = new QuestionCategoryGetListDTO({
       limit: this.itemsPerPage,
       page: this.page,
     });
+
+    if (this.excludeExerciseId) {
+      dto.excludeByExerciseId = this.excludeExerciseId;
+    }
+    this.loadQuestionCategories(dto);
   }
 
   loadQuestionCategories(dto: QuestionCategoryGetListDTO) {
@@ -50,11 +63,21 @@ export class QuestionCategoryListComponent {
   delete(id: number) {
     this._questionCategoryService.delete(id).subscribe({
       next: () => {
-        this.loadQuestionCategories({
+        const dto = new QuestionCategoryGetListDTO({
           limit: this.itemsPerPage,
           page: this.page,
         });
+
+        if (this.excludeExerciseId) {
+          dto.excludeByExerciseId = this.excludeExerciseId;
+        }
+        this.loadQuestionCategories(dto);
       },
     });
+  }
+
+  @Output() onQuestionCategoryItemClicked = new EventEmitter<number>();
+  questionCategoryItemClicked(questionCategoryId: number) {
+    this.onQuestionCategoryItemClicked.emit(questionCategoryId);
   }
 }

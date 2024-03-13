@@ -1,0 +1,12 @@
+<div>
+  <div class="header">
+    <app-secondary-button (click)="chooseQuestions()" *ngIf="selectedQuestionIds?.length > 0">Chọn</app-secondary-button>
+  </div>
+  <app-question-list
+    [showCheckBox]="true"
+    [excludeExerciseId]="exerciseId"
+    [(selectedQuestionIds)]="selectedQuestionIds"
+    [questionCategoryId]="questionCategoryId"
+    (onSelectClicked)="chooseQuestions()"
+    (onDelete)="deleteQuestion($event)"></app-question-list>
+</div>

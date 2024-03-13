@@ -15,6 +15,20 @@ const routes: Routes = [
         path: ':id',
         loadChildren: () => import('./page/exercise-detail/exercise-detail.module').then(m => m.ExerciseDetailModule),
       },
+      {
+        path: ':id/question-category',
+        loadChildren: () =>
+          import('./page/exercise-detail-question-category/exercise-detail-question-category.module').then(
+            m => m.ExerciseDetailQuestionCategoryModule,
+          ),
+      },
+      {
+        path: ':id/question-category/:questionCategoryId',
+        loadChildren: () =>
+          import('./page/exercise-detail-question-category-detail/exercise-detail-question-category-detail.module').then(
+            m => m.ExerciseDetailQuestionCategoryDetailModule,
+          ),
+      },
     ],
   },
 ];

@@ -23,28 +23,11 @@ export class ExerciseGetListRO extends PaginateRO<ExerciseGetListDataRO> {
   data: ExerciseGetListDataRO[];
 }
 
-export class ExerciseGetDetailQuestionOptionRO {
-  id: number;
-  text: string;
-  isCorrect: boolean;
-}
-
-export class ExerciseGetDetailQuestionRO {
-  id: number;
-  text: string;
-  options: ExerciseGetDetailQuestionOptionRO[];
-}
-
-export class ExerciseGetDetailDifficultyRO {
-  id: number;
-  name: string;
-}
-
 export class ExerciseGetDetailRO {
   id: number;
   name: string;
-  difficulty: ExerciseGetDetailDifficultyRO;
-  questions: ExerciseGetDetailQuestionRO[];
+  difficultyName: string;
+  difficultyId: number;
 }
 
 export class ExerciseUpdateRO {

@@ -18,7 +18,7 @@ export class ExerciseDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.exerciseId = this.route.snapshot.params['id'];
+    this.exerciseId = +this.route.snapshot.paramMap.get('id');
     this._exerciseService.getDetail(this.exerciseId).subscribe((response: ExerciseGetDetailRO) => {
       this.exercise = response;
     });

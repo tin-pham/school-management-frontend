@@ -1,19 +1,11 @@
 <div *ngIf="questionCategory">
-  <div class="header">
-    <h1>{{ questionCategory.name }}</h1>
-    <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
-      >Tạo câu hỏi</app-primary-button
-    >
-  </div>
-
-  <mat-divider class="my-3"></mat-divider>
+  <h1>{{ questionCategory.name }}</h1>
+  <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
+    >Tạo câu hỏi</app-primary-button
+  >
 
   <app-question-list
+    [questionCategoryId]="questionCategoryId"
     (onEdit)="routeToQuestion($event)"
-    (onDelete)="deleteQuestion($event)"
-    (pageChange)="handlePageChange()"
-    [questions]="questions"
-    [itemsPerPage]="itemsPerPage"
-    [page]="page"
-    [totalItems]="totalItems"></app-question-list>
+    (onDelete)="deleteQuestion($event)"></app-question-list>
 </div>

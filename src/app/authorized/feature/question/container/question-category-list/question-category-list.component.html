@@ -6,7 +6,7 @@
   <mat-divider class="my-3"></mat-divider>
   <app-question-category-item
     *ngFor="let questionCategory of questionCategories"
-    [routerLink]="['/question/question-category', questionCategory.id]"
+    (click)="questionCategoryItemClicked(questionCategory.id)"
     [questionCategory]="questionCategory"></app-question-category-item>
 
   <mat-paginator

@@ -1,6 +1,9 @@
 <div class="question-item">
   <p class="text">
-    {{ question.text }}
+    <span>
+      {{ question.text }}
+      <mat-checkbox *ngIf="showCheckBox" class="example-margin" (change)="checkBoxChange($event)"></mat-checkbox>
+    </span>
     <span>
       <mat-icon (click)="deleteClick()">delete</mat-icon>
       <mat-icon (click)="editClick()">edit</mat-icon>

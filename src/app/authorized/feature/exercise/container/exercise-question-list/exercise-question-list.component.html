@@ -1,10 +1,8 @@
 <div>
   <mat-divider class="my-3"></mat-divider>
   <app-question-item
-    [showCheckBox]="showCheckBox"
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"
-    (onCheckBoxChange)="checkBoxChecked($event, question.id)"
     *ngFor="let question of questions"
     [question]="question"></app-question-item>
 

@@ -15,6 +15,8 @@ export class QuestionStoreDTO {
 
 export class QuestionGetListDTO extends PaginateDTO {
   questionCategoryId?: number;
+  exerciseId?: number;
+  excludeExerciseId?: number;
 }
 
 export class QuestionUpdateOptionRO {

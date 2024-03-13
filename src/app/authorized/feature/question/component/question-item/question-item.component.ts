@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { IQuestionOptionStatus } from '../question-option/question-option.component';
 
 @Component({
@@ -11,6 +12,7 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
 })
 export class QuestionItemComponent {
   @Input() question: QuestionGetListDataRO;
+  @Input() showCheckBox = false;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
@@ -36,5 +38,10 @@ export class QuestionItemComponent {
   @Output() onEditClick = new EventEmitter<number>();
   editClick() {
     this.onEditClick.emit(this.question.id);
+  }
+
+  @Output() onCheckBoxChange = new EventEmitter<boolean>();
+  checkBoxChange(event: MatCheckboxChange) {
+    this.onCheckBoxChange.emit(event.checked);
   }
 }
