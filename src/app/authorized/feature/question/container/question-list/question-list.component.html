@@ -1,6 +1,7 @@
 <div>
   <mat-divider class="my-3"></mat-divider>
   <app-question-item
+    [showTrash]="showTrash"
     [showCheckBox]="showCheckBox"
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"

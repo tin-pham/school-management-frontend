@@ -19,6 +19,15 @@ export class QuestionGetListDTO extends PaginateDTO {
   excludeExerciseId?: number;
 }
 
+export class QuestionStudentGetListDTO extends PaginateDTO {
+  exerciseId?: number;
+
+  constructor(data?: QuestionStudentGetListDTO) {
+    super(data);
+    Object.assign(this, data);
+  }
+}
+
 export class QuestionUpdateOptionRO {
   isCorrect: boolean;
   text: string;

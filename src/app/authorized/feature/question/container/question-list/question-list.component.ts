@@ -16,6 +16,7 @@ export class QuestionListComponent {
   @Input() questionCategoryId: number;
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
+  @Input() showTrash: boolean;
 
   @Input() selectedQuestionIds: number[];
   @Output() selectedQuestionIdsChange = new EventEmitter<number[]>();
@@ -37,7 +38,6 @@ export class QuestionListComponent {
 
   ngOnInit() {
     const dto = this.getDto();
-    console.log(dto);
     this.loadQuestions(dto);
   }
 

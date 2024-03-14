@@ -13,7 +13,7 @@ export enum IQuestionOptionStatus {
   templateUrl: 'question-option.component.html',
 })
 export class QuestionOptionComponent {
-  @Input() status: IQuestionOptionStatus;
+  @Input() status?: IQuestionOptionStatus;
   @Input() name: string;
   @Input() label: string;
   @Input() showClose: boolean = true;

@@ -49,3 +49,21 @@ export class QuestionUpdateRO {
 export class QuestionDeleteRO {
   id: number;
 }
+
+export class QuestionStudentGetListDataOptionRO {
+  id: number;
+  text: string;
+}
+
+export class QuestionStudentGetListDataRO {
+  id: number;
+  text: string;
+  difficultyId: number;
+  difficultyName: string;
+  isMultipleChoice: boolean;
+  options: QuestionStudentGetListDataOptionRO[];
+}
+
+export class QuestionStudentGetListRO extends PaginateRO<QuestionStudentGetListDataRO> {
+  data: QuestionStudentGetListDataRO[];
+}

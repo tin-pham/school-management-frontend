@@ -1,0 +1,12 @@
+<div class="question-item">
+  <p class="text">
+    <span>
+      {{ question.text }}
+    </span>
+  </p>
+  <app-question-option
+    [showClose]="false"
+    *ngFor="let option of question.options; let i = index"
+    [isMultipleChoice]="question.isMultipleChoice"
+    [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option>
+</div>

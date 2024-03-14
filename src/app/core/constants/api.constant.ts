@@ -188,6 +188,10 @@ export const API = {
       ROUTE: '',
       OPERATION: 'Get list questions',
     },
+    STUDENT_GET_LIST: {
+      ROUTE: 'student',
+      OPERATION: 'Get list questions',
+    },
     GET_DETAIL: {
       ROUTE: ':id',
       OPERATION: 'Get question detail',

@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { QuestionGetListDTO, QuestionStoreDTO, QuestionUpdateDTO } from '@shared/models/dto/question.dto';
+import { QuestionGetListDTO, QuestionStoreDTO, QuestionStudentGetListDTO, QuestionUpdateDTO } from '@shared/models/dto/question.dto';
 import { Observable } from 'rxjs';
-import { QuestionGetDetailRO, QuestionGetListRO, QuestionStoreRO, QuestionUpdateRO } from '@shared/models/ro/question.ro';
+import {
+  QuestionGetDetailRO,
+  QuestionGetListRO,
+  QuestionStoreRO,
+  QuestionStudentGetListRO,
+  QuestionUpdateRO,
+} from '@shared/models/ro/question.ro';
 import { API } from '@core/constants/api.constant';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class QuestionService extends BaseService {
+  studentGetList(dto: QuestionStudentGetListDTO): Observable<QuestionStudentGetListRO> {
+    return this.get<QuestionStudentGetListRO>(API.QUESTION.CONTROLLER + '/' + API.QUESTION.STUDENT_GET_LIST.ROUTE, dto);
+  }
+
   getList(dto: QuestionGetListDTO): Observable<QuestionGetListRO> {
     return this.get<QuestionGetListRO>(API.QUESTION.CONTROLLER + '/' + API.QUESTION.GET_LIST.ROUTE, dto);
   }

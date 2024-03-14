@@ -13,6 +13,7 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
 export class QuestionItemComponent {
   @Input() question: QuestionGetListDataRO;
   @Input() showCheckBox = false;
+  @Input() showTrash = true;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
@@ -43,5 +44,9 @@ export class QuestionItemComponent {
   @Output() onCheckBoxChange = new EventEmitter<boolean>();
   checkBoxChange(event: MatCheckboxChange) {
     this.onCheckBoxChange.emit(event.checked);
+  }
+
+  getOptionLabel(index: number): string {
+    return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
   }
 }

@@ -68,7 +68,7 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Đăng xuất?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: dialogData,

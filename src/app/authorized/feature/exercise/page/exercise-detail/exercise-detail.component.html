@@ -3,11 +3,23 @@
   <p>{{ exercise.difficultyName }}</p>
 
   <div class="buttons d-flex">
-    <app-primary-button>Tạo câu hỏi</app-primary-button>
     <app-secondary-button [routerLink]="['/exercise', exerciseId, 'question-category']">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
+    <app-primary-button (click)="activateExercise()">Kích hoạt</app-primary-button>
+    <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeQuestionsFromExercise(selectedQuestionIds)"
+      >Xóa khỏi bài tập này</app-warn-button
+    >
   </div>
 
   <div>
-    <app-question-list [exerciseId]="exerciseId"></app-question-list>
+    <app-question-list
+      *ngIf="!isStudent()"
+      #questionList
+      [showTrash]="false"
+      [(selectedQuestionIds)]="selectedQuestionIds"
+      [showCheckBox]="true"
+      (onEdit)="routeToQuestion($event)"
+      [exerciseId]="exerciseId"></app-question-list>
+
+    <app-student-question-list *ngIf="isStudent()" [exerciseId]="exerciseId"></app-student-question-list>
   </div>
 </div>

@@ -5,14 +5,14 @@
       <mat-checkbox *ngIf="showCheckBox" class="example-margin" (change)="checkBoxChange($event)"></mat-checkbox>
     </span>
     <span>
-      <mat-icon (click)="deleteClick()">delete</mat-icon>
+      <mat-icon *ngIf="showTrash" (click)="deleteClick()">delete</mat-icon>
       <mat-icon (click)="editClick()">edit</mat-icon>
     </span>
   </p>
   <app-question-option
     [showClose]="false"
-    *ngFor="let option of question.options"
+    *ngFor="let option of question.options; let i = index"
     [isMultipleChoice]="question.isMultipleChoice"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
-    [label]="option.text"></app-question-option>
+    [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option>
 </div>

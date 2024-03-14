@@ -1,8 +1,17 @@
 <div>
-  <div class="header">
-    <app-secondary-button (click)="chooseQuestions()" *ngIf="selectedQuestionIds?.length > 0">Chọn</app-secondary-button>
+  <div class="header" *ngIf="questionCategory">
+    <h1>{{ questionCategory.name }}</h1>
+    <div class="d-flex">
+      <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
+        >Tạo câu hỏi</app-primary-button
+      >
+
+      <app-secondary-button (click)="chooseQuestions()" *ngIf="selectedQuestionIds?.length > 0">Chọn</app-secondary-button>
+    </div>
   </div>
   <app-question-list
+    (onEdit)="routeToQuestion($event)"
+    [showTrash]="true"
     [showCheckBox]="true"
     [excludeExerciseId]="exerciseId"
     [(selectedQuestionIds)]="selectedQuestionIds"
