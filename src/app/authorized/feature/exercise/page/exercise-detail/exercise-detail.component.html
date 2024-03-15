@@ -1,20 +1,19 @@
 <div *ngIf="exercise">
-  <h1>{{ exercise.name }}</h1>
-  <p>{{ exercise.difficultyName }}</p>
-
-  <div class="buttons d-flex">
-    <app-secondary-button [routerLink]="['/exercise', exerciseId, 'question-category']">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
-    <app-primary-button (click)="activateExercise()">Kích hoạt</app-primary-button>
-    <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeQuestionsFromExercise(selectedQuestionIds)"
-      >Xóa khỏi bài tập này</app-warn-button
-    >
-  </div>
+  <app-exercise-detail-header
+    (onRemoveClicked)="removeQuestionsFromExercise()"
+    (onActivateClicked)="activateExercise()"
+    [totalItems]="totalItems"
+    [exercise]="exercise"
+    [exerciseId]="exerciseId"
+    [selectedQuestionIds]="selectedQuestionIds"
+    [isStudent]="isStudent()"></app-exercise-detail-header>
 
   <div>
     <app-question-list
       *ngIf="!isStudent()"
       #questionList
       [showTrash]="false"
+      [(totalItems)]="totalItems"
       [(selectedQuestionIds)]="selectedQuestionIds"
       [showCheckBox]="true"
       (onEdit)="routeToQuestion($event)"

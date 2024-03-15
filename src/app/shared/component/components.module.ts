@@ -26,6 +26,7 @@ import { SelectListComponent } from './form-group/select-list/select-list.compon
 import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
 import { NumberInputGroupComponent } from './form-group/number-input-group/number-input-group.component';
 import { SecondaryButtonComponent } from './button/secondary-button/secondary-button.component';
+import { CheckboxInputGroupComponent } from './form-group/checkbox-input-group/checkbox-input-group.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -49,6 +50,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   DocumentViewerComponent,
   NumberInputGroupComponent,
   SecondaryButtonComponent,
+  CheckboxInputGroupComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

@@ -1,25 +1,42 @@
-.item {
-  border: 1px solid black;
-  border-radius: 10px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px;
-  font-size: 30px;
-  margin-bottom: 20px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: #f5f5f5;
-  }
+.question-item {
+  border: 1px solid #e0e0e0; /* Lighter border for a softer look */
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.text {
-  font-size: 25px;
+.question-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-bottom: 16px; /* Space between question and options */
+}
+
+.question-checkbox {
+  margin-right: 8px; /* Ensures checkbox doesn't stick to the text */
+}
+
+.icons {
+  display: flex;
+  gap: 8px; /* Space between icons */
+}
+
+.icons mat-icon {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.54); /* Icon color for better visibility */
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between options */
+}
+
+/* Additional styling for hover effects on icons */
+.icons mat-icon:hover {
+  color: #000; /* Darken icon on hover for feedback */
+  background-color: rgba(0, 0, 0, 0.04); /* Subtle background highlight on hover */
+  border-radius: 50%; /* Round background */
 }

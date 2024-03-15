@@ -3,8 +3,17 @@
   [class.selected]="status === IQuestionOptionStatus.SELECTED"
   [class.correct]="status === IQuestionOptionStatus.CORRECT"
   [class.incorrect]="status === IQuestionOptionStatus.INCORRECT">
-  <input [name]="name" [type]="isMultipleChoice ? 'checkbox' : 'radio'" id="name" [(ngModel)]="value" />
-  <label for="name">{{ label }}</label>
+  <!-- Material Checkbox -->
+  <mat-checkbox *ngIf="isMultipleChoice" [name]="name" [(ngModel)]="value">
+    {{ label }}
+  </mat-checkbox>
+
+  <!-- Material Radio Button -->
+  <mat-radio-group *ngIf="!isMultipleChoice" [name]="name" [(ngModel)]="value">
+    <mat-radio-button>
+      {{ label }}
+    </mat-radio-button>
+  </mat-radio-group>
 
   <mat-icon *ngIf="showClose" class="close" (click)="removeClick()">close</mat-icon>
 </li>

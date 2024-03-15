@@ -24,6 +24,7 @@ export class ExerciseCreateComponent implements OnInit {
 
   ngOnInit() {
     this.dto.lessonId = +this.route.snapshot.queryParamMap.get('lessonId');
+    this.dto.instantMark = false;
     this._difficultyService.getList().subscribe(response => {
       this.difficulties = response.data.map(difficulty => ({ label: difficulty.name, value: difficulty.id }));
     });

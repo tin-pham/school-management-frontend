@@ -29,7 +29,12 @@ export class QuestionListComponent {
 
   itemsPerPage = 5;
   page = 1;
-  totalItems = 0;
+  @Input() totalItems = 0;
+  @Output() totalItemsChange = new EventEmitter();
+
+  onTotalITemsChange(totalItems: number) {
+    this.totalItemsChange.emit(totalItems);
+  }
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -44,6 +49,7 @@ export class QuestionListComponent {
   loadQuestions(dto: QuestionGetListDTO) {
     this._questionService.getList(dto).subscribe(response => {
       this.totalItems = response.meta.totalItems;
+      this.totalItemsChange.emit(this.totalItems);
       this.questions = response.data;
       this.cd.markForCheck();
     });

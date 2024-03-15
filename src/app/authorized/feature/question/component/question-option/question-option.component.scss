@@ -1,27 +1,52 @@
 .question-option {
-  padding: 2px;
-  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 8px 0;
+  border-radius: 4px;
+  transition: background-color 0.3s ease; /* Smooth transition for background color change */
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24); /* Subtle shadow for depth */
 }
 
-.selected {
-  background-color: #e0e0e0;
+/* Enhance the visual feedback for different states */
+.selected,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-radio-checked .mat-radio-outer-circle {
+  background-color: #e0e0e0 !important; /* Override Material styles for consistency */
 }
 
 .correct {
-  background-color: #b3ffb3;
+  background-color: #c8e6c9; /* Softer green for correct options */
 }
 
 .incorrect {
-  background-color: #ffb3b3;
+  background-color: #ffcdd2; /* Softer red for incorrect options */
 }
 
-.question-option {
-  position: relative;
-}
-
+/* Style adjustments for the close icon */
 .close {
-  position: absolute;
-  top: 0; // Align to the top
-  right: 0; // Align to the right
-  cursor: pointer; // Optional: Changes the cursor on hover to indicate it's clickable
+  margin-left: auto; /* Pushes the icon to the right */
+  padding: 4px; /* Makes it easier to click/tap */
+  border-radius: 50%; /* Circular background for the icon */
+  color: rgba(0, 0, 0, 0.54); /* Icon color */
+}
+
+.close:hover {
+  background-color: rgba(0, 0, 0, 0.04); /* Subtle background on hover */
+  color: #000; /* Darker color on hover for feedback */
+}
+
+/* Custom styling for checkboxes and radio buttons to align them nicely with the label */
+mat-checkbox,
+mat-radio-button {
+  margin-right: 8px; /* Space between the checkbox/radio and the label */
+}
+
+/* Improve the alignment of text in the label to match Material Design's vertical rhythm */
+.question-option .mat-checkbox-layout,
+.question-option .mat-radio-label-content {
+  display: flex;
+  align-items: center;
 }

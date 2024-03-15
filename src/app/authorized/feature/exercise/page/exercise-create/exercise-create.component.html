@@ -1,5 +1,8 @@
 <form>
-  <app-text-input-group [label]="'Tên'" [(value)]="dto.name"></app-text-input-group>
-  <app-select-list [label]="'Độ khó'" [options]="difficulties" [(selected)]="dto.difficultyId"></app-select-list>
-  <app-primary-button (click)="store()"></app-primary-button>
+  <app-text-input-group [required]="true" [label]="'Tên'" [(value)]="dto.name"></app-text-input-group>
+  <app-select-list [required]="true" [label]="'Độ khó'" [options]="difficulties" [(selected)]="dto.difficultyId"></app-select-list>
+  <app-number-input-group [label]="'Thời gian (phút)'" [(value)]="dto.time"></app-number-input-group>
+  <app-date-picker [(value)]="dto.dueDate" [label]="'Ngày hết hạn'"></app-date-picker>
+  <app-checkbox-input-group [(checked)]="dto.instantMark" [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
+  <app-primary-button (click)="store()">Tạo</app-primary-button>
 </form>

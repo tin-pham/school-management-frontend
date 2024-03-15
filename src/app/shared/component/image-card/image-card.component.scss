@@ -17,6 +17,21 @@
   }
 }
 
+.card-tool mat-icon {
+  font-size: 24px; /* Adjust the icon size as needed */
+  margin: 0 2px; /* Space between icons */
+  cursor: pointer; /* Indicates the icon is clickable */
+  color: #616161; /* Icon color for better contrast with the background */
+  transition:
+    color 0.2s,
+    transform 0.2s; /* Smooth transitions for color and scaling */
+}
+
+.card-tool mat-icon:hover {
+  color: #000; /* Darker color on hover for visual feedback */
+  transform: scale(1.2); /* Slightly enlarge icons on hover for emphasis */
+}
+
 .card {
   position: relative;
   margin: 1rem;

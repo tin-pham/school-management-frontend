@@ -1,26 +1,54 @@
+.course-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa; /* Light background for the card */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden; /* Ensures nothing spills out of the card boundaries */
+}
+
 .assignment-button {
-  background-color: black;
-  color: white;
+  background-color: #333; /* Dark, but not pure black for a softer look */
+  color: #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px; /* Slightly larger for better clickability */
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer; /* Indicates that it's clickable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.assignment-button:hover {
+  background-color: #555; /* Slightly lighter on hover for visual feedback */
 }
 
 .assignment-count {
   position: absolute;
-  top: -10px; /* Adjust according to the size of your icon */
-  right: -10px; /* Adjust according to the size of your icon */
-  background-color: red;
-  color: white;
-  font-size: 12px; /* Adjust based on your preference */
-  height: 20px; /* Adjust based on your preference */
-  width: 20px; /* Adjust based on your preference */
+  top: -6px; /* Adjusted for better visibility */
+  right: -6px;
+  background-color: #e53935; /* Brighter red for more visibility */
+  color: #fff;
+  font-size: 10px; /* Small font size to fit the small circle */
+  min-height: 20px; /* Ensures circle shape even with small numbers */
+  min-width: 20px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 4px; /* Padding to maintain circle shape */
+  box-sizing: border-box; /* Ensures padding doesn't affect size */
+  border: 2px solid #f8f9fa; /* White border to separate count from button */
+}
+
+/* Ensuring that app-image-card inherits necessary styles from course-card */
+.image-card {
+  /* Your existing styles for image-card, ensure it fits well with the course-card */
+}
+
+.course-info {
+  padding-left: 15px;
+  padding-bottom: 15px;
 }

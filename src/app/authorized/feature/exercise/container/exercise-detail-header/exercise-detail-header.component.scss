@@ -1,0 +1,57 @@
+.exercise-header {
+  display: flex;
+  flex-direction: column;
+  align-items: start; /* Align items to the start for better readability */
+  gap: 1rem; /* Increased gap for clearer separation */
+  padding: 1rem; /* Add some padding for spacing from the container edges */
+  background-color: #f8f9fa; /* Light background color for the header */
+}
+
+.exercise-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exercise-title h1 {
+  font-size: 2rem; /* Larger font size for the title */
+  margin: 0;
+  color: #495057; /* Darker color for better readability */
+}
+
+.exercise-title mat-icon {
+  color: #6c757d; /* Icon color that blends with the text */
+  cursor: pointer; /* Indicates that the icon is clickable */
+}
+
+.exercise-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem; /* Adjusted font size for consistency */
+  color: #6c757d; /* Subtle color for the info text */
+}
+
+.exercise-info .badge {
+  background-color: #adb5bd; /* Soft background color for badges */
+  color: #fff; /* White text for contrast */
+  padding: 0.25rem 0.5rem; /* Padding inside badges */
+  border-radius: 0.25rem; /* Rounded corners for badges */
+  font-weight: 500; /* Slightly bolder text within badges */
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem; /* Increased gap for better separation of buttons */
+  padding-top: 1rem; /* Space between buttons and the header info */
+}
+
+/* Button styles might need to be adjusted within their component styles for consistency */
+
+@media screen and (min-width: 768px) {
+  .exercise-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Align items in the center for larger screens */
+  }
+}

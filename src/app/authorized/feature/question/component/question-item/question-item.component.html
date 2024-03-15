@@ -1,18 +1,21 @@
 <div class="question-item">
-  <p class="text">
-    <span>
+  <div class="question-header">
+    <div class="question-text">
       {{ question.text }}
-      <mat-checkbox *ngIf="showCheckBox" class="example-margin" (change)="checkBoxChange($event)"></mat-checkbox>
-    </span>
-    <span>
+      <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" (change)="checkBoxChange($event)"> </mat-checkbox>
+    </div>
+    <div class="icons">
       <mat-icon *ngIf="showTrash" (click)="deleteClick()">delete</mat-icon>
       <mat-icon (click)="editClick()">edit</mat-icon>
-    </span>
-  </p>
-  <app-question-option
-    [showClose]="false"
-    *ngFor="let option of question.options; let i = index"
-    [isMultipleChoice]="question.isMultipleChoice"
-    [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
-    [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option>
+    </div>
+  </div>
+  <div class="question-options">
+    <app-question-option
+      *ngFor="let option of question.options; let i = index"
+      [showClose]="false"
+      [isMultipleChoice]="question.isMultipleChoice"
+      [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
+      [label]="getOptionLabel(i) + '. ' + option.text">
+    </app-question-option>
+  </div>
 </div>

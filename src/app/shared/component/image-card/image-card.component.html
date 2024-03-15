@@ -1,14 +1,20 @@
 <div class="card">
   <div *ngIf="isEdit" class="card-tool">
-    <mat-icon *ngIf="option.haveDelete" (click)="deleteClick($event)">delete</mat-icon>
-    <mat-icon *ngIf="option.haveClose" (click)="closeClick()">close</mat-icon>
-    <input *ngIf="option.haveCheckbox" class="form-check-input" type="checkbox" [(ngModel)]="isCheck" (ngModelChange)="check()" />
+    <mat-icon *ngIf="option.haveDelete" (click)="deleteClick($event)" aria-label="Delete">delete</mat-icon>
+    <mat-icon *ngIf="option.haveClose" (click)="closeClick()" aria-label="Close">close</mat-icon>
+    <input
+      *ngIf="option.haveCheckbox"
+      class="form-check-input"
+      type="checkbox"
+      [(ngModel)]="isCheck"
+      (change)="check()"
+      aria-label="Select" />
   </div>
-  <a class="card-image">
+  <a class="card-image" tabindex="0">
     <img [src]="src" [alt]="alt" />
   </a>
-  <a class="card-description">
+  <div class="card-description">
     <h2>{{ name }}</h2>
     <p>{{ description }}</p>
-  </a>
+  </div>
 </div>

@@ -74,7 +74,8 @@
     },
     "LESSON_ID": {
       "IS_NOT_EMPTY": "Bài học không được trống"
-    }
+    },
+    "CANNOT_ACTIVATE_WITHOUT_QUESTION": "Không thể kích hoạt bài tập không có câu hỏi nào"
   },
   "QUESTION": {
     "TEXT": {

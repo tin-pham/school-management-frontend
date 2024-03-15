@@ -11,7 +11,7 @@
     [name]="course.name"
     [description]="course.description"></app-image-card>
 
-  <div>
+  <div class="course-info">
     <div *ngIf="assignmentIcon" class="assignment-button">
       <mat-icon class="assignment" role="button" (click)="assignmentClick($event)"
         >assignment

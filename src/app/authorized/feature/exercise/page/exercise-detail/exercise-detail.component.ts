@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
 import { QuestionListComponent } from '@features/question/container/question-list/question-list.component';
+import { ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
@@ -20,12 +19,12 @@ export class ExerciseDetailComponent implements OnInit {
   selectedQuestionIds: number[] = [];
   showTrash = false;
   @ViewChild('questionList') questionListComponent: QuestionListComponent;
+  totalItems = 0;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
-    private dialog: MatDialog,
     private _exerciseService: ExerciseService,
     private _exerciseQuestionService: ExerciseQuestionService,
     private _authService: AuthService,
@@ -39,16 +38,10 @@ export class ExerciseDetailComponent implements OnInit {
   }
 
   activateExercise() {
-    const dialogData = new ConfirmDialogModel('Xác nhận', 'Kích hoạt bài tập này?');
-
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: dialogData,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        return;
-      }
+    const dto = new ExerciseUpdateDTO();
+    dto.isActive = true;
+    this._exerciseService.update(this.exerciseId, dto).subscribe(() => {
+      this.toast.success('Kích hoạt thành công');
     });
   }
 
@@ -56,11 +49,11 @@ export class ExerciseDetailComponent implements OnInit {
     this.router.navigate(['/question', questionId]);
   }
 
-  removeQuestionsFromExercise(selectedQuestionIds: number[]) {
+  removeQuestionsFromExercise() {
     this._exerciseQuestionService
       .bulkDelete({
         exerciseIds: [this.exerciseId],
-        questionIds: selectedQuestionIds,
+        questionIds: this.selectedQuestionIds,
       })
       .subscribe(() => {
         this.toast.success('Xóa thành công khỏi bài tập này');

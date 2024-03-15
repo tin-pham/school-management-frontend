@@ -1,20 +1,28 @@
 .icons {
   display: flex;
   align-items: center;
+  gap: 10px; /* Provides consistent spacing between icons */
 }
 
 mat-icon {
   cursor: pointer;
-  margin-right: 5px;
-  background: black;
-  color: white;
+  background: #333; /* Darker background for more subtlety */
+  color: #fff;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  &:hover {
-    color: white;
-  }
+  transition:
+    background-color 0.3s,
+    transform 0.2s; /* Smooth transitions for hover effects */
+  padding: 8px; /* Padding to increase clickable area */
+  box-sizing: border-box; /* Ensures padding doesn't affect the overall dimensions */
+}
+
+mat-icon:hover {
+  background-color: #555; /* Slightly lighter on hover for feedback */
+  transform: scale(1.1); /* Slightly larger on hover for emphasis */
+  color: #fff; /* Maintain white color on hover for consistency */
 }

@@ -5,6 +5,8 @@ export class ExerciseStoreRO {
   name: string;
   difficultyId: number;
   lessonId: number;
+  time: number;
+  dueDate: Date;
 
   constructor(data?: ExerciseStoreRO) {
     Object.assign(this, data);
@@ -17,6 +19,10 @@ export class ExerciseGetListDataRO {
   difficultyId: number;
   difficultyName: string;
   submissionId: number;
+  isActive: number;
+  activatedAt: Date;
+  time: number;
+  dueDate: Date;
 }
 
 export class ExerciseGetListRO extends PaginateRO<ExerciseGetListDataRO> {
@@ -28,11 +34,19 @@ export class ExerciseGetDetailRO {
   name: string;
   difficultyName: string;
   difficultyId: number;
+  isActive: number;
+  activatedAt: Date;
+  time: number;
+  dueDate: Date;
 }
 
 export class ExerciseUpdateRO {
   id: number;
   name: string;
+  isActive: boolean;
+  activatedAt: Date;
+  time?: number;
+  dueDate?: Date;
 }
 
 export class ExerciseDeleteRO {
