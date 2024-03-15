@@ -24,7 +24,6 @@ export class ExerciseService extends BaseService {
   }
 
   getDetail(id: number): Observable<ExerciseGetDetailRO> {
-    console.log(id);
     return this.get(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.GET_DETAIL.ROUTE.replace(':id', id.toString()));
   }
 }

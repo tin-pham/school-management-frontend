@@ -13,7 +13,7 @@ import { BaseService } from './base.service';
 
 @Injectable()
 export class QuestionService extends BaseService {
-  studentGetList(dto: QuestionStudentGetListDTO): Observable<QuestionStudentGetListRO> {
+  studentGetList(dto: QuestionStudentGetListDTO): Observable<QuestionGetListRO> {
     return this.get<QuestionStudentGetListRO>(API.QUESTION.CONTROLLER + '/' + API.QUESTION.STUDENT_GET_LIST.ROUTE, dto);
   }
 

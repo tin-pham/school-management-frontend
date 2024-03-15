@@ -11,6 +11,12 @@ export class ExerciseStoreDTO {
 
 export class ExerciseGetListDTO extends PaginateDTO {
   lessonId?: number;
+  isActive?: boolean;
+
+  constructor(data?: ExerciseGetListDTO) {
+    super(data);
+    Object.assign(this, data);
+  }
 }
 
 export class ExerciseUpdateDTO {

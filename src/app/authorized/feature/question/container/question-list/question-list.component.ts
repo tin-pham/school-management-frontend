@@ -17,6 +17,7 @@ export class QuestionListComponent {
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
   @Input() showTrash: boolean;
+  @Input() showEdit: boolean;
 
   @Input() selectedQuestionIds: number[];
   @Output() selectedQuestionIdsChange = new EventEmitter<number[]>();

@@ -6,7 +6,7 @@
     </div>
     <div class="icons">
       <mat-icon *ngIf="showTrash" (click)="deleteClick()">delete</mat-icon>
-      <mat-icon (click)="editClick()">edit</mat-icon>
+      <mat-icon *ngIf="showEdit" (click)="editClick()">edit</mat-icon>
     </div>
   </div>
   <div class="question-options">

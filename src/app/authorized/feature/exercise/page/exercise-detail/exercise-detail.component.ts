@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
@@ -25,6 +27,7 @@ export class ExerciseDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
+    private dialog: MatDialog,
     private _exerciseService: ExerciseService,
     private _exerciseQuestionService: ExerciseQuestionService,
     private _authService: AuthService,
@@ -64,5 +67,41 @@ export class ExerciseDetailComponent implements OnInit {
 
   isStudent() {
     return this._authService.isStudent();
+  }
+
+  submitExercise() {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Xác nhận nộp bài');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      // submit
+    });
+  }
+
+  storeStudentExercise() {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Bắt đầu làm bài?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      // start
+    });
+  }
+
+  isStartDoing() {
+    return this.exercise.studentId && this.exercise.studentExerciseId;
   }
 }

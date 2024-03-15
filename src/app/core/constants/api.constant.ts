@@ -661,4 +661,20 @@ export const API = {
       OPERATION: 'Get list levels',
     },
   },
+  STUDENT_EXERCISE: {
+    TAGS: 'StudentExercise',
+    CONTROLLER: 'student-exercise',
+    STORE: {
+      ROUTE: '',
+      OPERATION: 'Store student exercise',
+    },
+    SUBMIT: {
+      ROUTE: 'submit/:id',
+      OPERATION: 'Submit student exercise',
+    },
+    GET_SUBMITTED_LIST: {
+      ROUTE: 'submit',
+      OPERATION: 'Get submitted list student exercise',
+    },
+  },
 };

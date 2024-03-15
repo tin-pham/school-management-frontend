@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionGetListDTO, QuestionStudentGetListDTO } from '@shared/models/dto/question.dto';
-import { QuestionStudentGetListDataRO } from '@shared/models/ro/question.ro';
+import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
 
 @Component({
   selector: 'app-student-question-list',
@@ -10,7 +10,7 @@ import { QuestionStudentGetListDataRO } from '@shared/models/ro/question.ro';
   templateUrl: 'student-question-list.component.html',
 })
 export class StudentQuestionListComponent {
-  questions: QuestionStudentGetListDataRO[] = [];
+  questions: QuestionGetListDataRO[] = [];
   dto: QuestionGetListDTO;
 
   @Input() exerciseId: number;
@@ -33,6 +33,7 @@ export class StudentQuestionListComponent {
     this._questionService.studentGetList(dto).subscribe(response => {
       this.totalItems = response.meta.totalItems;
       this.questions = response.data;
+      console.log(this.questions);
       this.cd.markForCheck();
     });
   }

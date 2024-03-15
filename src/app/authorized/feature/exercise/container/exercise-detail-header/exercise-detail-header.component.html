@@ -12,11 +12,11 @@
     </div>
   </div>
 
-  <div>
+  <div *ngIf="exercise.dueDate">
     <p>Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
   </div>
 
-  <div *ngIf="!isStudent" class="buttons">
+  <div *ngIf="!isStudent && !exercise.isActive" class="buttons">
     <app-secondary-button [routerLink]="['/exercise', exerciseId, 'question-category']">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
     <app-primary-button *ngIf="!exercise.isActive && totalItems > 0" (click)="activateClicked()">Kích hoạt</app-primary-button>
     <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeClicked()">Xóa khỏi bài tập này</app-warn-button>

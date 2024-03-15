@@ -38,4 +38,14 @@ export class ExerciseItemComponent {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  isLate() {
+    return this.exercise.isSubmissionLate;
+  }
+
+  isMissing() {
+    const dueDate = new Date(this.exercise.dueDate);
+    const currentDate = new Date();
+    return !this.exercise.isSubmitted && currentDate > dueDate;
+  }
 }

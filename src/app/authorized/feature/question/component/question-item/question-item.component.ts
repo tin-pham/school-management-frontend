@@ -14,6 +14,7 @@ export class QuestionItemComponent {
   @Input() question: QuestionGetListDataRO;
   @Input() showCheckBox = false;
   @Input() showTrash = true;
+  @Input() showEdit = true;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 

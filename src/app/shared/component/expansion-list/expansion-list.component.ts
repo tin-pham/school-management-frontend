@@ -54,7 +54,6 @@ export class ExpansionListComponent {
 
   @Output() itemClicked = new EventEmitter<number>();
   onItemClicked(id: number) {
-    console.log(id);
     this.itemClicked.emit(id);
   }
 }

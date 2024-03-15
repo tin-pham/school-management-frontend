@@ -8,17 +8,23 @@
     [selectedQuestionIds]="selectedQuestionIds"
     [isStudent]="isStudent()"></app-exercise-detail-header>
 
-  <div>
+  <div *ngIf="!isStudent() || isStartDoing()" class="exercise-body">
     <app-question-list
       *ngIf="!isStudent()"
       #questionList
       [showTrash]="false"
+      [showCheckBox]="!exercise.isActive"
+      [showEdit]="!exercise.isActive"
       [(totalItems)]="totalItems"
       [(selectedQuestionIds)]="selectedQuestionIds"
-      [showCheckBox]="true"
       (onEdit)="routeToQuestion($event)"
       [exerciseId]="exerciseId"></app-question-list>
 
     <app-student-question-list *ngIf="isStudent()" [exerciseId]="exerciseId"></app-student-question-list>
+  </div>
+
+  <div class="exercise-footer">
+    <app-primary-button *ngIf="isStudent() && isStartDoing()" (click)="submitExercise()">Nộp bài</app-primary-button>
+    <app-primary-button *ngIf="isStudent() && !isStartDoing()" (click)="storeStudentExercise()">Bắt đầu làm bài</app-primary-button>
   </div>
 </div>

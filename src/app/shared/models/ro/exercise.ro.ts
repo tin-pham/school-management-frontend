@@ -18,7 +18,9 @@ export class ExerciseGetListDataRO {
   name: string;
   difficultyId: number;
   difficultyName: string;
-  submissionId: number;
+  isSubmitted?: boolean;
+  submissionDate?: Date;
+  isSubmissionLate?: boolean;
   isActive: number;
   activatedAt: Date;
   time: number;
@@ -38,6 +40,8 @@ export class ExerciseGetDetailRO {
   activatedAt: Date;
   time: number;
   dueDate: Date;
+  studentId: string;
+  studentExerciseId: number;
 }
 
 export class ExerciseUpdateRO {
