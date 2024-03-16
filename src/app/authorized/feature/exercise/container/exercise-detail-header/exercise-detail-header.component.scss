@@ -46,6 +46,10 @@
   padding-top: 1rem; /* Space between buttons and the header info */
 }
 
+.exercise-secondary {
+  font-size: 20px;
+}
+
 /* Button styles might need to be adjusted within their component styles for consistency */
 
 @media screen and (min-width: 768px) {

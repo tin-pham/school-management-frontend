@@ -6,7 +6,7 @@ import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
 import { QuestionListComponent } from '@features/question/container/question-list/question-list.component';
-import { ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
+import { ExerciseGetDetailDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
@@ -35,7 +35,11 @@ export class ExerciseDetailComponent implements OnInit {
 
   ngOnInit() {
     this.exerciseId = +this.route.snapshot.paramMap.get('id');
-    this._exerciseService.getDetail(this.exerciseId).subscribe((response: ExerciseGetDetailRO) => {
+    const dto = new ExerciseGetDetailDTO();
+    if (this.isStudent()) {
+      dto.includeGrade = true;
+    }
+    this._exerciseService.getDetail(this.exerciseId, dto).subscribe((response: ExerciseGetDetailRO) => {
       this.exercise = response;
     });
   }
@@ -103,5 +107,9 @@ export class ExerciseDetailComponent implements OnInit {
 
   isStartDoing() {
     return this.exercise.studentId && this.exercise.studentExerciseId;
+  }
+
+  isSubmitted() {
+    return this.exercise.isSubmitted;
   }
 }

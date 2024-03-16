@@ -25,3 +25,7 @@ export class ExerciseUpdateDTO {
   time?: number;
   dueDate?: Date;
 }
+
+export class ExerciseGetDetailDTO {
+  includeGrade?: boolean;
+}

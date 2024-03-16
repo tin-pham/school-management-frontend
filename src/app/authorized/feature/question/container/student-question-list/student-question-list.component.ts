@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { QuestionService } from '@core/services/api/question.service';
+import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
+import { ExerciseQuestionSnapshotGetListDTO } from '@shared/models/dto/exercise-question-snapshot.dto';
 import { QuestionGetListDTO, QuestionStudentGetListDTO } from '@shared/models/dto/question.dto';
-import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
+import { ExerciseQuestionSnapshotGetListDataRO } from '@shared/models/ro/exercise-question-snapshot.ro';
 
 @Component({
   selector: 'app-student-question-list',
@@ -10,8 +11,8 @@ import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
   templateUrl: 'student-question-list.component.html',
 })
 export class StudentQuestionListComponent {
-  questions: QuestionGetListDataRO[] = [];
-  dto: QuestionGetListDTO;
+  questions: ExerciseQuestionSnapshotGetListDataRO[] = [];
+  dto: ExerciseQuestionSnapshotGetListDTO;
 
   @Input() exerciseId: number;
 
@@ -21,7 +22,7 @@ export class StudentQuestionListComponent {
 
   constructor(
     private cd: ChangeDetectorRef,
-    private _questionService: QuestionService,
+    private _exerciseQuestionSnapshotService: ExerciseQuestionSnapshotService,
   ) {}
 
   ngOnInit() {
@@ -30,10 +31,9 @@ export class StudentQuestionListComponent {
   }
 
   loadQuestions(dto: QuestionGetListDTO) {
-    this._questionService.studentGetList(dto).subscribe(response => {
+    this._exerciseQuestionSnapshotService.studentGetList(dto).subscribe(response => {
       this.totalItems = response.meta.totalItems;
       this.questions = response.data;
-      console.log(this.questions);
       this.cd.markForCheck();
     });
   }

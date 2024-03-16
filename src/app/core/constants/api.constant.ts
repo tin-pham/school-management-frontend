@@ -677,4 +677,12 @@ export const API = {
       OPERATION: 'Get submitted list student exercise',
     },
   },
+  EXERCISE_QUESTION_SNAPSHOT: {
+    TAGS: 'ExerciseQuestionSnapshot',
+    CONTROLLER: 'exercise-question-snapshot',
+    STUDENT_GET_LIST: {
+      ROUTE: 'student',
+      OPERATION: 'Get list exercise question snapshot',
+    },
+  },
 };

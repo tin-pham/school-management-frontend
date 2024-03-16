@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { ExerciseDeleteRO, ExerciseGetDetailRO, ExerciseGetListRO, ExerciseStoreRO, ExerciseUpdateRO } from '@shared/models/ro/exercise.ro';
 import { API } from '@core/constants/api.constant';
-import { ExerciseGetListDTO, ExerciseStoreDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
+import { ExerciseGetDetailDTO, ExerciseGetListDTO, ExerciseStoreDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 
@@ -23,7 +23,7 @@ export class ExerciseService extends BaseService {
     return this._delete(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.DELETE.ROUTE.replace(':id', id.toString()));
   }
 
-  getDetail(id: number): Observable<ExerciseGetDetailRO> {
-    return this.get(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.GET_DETAIL.ROUTE.replace(':id', id.toString()));
+  getDetail(id: number, dto: ExerciseGetDetailDTO): Observable<ExerciseGetDetailRO> {
+    return this.get(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.GET_DETAIL.ROUTE.replace(':id', id.toString()), dto);
   }
 }

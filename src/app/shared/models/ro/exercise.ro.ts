@@ -42,6 +42,11 @@ export class ExerciseGetDetailRO {
   dueDate: Date;
   studentId: string;
   studentExerciseId: number;
+  isSubmitted: boolean;
+  point?: number;
+  totalCount?: number;
+  correctCount?: number;
+  studentExerciseGradeId: number;
 }
 
 export class ExerciseUpdateRO {

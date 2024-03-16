@@ -18,11 +18,12 @@ export class QuestionOptionComponent {
   @Input() label: string;
   @Input() showClose: boolean = true;
   @Input() isMultipleChoice: boolean;
+  @Input() disabled: boolean;
 
-  @Input() value: string;
-  @Output() valueChange = new EventEmitter();
-  onValueChange() {
-    this.valueChange.emit();
+  @Input() selected: boolean;
+  @Output() selectedChange = new EventEmitter();
+  onSelectedChange() {
+    this.selectedChange.emit();
   }
 
   IQuestionOptionStatus = IQuestionOptionStatus;

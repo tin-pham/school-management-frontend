@@ -2,7 +2,7 @@
   <div class="exercise-header">
     <div class="exercise-title">
       <h1>{{ exercise.name }}</h1>
-      <mat-icon class="badge bg-dark">edit</mat-icon>
+      <mat-icon *ngIf="!isStudent" class="badge bg-dark">edit</mat-icon>
     </div>
     <div class="exercise-info">
       <span class="badge bg-dark">
@@ -12,8 +12,9 @@
     </div>
   </div>
 
-  <div *ngIf="exercise.dueDate">
+  <div *ngIf="exercise.dueDate" class="exercise-secondary">
     <p>Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
+    <p>Điểm: {{ exercise.point }}</p>
   </div>
 
   <div *ngIf="!isStudent && !exercise.isActive" class="buttons">

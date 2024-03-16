@@ -4,12 +4,12 @@
   [class.correct]="status === IQuestionOptionStatus.CORRECT"
   [class.incorrect]="status === IQuestionOptionStatus.INCORRECT">
   <!-- Material Checkbox -->
-  <mat-checkbox *ngIf="isMultipleChoice" [name]="name" [(ngModel)]="value">
+  <mat-checkbox *ngIf="isMultipleChoice" [name]="name" [(ngModel)]="selected" (click)="$event.preventDefault()">
     {{ label }}
   </mat-checkbox>
 
   <!-- Material Radio Button -->
-  <mat-radio-group *ngIf="!isMultipleChoice" [name]="name" [(ngModel)]="value">
+  <mat-radio-group *ngIf="!isMultipleChoice" [name]="name" [(ngModel)]="selected" (click)="$event.preventDefault()">
     <mat-radio-button>
       {{ label }}
     </mat-radio-button>

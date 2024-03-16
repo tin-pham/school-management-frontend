@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
+import {
+  ExerciseQuestionSnapshotGetListDataRO,
+  ExerciseQuestionSnapshotGetListOptionRO,
+} from '@shared/models/ro/exercise-question-snapshot.ro';
 import { IQuestionOptionStatus } from '../question-option/question-option.component';
 
 @Component({
@@ -8,11 +11,21 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
   templateUrl: 'student-question-item.component.html',
 })
 export class StudentQuestionItemComponent {
-  @Input() question: QuestionGetListDataRO;
+  @Input() question: ExerciseQuestionSnapshotGetListDataRO;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
   getOptionLabel(index: number): string {
     return String.fromCharCode(65 + index); // 65 is the ASCII code for 'A'
+  }
+
+  getOptionStatus(option: ExerciseQuestionSnapshotGetListOptionRO) {
+    if (!option.isCorrect && option.isChosen) {
+      return IQuestionOptionStatus.INCORRECT;
+    }
+
+    if (option.isCorrect && option.isChosen) {
+      return IQuestionOptionStatus.CORRECT;
+    }
   }
 }
