@@ -3,10 +3,15 @@ import { ExerciseDeleteRO, ExerciseGetDetailRO, ExerciseGetListRO, ExerciseStore
 import { API } from '@core/constants/api.constant';
 import { ExerciseGetDetailDTO, ExerciseGetListDTO, ExerciseStoreDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
 import { Injectable } from '@angular/core';
+import { ResultRO } from '@shared/models/ro/result.ro';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class ExerciseService extends BaseService {
+  activate(id: number): Observable<ResultRO> {
+    return this.patch(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.ACTIVATE.ROUTE, id);
+  }
+
   update(id: number, dto: ExerciseUpdateDTO): Observable<ExerciseUpdateRO> {
     return this.patch(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.UPDATE.ROUTE, id, dto);
   }

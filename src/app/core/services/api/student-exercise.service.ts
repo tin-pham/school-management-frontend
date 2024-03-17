@@ -3,11 +3,12 @@ import { StudentExerciseStoreDTO, StudentExerciseSubmitDTO } from '@shared/model
 import { Observable } from 'rxjs';
 import { ResultRO } from '@shared/models/ro/result.ro';
 import { API } from '@core/constants/api.constant';
+import { StudentExerciseStoreRO } from '@shared/models/ro/student-exercise.ro';
 import { BaseService } from './base.service';
 
 @Injectable()
 export class StudentExerciseService extends BaseService {
-  store(dto: StudentExerciseStoreDTO): Observable<ResultRO> {
+  store(dto: StudentExerciseStoreDTO): Observable<StudentExerciseStoreRO> {
     return this.post(API.STUDENT_EXERCISE.CONTROLLER + '/' + API.STUDENT_EXERCISE.STORE.ROUTE, dto);
   }
 

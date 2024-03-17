@@ -25,6 +25,10 @@ export class ExerciseGetListDataRO {
   activatedAt: Date;
   time: number;
   dueDate: Date;
+  studentExerciseGradeId: number;
+  point?: number;
+  totalCount?: number;
+  correctCount?: number;
 }
 
 export class ExerciseGetListRO extends PaginateRO<ExerciseGetListDataRO> {
@@ -36,7 +40,7 @@ export class ExerciseGetDetailRO {
   name: string;
   difficultyName: string;
   difficultyId: number;
-  isActive: number;
+  isActive: boolean;
   activatedAt: Date;
   time: number;
   dueDate: Date;

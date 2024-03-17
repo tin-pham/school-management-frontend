@@ -10,16 +10,15 @@ export interface ISelectOption {
   styleUrls: ['select-list.component.scss'],
   templateUrl: 'select-list.component.html',
 })
-export class SelectListComponent {
+export class SelectListComponent<T> {
   @Input() options: ISelectOption[] = [];
   @Input() label: string;
   @Input() name: string;
   @Input() required: boolean;
 
-  @Input() selected: any;
-  @Output() selectedChange = new EventEmitter();
-  onSelectedChange(value: any) {
-    // If this false
-    this.selectedChange.emit(value);
+  @Input() selected: T;
+  @Output() selectedChange = new EventEmitter<T>();
+  onSelectedChange() {
+    this.selectedChange.emit(this.selected);
   }
 }

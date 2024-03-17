@@ -7,6 +7,7 @@
   </div>
 
   <div class="buttons">
+    <div *ngIf="exercise.point && isStudent()" class="grade">{{ exercise.point }} Điểm</div>
     <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
     <div *ngIf="isStudent()" class="d-flex">
       <span *ngIf="isLate()">

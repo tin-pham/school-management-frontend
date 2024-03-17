@@ -5,6 +5,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/con
 import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
+import { StudentExerciseService } from '@core/services/api/student-exercise.service';
 import { QuestionListComponent } from '@features/question/container/question-list/question-list.component';
 import { ExerciseGetDetailDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
@@ -30,6 +31,7 @@ export class ExerciseDetailComponent implements OnInit {
     private dialog: MatDialog,
     private _exerciseService: ExerciseService,
     private _exerciseQuestionService: ExerciseQuestionService,
+    private _studentExerciseService: StudentExerciseService,
     private _authService: AuthService,
   ) {}
 
@@ -47,8 +49,9 @@ export class ExerciseDetailComponent implements OnInit {
   activateExercise() {
     const dto = new ExerciseUpdateDTO();
     dto.isActive = true;
-    this._exerciseService.update(this.exerciseId, dto).subscribe(() => {
+    this._exerciseService.activate(this.exerciseId).subscribe(() => {
       this.toast.success('Kích hoạt thành công');
+      this.exercise.isActive = true;
     });
   }
 
@@ -101,7 +104,14 @@ export class ExerciseDetailComponent implements OnInit {
         return;
       }
 
-      // start
+      this._studentExerciseService
+        .store({
+          exerciseId: this.exerciseId,
+        })
+        .subscribe(response => {
+          this.toast.success('Bắt đầu làm bài.');
+          this.exercise.studentExerciseId = response.id;
+        });
     });
   }
 

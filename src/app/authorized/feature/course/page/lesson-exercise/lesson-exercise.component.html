@@ -1,11 +1,4 @@
 <div>
-  <div class="d-flex">
-    <app-select-list
-      (selectedChange)="handleFilterChange($event)"
-      [options]="exerciseGetListOptions"
-      [selected]="isActive"></app-select-list>
-  </div>
-
   <app-exercise-item
     [routerLink]="['/exercise', exercise.id]"
     (onDelete)="delete(exercise.id)"

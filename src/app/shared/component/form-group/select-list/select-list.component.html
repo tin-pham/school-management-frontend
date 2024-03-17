@@ -4,6 +4,6 @@
   class="form-select form-select-lg mb-3"
   aria-label=".form-select-lg example"
   [(ngModel)]="selected"
-  (ngModelChange)="onSelectedChange($event)">
+  (ngModelChange)="onSelectedChange()">
   <option *ngFor="let option of options" [ngValue]="option.value">{{ option.label | titlecase }}</option>
 </select>

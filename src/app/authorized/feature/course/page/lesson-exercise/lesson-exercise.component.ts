@@ -3,7 +3,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
-import { ISelectOption } from '@shared/component/form-group/select-list/select-list.component';
 import { ExerciseGetListDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetListDataRO, ExerciseGetListRO } from '@shared/models/ro/exercise.ro';
 
@@ -15,22 +14,10 @@ import { ExerciseGetListDataRO, ExerciseGetListRO } from '@shared/models/ro/exer
 export class LessonExerciseComponent implements OnInit {
   lessonId: number;
   exercises: ExerciseGetListDataRO[];
-  isActive = true;
 
   itemsPerPage = 5;
   page = 1;
   totalItems = 0;
-
-  exerciseGetListOptions: ISelectOption[] = [
-    {
-      label: 'Chưa kích hoạt',
-      value: false,
-    },
-    {
-      label: 'Đã kích hoạt',
-      value: true,
-    },
-  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -47,12 +34,6 @@ export class LessonExerciseComponent implements OnInit {
   handlePageChange(event: PageEvent) {
     this.page = event.pageIndex + 1;
     this.itemsPerPage = event.pageSize;
-    this.loadExercises(this.getDto());
-  }
-
-  handleFilterChange(isActive: boolean) {
-    this.page = 1;
-    this.isActive = isActive;
     this.loadExercises(this.getDto());
   }
 
@@ -83,8 +64,11 @@ export class LessonExerciseComponent implements OnInit {
       limit: this.itemsPerPage,
       page: this.page,
       lessonId: this.lessonId,
-      isActive: this.isActive,
+      includeGrade: this.isStudent() && true,
     });
+    if (this.isStudent()) {
+      exerciseGetListDto.isActive = true;
+    }
     return exerciseGetListDto;
   }
 }

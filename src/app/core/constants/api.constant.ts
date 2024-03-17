@@ -300,6 +300,10 @@ export const API = {
       ROUTE: ':id',
       OPERATION: 'Delete exercise',
     },
+    ACTIVATE: {
+      ROUTE: 'activate/:id',
+      OPERATION: 'Activate exercise',
+    },
   },
   EXERCISE_QUESTION: {
     TAGS: 'ExerciseQuestion',

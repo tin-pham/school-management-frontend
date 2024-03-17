@@ -5,12 +5,13 @@ import { QuestionListModule } from '@features/question/container/question-list/q
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
 import { StudentQuestionListModule } from '@features/question/container/student-question-list/student-question-list.module';
 import { ExerciseDetailHeaderModule } from '@features/exercise/container/exercise-detail-header/exercise-detail-header.module';
+import { StudentExerciseService } from '@core/services/api/student-exercise.service';
 import { ExerciseDetailComponent } from './exercise-detail.component';
 import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
 
 @NgModule({
   declarations: [ExerciseDetailComponent],
   imports: [ExerciseDetailRoutingModule, SharedModule, QuestionListModule, StudentQuestionListModule, ExerciseDetailHeaderModule],
-  providers: [ExerciseService, ExerciseQuestionService],
+  providers: [ExerciseService, ExerciseQuestionService, StudentExerciseService],
 })
 export class ExerciseDetailModule {}
