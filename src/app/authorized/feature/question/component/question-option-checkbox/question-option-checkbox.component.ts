@@ -8,16 +8,15 @@ export enum IQuestionOptionStatus {
 }
 
 @Component({
-  selector: 'app-question-option',
-  styleUrls: ['question-option.component.scss'],
-  templateUrl: 'question-option.component.html',
+  selector: 'app-question-option-checkbox',
+  styleUrls: ['question-option-checkbox.component.scss'],
+  templateUrl: 'question-option-checkbox.component.html',
 })
-export class QuestionOptionComponent {
+export class QuestionOptionCheckboxComponent {
   @Input() status?: IQuestionOptionStatus;
   @Input() name: string;
   @Input() label: string;
   @Input() showClose: boolean = true;
-  @Input() isMultipleChoice: boolean;
   @Input() disabled: boolean;
 
   @Input() selected: boolean;
@@ -34,12 +33,6 @@ export class QuestionOptionComponent {
   }
 
   checkboxClick($event) {
-    if (this.disabled) {
-      $event.preventDefault();
-    }
-  }
-
-  radioClick($event) {
     if (this.disabled) {
       $event.preventDefault();
     }

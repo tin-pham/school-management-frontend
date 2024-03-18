@@ -7,7 +7,8 @@
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"
     (onCheckBoxChange)="checkBoxChecked($event, question.id)"
-    *ngFor="let question of questions"
+    *ngFor="let question of questions; let i = index"
+    [questionNumber]="i + 1"
     [question]="question"></app-question-item>
 
   <mat-paginator

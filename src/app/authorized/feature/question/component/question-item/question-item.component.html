@@ -1,7 +1,7 @@
 <div class="question-item">
   <div class="question-header">
     <div class="question-text">
-      {{ question.text }}
+      {{ questionNumber }}. {{ question.text }}
       <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" (change)="checkBoxChange($event)"> </mat-checkbox>
     </div>
     <div class="icons">

@@ -48,6 +48,33 @@
 
 .exercise-secondary {
   font-size: 20px;
+  display: flex;
+  justify-content: space-between; /* Keeps the left and right sides apart */
+  align-items: center; /* Vertically centers the content */
+  padding: 1rem; /* Adds some space inside the container */
+  background-color: #f8f9fa; /* Light background for distinction */
+  border-top: 1px solid #e9ecef; /* Subtle separator from the content above */
+  font-size: 1rem; /* Suitable font size for readability */
+  color: #495057; /* Dark color for text for readability */
+}
+
+.deadline,
+.point {
+  background-color: #e9ecef; /* Light background for these elements */
+  padding: 0.5rem 1rem; /* Padding for a better visual appearance */
+  border-radius: 0.25rem; /* Rounded corners for a modern look */
+  font-weight: 500; /* Makes the font slightly bolder */
+}
+.countdown {
+  background-color: #28a745; /* Default less urgent color */
+  color: #ffffff; /* White text for better contrast and readability */
+  padding: 0.5rem 1rem; /* Consistent padding */
+  border-radius: 0.25rem; /* Rounded corners */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+.final-minute {
+  background-color: #dc3545; /* Urgent color for final minute */
 }
 
 /* Button styles might need to be adjusted within their component styles for consistency */

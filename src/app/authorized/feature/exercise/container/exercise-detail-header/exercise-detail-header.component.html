@@ -1,4 +1,4 @@
-<div>
+<div class="exercise-detail-header">
   <div class="exercise-header">
     <div class="exercise-title">
       <h1>{{ exercise.name }}</h1>
@@ -13,8 +13,13 @@
   </div>
 
   <div *ngIf="exercise.dueDate" class="exercise-secondary">
-    <p>Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
-    <p>Điểm: {{ exercise.point }}</p>
+    <div>
+      <p class="deadline">Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
+      <p *ngIf="exercise.point" class="point">Điểm: {{ exercise.point }}</p>
+    </div>
+    <div class="countdown" *ngIf="exercise.isStartDoing && isCountdownActive">
+      {{ countdown }}
+    </div>
   </div>
 
   <div *ngIf="!isStudent && !exercise.isActive" class="buttons">

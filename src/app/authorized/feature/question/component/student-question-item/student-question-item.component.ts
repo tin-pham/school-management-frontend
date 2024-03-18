@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   ExerciseQuestionSnapshotGetListDataRO,
   ExerciseQuestionSnapshotGetListOptionRO,
 } from '@shared/models/ro/exercise-question-snapshot.ro';
+import { StudentExerciseSubmitSnapshotQuestionDTO } from '@shared/models/dto/student-exercise.dto';
 import { IQuestionOptionStatus } from '../question-option/question-option.component';
 
 @Component({
@@ -12,6 +13,15 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
 })
 export class StudentQuestionItemComponent {
   @Input() question: ExerciseQuestionSnapshotGetListDataRO;
+  @Input() questionNumber: number;
+  @Input() isSubmitted = false;
+
+  @Input() snapshotQuestion: StudentExerciseSubmitSnapshotQuestionDTO;
+  @Output() snapshotQuestionChange = new EventEmitter<StudentExerciseSubmitSnapshotQuestionDTO>();
+
+  onSnapshotQuestionChange() {
+    this.snapshotQuestionChange.emit(this.snapshotQuestion);
+  }
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
@@ -20,9 +30,6 @@ export class StudentQuestionItemComponent {
   }
 
   getOptionStatus(option: ExerciseQuestionSnapshotGetListOptionRO) {
-    if (option.isCorrect === undefined) {
-      return;
-    }
     if (!option.isCorrect && option.isChosen) {
       return IQuestionOptionStatus.INCORRECT;
     }
@@ -30,5 +37,26 @@ export class StudentQuestionItemComponent {
     if (option.isCorrect && option.isChosen) {
       return IQuestionOptionStatus.CORRECT;
     }
+
+    if (option.isCorrect && !option.isChosen) {
+      return IQuestionOptionStatus.CORRECT;
+    }
+  }
+
+  onOptionChange(optionId: number, isChecked: boolean) {
+    // Checkbox logic
+    if (isChecked) {
+      if (!this.snapshotQuestion.snapshotOptionIds.includes(optionId)) {
+        this.snapshotQuestion.snapshotOptionIds.push(optionId);
+      }
+    } else {
+      this.snapshotQuestion.snapshotOptionIds = this.snapshotQuestion.snapshotOptionIds.filter(id => id !== optionId);
+    }
+    this.onSnapshotQuestionChange();
+  }
+
+  onRadioChange(optionId: number) {
+    this.snapshotQuestion.snapshotOptionIds = [optionId];
+    this.onSnapshotQuestionChange();
   }
 }

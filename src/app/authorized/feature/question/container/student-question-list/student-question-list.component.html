@@ -1,6 +1,11 @@
 <div>
   <mat-divider class="my-3"></mat-divider>
-  <app-student-question-item *ngFor="let question of questions" [question]="question"></app-student-question-item>
+  <app-student-question-item
+    *ngFor="let question of questions; let i = index"
+    [question]="question"
+    [questionNumber]="i + 1"
+    [isSubmitted]="isSubmitted"
+    [(snapshotQuestion)]="studentExerciseSubmitDTO.snapshotQuestions[i]"></app-student-question-item>
 
   <mat-paginator
     *ngIf="totalItems > 0"

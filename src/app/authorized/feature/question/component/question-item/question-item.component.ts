@@ -12,6 +12,7 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
 })
 export class QuestionItemComponent {
   @Input() question: QuestionGetListDataRO;
+  @Input() questionNumber: number;
   @Input() showCheckBox = false;
   @Input() showTrash = true;
   @Input() showEdit = true;

@@ -1,15 +1,25 @@
 <div class="question-item">
   <p class="text">
-    <span>
-      {{ question.text }}
-    </span>
+    <span class="question-number"> {{ questionNumber }} </span>
+    {{ question.text }}
   </p>
-  <app-question-option
-    [showClose]="false"
-    *ngFor="let option of question.options; let i = index"
-    [status]="getOptionStatus(option)"
-    [isMultipleChoice]="question.isMultipleChoice"
-    [disabled]="true"
-    [(selected)]="option.isChosen"
-    [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option>
+
+  <ng-container *ngIf="question.isMultipleChoice">
+    <app-question-option-checkbox
+      *ngFor="let option of question.options; let i = index"
+      [showClose]="false"
+      (selectedChange)="onOptionChange(option.id, $event)"
+      [status]="getOptionStatus(option)"
+      [disabled]="isSubmitted"
+      [(selected)]="option.isChosen"
+      [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option-checkbox>
+  </ng-container>
+
+  <ng-container *ngIf="!question.isMultipleChoice">
+    <app-question-option-radio
+      (valueChange)="onRadioChange($event)"
+      [showClose]="false"
+      [disabled]="isSubmitted"
+      [options]="question.options"></app-question-option-radio>
+  </ng-container>
 </div>

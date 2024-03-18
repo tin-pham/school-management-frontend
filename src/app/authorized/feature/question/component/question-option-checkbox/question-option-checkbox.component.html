@@ -1,0 +1,12 @@
+<li
+  class="question-option"
+  [class.selected]="status === IQuestionOptionStatus.SELECTED"
+  [class.correct]="status === IQuestionOptionStatus.CORRECT"
+  [class.incorrect]="status === IQuestionOptionStatus.INCORRECT">
+  <!-- Material Checkbox -->
+  <mat-checkbox [name]="name" [(ngModel)]="selected" (click)="checkboxClick($event)" (change)="onSelectedChange()">
+    {{ label }}
+  </mat-checkbox>
+
+  <mat-icon *ngIf="showClose" class="close" (click)="removeClick()">close</mat-icon>
+</li>

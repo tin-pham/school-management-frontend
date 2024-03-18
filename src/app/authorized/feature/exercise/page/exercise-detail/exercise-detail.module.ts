@@ -6,12 +6,21 @@ import { ExerciseQuestionService } from '@core/services/api/exercise-question.se
 import { StudentQuestionListModule } from '@features/question/container/student-question-list/student-question-list.module';
 import { ExerciseDetailHeaderModule } from '@features/exercise/container/exercise-detail-header/exercise-detail-header.module';
 import { StudentExerciseService } from '@core/services/api/student-exercise.service';
+import { StudentExerciseGradeService } from '@core/services/api/student-exercise-grade.service';
+import { ExerciseDetailDoneModule } from '@features/exercise/container/exercise-detail-done/exercise-detail-done.module';
 import { ExerciseDetailComponent } from './exercise-detail.component';
 import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
 
 @NgModule({
   declarations: [ExerciseDetailComponent],
-  imports: [ExerciseDetailRoutingModule, SharedModule, QuestionListModule, StudentQuestionListModule, ExerciseDetailHeaderModule],
-  providers: [ExerciseService, ExerciseQuestionService, StudentExerciseService],
+  imports: [
+    ExerciseDetailRoutingModule,
+    SharedModule,
+    QuestionListModule,
+    StudentQuestionListModule,
+    ExerciseDetailHeaderModule,
+    ExerciseDetailDoneModule,
+  ],
+  providers: [ExerciseService, ExerciseQuestionService, StudentExerciseService, StudentExerciseGradeService],
 })
 export class ExerciseDetailModule {}

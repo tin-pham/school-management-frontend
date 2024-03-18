@@ -8,7 +8,7 @@
     [selectedQuestionIds]="selectedQuestionIds"
     [isStudent]="isStudent()"></app-exercise-detail-header>
 
-  <div *ngIf="!isStudent() || isStartDoing()" class="exercise-body">
+  <div *ngIf="!isStudent() || exercise.isStartDoing" class="exercise-body">
     <app-question-list
       *ngIf="!isStudent()"
       #questionList
@@ -20,11 +20,19 @@
       (onEdit)="routeToQuestion($event)"
       [exerciseId]="exerciseId"></app-question-list>
 
-    <app-student-question-list *ngIf="isStudent()" [exerciseId]="exerciseId"></app-student-question-list>
+    <app-student-question-list
+      *ngIf="isStudent() && (!exercise.isSubmitted || exercise.point)"
+      [exerciseId]="exerciseId"
+      [isSubmitted]="exercise.isSubmitted"
+      [(studentExerciseSubmitDTO)]="studentExerciseSubmitDTO"></app-student-question-list>
+
+    <app-exercise-detail-done *ngIf="isStudent() && exercise.isSubmitted && !exercise.point"></app-exercise-detail-done>
   </div>
 
   <div class="exercise-footer">
-    <app-primary-button *ngIf="isStudent() && isStartDoing() && !isSubmitted()" (click)="submitExercise()">Nộp bài</app-primary-button>
-    <app-primary-button *ngIf="isStudent() && !isStartDoing()" (click)="storeStudentExercise()">Bắt đầu làm bài</app-primary-button>
+    <app-primary-button *ngIf="isStudent() && exercise.isStartDoing && !exercise.isSubmitted" (click)="submitExercise()"
+      >Nộp bài</app-primary-button
+    >
+    <app-primary-button *ngIf="isStudent() && !exercise.isStartDoing" (click)="storeStudentExercise()">Bắt đầu làm bài</app-primary-button>
   </div>
 </div>

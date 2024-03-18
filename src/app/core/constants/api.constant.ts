@@ -689,4 +689,16 @@ export const API = {
       OPERATION: 'Get list exercise question snapshot',
     },
   },
+  STUDENT_EXERCISE_GRADE: {
+    TAGS: 'StudentExerciseGrade',
+    CONTROLLER: 'student-exercise-grade',
+    CALCULATE: {
+      ROUTE: '',
+      OPERATION: 'Calculate student exercise grade',
+    },
+    DELETE: {
+      ROUTE: ':id',
+      OPERATION: 'Delete student exercise grade',
+    },
+  },
 };

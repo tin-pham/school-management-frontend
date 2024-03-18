@@ -17,9 +17,14 @@
   }
 
   &-due {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
+    // modern red
+    display: flex;
+    align-items: center;
+    background: #dc3545;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 5px;
   }
 }
 
@@ -28,23 +33,45 @@
   justify-content: center;
   align-items: center;
   margin-left: auto;
+  font-size: 20px;
 }
 
-.late-icon {
-  color: orange;
+.exercise-time {
+  background: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
-.late {
-  color: orange;
+.exercise-doing {
+  // modern blue
+  background: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
-.missing-icon {
-  color: red;
-}
-.missing {
-  color: red;
-}
+
 .completed {
   opacity: 0.5;
 }
 .completed-icon {
   color: green;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-late {
+  // modern orange
+  background: #fd7e14;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
 }

@@ -9,16 +9,21 @@
   <div class="buttons">
     <div *ngIf="exercise.point && isStudent()" class="grade">{{ exercise.point }} Điểm</div>
     <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
-    <div *ngIf="isStudent()" class="d-flex">
-      <span *ngIf="isLate()">
+    <div *ngIf="isStudent()" class="status">
+      <div *ngIf="exercise.dueDate && isStudent() && !isMissing() && !exercise.isSubmitted" class="exercise-time">
+        <mat-icon class="align-middle">access_time</mat-icon>
+        {{ exercise.dueDate | date: 'dd/MM/yyyy' }}
+      </div>
+      <div *ngIf="exercise.isStartDoing && !exercise.isSubmitted && isStudent() && !isMissing()" class="exercise-doing">Đang làm</div>
+      <span *ngIf="isLate()" class="exercise-late">
         <mat-icon class="late-icon">warning</mat-icon>
-        <p class="exercise-due late">Nộp trễ</p>
+        <p>Nộp trễ</p>
       </span>
-      <span *ngIf="isMissing()">
+      <span *ngIf="isMissing()" class="exercise-due">
         <mat-icon class="missing-icon">error_outline</mat-icon>
-        <p class="exercise-due missing">Quên nộp</p>
+        <p>Quên nộp</p>
       </span>
-      <mat-icon *ngIf="exercise.isSubmitted" class="completed-icon">check_circle</mat-icon>
+      <mat-icon *ngIf="exercise.isSubmitted && isStudent() && !isLate()" class="completed-icon">check_circle</mat-icon>
     </div>
   </div>
 </div>

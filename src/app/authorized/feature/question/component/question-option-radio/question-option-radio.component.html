@@ -1,0 +1,11 @@
+<mat-radio-group [name]="name" (click)="radioClick($event)" (change)="onValueChange($event)" *ngFor="let option of options; let i = index">
+  <mat-radio-button
+    [value]="option.id"
+    [checked]="option.isChosen"
+    class="question-option"
+    [class.correct]="getOptionStatus(option) === IQuestionOptionStatus.CORRECT"
+    [class.incorrect]="getOptionStatus(option) === IQuestionOptionStatus.INCORRECT">
+    {{ getOptionLabel(i) }}. {{ option.text }}
+    <mat-icon *ngIf="showClose" class="close" (click)="removeClick()">close</mat-icon>
+  </mat-radio-button>
+</mat-radio-group>

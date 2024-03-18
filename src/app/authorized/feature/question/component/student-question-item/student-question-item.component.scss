@@ -19,7 +19,17 @@
 .text {
   font-size: 25px;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   width: 100%;
+  .question-number {
+    background: black;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

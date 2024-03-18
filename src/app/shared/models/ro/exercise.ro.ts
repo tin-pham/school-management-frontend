@@ -23,6 +23,9 @@ export class ExerciseGetListDataRO {
   isSubmissionLate?: boolean;
   isActive: number;
   activatedAt: Date;
+  studentExerciseId: number;
+  isStartDoing: boolean;
+  startDoingAt: Date;
   time: number;
   dueDate: Date;
   studentExerciseGradeId: number;
@@ -46,11 +49,14 @@ export class ExerciseGetDetailRO {
   dueDate: Date;
   studentId: string;
   studentExerciseId: number;
+  isStartDoing: boolean;
+  startDoingAt: Date;
   isSubmitted: boolean;
   point?: number;
   totalCount?: number;
   correctCount?: number;
   studentExerciseGradeId: number;
+  instantMark: boolean;
 }
 
 export class ExerciseUpdateRO {
