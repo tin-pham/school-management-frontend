@@ -30,6 +30,9 @@ export class StudentQuestionItemComponent {
   }
 
   getOptionStatus(option: ExerciseQuestionSnapshotGetListOptionRO) {
+    if (option.isCorrect === undefined) {
+      return;
+    }
     if (!option.isCorrect && option.isChosen) {
       return IQuestionOptionStatus.INCORRECT;
     }

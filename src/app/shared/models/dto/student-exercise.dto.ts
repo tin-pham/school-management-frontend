@@ -1,3 +1,5 @@
+import { PaginateDTO } from './paginate.dto';
+
 export class StudentExerciseStoreDTO {
   exerciseId: number;
 }
@@ -9,4 +11,8 @@ export class StudentExerciseSubmitSnapshotQuestionDTO {
 
 export class StudentExerciseSubmitDTO {
   snapshotQuestions: StudentExerciseSubmitSnapshotQuestionDTO[];
+}
+
+export class StudentExerciseGetListSubmittedDTO extends PaginateDTO {
+  exerciseId: number;
 }

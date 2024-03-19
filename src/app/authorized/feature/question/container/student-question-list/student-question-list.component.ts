@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angu
 import { PageEvent } from '@angular/material/paginator';
 import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
 import { ExerciseQuestionSnapshotGetListDTO } from '@shared/models/dto/exercise-question-snapshot.dto';
-import { QuestionGetListDTO, QuestionStudentGetListDTO } from '@shared/models/dto/question.dto';
+import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { StudentExerciseSubmitDTO, StudentExerciseSubmitSnapshotQuestionDTO } from '@shared/models/dto/student-exercise.dto';
 import { ExerciseQuestionSnapshotGetListDataRO } from '@shared/models/ro/exercise-question-snapshot.ro';
 
@@ -67,7 +67,7 @@ export class StudentQuestionListComponent {
   }
 
   getDto() {
-    const dto = new QuestionStudentGetListDTO({
+    const dto = new ExerciseQuestionSnapshotGetListDTO({
       limit: this.itemsPerPage,
       page: this.page,
       exerciseId: this.exerciseId,

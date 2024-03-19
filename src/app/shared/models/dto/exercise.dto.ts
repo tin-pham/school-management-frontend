@@ -13,6 +13,9 @@ export class ExerciseGetListDTO extends PaginateDTO {
   lessonId?: number;
   isActive?: boolean;
   includeGrade?: boolean;
+  isSubmitted?: boolean;
+  isMissing?: boolean;
+  isLate?: boolean;
 
   constructor(data?: ExerciseGetListDTO) {
     super(data);

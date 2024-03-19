@@ -8,6 +8,7 @@ import { ExerciseDetailHeaderModule } from '@features/exercise/container/exercis
 import { StudentExerciseService } from '@core/services/api/student-exercise.service';
 import { StudentExerciseGradeService } from '@core/services/api/student-exercise-grade.service';
 import { ExerciseDetailDoneModule } from '@features/exercise/container/exercise-detail-done/exercise-detail-done.module';
+import { ExerciseSubmittedListModule } from '@features/exercise/container/exercise-submitted-list/exercise-submitted-list.module';
 import { ExerciseDetailComponent } from './exercise-detail.component';
 import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
 
@@ -20,6 +21,7 @@ import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
     StudentQuestionListModule,
     ExerciseDetailHeaderModule,
     ExerciseDetailDoneModule,
+    ExerciseSubmittedListModule,
   ],
   providers: [ExerciseService, ExerciseQuestionService, StudentExerciseService, StudentExerciseGradeService],
 })

@@ -1,5 +1,6 @@
 <div *ngIf="exercise">
   <app-exercise-detail-header
+    #exerciseDetailHeader
     (onRemoveClicked)="removeQuestionsFromExercise()"
     (onActivateClicked)="activateExercise()"
     [totalItems]="totalItems"
@@ -21,12 +22,17 @@
       [exerciseId]="exerciseId"></app-question-list>
 
     <app-student-question-list
+      #studentQuestionList
       *ngIf="isStudent() && (!exercise.isSubmitted || exercise.point)"
       [exerciseId]="exerciseId"
       [isSubmitted]="exercise.isSubmitted"
       [(studentExerciseSubmitDTO)]="studentExerciseSubmitDTO"></app-student-question-list>
 
     <app-exercise-detail-done *ngIf="isStudent() && exercise.isSubmitted && !exercise.point"></app-exercise-detail-done>
+  </div>
+
+  <div *ngIf="!isStudent()" class="exercise-submitteed-list">
+    <app-exercise-submitted-list [exerciseId]="exerciseId"></app-exercise-submitted-list>
   </div>
 
   <div class="exercise-footer">

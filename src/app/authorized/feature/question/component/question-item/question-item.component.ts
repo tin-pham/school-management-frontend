@@ -23,6 +23,7 @@ export class QuestionItemComponent {
 
   @Output() onDeleteClick = new EventEmitter<number>();
   deleteClick() {
+    event.stopPropagation();
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

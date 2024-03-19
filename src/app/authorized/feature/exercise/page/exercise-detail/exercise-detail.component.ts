@@ -26,8 +26,8 @@ export class ExerciseDetailComponent implements OnInit {
   exerciseId: number;
   selectedQuestionIds: number[] = [];
   showTrash = false;
-  @ViewChild('questionList') questionListComponent: QuestionListComponent;
   @ViewChild('exerciseDetailHeader') exerciseDetailHeader: ExerciseDetailHeaderComponent;
+  @ViewChild('questionList') questionListComponent: QuestionListComponent;
   @ViewChild('studentQuestionList') studentQuestionList: StudentQuestionListComponent;
   totalItems = 0;
 
@@ -100,11 +100,30 @@ export class ExerciseDetailComponent implements OnInit {
         return;
       }
 
-      this._studentExerciseService.submit(this.exercise.studentExerciseId, this.studentExerciseSubmitDTO).subscribe(() => {
-        this.toast.success('Đã nộp bài');
-        this.exerciseDetailHeader.stopCountdown();
-        this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
-      });
+      this._studentExerciseService
+        .submit(this.exercise.studentExerciseId, this.studentExerciseSubmitDTO)
+        .pipe(
+          tap(() => {
+            if (this.exercise.instantMark) {
+              this._studentExerciseGradeService
+                .calculate({
+                  studentExerciseId: this.exercise.studentExerciseId,
+                  basePoint: 100,
+                })
+                .subscribe(response => {
+                  this.exercise.point = response.point;
+                  this.exercise.totalCount = response.totalCount;
+                  this.exercise.correctCount = response.correctCount;
+                });
+            }
+          }),
+        )
+        .subscribe(() => {
+          this.toast.success('Đã nộp bài');
+          this.exerciseDetailHeader.stopCountdown();
+          this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
+          this.exercise.isSubmitted = true;
+        });
     });
   }
 
@@ -124,26 +143,11 @@ export class ExerciseDetailComponent implements OnInit {
         .store({
           exerciseId: this.exerciseId,
         })
-        .pipe(
-          tap(() => {
-            if (this.exercise.instantMark) {
-              this._studentExerciseGradeService
-                .calculate({
-                  studentExerciseId: this.exercise.studentExerciseId,
-                  basePoint: 100,
-                })
-                .subscribe(response => {
-                  this.exercise.point = response.point;
-                  this.exercise.totalCount = response.totalCount;
-                  this.exercise.correctCount = response.correctCount;
-                });
-            }
-          }),
-        )
         .subscribe(response => {
           this.toast.success('Bắt đầu làm bài.');
           this.exercise.studentExerciseId = response.id;
           this.exercise.isStartDoing = true;
+          this.exercise.startDoingAt = response.startDoingAt;
           this.exerciseDetailHeader.startCountdown();
         });
     });

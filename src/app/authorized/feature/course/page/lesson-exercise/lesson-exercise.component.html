@@ -1,4 +1,6 @@
 <div>
+  <app-exercise-filter-student *ngIf="isStudent()" (onFilter)="applyFilter($event)"></app-exercise-filter-student>
+  <app-exercise-filter-teacher *ngIf="!isStudent()" (onFilter)="applyFilter($event)"></app-exercise-filter-teacher>
   <app-exercise-item
     [routerLink]="['/exercise', exercise.id]"
     (onDelete)="delete(exercise.id)"

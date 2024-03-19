@@ -1,0 +1,77 @@
+.exercise {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  &-name {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-due {
+    // modern red
+    display: flex;
+    align-items: center;
+    background: #dc3545;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  font-size: 20px;
+}
+
+.exercise-time {
+  background: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.exercise-doing {
+  // modern blue
+  background: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.completed {
+  opacity: 0.5;
+}
+.completed-icon {
+  color: green;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-late {
+  // modern orange
+  background: #fd7e14;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}

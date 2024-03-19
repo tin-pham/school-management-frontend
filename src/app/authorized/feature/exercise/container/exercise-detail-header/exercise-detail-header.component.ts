@@ -58,6 +58,7 @@ export class ExerciseDetailHeaderComponent {
     }
 
     this.isCountdownActive = true; // Set to true when countdown starts
+    console.log(this.exercise.startDoingAt);
     const startTime = new Date(this.exercise.startDoingAt).getTime();
     const duration = this.exercise.time * 60000; // Convert minutes to milliseconds
     const endTime = startTime + duration;

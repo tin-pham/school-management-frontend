@@ -1,0 +1,30 @@
+<div class="exercise-card">
+  <div class="exercise-info">
+    <img
+      class="user-avatar"
+      [src]="exercise.userImageUrl || 'http://www.gravatar.com/avatar/placeholder?d=identicon'"
+      [alt]="exercise.userDisplayName" />
+    <span class="user-name">{{ exercise.userDisplayName }}</span>
+  </div>
+
+  <div class="submission-details">
+    <p>
+      <mat-icon class="icon-schedule">schedule</mat-icon>
+      Nộp vào: {{ exercise.submittedAt | date: 'dd/MM/yyyy' }}
+    </p>
+    <!-- <p *ngIf="exercise.isLate" class="late-submission">Late</p> -->
+  </div>
+
+  <div class="grading-info">
+    <p class="point">
+      <mat-icon class="icon-grade">grade</mat-icon>
+      Điểm:
+      <span class="point-value"> {{ exercise.point }} </span>
+    </p>
+    <p class="correct-count">
+      <mat-icon class="icon-check">check</mat-icon>
+      Câu trả lời:
+      <span class="correct-count-value"> {{ exercise.correctCount }}/{{ exercise.totalCount }} </span>
+    </p>
+  </div>
+</div>

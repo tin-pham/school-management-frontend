@@ -59,6 +59,14 @@ export class LessonExerciseComponent implements OnInit {
     return this._authService.isStudent();
   }
 
+  applyFilter(dto: ExerciseGetListDTO) {
+    this.page = 1;
+    this.loadExercises({
+      ...this.getDto(),
+      ...dto,
+    });
+  }
+
   getDto() {
     const exerciseGetListDto = new ExerciseGetListDTO({
       limit: this.itemsPerPage,

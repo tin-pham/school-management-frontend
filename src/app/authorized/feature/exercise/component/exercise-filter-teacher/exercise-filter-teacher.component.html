@@ -1,0 +1,6 @@
+<mat-form-field>
+  <mat-label>Lọc</mat-label>
+  <mat-select (selectionChange)="filter($event)">
+    <mat-option *ngFor="let option of filterOptions" [value]="option">{{ option.label }}</mat-option>
+  </mat-select>
+</mat-form-field>

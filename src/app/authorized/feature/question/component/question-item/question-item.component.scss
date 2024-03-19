@@ -40,3 +40,20 @@
   background-color: rgba(0, 0, 0, 0.04); /* Subtle background highlight on hover */
   border-radius: 50%; /* Round background */
 }
+.question-text {
+  font-size: 25px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  .question-number {
+    background: black;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
