@@ -29,4 +29,9 @@ export class StudentItemComponent {
       this.onDelete.emit();
     });
   }
+
+  @Output() onEdit = new EventEmitter();
+  edit() {
+    this.onEdit.emit();
+  }
 }

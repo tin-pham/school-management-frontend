@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StudentGetListDTO, StudentStoreDTO, StudentUpdateDTO } from '@shared/models/dto/student.dto';
 import { Observable } from 'rxjs';
-import { StudentGetListRO, StudentStoreRO, StudentUpdateRO } from '@shared/models/ro/student.ro';
+import { StudentGetDetailRO, StudentGetListRO, StudentStoreRO, StudentUpdateRO } from '@shared/models/ro/student.ro';
 import { API } from '@core/constants/api.constant';
 import { BaseService } from './base.service';
 
@@ -15,7 +15,7 @@ export class StudentService extends BaseService {
     return this.get(API.STUDENT.CONTROLLER + '/' + API.STUDENT.GET_LIST.ROUTE, dto);
   }
 
-  getDetail(id: string): Observable<StudentGetListRO> {
+  getDetail(id: string): Observable<StudentGetDetailRO> {
     return this.get(API.STUDENT.CONTROLLER + '/' + API.STUDENT.GET_DETAIL.ROUTE.replace(':id', id.toString()));
   }
 

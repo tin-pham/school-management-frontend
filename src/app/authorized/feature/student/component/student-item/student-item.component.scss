@@ -53,9 +53,15 @@ mat-icon {
   margin-right: 8px;
 }
 
-.delete {
+.button {
   // moderrn red
-  color: #e74c3c;
+  .delete {
+    color: #e74c3c;
+  }
+
+  .edit {
+    color: #3498db;
+  }
   position: absolute;
   top: 8px;
   right: 8px;

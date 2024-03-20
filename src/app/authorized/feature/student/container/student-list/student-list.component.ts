@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { StudentService } from '@core/services/api/student.service';
 import { StudentGetListDTO } from '@shared/models/dto/student.dto';
 import { StudentGetListDataRO } from '@shared/models/ro/student.ro';
@@ -20,6 +21,7 @@ export class StudentListComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     private toast: ToastrService,
+    private router: Router,
     private _studentService: StudentService,
   ) {}
 
@@ -55,5 +57,9 @@ export class StudentListComponent implements OnInit {
         page: this.page,
       });
     });
+  }
+
+  routeToEdit(id: string) {
+    this.router.navigate(['student', id, 'edit']);
   }
 }

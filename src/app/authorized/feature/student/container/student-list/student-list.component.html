@@ -1,5 +1,9 @@
 <div class="student-list">
-  <app-student-item *ngFor="let student of students" [student]="student" (onDelete)="deleteStudent(student.id)"></app-student-item>
+  <app-student-item
+    *ngFor="let student of students"
+    [student]="student"
+    (onDelete)="deleteStudent(student.id)"
+    (onEdit)="routeToEdit(student.id)"></app-student-item>
 </div>
 
 <mat-paginator

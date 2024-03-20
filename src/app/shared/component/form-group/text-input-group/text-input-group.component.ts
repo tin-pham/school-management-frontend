@@ -9,6 +9,7 @@ export class TextInputGroupComponent {
   @Input() name: string;
   @Input() label: string;
   @Input() value: string;
+  @Input() disabled: boolean;
   @Input() type = 'text';
   @Input() required = false;
   @Output() valueChange = new EventEmitter<string>();
