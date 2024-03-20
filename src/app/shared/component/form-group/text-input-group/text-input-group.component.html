@@ -2,7 +2,7 @@
   <label [for]="name" class="label form-label" [class.asterix]="required">{{ label }}</label>
   <input
     spellcheck="false"
-    type="text"
+    [type]="type"
     [id]="name"
     [name]="name"
     [(ngModel)]="value"

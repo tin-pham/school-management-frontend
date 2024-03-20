@@ -42,7 +42,7 @@ export class BaseService {
     return this.http.get<T>(this.BASE_URL + url, { params, headers }).pipe(catchError(this.handleError.bind(this)));
   }
 
-  protected patch<T>(url: string, id: number, body?: any) {
+  protected patch<T>(url: string, id: any, body?: any) {
     const headers = this.getHeaders();
     return this.http
       .patch<T>(this.BASE_URL + url.replace(':id', id.toString()), body, { headers })

@@ -1,0 +1,10 @@
+<h1 class="mb-3">Tạo học sinh</h1>
+<form>
+  <app-text-input-group name="displayName" [required]="true" label="Tên học sinh" [(value)]="dto.displayName"></app-text-input-group>
+  <app-text-input-group name="password" [required]="true" type="password" label="Mật khẩu" [(value)]="dto.password"></app-text-input-group>
+  <app-text-input-group name="username" [required]="true" label="Tên đăng nhập" [(value)]="dto.username"></app-text-input-group>
+  <app-text-input-group name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
+  <app-text-input-group name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
+
+  <app-primary-button (click)="create()">Tạo</app-primary-button>
+</form>

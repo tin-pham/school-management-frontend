@@ -1,0 +1,47 @@
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { StudentService } from '@core/services/api/student.service';
+import { StudentGetListDTO } from '@shared/models/dto/student.dto';
+import { StudentGetListDataRO } from '@shared/models/ro/student.ro';
+
+@Component({
+  selector: 'app-student-list',
+  styleUrls: ['student-list.component.scss'],
+  templateUrl: 'student-list.component.html',
+})
+export class StudentListComponent implements OnInit {
+  students: StudentGetListDataRO[] = [];
+
+  itemsPerPage = 5;
+  page = 1;
+  totalItems = 0;
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    private _studentService: StudentService,
+  ) {}
+
+  ngOnInit() {
+    this.loadStudents({
+      limit: this.itemsPerPage,
+      page: this.page,
+    });
+  }
+
+  handlePageChange(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.itemsPerPage = event.pageSize;
+    this.loadStudents({
+      limit: this.itemsPerPage,
+      page: this.page,
+    });
+  }
+
+  loadStudents(dto: StudentGetListDTO) {
+    this._studentService.getList(dto).subscribe(response => {
+      this.totalItems = response.meta.totalItems;
+      this.students = response.data;
+      this.cd.markForCheck(); // Prefer markForCheck over detectChanges for performance
+    });
+  }
+}

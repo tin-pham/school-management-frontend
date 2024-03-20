@@ -1,0 +1,11 @@
+<div class="student-list">
+  <app-student-item *ngFor="let student of students" [student]="student"></app-student-item>
+</div>
+
+<mat-paginator
+  *ngIf="totalItems > 0"
+  [pageSizeOptions]="[5, 10]"
+  [pageIndex]="page - 1"
+  [pageSize]="itemsPerPage"
+  [length]="totalItems"
+  (page)="handlePageChange($event)"></mat-paginator>
