@@ -2,7 +2,7 @@
   <div class="row">
     <app-course-card
       class="col-6 col-md-4"
-      (onAssignmentClick)="routeToAssignment(course.id)"
+      (onAssignmentClick)="assignmentClick(course.id)"
       (onDelete)="delete(course.id)"
       (onRemove)="remove(course.id)"
       *ngFor="let course of courses"

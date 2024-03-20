@@ -1,0 +1,68 @@
+.teacher-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-item div:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.teacher-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 16px;
+  object-fit: cover;
+}
+
+.teacher-item p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.phone,
+.email,
+.username {
+  display: flex;
+  align-items: center;
+}
+
+.phone span,
+.email span,
+.username span {
+  margin-left: 4px;
+  font-weight: 400;
+  color: #666;
+}
+
+mat-icon {
+  font-size: 20px;
+  color: #666;
+  margin-right: 8px;
+}
+
+.button {
+  // moderrn red
+  .delete {
+    color: #e74c3c;
+  }
+
+  .edit {
+    color: #3498db;
+  }
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}

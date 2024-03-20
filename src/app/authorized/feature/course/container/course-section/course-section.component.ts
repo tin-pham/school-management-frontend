@@ -16,6 +16,8 @@ export class CourseSectionComponent implements OnInit {
   lessonItems: IBasicListItem[];
   courseId: number;
 
+  @Input() showIcons: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,

@@ -29,7 +29,8 @@ export class CourseCardsComponent {
     this.onRemove.emit(courseId);
   }
 
-  routeToAssignment(courseId: number) {
+  @Output() onAssignmentClick = new EventEmitter();
+  assignmentClick(courseId: number) {
     this.router.navigate(['course', courseId, 'assignment']);
   }
 

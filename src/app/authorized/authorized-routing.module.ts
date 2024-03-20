@@ -70,6 +70,11 @@ const routes: Routes = [
         loadChildren: () => import('./feature/question/question.module').then(m => m.QuestionModule),
         canActivate: [roleGuard([ROLE.TEACHER])],
       },
+      {
+        path: 'teacher',
+        loadChildren: () => import('./feature/teacher/teacher.module').then(m => m.TeacherModule),
+        canActivate: [roleGuard([ROLE.TEACHER])],
+      },
     ],
   },
 ];

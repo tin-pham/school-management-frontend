@@ -13,6 +13,7 @@ export class CourseLessonDetailComponent implements OnInit {
   navLinks: any[];
   activeLinkIndex = -1;
   basePath: string;
+  courseId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class CourseLessonDetailComponent implements OnInit {
 
   ngOnInit() {
     const lessonId = +this.route.snapshot.params['lessonId'];
+    this.courseId = +this.route.snapshot.params['id'];
     this._lessonService.getDetail(lessonId).subscribe(data => (this.lesson = data));
 
     this.router.events.subscribe(() => {

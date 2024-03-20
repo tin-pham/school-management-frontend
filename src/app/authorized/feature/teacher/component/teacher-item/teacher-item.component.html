@@ -1,0 +1,30 @@
+<div class="teacher-item">
+  <div>
+    <img [src]="teacher.userImageUrl || 'http://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon'" />
+
+    <p>{{ teacher.displayName }}</p>
+  </div>
+
+  <div class="phone">
+    <mat-icon>phone</mat-icon>
+    SĐT:
+    <span>{{ teacher.phone }}</span>
+  </div>
+
+  <div class="email">
+    <mat-icon>email</mat-icon>
+    Email:
+    <span>{{ teacher.email }}</span>
+  </div>
+
+  <div class="username">
+    <mat-icon>person</mat-icon>
+    Username:
+    <span>{{ teacher.username }}</span>
+  </div>
+
+  <div class="button">
+    <mat-icon (click)="edit()" class="edit">edit</mat-icon>
+    <mat-icon (click)="delete()" class="delete">delete</mat-icon>
+  </div>
+</div>

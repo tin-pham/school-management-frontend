@@ -25,3 +25,5 @@ export class CourseUpdateDTO {
   levelId: number;
   hours?: number;
 }
+
+export class CourseTeacherGetListDTO extends PaginateDTO {}

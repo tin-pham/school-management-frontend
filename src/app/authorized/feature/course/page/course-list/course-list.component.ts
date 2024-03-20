@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { CategoryService } from '@core/services/api/category.service';
 import { CourseService } from '@core/services/api/course.service';
@@ -20,11 +21,12 @@ export class CourseListComponent implements OnInit, OnDestroy {
   uncategorizedCourses: CourseGetListDataRO[] = [];
 
   courseCardOption: IImageCardOption = {
-    haveDelete: true,
+    haveDelete: false,
   };
 
   constructor(
     private toast: ToastrService,
+    private router: Router,
     private _categoryService: CategoryService,
     private _courseService: CourseService,
     private _authService: AuthService,
@@ -76,5 +78,9 @@ export class CourseListComponent implements OnInit, OnDestroy {
       this.toast.success('Xóa khóa học thành công');
       this.uncategorizedCourses = this.uncategorizedCourses.filter(course => course.id !== response.id);
     });
+  }
+
+  routeToCreateCategory() {
+    this.router.navigate(['category', 'create']);
   }
 }

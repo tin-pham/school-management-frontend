@@ -12,7 +12,11 @@ export class CourseDetailHeaderComponent {
 
   constructor(private _authService: AuthService) {}
 
-  isStudent() {
+  get isStudent() {
     return this._authService.isStudent();
+  }
+
+  get isYourCourse() {
+    return this.course.createdBy === this._authService.getUserId();
   }
 }

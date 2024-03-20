@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '@core/services/api/auth.service';
 import { SectionService } from '@core/services/api/section.service';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
@@ -10,22 +9,20 @@ import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
   templateUrl: 'course-section-list.component.html',
 })
 export class CourseSectionListComponent implements OnInit {
+  @Input() courseId: number;
+  @Input() courseCreatedById: number;
+
   sections: SectionGetListDataRO[];
-  courseId: string;
 
   constructor(
-    private route: ActivatedRoute,
     private _sectionService: SectionService,
     private _authService: AuthService,
   ) {}
 
   ngOnInit() {
-    const courseId = +this.route.snapshot.paramMap.get('id');
-    this.courseId = courseId.toString();
-
     this._sectionService
       .getList({
-        courseId,
+        courseId: this.courseId,
         withLesson: true,
       })
       .subscribe({
@@ -42,7 +39,11 @@ export class CourseSectionListComponent implements OnInit {
     }
   }
 
-  isStudent() {
+  get isStudent() {
     return this._authService.isStudent();
+  }
+
+  get isYourCourse() {
+    return this.courseCreatedById === this._authService.getUserId();
   }
 }

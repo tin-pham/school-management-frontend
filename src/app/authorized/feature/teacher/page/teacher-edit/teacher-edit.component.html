@@ -1,0 +1,21 @@
+<form>
+  <h1>Cập nhật thông tin học sinh</h1>
+  <app-text-input-group name="displayName" [required]="true" label="Tên học sinh" [(value)]="dto.displayName"></app-text-input-group>
+  <app-text-input-group
+    name="password"
+    [required]="true"
+    type="password"
+    label="Mật khẩu mới"
+    [(value)]="dto.password"></app-text-input-group>
+  <app-text-input-group
+    [disabled]="confirmPasswordRequired"
+    name="confirmPassword"
+    [required]="true"
+    type="password"
+    label="Nhập lại mật khẩu"
+    [(value)]="confirmPassword"></app-text-input-group>
+  <app-text-input-group name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
+  <app-text-input-group name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
+
+  <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+</form>

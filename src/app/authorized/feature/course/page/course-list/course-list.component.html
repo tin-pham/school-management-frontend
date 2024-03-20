@@ -1,3 +1,8 @@
+<div class="header">
+  <h1>Khóa học</h1>
+  <app-secondary-button (click)="routeToCreateCategory()">Tạo danh mục</app-secondary-button>
+</div>
+
 <app-course-group
   (categoryDeleted)="onCategoryDeleted($event)"
   [assignmentIcon]="!isStudent()"

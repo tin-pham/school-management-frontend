@@ -33,6 +33,7 @@ export class CourseGetDetailRO {
   levelId?: number;
   hours?: number;
   lessonCount?: number;
+  createdBy: number;
 }
 
 export class CourseUpdateRO {
@@ -45,4 +46,18 @@ export class CourseUpdateRO {
 
 export class CourseDeleteRO {
   id: number;
+}
+
+export class CourseTeacherGetListDataRO {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+  levelName: string;
+  levelId: number;
+  hours: number;
+}
+
+export class CourseTeacherGetListRO extends PaginateRO<CourseTeacherGetListDataRO> {
+  data: CourseTeacherGetListDataRO[];
 }

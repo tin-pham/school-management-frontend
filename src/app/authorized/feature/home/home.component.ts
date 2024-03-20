@@ -17,13 +17,23 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._courseService
-      .getList({
-        userId: this._authService.getUserId(),
-        withAssignmentCount: true,
-      })
-      .subscribe(response => {
-        this.myCourses = response.data;
-      });
+    if (this.isStudent) {
+      this._courseService
+        .getList({
+          userId: this._authService.getUserId(),
+          withAssignmentCount: true,
+        })
+        .subscribe(response => {
+          this.myCourses = response.data;
+        });
+    }
+  }
+
+  get isStudent() {
+    return this._authService.isStudent();
+  }
+
+  get isTeacher() {
+    return this._authService.isTeacher();
   }
 }

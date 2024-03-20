@@ -1,4 +1,10 @@
 <div>
   <h2>Khóa học của tôi</h2>
-  <app-course-cards [assignmentIcon]="true" [courses]="myCourses"></app-course-cards>
+  <ng-container *ngIf="isStudent">
+    <app-course-cards [assignmentIcon]="true" [courses]="myCourses"></app-course-cards>
+  </ng-container>
+
+  <ng-container *ngIf="isTeacher">
+    <app-teacher-course-list></app-teacher-course-list>
+  </ng-container>
 </div>

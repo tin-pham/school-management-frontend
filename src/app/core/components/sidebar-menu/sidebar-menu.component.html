@@ -7,6 +7,7 @@
     <p class="designation" *ngFor="let role of _user?.roles">{{ role }}</p>
 
     <mat-divider></mat-divider>
+
     <div *ngIf="isAdmin()">
       <button mat-button class="menu-button" routerLink="/dashboard">
         <mat-icon>dashboard</mat-icon>
@@ -16,6 +17,18 @@
       <button mat-button class="menu-button" routerLink="/student">
         <mat-icon>person</mat-icon>
         <span>Học sinh</span>
+      </button>
+
+      <button mat-button class="menu-button" routerLink="/teacher">
+        <mat-icon>school</mat-icon>
+        <span>Giáo viên</span>
+      </button>
+    </div>
+
+    <div *ngIf="isTeacher() || isAdmin()">
+      <button mat-button class="menu-button" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Trang chủ</span>
       </button>
 
       <button mat-button class="menu-button" routerLink="/course">

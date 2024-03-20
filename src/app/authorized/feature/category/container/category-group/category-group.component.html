@@ -5,6 +5,7 @@
 <div *ngIf="coursePaginated">
   <app-course-cards [courses]="coursePaginated.data" [options]="courseCardOption" (onDelete)="delete($event)"></app-course-cards>
   <mat-paginator
+    *ngIf="totalItems > 0"
     [pageSizeOptions]="[5, 10]"
     [pageIndex]="page - 1"
     [pageSize]="itemsPerPage"

@@ -140,6 +140,10 @@ export const API = {
       ROUTE: '',
       OPERATION: 'Get list courses',
     },
+    TEACHER_GET_LIST: {
+      ROUTE: 'teacher',
+      OPERATION: 'Get list courses by teacher',
+    },
     GET_DETAIL: {
       ROUTE: ':id',
       OPERATION: 'Get course detail',

@@ -1,3 +1,14 @@
+.header {
+  background: black;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
 .icon {
   background: black;
   color: white;

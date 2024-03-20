@@ -1,4 +1,4 @@
-<div class="detail">
+<div class="detail" *ngIf="course">
   <app-course-detail-header class="header" [course]="course"></app-course-detail-header>
   <app-course-detail-sidebar
     (onUnRegisterClick)="unRegister()"
@@ -6,5 +6,5 @@
     [isRegisted]="isRegistered"
     class="sidebar"
     [course]="course"></app-course-detail-sidebar>
-  <app-course-section-list class="list"></app-course-section-list>
+  <app-course-section-list class="list" [courseId]="courseId" [courseCreatedById]="course.createdBy"></app-course-section-list>
 </div>

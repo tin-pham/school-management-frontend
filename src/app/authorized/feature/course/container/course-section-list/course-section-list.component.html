@@ -1,8 +1,13 @@
 <div>
-  <app-course-section (onDelete)="onSectionDelete($event)" *ngFor="let section of sections" [section]="section"></app-course-section>
+  <app-course-section
+    [showIcons]="!isStudent && isYourCourse"
+    (onDelete)="onSectionDelete($event)"
+    *ngFor="let section of sections"
+    [section]="section"></app-course-section>
   <app-expansion-list
-    *ngIf="!isStudent()"
+    *ngIf="!isStudent && isYourCourse"
     [addIcon]="true"
     [addRoute]="'/course/' + courseId + '/section'"
+    [showIcons]="!isStudent && isYourCourse"
     [title]="'Thêm học phần'"></app-expansion-list>
 </div>

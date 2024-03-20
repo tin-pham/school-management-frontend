@@ -20,6 +20,8 @@ export class LoginComponent {
         this.router.navigate(['/dashboard']);
       } else if (currentRoles.includes(ROLE.STUDENT)) {
         this.router.navigate(['/home']);
+      } else if (currentRoles.includes(ROLE.TEACHER)) {
+        this.router.navigate(['/home']);
       }
     }
   }

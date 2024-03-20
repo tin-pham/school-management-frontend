@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { CategoryService } from '@core/services/api/category.service';
 import { CategoryStoreDTO } from '@shared/models/dto/category.dto';
 import { ToastrService } from '@shared/toastr/toastr.service';
@@ -15,7 +14,6 @@ export class CategoryCreateFormComponent {
 
   constructor(
     private toast: ToastrService,
-    private router: Router,
     private _categoryService: CategoryService,
   ) {}
 
@@ -28,7 +26,7 @@ export class CategoryCreateFormComponent {
       next: () => {
         this.toast.success('Tạo danh mục thành công');
         this.clearForm();
-        this.router.navigate(['/category']);
+        window.history.back();
       },
     });
   }

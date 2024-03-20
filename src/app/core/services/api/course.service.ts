@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { API } from '@core/constants/api.constant';
-import { CourseGetDetailDTO, CourseGetListDTO, CourseStoreDTO, CourseUpdateDTO } from '@shared/models/dto/course.dto';
+import {
+  CourseGetDetailDTO,
+  CourseGetListDTO,
+  CourseStoreDTO,
+  CourseTeacherGetListDTO,
+  CourseUpdateDTO,
+} from '@shared/models/dto/course.dto';
 import {
   CourseDeleteRO,
   CourseGetDetailRO,
   CourseGetListDataRO,
   CourseGetListRO,
   CourseStoreRO,
+  CourseTeacherGetListRO,
   CourseUpdateRO,
 } from '@shared/models/ro/course.ro';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -26,6 +33,10 @@ export class CourseService extends BaseService {
 
   getList(dto?: CourseGetListDTO): Observable<CourseGetListRO> {
     return this.get(API.COURSE.CONTROLLER + API.COURSE.GET_LIST.ROUTE, dto);
+  }
+
+  teacherGetList(dto?: CourseTeacherGetListDTO): Observable<CourseTeacherGetListRO> {
+    return this.get(API.COURSE.CONTROLLER + '/' + API.COURSE.TEACHER_GET_LIST.ROUTE, dto);
   }
 
   store(dto: CourseStoreDTO): Observable<CourseStoreRO> {
