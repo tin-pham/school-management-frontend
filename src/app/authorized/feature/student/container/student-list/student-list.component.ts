@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { StudentService } from '@core/services/api/student.service';
 import { StudentGetListDTO } from '@shared/models/dto/student.dto';
 import { StudentGetListDataRO } from '@shared/models/ro/student.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-student-list',
@@ -18,6 +19,7 @@ export class StudentListComponent implements OnInit {
 
   constructor(
     private cd: ChangeDetectorRef,
+    private toast: ToastrService,
     private _studentService: StudentService,
   ) {}
 
@@ -42,6 +44,16 @@ export class StudentListComponent implements OnInit {
       this.totalItems = response.meta.totalItems;
       this.students = response.data;
       this.cd.markForCheck(); // Prefer markForCheck over detectChanges for performance
+    });
+  }
+
+  deleteStudent(id: string) {
+    this._studentService.delete(id).subscribe(() => {
+      this.toast.success('Xóa học sinh thành công');
+      this.loadStudents({
+        limit: this.itemsPerPage,
+        page: this.page,
+      });
     });
   }
 }
