@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { CourseService } from '@core/services/api/course.service';
 import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CourseTeacherGetListDTO } from '@shared/models/dto/course.dto';
@@ -25,7 +23,6 @@ export class TeacherCourseListComponent implements OnInit {
   constructor(
     private router: Router,
     private cd: ChangeDetectorRef,
-    private dialog: MatDialog,
     private toast: ToastrService,
     private _courseService: CourseService,
   ) {}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { IBasicListItem } from '../basic-list/basic-list.component';
 
 @Component({
@@ -8,6 +9,27 @@ import { IBasicListItem } from '../basic-list/basic-list.component';
   styleUrls: ['./expansion-list.component.scss'],
   templateUrl: './expansion-list.component.html',
   encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('expandCollapse', [
+      state(
+        'collapsed',
+        style({
+          height: '0',
+          overflow: 'hidden',
+          opacity: '0',
+        }),
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+          overflow: 'auto',
+          opacity: '1',
+        }),
+      ),
+      transition('expanded <=> collapsed', [animate('300ms ease-out')]),
+    ]),
+  ],
 })
 export class ExpansionListComponent {
   @Input() title: string;

@@ -1,10 +1,23 @@
 <div class="detail" *ngIf="course">
-  <app-course-detail-header class="header" [course]="course"></app-course-detail-header>
+  <app-course-detail-header class="header" [course]="course" class="mb-3"></app-course-detail-header>
   <app-course-detail-sidebar
     (onUnRegisterClick)="unRegister()"
     (onRegisterClick)="register()"
     [isRegisted]="isRegistered"
     class="sidebar"
     [course]="course"></app-course-detail-sidebar>
-  <app-course-section-list class="list" [courseId]="courseId" [courseCreatedById]="course.createdBy"></app-course-section-list>
+
+  <div class="outcome mb-3">
+    <h5 class="mb-2">
+      Bạn sẽ học được gì?
+
+      <mat-icon class="add-icon">add</mat-icon>
+    </h5>
+  </div>
+
+  <div class="list">
+    <h5 class="mb-2">Nội dung khóa học</h5>
+    <p class="mb-1">{{ course.sectionCount }} chương • {{ course.lessonCount }} bài học</p>
+    <app-course-section-list [courseId]="courseId" [courseCreatedById]="course.createdBy"></app-course-section-list>
+  </div>
 </div>

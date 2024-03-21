@@ -1,16 +1,43 @@
-<mat-nav-list>
-  <mat-list-item (click)="toggle = !toggle">
-    <div class="item">
-      <a matLine>{{ title }}</a>
-      <span *ngIf="showIcons" class="align-middle">
-        <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon>
-        <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon>
-        <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>
-      </span>
-    </div>
-  </mat-list-item>
+<!-- <mat-nav-list> -->
+<!--   <mat-list-item (click)="toggle = !toggle"> -->
+<!--     <div class="item"> -->
+<!--       <a matLine>{{ title }}</a> -->
+<!--       <span *ngIf="showIcons" class="align-middle"> -->
+<!--         <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon> -->
+<!--         <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon> -->
+<!--         <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon> -->
+<!--       </span> -->
+<!--     </div> -->
+<!--   </mat-list-item> -->
+<!---->
+<!--   <div [hidden]="!toggle"> -->
+<!--     <app-basic-list -->
+<!--       class="item-list" -->
+<!--       (itemClick)="onItemClicked($event)" -->
+<!--       (editClick)="onEditClicked($event)" -->
+<!--       [editIcon]="showIcons" -->
+<!--       [items]="items"></app-basic-list> -->
+<!--   </div> -->
+<!-- </mat-nav-list> -->
 
-  <div [hidden]="!toggle">
+<div>
+  <div class="item" (click)="toggle = !toggle">
+    <a matLine>
+      <span class="me-2" *ngIf="expandIcon">
+        <mat-icon class="align-middle" *ngIf="!toggle">expand_more</mat-icon>
+        <mat-icon class="align-middle" *ngIf="toggle">expand_less</mat-icon>
+      </span>
+      <span class="fw-bold">
+        {{ title }}
+      </span>
+    </a>
+    <span *ngIf="showIcons" class="align-middle">
+      <mat-icon *ngIf="editIcon" [routerLink]="editRoute">edit</mat-icon>
+      <mat-icon *ngIf="deleteIcon" (click)="onDelete()">delete</mat-icon>
+      <mat-icon *ngIf="addIcon" [routerLink]="addRoute">add</mat-icon>
+    </span>
+  </div>
+  <div [@expandCollapse]="toggle ? 'expanded' : 'collapsed'">
     <app-basic-list
       class="item-list"
       (itemClick)="onItemClicked($event)"
@@ -18,4 +45,4 @@
       [editIcon]="showIcons"
       [items]="items"></app-basic-list>
   </div>
-</mat-nav-list>
+</div>

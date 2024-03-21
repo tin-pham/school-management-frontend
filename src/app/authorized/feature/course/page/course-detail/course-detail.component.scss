@@ -5,6 +5,7 @@
   grid-template-columns: 3fr 1fr;
   grid-template-areas:
     'header sidebar'
+    'outcome sidebar'
     'list sidebar';
 
   @media (max-width: 1024px) {
@@ -12,11 +13,16 @@
     grid-template-areas:
       'header'
       'sidebar'
+      'outcome'
       'list';
   }
 
   .header {
     grid-area: header;
+  }
+
+  .outcome {
+    grid-area: outcome;
   }
 
   .sidebar {
@@ -25,5 +31,16 @@
 
   .list {
     grid-area: list;
+  }
+}
+
+.add-icon {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-left: 5px;
+  &:hover {
+    background-color: #2b2b2b;
   }
 }

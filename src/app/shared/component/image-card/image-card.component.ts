@@ -16,8 +16,8 @@ export interface IImageCardOption {
 export class ImageCardComponent {
   @Input() src: string;
   @Input() alt: string;
-  @Input() name: string;
-  @Input() description: string;
+  // @Input() name: string;
+  // @Input() description: string;
   @Input() isEdit: boolean;
   @Input() isCheck: boolean;
   @Input() option: IImageCardOption = {

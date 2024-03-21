@@ -7,16 +7,22 @@
     [option]="option"
     [isEdit]="isEdit"
     [src]="course.imageUrl"
-    [alt]="course.name"
-    [name]="course.name"
-    [description]="course.description"></app-image-card>
+    [alt]="course.name"></app-image-card>
 
   <div class="course-info">
-    <div *ngIf="assignmentIcon" class="assignment-button">
-      <mat-icon class="assignment" role="button" (click)="assignmentClick($event)"
-        >assignment
-        <span *ngIf="course.unsubmittedPendingCount > 0" class="assignment-count">{{ course.unsubmittedPendingCount }}</span>
-      </mat-icon>
+    <div>{{ course.name }}</div>
+    <div>
+      <mat-icon class="me-2">group</mat-icon>
+      {{ course.studentCount }}
     </div>
   </div>
+
+  <!-- <div class="course-info"> -->
+  <!--   <div *ngIf="assignmentIcon" class="assignment-button"> -->
+  <!--     <mat-icon class="assignment" role="button" (click)="assignmentClick($event)" -->
+  <!--       >assignment -->
+  <!--       <span *ngIf="course.unsubmittedPendingCount > 0" class="assignment-count">{{ course.unsubmittedPendingCount }}</span> -->
+  <!--     </mat-icon> -->
+  <!--   </div> -->
+  <!-- </div> -->
 </div>

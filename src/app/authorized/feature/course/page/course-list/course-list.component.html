@@ -11,7 +11,7 @@
 <div>
   <div class="title">
     <h2>Khóa học khác</h2>
-    <mat-icon class="icon" *ngIf="!isStudent()" routerLink="/course/create">library_add</mat-icon>
+    <mat-icon class="icon" *ngIf="!isStudent()" routerLink="/course/create">add</mat-icon>
   </div>
   <app-course-cards
     (onDelete)="delete($event)"

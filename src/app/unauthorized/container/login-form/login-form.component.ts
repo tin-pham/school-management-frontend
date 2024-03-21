@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROLE } from '@core/constants/role.constant';
 import { AuthService } from '@core/services/api/auth.service';
 import { ToastrService } from '@shared/toastr/toastr.service';
-import { finalize, first } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -45,7 +44,7 @@ export class LoginFormComponent {
           this.toast.success('Đăng nhập thành công');
           if (response.user.roles.includes(ROLE.ADMIN)) {
             this.router.navigate(['/dashboard']);
-          } else if (response.user.roles.includes(ROLE.STUDENT)) {
+          } else if (response.user.roles.includes(ROLE.STUDENT) || response.user.roles.includes(ROLE.TEACHER)) {
             this.router.navigate(['/home']);
           }
         },
