@@ -10,6 +10,7 @@ export class TextareaGroupComponent {
   @Input() label: string;
   @Input() value: string;
   @Input() required = false;
+  @Input() icon: string;
   @Output() valueChange = new EventEmitter<string>();
 
   onValueChange(value: string) {

@@ -10,6 +10,7 @@ export class FileInputGroupComponent {
   @Input() label: string;
   @Input() value: File;
   @Input() accept: string;
+  @Input() icon: string;
   @Output() valueChange = new EventEmitter<any>();
 
   onValueChange(event) {

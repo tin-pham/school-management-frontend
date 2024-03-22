@@ -15,6 +15,7 @@ export class SelectListComponent<T> {
   @Input() label: string;
   @Input() name: string;
   @Input() required: boolean;
+  @Input() icon: string;
 
   @Input() selected: T;
   @Output() selectedChange = new EventEmitter<T>();

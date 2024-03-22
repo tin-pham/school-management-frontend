@@ -1,0 +1,8 @@
+.asterix:before {
+  content: '*';
+  color: red;
+  margin-right: 5px;
+  font-size: 30px;
+  // push down
+  vertical-align: -20%;
+}

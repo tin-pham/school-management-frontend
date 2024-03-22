@@ -1,0 +1,12 @@
+<div *ngFor="let lesson of lessons" (click)="routeToLesson(lesson.id)" class="list-item">
+  <span>
+    <mat-icon *ngIf="lesson.videoDuration" class="icon">videocam</mat-icon>
+    <mat-icon *ngIf="!lesson.videoDuration" class="icon">article</mat-icon>
+    {{ lesson.title }}
+    <mat-icon *ngIf="!isStudent" (click)="routeToEdit(lesson.id)" class="icon">edit</mat-icon>
+  </span>
+
+  <span>
+    {{ lesson.videoDuration }}
+  </span>
+</div>

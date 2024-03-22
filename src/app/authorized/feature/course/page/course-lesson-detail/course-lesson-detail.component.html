@@ -1,29 +1,31 @@
 <div *ngIf="lesson" class="lesson-detail">
-  <h1>{{ lesson.title }}</h1>
+  <div class="header">
+    <h1 class="title">
+      <mat-icon class="icon" (click)="goBack()">arrow_back</mat-icon>
+      {{ lesson.title }}
+    </h1>
+  </div>
   <div class="body grid">
-    <div *ngIf="lesson.videoUrl" class="lesson-video grid-item box_1">
+    <div *ngIf="lesson.videoUrl" class="lesson-video grid-item video">
       <app-video class="video" [videoUrl]="lesson.videoUrl"></app-video>
     </div>
 
-    <div class="grid-item box_2">
+    <div class="grid-item info">
       <nav mat-tab-nav-bar class="nav" [tabPanel]="tabPanel">
-        <a
-          mat-tab-link
-          *ngFor="let link of navLinks"
-          [routerLink]="link.link"
-          routerLinkActive
-          #rla="routerLinkActive"
-          [active]="rla.isActive">
+        <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive">
           {{ link.label }}
         </a>
       </nav>
 
       <mat-tab-nav-panel #tabPanel>
-        <router-outlet></router-outlet>
+        <div class="panel">
+          <router-outlet></router-outlet>
+        </div>
       </mat-tab-nav-panel>
     </div>
 
-    <div class="section-list grid-item box_3">
+    <div class="section-list grid-item list">
+      <h4 class="list-title">Nội dung khóa học</h4>
       <app-course-section-list [courseId]="courseId"></app-course-section-list>
     </div>
   </div>

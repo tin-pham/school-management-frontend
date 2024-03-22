@@ -1,10 +1,28 @@
 <h1 class="mb-3">Tạo giáo viên</h1>
 <form>
-  <app-text-input-group name="displayName" [required]="true" label="Tên giáo viên" [(value)]="dto.displayName"></app-text-input-group>
-  <app-text-input-group name="username" [required]="true" label="Tên đăng nhập" [(value)]="dto.username"></app-text-input-group>
-  <app-text-input-group name="password" [required]="true" type="password" label="Mật khẩu" [(value)]="dto.password"></app-text-input-group>
-  <app-text-input-group name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
-  <app-text-input-group name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
+  <app-text-input-group
+    icon="school"
+    name="displayName"
+    [required]="true"
+    label="Tên giáo viên"
+    [(value)]="dto.displayName"></app-text-input-group>
+  <app-text-input-group
+    icon="person"
+    name="username"
+    [required]="true"
+    label="Tên đăng nhập"
+    [(value)]="dto.username"></app-text-input-group>
+  <app-text-input-group
+    icon="lock"
+    name="password"
+    [required]="true"
+    type="password"
+    label="Mật khẩu"
+    [(value)]="dto.password"></app-text-input-group>
+  <app-text-input-group icon="phone" name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
+  <app-text-input-group icon="email" name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
 
-  <app-primary-button (click)="create()">Tạo</app-primary-button>
+  <div class="d-flex">
+    <app-primary-button (click)="create()">Tạo</app-primary-button>
+  </div>
 </form>

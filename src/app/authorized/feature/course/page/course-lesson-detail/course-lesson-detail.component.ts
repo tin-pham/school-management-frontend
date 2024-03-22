@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LessonService } from '@core/services/api/lesson.service';
 import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
+import { Editor } from 'ngx-editor';
 
 @Component({
   selector: 'app-course-lesson-detail',
@@ -14,6 +15,7 @@ export class CourseLessonDetailComponent implements OnInit {
   activeLinkIndex = -1;
   basePath: string;
   courseId: number;
+  editor: Editor;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class CourseLessonDetailComponent implements OnInit {
 
     this.router.events.subscribe(() => {
       const fullPath = this.router.url;
+
       this.activeLinkIndex = this.navLinks.findIndex(navLink => {
         // Construct the full path for each nav link to compare with the current URL
         const navLinkPath = Array.isArray(navLink.link) ? navLink.link.join('/') : navLink.link;
@@ -60,5 +63,9 @@ export class CourseLessonDetailComponent implements OnInit {
         },
       ];
     });
+  }
+
+  goBack() {
+    this.router.navigate(['course', this.courseId]);
   }
 }

@@ -1,0 +1,5 @@
+<div class="mb-3">
+  <p [class.asterix]="required">{{ label }}</p>
+  <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+  <ngx-editor [editor]="editor" [ngModel]="value" (ngModelChange)="onValueChange($event)" [disabled]="false" placeholder=""></ngx-editor>
+</div>

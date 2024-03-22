@@ -3,7 +3,6 @@ import { PaginateRO } from './paginate.ro';
 export class LessonStoreRO {
   id: number;
   title: string;
-  body: string;
   sectionId: number;
   videoUrl: string;
 }
@@ -11,7 +10,6 @@ export class LessonStoreRO {
 export class LessonGetListDataRO {
   id: number;
   title: string;
-  body: string;
 }
 
 export class LessonGetListRO extends PaginateRO<LessonGetListDataRO> {
@@ -21,7 +19,7 @@ export class LessonGetListRO extends PaginateRO<LessonGetListDataRO> {
 export class LessonGetDetailRO {
   id: number;
   title: string;
-  body: string;
+  body: object;
   videoUrl: string;
   sectionId: number;
   courseId: number;

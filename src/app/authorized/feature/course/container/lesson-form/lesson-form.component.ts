@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,16 +6,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['lesson-form.component.scss'],
   templateUrl: 'lesson-form.component.html',
 })
-export class LessonFormComponent {
+export class LessonFormComponent implements OnInit {
   @Input() title: string;
   @Output() titleChange = new EventEmitter<string>();
+
   onTitleChange(title: string) {
     this.titleChange.emit(title);
   }
 
-  @Input() body: string;
-  @Output() bodyChange = new EventEmitter<string>();
-  onBodyChange(text: string) {
+  @Input() body: object;
+  @Output() bodyChange = new EventEmitter<object>();
+  onBodyChange(text: object) {
     this.bodyChange.emit(text);
   }
 

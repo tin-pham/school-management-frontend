@@ -12,6 +12,7 @@ export class TextInputGroupComponent {
   @Input() disabled: boolean;
   @Input() type = 'text';
   @Input() required = false;
+  @Input() icon: string;
   @Output() valueChange = new EventEmitter<string>();
 
   onValueChange(value: string) {

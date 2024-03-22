@@ -11,6 +11,7 @@ export class NumberInputGroupComponent {
   @Input() required = false;
   @Input() min = 0;
   @Input() max = Infinity;
+  @Input() icon: string;
   @Input() value: number;
   @Output() valueChange = new EventEmitter<number>();
 

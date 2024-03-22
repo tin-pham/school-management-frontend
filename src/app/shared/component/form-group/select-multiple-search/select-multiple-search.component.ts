@@ -15,6 +15,7 @@ export class SelectMultipleSearchComponent {
 
   @Input() placeholder: string = 'Search...';
   @Input() selected: number[];
+  @Input() icon: string;
 
   @Output() selectedChange = new EventEmitter<number[]>();
 

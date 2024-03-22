@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { CourseStudentService } from '@core/services/api/course-student.service';
 import { SectionService } from '@core/services/api/section.service';
 import { IBasicListItem } from '@shared/component/basic-list/basic-list.component';
@@ -10,11 +12,35 @@ import { ToastrService } from '@shared/toastr/toastr.service';
   selector: 'app-course-section',
   styleUrls: ['course-section.component.scss'],
   templateUrl: 'course-section.component.html',
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('expandCollapse', [
+      state(
+        'collapsed',
+        style({
+          height: '0',
+          overflow: 'hidden',
+          opacity: '0',
+        }),
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+          overflow: 'auto',
+          opacity: '1',
+        }),
+      ),
+      transition('expanded <=> collapsed', [animate('300ms ease-out')]),
+    ]),
+  ],
 })
 export class CourseSectionComponent implements OnInit {
   private _section: SectionGetListDataRO;
   lessonItems: IBasicListItem[];
   courseId: number;
+
+  toggle = false;
 
   @Input() showIcons: boolean;
 
@@ -23,11 +49,16 @@ export class CourseSectionComponent implements OnInit {
     private router: Router,
     private toast: ToastrService,
     private _sectionService: SectionService,
+    private _authService: AuthService,
     private _courseStudentService: CourseStudentService,
   ) {}
 
   ngOnInit() {
     this.courseId = +this.route.snapshot.params['id'];
+  }
+
+  get isStudent() {
+    return this._authService.isStudent();
   }
 
   @Input()

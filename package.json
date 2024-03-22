@@ -30,6 +30,7 @@
     "bootstrap": "^5.3.2",
     "jwt-decode": "^4.0.0",
     "ng-pick-datetime": "^7.0.0",
+    "ngx-editor": "^17.0.1",
     "ngx-mat-select-search": "^7.0.5",
     "ngx-material-file-input": "^4.0.1",
     "ngx-toastr": "^18.0.0",

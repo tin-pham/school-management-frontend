@@ -9,6 +9,7 @@ export class SectionStoreRO {
 export class SectionGetListDataLessonRO {
   id: number;
   title: string;
+  videoDuration: string;
 }
 
 export class SectionGetListDataRO {

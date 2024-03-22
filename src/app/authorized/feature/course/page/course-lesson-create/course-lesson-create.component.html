@@ -1,3 +1,11 @@
-<div>
-  <app-lesson-form [buttonAction]="'Tạo'" [(title)]="title" [(body)]="body" [(videoUrl)]="videoUrl" (onSubmit)="create()"></app-lesson-form>
+<div class="lesson-create">
+  <div class="header">
+    <h1>Tạo bài học</h1>
+  </div>
+  <app-lesson-form
+    [buttonAction]="'Tạo'"
+    [(title)]="dto.title"
+    [(body)]="dto.body"
+    [(videoUrl)]="dto.videoUrl"
+    (onSubmit)="create()"></app-lesson-form>
 </div>

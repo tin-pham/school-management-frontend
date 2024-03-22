@@ -34,7 +34,6 @@ export class CourseSectionDetailComponent implements OnInit {
     this._lessonService
       .store({
         title: this.lessonCreate,
-        body: 'No content',
         sectionId: this.section.id,
       })
       .subscribe(response => {

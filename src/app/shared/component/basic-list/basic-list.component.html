@@ -6,6 +6,8 @@
 <!-- </mat-list> -->
 
 <div *ngFor="let item of items" (click)="clickItem(item.id)" class="list-item">
-  {{ item.name }}
-  <mat-icon *ngIf="editIcon && !isStudent()" (click)="clickEdit(item.id, $event)">edit</mat-icon>
+  <span>
+    {{ item.name }}
+    <mat-icon *ngIf="editIcon && !isStudent()" (click)="clickEdit(item.id, $event)">edit</mat-icon>
+  </span>
 </div>

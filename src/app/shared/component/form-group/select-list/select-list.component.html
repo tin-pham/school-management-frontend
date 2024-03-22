@@ -1,9 +1,12 @@
-<label [for]="name" class="label form-label" [class.asterix]="required">{{ label }}</label>
-<select
-  [id]="name"
-  class="form-select form-select-lg mb-3"
-  aria-label=".form-select-lg example"
-  [(ngModel)]="selected"
-  (ngModelChange)="onSelectedChange()">
-  <option *ngFor="let option of options" [ngValue]="option.value">{{ option.label | titlecase }}</option>
-</select>
+<div class="mb-3">
+  <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
+  <label [for]="name" class="label form-label" [class.asterix]="required">{{ label }}</label>
+  <select
+    [id]="name"
+    class="form-select form-select-lg mb-3"
+    aria-label=".form-select-lg example"
+    [(ngModel)]="selected"
+    (ngModelChange)="onSelectedChange()">
+    <option *ngFor="let option of options" [ngValue]="option.value">{{ option.label | titlecase }}</option>
+  </select>
+</div>

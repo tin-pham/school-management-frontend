@@ -1,4 +1,5 @@
 <div class="mb-3">
+  <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
   <label [for]="name" class="form-label">{{ label }}</label>
   <input [accept]="accept" type="file" [id]="name" [name]="name" (change)="onValueChange($event)" class="form-control" />
 </div>

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { RouterModule } from '@angular/router';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { NgxEditorModule } from 'ngx-editor';
 import { ClearableInputComponent } from './clearable-input/clearable-input.component';
 import { TextInputGroupComponent } from './form-group/text-input-group/text-input-group.component';
 import { PrimaryButtonComponent } from './button/primary-button/primary-button.component';
@@ -28,6 +29,7 @@ import { NumberInputGroupComponent } from './form-group/number-input-group/numbe
 import { SecondaryButtonComponent } from './button/secondary-button/secondary-button.component';
 import { CheckboxInputGroupComponent } from './form-group/checkbox-input-group/checkbox-input-group.component';
 import { PasswordInputGroupComponent } from './form-group/password-input-group/password-input-group.component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -53,6 +55,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   SecondaryButtonComponent,
   CheckboxInputGroupComponent,
   PasswordInputGroupComponent,
+  TextEditorComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [
@@ -63,6 +66,7 @@ const SHARED_MODULES: Array<Type<any>> = [
   RouterModule,
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
+  NgxEditorModule,
 ];
 
 @NgModule({
