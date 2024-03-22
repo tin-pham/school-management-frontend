@@ -705,4 +705,24 @@ export const API = {
       OPERATION: 'Delete student exercise grade',
     },
   },
+  COURSE_OUTCOME: {
+    TAGS: 'CourseOutcome',
+    CONTROLLER: 'course-outcome',
+    GET_LIST: {
+      ROUTE: '',
+      OPERATION: 'Get list course outcomes',
+    },
+    STORE: {
+      ROUTE: '',
+      OPERATION: 'Store course outcome',
+    },
+    UPDATE: {
+      ROUTE: ':id',
+      OPERATION: 'Update course outcome',
+    },
+    DELETE: {
+      ROUTE: ':id',
+      OPERATION: 'Delete course outcome',
+    },
+  },
 };

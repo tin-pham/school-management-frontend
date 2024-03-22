@@ -45,11 +45,6 @@ const routes: Routes = [
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
-        path: ':id/section/:sectionId/lesson/:lessonId',
-        loadChildren: () => import('./page/course-lesson-detail/course-lesson-detail.module').then(m => m.CourseLessonDetailModule),
-        canActivate: [roleGuard([ROLE.STUDENT])],
-      },
-      {
         path: ':id/section/:sectionId/lesson/:lessonId/edit',
         loadChildren: () => import('./page/course-lesson-edit/course-lesson-edit.module').then(m => m.CourseLessonEditModule),
         canActivate: [roleGuard([ROLE.TEACHER])],

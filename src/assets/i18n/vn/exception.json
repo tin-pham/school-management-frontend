@@ -100,5 +100,8 @@
     "NAME": {
       "IS_NOT_EMPTY": "Danh mục câu hỏi không được để trống"
     }
+  },
+  "COURSE_OUTCOME": {
+    "ALREADY_EXIST": "Đã tồn tại"
   }
 }

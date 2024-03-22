@@ -1,0 +1,14 @@
+.outcome-list {
+  // wrap after 2 item
+  display: flex;
+  flex-wrap: wrap;
+
+  .outcome-text {
+    flex: 0 0 50%;
+  }
+}
+
+.outcome-text {
+  font-weight: normal;
+  font-size: 15px;
+}

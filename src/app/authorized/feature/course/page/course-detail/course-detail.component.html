@@ -8,11 +8,20 @@
     [course]="course"></app-course-detail-sidebar>
 
   <div class="outcome mb-3">
-    <h5 class="mb-2">
-      Bạn sẽ học được gì?
+    <div class="mb-2 d-flex">
+      <h5>Bạn sẽ học được gì?</h5>
+      <div>
+        <mat-icon *ngIf="!showOutcomeTextbox" class="add-icon" (click)="showOutcomeTextbox = true">add</mat-icon>
+        <mat-icon *ngIf="showOutcomeTextbox" class="minus-icon" (click)="showOutcomeTextbox = false">remove</mat-icon>
+      </div>
+    </div>
 
-      <mat-icon class="add-icon">add</mat-icon>
-    </h5>
+    <div *ngIf="showOutcomeTextbox" class="outcome-box">
+      <app-text-input-group [(value)]="courseOutcomeName"></app-text-input-group>
+      <app-secondary-button (click)="createOutcome()">Thêm</app-secondary-button>
+    </div>
+
+    <app-course-outcome-list [outcomes]="outcomes"></app-course-outcome-list>
   </div>
 
   <div class="list">
