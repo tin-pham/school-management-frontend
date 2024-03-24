@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
 import { CourseStudentService } from '@core/services/api/course-student.service';
 import { SectionService } from '@core/services/api/section.service';
@@ -48,6 +50,7 @@ export class CourseSectionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toast: ToastrService,
+    private dialog: MatDialog,
     private _sectionService: SectionService,
     private _authService: AuthService,
     private _courseStudentService: CourseStudentService,
@@ -76,11 +79,25 @@ export class CourseSectionComponent implements OnInit {
 
   @Output() onDelete = new EventEmitter();
 
-  delete() {
-    this._sectionService.delete(this.section.id).subscribe(response => {
-      this.toast.success('Xóa học phần thành công');
-      this.onDelete.emit(response.id);
+  delete(event) {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this._sectionService.delete(this.section.id).subscribe(response => {
+        this.toast.success('Xóa học phần thành công');
+        this.onDelete.emit(response.id);
+      });
+    });
+
+    event.stopPropagation();
   }
 
   editLesson(id: number) {

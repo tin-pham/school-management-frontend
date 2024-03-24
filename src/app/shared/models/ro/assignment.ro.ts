@@ -3,7 +3,6 @@ import { PaginateRO } from './paginate.ro';
 export class AssignmentStoreRO {
   id: number;
   name: string;
-  description: string;
   dueDate: Date;
 
   constructor(data?: AssignmentStoreRO) {
@@ -14,7 +13,6 @@ export class AssignmentStoreRO {
 export class AssignmentUpdateRO {
   id: number;
   name: string;
-  description: string;
   dueDate: Date;
 
   constructor(data?: AssignmentStoreRO) {
@@ -25,7 +23,6 @@ export class AssignmentUpdateRO {
 export class AssignmentGetListDataRO {
   id: number;
   name: string;
-  description: string;
   dueDate: Date;
   submissionId?: number;
   submissionDate?: Date;
@@ -39,7 +36,7 @@ export class AssignmentGetListRO extends PaginateRO<AssignmentGetListDataRO> {
 export class AssignmentGetDetailRO {
   id: number;
   name: string;
-  description: string;
+  description: object;
   dueDate: string;
   createdByDisplayName: string;
   submissionId?: number;
@@ -70,7 +67,7 @@ export class AssignmentGetSubmissionRO {
 export class AssignmentGetMyListDataRO {
   id: number;
   name: string;
-  description: string;
+  description: object;
   dueDate: Date;
 }
 

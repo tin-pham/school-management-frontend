@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CourseOutcomeGetListDataRO } from '@shared/models/ro/course-outcome.ro';
 
 @Component({
@@ -8,4 +8,16 @@ import { CourseOutcomeGetListDataRO } from '@shared/models/ro/course-outcome.ro'
 })
 export class CourseOutcomeListComponent {
   @Input() outcomes: CourseOutcomeGetListDataRO[];
+  isEdit = false;
+
+  @Output() onDelete = new EventEmitter();
+  delete(id: number) {
+    this.onDelete.emit(id);
+  }
+
+  @Output() onEdit = new EventEmitter();
+  edit(newName: string) {
+    this.isEdit = false;
+    this.onEdit.emit(newName);
+  }
 }

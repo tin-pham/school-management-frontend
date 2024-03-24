@@ -19,7 +19,7 @@ export class AssignmentItemComponent {
 
   @Output() onDelete = new EventEmitter<void>();
 
-  delete() {
+  delete(event: Event) {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -33,6 +33,8 @@ export class AssignmentItemComponent {
 
       this.onDelete.emit();
     });
+
+    event.stopPropagation();
   }
 
   isStudent() {

@@ -1,5 +1,11 @@
-<form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
-  <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="name" [required]="true"></app-text-input-group>
-  <app-textarea-group [name]="'description'" [label]="'Mô tả'" [(value)]="description"></app-textarea-group>
-  <app-primary-button>Tạo</app-primary-button>
-</form>
+<div class="form">
+  <h1 class="title">Tạo danh mục</h1>
+  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+    <app-text-input-group icon="category" [name]="'name'" [label]="'Tên'" [(value)]="name" [required]="true"></app-text-input-group>
+    <app-textarea-group icon="description" [name]="'description'" [label]="'Mô tả'" [(value)]="description"></app-textarea-group>
+
+    <div class="d-flex">
+      <app-primary-button>Tạo</app-primary-button>
+    </div>
+  </form>
+</div>

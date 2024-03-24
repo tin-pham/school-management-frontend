@@ -89,4 +89,13 @@ export class CourseDetailComponent {
       this.outcomes.push(response);
     });
   }
+
+  deleteOutcome(id: number) {
+    this._courseOutcomeService.delete(id).subscribe(() => {
+      const index = this.outcomes.findIndex(x => x.id === id);
+      if (index > -1) {
+        this.outcomes.splice(index, 1);
+      }
+    });
+  }
 }

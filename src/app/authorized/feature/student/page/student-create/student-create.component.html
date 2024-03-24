@@ -1,10 +1,46 @@
-<h1 class="mb-3">Tạo học sinh</h1>
-<form>
-  <app-text-input-group name="displayName" [required]="true" label="Tên học sinh" [(value)]="dto.displayName"></app-text-input-group>
-  <app-text-input-group name="password" [required]="true" type="password" label="Mật khẩu" [(value)]="dto.password"></app-text-input-group>
-  <app-text-input-group name="username" [required]="true" label="Tên đăng nhập" [(value)]="dto.username"></app-text-input-group>
-  <app-text-input-group name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
-  <app-text-input-group name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
+<div class="form">
+  <h1 class="mb-3 title">Tạo học sinh</h1>
+  <form>
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="badge"
+      name="displayName"
+      [required]="true"
+      label="Tên học sinh"
+      [(value)]="dto.displayName"></app-text-input-group>
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="person"
+      name="username"
+      [required]="true"
+      label="Tên đăng nhập"
+      [(value)]="dto.username"></app-text-input-group>
+    <app-text-input-group
+      icon="lock"
+      name="password"
+      [required]="true"
+      type="password"
+      label="Mật khẩu"
+      [(value)]="dto.password"></app-text-input-group>
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="phone"
+      name="phone"
+      type="phone"
+      label="SĐT"
+      [(value)]="dto.phone"></app-text-input-group>
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="email"
+      name="email"
+      type="email"
+      label="Email"
+      [(value)]="dto.email"></app-text-input-group>
 
-  <app-primary-button (click)="create()">Tạo</app-primary-button>
-</form>
+    <div class="d-flex">
+      <app-primary-button [disabled]="!dto.displayName || !dto.username || !dto.password || !dto.phone || !dto.email" (click)="create()"
+        >Tạo</app-primary-button
+      >
+    </div>
+  </form>
+</div>

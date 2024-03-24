@@ -2,7 +2,7 @@ import { PaginateDTO } from './paginate.dto';
 
 export class AssignmentStoreDTO {
   name: string;
-  description: string;
+  description: object;
   dueDate: string;
   lessonId?: number;
   courseId?: number;
@@ -17,7 +17,7 @@ export class AssignmentGetListDTO extends PaginateDTO {
 
 export class AssignmentUpdateDTO {
   name: string;
-  description: string;
+  description: object;
   dueDate: string;
 }
 

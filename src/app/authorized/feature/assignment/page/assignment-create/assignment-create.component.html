@@ -1,6 +1,8 @@
 <form>
   <app-text-input-group [required]="true" [label]="'Tiêu đề'" [name]="'name'" [(value)]="dto.name"></app-text-input-group>
-  <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group>
+  <!-- <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group> -->
+
+  <app-text-editor label="Nội dung" [(value)]="dto.description"></app-text-editor>
   <app-date-picker [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
 
   <app-primary-button (click)="create()">Tạo</app-primary-button>

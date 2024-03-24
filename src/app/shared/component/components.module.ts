@@ -30,6 +30,8 @@ import { SecondaryButtonComponent } from './button/secondary-button/secondary-bu
 import { CheckboxInputGroupComponent } from './form-group/checkbox-input-group/checkbox-input-group.component';
 import { PasswordInputGroupComponent } from './form-group/password-input-group/password-input-group.component';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { TextEditorViewerComponent } from './text-editor-viewer/text-editor-viewer.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -56,6 +58,8 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   CheckboxInputGroupComponent,
   PasswordInputGroupComponent,
   TextEditorComponent,
+  TextEditorViewerComponent,
+  SearchBarComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

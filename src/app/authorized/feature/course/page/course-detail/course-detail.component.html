@@ -21,7 +21,7 @@
       <app-secondary-button (click)="createOutcome()">Thêm</app-secondary-button>
     </div>
 
-    <app-course-outcome-list [outcomes]="outcomes"></app-course-outcome-list>
+    <app-course-outcome-list (onDelete)="deleteOutcome($event)" [outcomes]="outcomes"></app-course-outcome-list>
   </div>
 
   <div class="list">

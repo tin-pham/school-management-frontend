@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { PaginateComponentBase } from '@core/base/paginate.component.base';
 import { StudentService } from '@core/services/api/student.service';
 import { StudentGetListDTO } from '@shared/models/dto/student.dto';
-import { StudentGetListDataRO } from '@shared/models/ro/student.ro';
+import { StudentGetListDataRO, StudentGetListRO } from '@shared/models/ro/student.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
@@ -11,25 +12,33 @@ import { ToastrService } from '@shared/toastr/toastr.service';
   styleUrls: ['student-list.component.scss'],
   templateUrl: 'student-list.component.html',
 })
-export class StudentListComponent implements OnInit {
+export class StudentListComponent extends PaginateComponentBase<StudentGetListRO> implements OnInit {
   students: StudentGetListDataRO[] = [];
-
-  itemsPerPage = 5;
-  page = 1;
   totalItems = 0;
+
+  ngOnInit() {}
 
   constructor(
     private cd: ChangeDetectorRef,
     private toast: ToastrService,
     private router: Router,
     private _studentService: StudentService,
-  ) {}
+  ) {
+    super(300);
+  }
 
-  ngOnInit() {
-    this.loadStudents({
-      limit: this.itemsPerPage,
-      page: this.page,
+  protected fetchData(dto: StudentGetListDTO) {
+    return this._studentService.getList({
+      limit: dto.limit,
+      page: dto.page,
+      search: dto.search,
     });
+  }
+
+  protected handleData(data: StudentGetListRO): void {
+    this.totalItems = data.meta.totalItems;
+    this.students = data.data;
+    this.cd.markForCheck(); // Update the view with the new data
   }
 
   handlePageChange(event: PageEvent) {

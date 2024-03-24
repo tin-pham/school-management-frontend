@@ -1,6 +1,7 @@
 <div class="outcome-list">
   <p *ngFor="let outcome of outcomes" class="outcome-text">
-    <mat-icon class="align-middle">done</mat-icon>
+    <mat-icon class="icon">done</mat-icon>
     {{ outcome.name }}
+    <mat-icon (click)="delete(outcome.id)" class="icon">delete</mat-icon>
   </p>
 </div>

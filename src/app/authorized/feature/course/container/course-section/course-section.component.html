@@ -24,7 +24,7 @@
     </a>
     <span *ngIf="showIcons" class="align-middle">
       <mat-icon [routerLink]="'/course/' + courseId + '/section/' + section.id">edit</mat-icon>
-      <mat-icon (click)="delete()">delete</mat-icon>
+      <mat-icon (click)="delete($event)">delete</mat-icon>
       <mat-icon [routerLink]="'/course/' + courseId + '/section/' + section.id + '/lesson'">add</mat-icon>
     </span>
   </div>

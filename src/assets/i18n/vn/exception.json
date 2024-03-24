@@ -103,5 +103,16 @@
   },
   "COURSE_OUTCOME": {
     "ALREADY_EXIST": "Đã tồn tại"
+  },
+  "USER": {
+    "USERNAME_ALREADY_EXISTS": "Tên đăng nhập đã tồn tại",
+    "EMAIL_ALREADY_EXISTS": "Email đã tồn tại",
+    "PHONE_ALREADY_EXISTS": "Số điện thoại đã được sử dụng",
+    "PHONE": {
+      "FORMAT_IS_NOT_VALID": "Số điện thoại không hợp lệ"
+    },
+    "EMAIL": {
+      "FORMAT_IS_NOT_VALID": "Email không hợp lệ"
+    }
   }
 }

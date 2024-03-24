@@ -1,43 +1,46 @@
-<form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
-  <app-text-input-group
-    icon="school"
-    (valueChange)="saveToTemporaryStorage()"
-    [name]="'name'"
-    [label]="'Tên'"
-    [(value)]="dto.name"
-    [required]="true"></app-text-input-group>
-  <app-textarea-group
-    icon="description"
-    (valueChange)="saveToTemporaryStorage()"
-    [name]="'description'"
-    [label]="'Mô tả'"
-    [(value)]="dto.description"></app-textarea-group>
-  <app-select-multiple-search
-    icon="category"
-    *ngIf="categories && categories.length > 0"
-    (selectedChange)="saveToTemporaryStorage()"
-    [placeholder]="'Danh mục'"
-    [options]="categories"
-    [(selected)]="dto.categoryIds"></app-select-multiple-search>
-  <app-file-input-group
-    icon="image"
-    [accept]="'image/*'"
-    [value]="image"
-    (valueChange)="onFileInputChange($event)"
-    [label]="'Hình ảnh'"></app-file-input-group>
-  <app-select-list
-    icon="bar_chart"
-    [required]="true"
-    (onSelectedChange)="saveToTemporaryStorage()"
-    [name]="'level'"
-    [options]="levels"
-    [label]="'Cấp độ'"
-    [(selected)]="dto.levelId"></app-select-list>
-  <app-number-input-group
-    icon="schedule"
-    (valueChange)="saveToTemporaryStorage()"
-    [label]="'Giờ'"
-    [name]="'hours'"
-    [(value)]="dto.hours"></app-number-input-group>
-  <app-primary-button>Tạo</app-primary-button>
-</form>
+<div class="form">
+  <h1 class="title">Tạo khóa học</h1>
+  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+    <app-text-input-group
+      icon="school"
+      (valueChange)="saveToTemporaryStorage()"
+      [name]="'name'"
+      [label]="'Tên'"
+      [(value)]="dto.name"
+      [required]="true"></app-text-input-group>
+    <app-textarea-group
+      icon="description"
+      (valueChange)="saveToTemporaryStorage()"
+      [name]="'description'"
+      [label]="'Mô tả'"
+      [(value)]="dto.description"></app-textarea-group>
+    <app-select-multiple-search
+      icon="category"
+      *ngIf="categories && categories.length > 0"
+      (selectedChange)="saveToTemporaryStorage()"
+      [placeholder]="'Danh mục'"
+      [options]="categories"
+      [(selected)]="dto.categoryIds"></app-select-multiple-search>
+    <app-file-input-group
+      icon="image"
+      [accept]="'image/*'"
+      [value]="image"
+      (valueChange)="onFileInputChange($event)"
+      [label]="'Hình ảnh'"></app-file-input-group>
+    <app-select-list
+      icon="bar_chart"
+      [required]="true"
+      (onSelectedChange)="saveToTemporaryStorage()"
+      [name]="'level'"
+      [options]="levels"
+      [label]="'Cấp độ'"
+      [(selected)]="dto.levelId"></app-select-list>
+    <app-number-input-group
+      icon="schedule"
+      (valueChange)="saveToTemporaryStorage()"
+      [label]="'Giờ'"
+      [name]="'hours'"
+      [(value)]="dto.hours"></app-number-input-group>
+    <app-primary-button>Tạo</app-primary-button>
+  </form>
+</div>

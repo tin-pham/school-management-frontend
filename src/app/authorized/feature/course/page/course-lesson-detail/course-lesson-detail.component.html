@@ -5,28 +5,27 @@
       {{ lesson.title }}
     </h1>
   </div>
-  <div class="body grid">
-    <div *ngIf="lesson.videoUrl" class="lesson-video grid-item video">
-      <app-video class="video" [videoUrl]="lesson.videoUrl"></app-video>
+  <div class="body">
+    <div class="left">
+      <div *ngIf="lesson.videoUrl" class="content video">
+        <app-video [videoUrl]="lesson.videoUrl"></app-video>
+      </div>
+      <div class="content info">
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+          <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive">
+            {{ link.label }}
+          </a>
+        </nav>
+        <mat-tab-nav-panel #tabPanel>
+          <div class="panel">
+            <router-outlet></router-outlet>
+          </div>
+        </mat-tab-nav-panel>
+      </div>
     </div>
-
-    <div class="grid-item info">
-      <nav mat-tab-nav-bar class="nav" [tabPanel]="tabPanel">
-        <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive">
-          {{ link.label }}
-        </a>
-      </nav>
-
-      <mat-tab-nav-panel #tabPanel>
-        <div class="panel">
-          <router-outlet></router-outlet>
-        </div>
-      </mat-tab-nav-panel>
-    </div>
-
-    <div class="section-list grid-item list">
+    <div class="right">
       <h4 class="list-title">Nội dung khóa học</h4>
-      <app-course-section-list [courseId]="courseId"></app-course-section-list>
+      <app-course-section-list [courseId]="courseId" [courseCreatedById]="lesson.createdBy"></app-course-section-list>
     </div>
   </div>
 </div>

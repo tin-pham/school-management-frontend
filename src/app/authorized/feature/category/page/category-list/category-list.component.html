@@ -1,3 +1,13 @@
 <h1>Danh sách danh mục</h1>
 <app-category-toolbar></app-category-toolbar>
-<app-category-table></app-category-table>
+<div class="list">
+  <app-category-item *ngFor="let category of categories" [category]="category"></app-category-item>
+</div>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10]"
+  [pageIndex]="page - 1"
+  [pageSize]="itemsPerPage"
+  [length]="totalItems"
+  (page)="handlePageChange($event)"
+  aria-label="Select page of users"></mat-paginator>

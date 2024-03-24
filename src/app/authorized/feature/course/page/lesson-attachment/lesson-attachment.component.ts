@@ -46,6 +46,10 @@ export class LessonAttachmentComponent implements OnInit {
   }
 
   upload() {
+    if (!this.attachmentsCreating) {
+      return;
+    }
+
     this._s3Service
       .bulkUpload({
         files: this.attachmentsCreating,

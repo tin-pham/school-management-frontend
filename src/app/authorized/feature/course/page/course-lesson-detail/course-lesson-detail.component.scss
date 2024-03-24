@@ -1,79 +1,59 @@
 .lesson-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
   .header {
     background: #29303b;
     color: #fff;
     padding: 15px;
-    .title {
-      font-size: 20px;
-      font-weight: bold;
-    }
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 20px;
   }
 
   .body {
-    display: grid;
-    width: 100%;
-    height: 100vh;
-    grid-template-areas:
-      'video video video list list'
-      'video video video list list'
-      'info info info list list';
+    display: flex;
+    flex: 1; /* Take up the remaining height */
+    overflow: hidden; /* Prevent the body itself from scrolling */
 
-    .grid-item {
-      font-size: 30px;
+    .left {
+      flex: 6; /* Takes up 3 parts of the available space */
+      overflow-y: auto; /* Enable vertical scrolling */
     }
 
-    .video {
-      grid-area: video;
-      background: black;
-
-      &.grid-item {
-        // Specific styles for video grid-item if needed
-      }
+    .right {
+      flex: 2; /* Takes up 2 parts of the available space */
+      overflow-y: auto; /* Enable vertical scrolling */
     }
 
     .info {
-      grid-area: info;
-      font-size: 30px; // Assuming you want to keep font-size consistent with .grid-item
-      min-height: 500px;
-
-      .nav {
-        margin-bottom: 20px;
-
-        a {
-          // Styles for the nav links if needed
-        }
-      }
+      padding: 10px;
     }
 
-    .section-list {
-      grid-area: list;
-      flex: 1;
+    .list-title {
       font-size: 20px;
-      .list-title {
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px 15px;
-      }
+      font-weight: bold;
+      padding: 10px 15px;
     }
+
+    .panel {
+      padding: 10px 30px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .icon {
+    vertical-align: middle;
+    cursor: pointer; /* Indicates the icon is clickable */
   }
 }
 
-.panel {
-  padding: 10px 30px;
-}
-
-.icon {
-  vertical-align: middle;
-}
-
 @media only screen and (max-width: 768px) {
-  .lesson-detail {
-    .body {
-      flex-direction: column;
-
-      .list {
-        display: none;
-      }
-    }
+  .lesson-detail .body {
+    flex-direction: column;
   }
 }

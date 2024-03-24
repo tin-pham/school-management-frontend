@@ -13,6 +13,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class LessonDownloadComponent {
   @Input() attachment: LessonAttachmentGetListDataRO;
+  @Input() isStudent: boolean;
 
   constructor(
     private toast: ToastrService,
@@ -52,5 +53,25 @@ export class LessonDownloadComponent {
         this.toast.success('Xóa đính kèm thành công');
       });
     });
+  }
+
+  download() {
+    // Ensure the attachment has a URL
+    if (!this.attachment.url) {
+      this.toast.error('Attachment URL is missing');
+      return;
+    }
+
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.href = this.attachment.url;
+    // Suggest a filename for the download. You can customize this part as needed.
+    link.download = this.attachment.name || 'download';
+    // Append the anchor to the body
+    document.body.appendChild(link);
+    // Trigger click to start download
+    link.click();
+    // Remove the anchor from the body after initiating download
+    document.body.removeChild(link);
   }
 }

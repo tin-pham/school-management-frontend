@@ -1,21 +1,30 @@
-<form>
-  <h1>Cập nhật thông tin học sinh</h1>
-  <app-text-input-group name="displayName" [required]="true" label="Tên học sinh" [(value)]="dto.displayName"></app-text-input-group>
+<form class="form">
+  <h1 class="title">Cập nhật thông tin học sinh</h1>
   <app-text-input-group
+    icon="badge"
+    name="displayName"
+    [required]="true"
+    label="Tên học sinh"
+    [(value)]="dto.displayName"></app-text-input-group>
+  <app-text-input-group
+    icon="lock"
     name="password"
     [required]="true"
     type="password"
     label="Mật khẩu mới"
     [(value)]="dto.password"></app-text-input-group>
   <app-text-input-group
+    icon="vpn_key"
     [disabled]="confirmPasswordRequired"
     name="confirmPassword"
     [required]="true"
     type="password"
     label="Nhập lại mật khẩu"
     [(value)]="confirmPassword"></app-text-input-group>
-  <app-text-input-group name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
-  <app-text-input-group name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
+  <app-text-input-group icon="phone" name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
+  <app-text-input-group icon="email" name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
 
-  <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+  <div class="d-flex">
+    <app-primary-button [disabled]="!dto.displayName || !dto.phone || !dto.email" (click)="update()">Cập nhật</app-primary-button>
+  </div>
 </form>

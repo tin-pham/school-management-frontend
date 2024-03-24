@@ -23,6 +23,7 @@ export class LessonGetDetailRO {
   videoUrl: string;
   sectionId: number;
   courseId: number;
+  createdBy: number;
 }
 
 export class LessonUpdateRO {

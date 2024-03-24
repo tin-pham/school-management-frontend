@@ -1,20 +1,22 @@
-<form>
-  <app-text-input-group
-    (valueChange)="onTitleChange($event)"
-    [label]="'Tiêu đề'"
-    [name]="'title'"
-    [(value)]="title"
-    [required]="true"></app-text-input-group>
+<div class="form">
+  <form>
+    <app-text-input-group
+      (valueChange)="onTitleChange($event)"
+      [label]="'Tiêu đề'"
+      [name]="'title'"
+      [(value)]="title"
+      [required]="true"></app-text-input-group>
 
-  <app-text-input-group
-    (valueChange)="onVideoUrlChange($event)"
-    [label]="'Đường dẫn video'"
-    [name]="'videoUrl'"
-    [(value)]="videoUrl"></app-text-input-group>
+    <app-text-input-group
+      (valueChange)="onVideoUrlChange($event)"
+      [label]="'Đường dẫn video'"
+      [name]="'videoUrl'"
+      [(value)]="videoUrl"></app-text-input-group>
 
-  <app-text-editor label="Nội dung bài học" [(value)]="body" (valueChange)="onBodyChange($event)"></app-text-editor>
+    <app-text-editor label="Nội dung bài học" [(value)]="body" (valueChange)="onBodyChange($event)"></app-text-editor>
 
-  <div class="d-flex">
-    <app-primary-button (click)="submit()">{{ buttonAction }}</app-primary-button>
-  </div>
-</form>
+    <div class="d-flex">
+      <app-primary-button (click)="submit()">{{ buttonAction }}</app-primary-button>
+    </div>
+  </form>
+</div>

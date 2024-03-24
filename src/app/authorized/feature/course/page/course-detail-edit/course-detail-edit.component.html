@@ -1,10 +1,16 @@
-<div *ngIf="course">
-  <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="dto.name" [required]="true"></app-text-input-group>
-  <app-textarea-group [name]="'description'" [label]="'Mô tả'" [(value)]="dto.description"></app-textarea-group>
-  <app-select-multiple-search [placeholder]="'Danh mục'" [options]="categories" [(selected)]="dto.categoryIds"></app-select-multiple-search>
+<div *ngIf="course" class="form">
+  <h1 class="title">Cập nhật khóa học</h1>
+  <form>
+    <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="dto.name" [required]="true"></app-text-input-group>
+    <app-textarea-group [name]="'description'" [label]="'Mô tả'" [(value)]="dto.description"></app-textarea-group>
+    <app-select-multiple-search
+      [placeholder]="'Danh mục'"
+      [options]="categories"
+      [(selected)]="dto.categoryIds"></app-select-multiple-search>
 
-  <app-file-input-group [value]="image" (valueChange)="onFileInputChange($event)" [label]="'Hình ảnh'"></app-file-input-group>
-  <app-select-list [label]="'Cấp độ'" [options]="levels" [(selected)]="dto.levelId" [name]="'level'"></app-select-list>
-  <app-number-input-group [label]="'Giờ'" [(value)]="dto.hours" [name]="'hours'"></app-number-input-group>
-  <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+    <app-file-input-group [value]="image" (valueChange)="onFileInputChange($event)" [label]="'Hình ảnh'"></app-file-input-group>
+    <app-select-list [label]="'Cấp độ'" [options]="levels" [(selected)]="dto.levelId" [name]="'level'"></app-select-list>
+    <app-number-input-group [label]="'Giờ'" [(value)]="dto.hours" [name]="'hours'"></app-number-input-group>
+    <app-primary-button (click)="update()">Cập nhật</app-primary-button>
+  </form>
 </div>

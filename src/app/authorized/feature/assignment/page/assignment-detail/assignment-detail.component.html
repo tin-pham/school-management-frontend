@@ -13,9 +13,7 @@
         <p class="assignment-points">100 points</p>
       </div>
     </div>
-    <div class="assignment-body">
-      <p class="assignment-description">{{ assignment.description }}</p>
-    </div>
+    <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>
   </div>
 
   <app-assignment-submit-box

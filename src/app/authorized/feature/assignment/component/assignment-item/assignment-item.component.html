@@ -8,7 +8,8 @@
   </div>
 
   <div class="buttons">
-    <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button>
+    <!-- <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button> -->
+    <mat-icon class="delete-icon" *ngIf="!isStudent()" (click)="delete($event)">delete</mat-icon>
     <div *ngIf="isStudent()" class="d-flex">
       <span *ngIf="isLate(assignment)">
         <mat-icon class="late-icon">warning</mat-icon>

@@ -24,6 +24,23 @@
   margin-left: auto;
 }
 
+.icon {
+  font-size: 30px;
+  color: #222222;
+  transition: all 0.3s ease-in-out;
+  &-download {
+    &:hover {
+      color: #4758b8;
+    }
+  }
+
+  &-delete {
+    &:hover {
+      color: #f44336;
+    }
+  }
+}
+
 // .item button {
 //   all: unset;
 //   margin-left: auto;

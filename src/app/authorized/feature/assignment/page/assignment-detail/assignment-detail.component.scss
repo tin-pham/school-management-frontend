@@ -1,12 +1,12 @@
 .assignment-container {
   display: flex;
   .text {
-    flex-grow: 1;
     margin-right: 20px;
+    flex: 3;
   }
 
   .submit {
-    width: 350px;
+    flex: 1;
   }
 }
 
