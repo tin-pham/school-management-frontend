@@ -5,6 +5,7 @@ import { TeacherService } from '@core/services/api/teacher.service';
 import { TeacherGetListDTO } from '@shared/models/dto/teacher.dto';
 import { TeacherGetListDataRO } from '@shared/models/ro/teacher.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
+import { BehaviorSubject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-teacher-list',
@@ -13,6 +14,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class TeacherListComponent implements OnInit {
   teachers: TeacherGetListDataRO[] = [];
+  search$ = new BehaviorSubject<string>('');
 
   itemsPerPage = 5;
   page = 1;
@@ -26,10 +28,8 @@ export class TeacherListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadTeachers({
-      limit: this.itemsPerPage,
-      page: this.page,
-    });
+    this.search$.pipe(debounceTime(300), distinctUntilChanged()).subscribe(() => this.loadTeachers(this.getDto()));
+    this.loadTeachers(this.getDto());
   }
 
   handlePageChange(event: PageEvent) {
@@ -52,14 +52,25 @@ export class TeacherListComponent implements OnInit {
   deleteTeacher(id: string) {
     this._teacherService.delete(id).subscribe(() => {
       this.toast.success('Xóa học sinh thành công');
-      this.loadTeachers({
-        limit: this.itemsPerPage,
-        page: this.page,
-      });
+      this.loadTeachers(this.getDto());
     });
   }
 
   routeToEdit(id: string) {
     this.router.navigate(['teacher', id, 'edit']);
+  }
+
+  setSearch(searchTerm: string) {
+    this.page = 1; // Reset to the first page
+    this.search$.next(searchTerm);
+  }
+
+  getDto() {
+    console.log(this.search$.value, this.page, this.itemsPerPage);
+    return {
+      search: this.search$.value,
+      page: this.page,
+      limit: this.itemsPerPage,
+    };
   }
 }

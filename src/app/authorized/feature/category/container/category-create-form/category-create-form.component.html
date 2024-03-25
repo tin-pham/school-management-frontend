@@ -1,11 +1,22 @@
 <div class="form">
   <h1 class="title">Tạo danh mục</h1>
-  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
-    <app-text-input-group icon="category" [name]="'name'" [label]="'Tên'" [(value)]="name" [required]="true"></app-text-input-group>
-    <app-textarea-group icon="description" [name]="'description'" [label]="'Mô tả'" [(value)]="description"></app-textarea-group>
+  <form (ngSubmit)="onSubmit()">
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="category"
+      [name]="'name'"
+      [label]="'Tên'"
+      [(value)]="dto.name"
+      [required]="true"></app-text-input-group>
+    <app-textarea-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="description"
+      [name]="'description'"
+      [label]="'Mô tả'"
+      [(value)]="dto.description"></app-textarea-group>
 
     <div class="d-flex">
-      <app-primary-button>Tạo</app-primary-button>
+      <app-primary-button [disabled]="!dto.name">Tạo</app-primary-button>
     </div>
   </form>
 </div>

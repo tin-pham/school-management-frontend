@@ -1,5 +1,5 @@
 <div class="form">
-  <form>
+  <form ngSubmit="submit()">
     <app-text-input-group
       (valueChange)="onTitleChange($event)"
       [label]="'Tiêu đề'"
@@ -16,7 +16,7 @@
     <app-text-editor label="Nội dung bài học" [(value)]="body" (valueChange)="onBodyChange($event)"></app-text-editor>
 
     <div class="d-flex">
-      <app-primary-button (click)="submit()">{{ buttonAction }}</app-primary-button>
+      <app-primary-button [disabled]="!title">{{ buttonAction }}</app-primary-button>
     </div>
   </form>
 </div>

@@ -2,9 +2,9 @@ import { Injectable, OnInit } from '@angular/core';
 import { CacheStorageFacet, CacheStorageService } from '@core/services/cache.service';
 
 @Injectable()
-export abstract class CacheForm<T> implements OnInit {
+export abstract class CacheForm<DTO> implements OnInit {
   private cacheStorage: CacheStorageFacet;
-  abstract dto: T;
+  abstract dto: DTO;
   private excludeFromCache: string[];
 
   constructor(cacheService: CacheStorageService, cacheKey: string, excludeFromCache: string[] = []) {
@@ -16,7 +16,7 @@ export abstract class CacheForm<T> implements OnInit {
     this.restoreCacheStorage(this.dto);
   }
 
-  async restoreCacheStorage(dto: T): Promise<void> {
+  async restoreCacheStorage(dto: DTO): Promise<void> {
     const cachedFormData = await this.cacheStorage.get();
 
     if (cachedFormData) {
@@ -40,4 +40,6 @@ export abstract class CacheForm<T> implements OnInit {
   removeCache() {
     return this.cacheStorage.remove();
   }
+
+  abstract clearForm(): void;
 }

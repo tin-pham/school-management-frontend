@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { CacheForm } from '@core/base/cache-form.base';
 import { CategoryService } from '@core/services/api/category.service';
+import { CacheStorageService } from '@core/services/cache.service';
 import { CategoryStoreDTO } from '@shared/models/dto/category.dto';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
@@ -8,21 +10,19 @@ import { ToastrService } from '@shared/toastr/toastr.service';
   templateUrl: './category-create-form.component.html',
   styleUrls: ['./category-create-form.component.scss'],
 })
-export class CategoryCreateFormComponent {
-  name: string;
-  description: string;
+export class CategoryCreateFormComponent extends CacheForm<CategoryStoreDTO> {
+  dto = new CategoryStoreDTO();
 
   constructor(
+    _cacheService: CacheStorageService,
     private toast: ToastrService,
     private _categoryService: CategoryService,
-  ) {}
+  ) {
+    super(_cacheService, 'category-create-form');
+  }
 
   onSubmit() {
-    const dto = new CategoryStoreDTO({
-      name: this.name,
-      description: this.description,
-    });
-    this._categoryService.store(dto).subscribe({
+    this._categoryService.store(this.dto).subscribe({
       next: () => {
         this.toast.success('Tạo danh mục thành công');
         this.clearForm();
@@ -32,7 +32,7 @@ export class CategoryCreateFormComponent {
   }
 
   clearForm() {
-    this.name = '';
-    this.description = '';
+    this.dto = new CategoryStoreDTO();
+    this.removeCache();
   }
 }

@@ -1,3 +1,4 @@
+<app-search-bar label="Tìm kiếm tên, sdt, email" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
 <div class="teacher-list">
   <app-teacher-item
     *ngFor="let teacher of teachers"

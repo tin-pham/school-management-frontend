@@ -4,6 +4,9 @@
     <app-primary-button [routerLink]="'/question/question-category/create'">Tạo danh mục câu hỏi</app-primary-button>
   </div>
   <mat-divider class="my-3"></mat-divider>
+
+  <app-search-bar label="Tìm theo tên" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
+
   <app-question-category-item
     *ngFor="let questionCategory of questionCategories"
     (click)="questionCategoryItemClicked(questionCategory.id)"

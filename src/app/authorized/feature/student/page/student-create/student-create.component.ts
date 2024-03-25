@@ -24,8 +24,13 @@ export class StudentCreateComponent extends CacheForm<StudentStoreDTO> {
   create() {
     this._studentService.store(this.dto).subscribe(() => {
       this.toast.success('Tạo thành công');
-      this.removeCache();
+      this.clearForm();
       window.history.back();
     });
+  }
+
+  clearForm() {
+    this.dto = new StudentStoreDTO();
+    this.removeCache();
   }
 }

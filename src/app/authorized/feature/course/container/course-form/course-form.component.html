@@ -1,6 +1,6 @@
 <div class="form">
   <h1 class="title">Tạo khóa học</h1>
-  <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
     <app-text-input-group
       icon="school"
       (valueChange)="saveToTemporaryStorage()"
@@ -8,6 +8,14 @@
       [label]="'Tên'"
       [(value)]="dto.name"
       [required]="true"></app-text-input-group>
+    <app-select-list
+      icon="bar_chart"
+      [required]="true"
+      (onSelectedChange)="saveToTemporaryStorage()"
+      [name]="'level'"
+      [options]="levels"
+      [label]="'Cấp độ'"
+      [(selected)]="dto.levelId"></app-select-list>
     <app-textarea-group
       icon="description"
       (valueChange)="saveToTemporaryStorage()"
@@ -27,20 +35,12 @@
       [value]="image"
       (valueChange)="onFileInputChange($event)"
       [label]="'Hình ảnh'"></app-file-input-group>
-    <app-select-list
-      icon="bar_chart"
-      [required]="true"
-      (onSelectedChange)="saveToTemporaryStorage()"
-      [name]="'level'"
-      [options]="levels"
-      [label]="'Cấp độ'"
-      [(selected)]="dto.levelId"></app-select-list>
     <app-number-input-group
       icon="schedule"
       (valueChange)="saveToTemporaryStorage()"
       [label]="'Giờ'"
       [name]="'hours'"
       [(value)]="dto.hours"></app-number-input-group>
-    <app-primary-button>Tạo</app-primary-button>
+    <app-primary-button [disabled]="!dto.name || !dto.levelId">Tạo</app-primary-button>
   </form>
 </div>

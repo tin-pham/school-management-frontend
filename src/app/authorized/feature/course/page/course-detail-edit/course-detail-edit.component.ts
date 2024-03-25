@@ -61,6 +61,7 @@ export class CourseDetailEditComponent implements OnInit {
   }
 
   update() {
+    console.log(this.dto);
     this._courseService
       .update(this.course.id, this.dto)
       .pipe(

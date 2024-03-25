@@ -1,5 +1,7 @@
 <h1>Danh sách danh mục</h1>
-<app-category-toolbar></app-category-toolbar>
+<div class="toolbar">
+  <app-search-bar label="Tìm theo tên" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
+</div>
 <div class="list">
   <app-category-item *ngFor="let category of categories" [category]="category"></app-category-item>
 </div>

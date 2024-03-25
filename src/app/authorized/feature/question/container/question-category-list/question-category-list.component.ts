@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { PaginateComponent } from '@core/base/search.base';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionCategoryGetListDTO } from '@shared/models/dto/question-category.dto';
 import { QuestionCategoryGetListDataRO, QuestionCategoryGetListRO } from '@shared/models/ro/question-category.ro';
@@ -9,7 +9,7 @@ import { QuestionCategoryGetListDataRO, QuestionCategoryGetListRO } from '@share
   styleUrls: ['question-category-list.component.scss'],
   templateUrl: 'question-category-list.component.html',
 })
-export class QuestionCategoryListComponent {
+export class QuestionCategoryListComponent extends PaginateComponent {
   questionCategories: QuestionCategoryGetListDataRO[];
   @Input() excludeExerciseId: number;
 
@@ -20,37 +20,11 @@ export class QuestionCategoryListComponent {
   constructor(
     private cd: ChangeDetectorRef,
     private _questionCategoryService: QuestionCategoryService,
-  ) {}
-
-  ngOnInit() {
-    const dto = new QuestionCategoryGetListDTO({
-      limit: this.itemsPerPage,
-      page: this.page,
-    });
-
-    if (this.excludeExerciseId) {
-      dto.excludeByExerciseId = this.excludeExerciseId;
-    }
-
-    this.loadQuestionCategories(dto);
+  ) {
+    super();
   }
 
-  handlePageChange(event: PageEvent) {
-    this.page = event.pageIndex + 1;
-    this.itemsPerPage = event.pageSize;
-
-    const dto = new QuestionCategoryGetListDTO({
-      limit: this.itemsPerPage,
-      page: this.page,
-    });
-
-    if (this.excludeExerciseId) {
-      dto.excludeByExerciseId = this.excludeExerciseId;
-    }
-    this.loadQuestionCategories(dto);
-  }
-
-  loadQuestionCategories(dto: QuestionCategoryGetListDTO) {
+  loadData(dto: QuestionCategoryGetListDTO) {
     this._questionCategoryService.getList(dto).subscribe({
       next: (response: QuestionCategoryGetListRO) => {
         this.totalItems = response.meta.totalItems;
@@ -61,19 +35,21 @@ export class QuestionCategoryListComponent {
   }
 
   delete(id: number) {
-    this._questionCategoryService.delete(id).subscribe({
-      next: () => {
-        const dto = new QuestionCategoryGetListDTO({
-          limit: this.itemsPerPage,
-          page: this.page,
-        });
+    this._questionCategoryService.delete(id).subscribe(() => this.loadData(this.getDto()));
+  }
 
-        if (this.excludeExerciseId) {
-          dto.excludeByExerciseId = this.excludeExerciseId;
-        }
-        this.loadQuestionCategories(dto);
-      },
+  getDto() {
+    const dto = new QuestionCategoryGetListDTO({
+      limit: this.itemsPerPage,
+      page: this.page,
+      search: this.search$.value,
     });
+
+    if (this.excludeExerciseId) {
+      dto.excludeByExerciseId = this.excludeExerciseId;
+    }
+
+    return dto;
   }
 
   @Output() onQuestionCategoryItemClicked = new EventEmitter<number>();

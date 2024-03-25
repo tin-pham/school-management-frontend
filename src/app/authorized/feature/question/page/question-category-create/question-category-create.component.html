@@ -1,7 +1,15 @@
-<h1>Tạo danh mục câu hỏi</h1>
-<form>
-  <app-text-input-group [label]="'Tên'" [(value)]="dto.name" [name]="'name'" [required]="true"></app-text-input-group>
-  <div class="d-flex">
-    <app-primary-button (click)="store()">Tạo</app-primary-button>
-  </div>
-</form>
+<div class="form">
+  <h1 class="title">Tạo danh mục câu hỏi</h1>
+  <form>
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="category"
+      [label]="'Tên'"
+      [(value)]="dto.name"
+      [name]="'name'"
+      [required]="true"></app-text-input-group>
+    <div class="d-flex">
+      <app-primary-button [disabled]="!dto.name" (click)="store()">Tạo</app-primary-button>
+    </div>
+  </form>
+</div>
