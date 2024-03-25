@@ -1,5 +1,7 @@
 <div>
   <mat-divider class="my-3"></mat-divider>
+
+  <app-search-bar [value]="search$.value" label="Tìm theo tên" (valueChange)="setSearch($event)"></app-search-bar>
   <app-question-item
     [showTrash]="showTrash"
     [showEdit]="showEdit"

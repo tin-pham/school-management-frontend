@@ -1,5 +1,5 @@
 <div class="form">
-  <form ngSubmit="submit()">
+  <form (ngSubmit)="submit()">
     <app-text-input-group
       (valueChange)="onTitleChange($event)"
       [label]="'Tiêu đề'"

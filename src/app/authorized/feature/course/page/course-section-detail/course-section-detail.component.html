@@ -1,18 +1,7 @@
-<form *ngIf="section">
-  <div class="mb-5">
-    <app-text-input-group [name]="'name'" [label]="'Tên'" [(value)]="section.name"></app-text-input-group>
-    <app-primary-button (click)="updateSection()">Cập nhật</app-primary-button>
-  </div>
-
-  <h2>Bài học</h2>
-  <div>
-    <app-text-input-group [name]="'lessonTitle'" [label]="'Tên'" [(value)]="lessonCreate"></app-text-input-group>
-    <app-primary-button (click)="addLesson()">Thêm</app-primary-button>
-    <mat-list role="list">
-      <mat-list-item class="list-item" role="listitem" *ngFor="let item of section.lessons"
-        >{{ item.title }}
-        <mat-icon (click)="removeLessonFromSection(item.id)" class="align-middle">delete</mat-icon>
-      </mat-list-item>
-    </mat-list>
-  </div>
-</form>
+<div class="form" *ngIf="section">
+  <h1 class="title">Chỉnh sửa chương</h1>
+  <form (ngSubmit)="updateSection()">
+    <app-text-input-group icon="category" [required]="true" [name]="'name'" [label]="'Tên'" [(value)]="section.name"></app-text-input-group>
+    <app-primary-button [disabled]="!section.name?.trim()">Cập nhật</app-primary-button>
+  </form>
+</div>

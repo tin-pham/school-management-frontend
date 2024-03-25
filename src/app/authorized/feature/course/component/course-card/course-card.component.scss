@@ -1,4 +1,6 @@
-.course-card { display: flex; flex-direction: column;
+.course-card {
+  display: flex;
+  flex-direction: column;
   background-color: #f8f9fa; /* Light background for the card */
   border-radius: 15px; /* Rounded corners for a softer look */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -50,4 +52,10 @@
 .course-info {
   padding-left: 15px;
   padding-bottom: 15px;
+}
+
+.course-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

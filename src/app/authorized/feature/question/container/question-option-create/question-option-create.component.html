@@ -1,8 +1,9 @@
 <div class="mb-3">
+  <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
   <label class="label" [for]="name" [class.asterix]="required">{{ label }}</label>
   <div *ngIf="!createShow" class="add" (click)="createShow = true">+</div>
 
-  <div class="create" *ngIf="createShow">
+  <form (ngSubmit)="createOption()" class="create" *ngIf="createShow">
     <app-text-input-group [label]="'Tiêu đề câu trả lời'" [(value)]="option.text" [name]="'option'"></app-text-input-group>
     <div class="radio">
       <mat-radio-group [(ngModel)]="option.isCorrect" [name]="name">
@@ -12,10 +13,10 @@
     </div>
 
     <div class="d-flex">
-      <app-secondary-button (click)="createOption()">Thêm</app-secondary-button>
+      <app-secondary-button [disabled]="!option.text?.trim()">Thêm</app-secondary-button>
     </div>
     <mat-icon (click)="createShow = false" class="close">close</mat-icon>
-  </div>
+  </form>
   <app-question-option
     class="question-option"
     *ngFor="let option of options; let i = index"

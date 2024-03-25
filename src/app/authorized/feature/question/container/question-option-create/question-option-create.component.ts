@@ -10,6 +10,7 @@ import { QuestionStoreOptionDTO } from '@shared/models/dto/question.dto';
 export class QuestionOptionCreateComponent {
   @Input() name: string;
   @Input() label: string;
+  @Input() icon: string;
   @Input() required: boolean;
   @Input() options: QuestionStoreOptionDTO[] = [];
   @Output() optionsChange = new EventEmitter<QuestionStoreOptionDTO[]>();

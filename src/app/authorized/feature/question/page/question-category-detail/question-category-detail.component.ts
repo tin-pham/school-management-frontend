@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginateComponent } from '@core/base/search.base';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category.ro';

@@ -1,7 +1,9 @@
-<form>
-  <h1>Tạo chương</h1>
-  <app-text-input-group [label]="'Tên'" [name]="'name'" [(value)]="name"></app-text-input-group>
-  <div class="d-flex">
-    <app-primary-button (click)="create()">Tạo</app-primary-button>
-  </div>
-</form>
+<div class="form">
+  <h1 class="title">Tạo chương</h1>
+  <form (ngSubmit)="create()">
+    <app-text-input-group [label]="'Tên'" [name]="'name'" [(value)]="name"></app-text-input-group>
+    <div class="d-flex">
+      <app-primary-button [disabled]="!name?.trim()">Tạo</app-primary-button>
+    </div>
+  </form>
+</div>

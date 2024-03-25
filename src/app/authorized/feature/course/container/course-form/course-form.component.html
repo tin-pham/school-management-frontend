@@ -41,6 +41,6 @@
       [label]="'Giờ'"
       [name]="'hours'"
       [(value)]="dto.hours"></app-number-input-group>
-    <app-primary-button [disabled]="!dto.name || !dto.levelId">Tạo</app-primary-button>
+    <app-primary-button [disabled]="!dto.name?.trim() || !dto.levelId">Tạo</app-primary-button>
   </form>
 </div>

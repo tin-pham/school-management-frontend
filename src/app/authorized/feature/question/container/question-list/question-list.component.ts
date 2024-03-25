@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { PaginateComponent } from '@core/base/search.base';
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
@@ -9,7 +9,7 @@ import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
   styleUrls: ['question-list.component.scss'],
   templateUrl: 'question-list.component.html',
 })
-export class QuestionListComponent {
+export class QuestionListComponent extends PaginateComponent {
   questions: QuestionGetListDataRO[];
   dto: QuestionGetListDTO;
 
@@ -40,14 +40,11 @@ export class QuestionListComponent {
   constructor(
     private cd: ChangeDetectorRef,
     private _questionService: QuestionService,
-  ) {}
-
-  ngOnInit() {
-    const dto = this.getDto();
-    this.loadQuestions(dto);
+  ) {
+    super();
   }
 
-  loadQuestions(dto: QuestionGetListDTO) {
+  loadData(dto: QuestionGetListDTO) {
     this._questionService.getList(dto).subscribe(response => {
       this.totalItems = response.meta.totalItems;
       this.totalItemsChange.emit(this.totalItems);
@@ -56,19 +53,11 @@ export class QuestionListComponent {
     });
   }
 
-  handlePageChange(event: PageEvent) {
-    this.page = event.pageIndex + 1;
-    this.itemsPerPage = event.pageSize;
-
-    const dto = this.getDto();
-    this.loadQuestions(dto);
-  }
-
   @Output() onDelete = new EventEmitter();
   delete(questionId: number) {
     this.onDelete.emit(questionId);
     const dto = this.getDto();
-    this.loadQuestions(dto);
+    this.loadData(dto);
   }
 
   @Output() onEdit = new EventEmitter();
@@ -97,6 +86,7 @@ export class QuestionListComponent {
     const dto = new QuestionGetListDTO({
       limit: this.itemsPerPage,
       page: this.page,
+      search: this.search$.value,
     });
 
     if (this.questionCategoryId) {

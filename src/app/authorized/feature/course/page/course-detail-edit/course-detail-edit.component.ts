@@ -20,9 +20,7 @@ export class CourseDetailEditComponent implements OnInit {
   course: CourseGetDetailRO;
   categories: CategoryGetListDataRO[];
   levels: ISelectOption[];
-
   image: File;
-
   dto: CourseUpdateDTO;
 
   constructor(
@@ -61,7 +59,6 @@ export class CourseDetailEditComponent implements OnInit {
   }
 
   update() {
-    console.log(this.dto);
     this._courseService
       .update(this.course.id, this.dto)
       .pipe(

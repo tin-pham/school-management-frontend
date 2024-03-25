@@ -1,8 +1,12 @@
 <div *ngIf="questionCategory">
-  <h1>{{ questionCategory.name }}</h1>
-  <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
-    >Tạo câu hỏi</app-primary-button
-  >
+  <div class="header">
+    <h1>{{ questionCategory.name }}</h1>
+    <div class="d-flex">
+      <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
+        >Tạo câu hỏi</app-primary-button
+      >
+    </div>
+  </div>
 
   <app-question-list
     [questionCategoryId]="questionCategoryId"

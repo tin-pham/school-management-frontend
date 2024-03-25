@@ -9,7 +9,7 @@
       [name]="'name'"
       [required]="true"></app-text-input-group>
     <div class="d-flex">
-      <app-primary-button [disabled]="!dto.name" (click)="store()">Tạo</app-primary-button>
+      <app-primary-button [disabled]="!dto.name?.trim()" (click)="store()">Tạo</app-primary-button>
     </div>
   </form>
 </div>

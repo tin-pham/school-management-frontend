@@ -80,7 +80,7 @@ export class ExerciseDetailComponent implements OnInit {
       .subscribe(() => {
         this.toast.success('Xóa thành công khỏi bài tập này');
         this.selectedQuestionIds = [];
-        this.questionListComponent.loadQuestions(this.questionListComponent.getDto());
+        this.questionListComponent.loadData(this.questionListComponent.getDto());
       });
   }
 

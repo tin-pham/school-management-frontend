@@ -31,6 +31,7 @@ export class LessonCommentComponent implements OnInit {
   comment() {
     this._lessonCommentService.store(this.commentCreating).subscribe(() => {
       this.toast.success('Bình luận thành công');
+      this.commentCreating = new LessonCommentStoreDTO();
       this.loadComments();
     });
   }

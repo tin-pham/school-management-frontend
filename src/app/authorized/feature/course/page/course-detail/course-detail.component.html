@@ -18,7 +18,7 @@
 
     <div *ngIf="showOutcomeTextbox" class="outcome-box">
       <app-text-input-group [(value)]="courseOutcomeName"></app-text-input-group>
-      <app-secondary-button (click)="createOutcome()">Thêm</app-secondary-button>
+      <app-secondary-button [disabled]="!courseOutcomeName?.trim()" (click)="createOutcome()">Thêm</app-secondary-button>
     </div>
 
     <app-course-outcome-list (onDelete)="deleteOutcome($event)" [outcomes]="outcomes"></app-course-outcome-list>

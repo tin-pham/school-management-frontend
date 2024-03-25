@@ -38,7 +38,8 @@
       "IS_NOT_EMPTY": "Id phần học không được để trống"
     },
     "VIDEO_URL": {
-      "FORMAT_IS_NOT_VALID": "Định dạng địa chỉ không hợp lệ"
+      "FORMAT_IS_NOT_VALID": "Định dạng địa chỉ không hợp lệ",
+      "IS_NOT_BLANK": "Địa chỉ video không được chứa rỗng"
     }
   },
   "ASSIGNMENT": {

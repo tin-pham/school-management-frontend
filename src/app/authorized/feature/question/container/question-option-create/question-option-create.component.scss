@@ -10,10 +10,6 @@
   align-items: center;
 }
 
-.label {
-  font-weight: bold;
-}
-
 .radio {
   display: flex;
   gap: 15px;
@@ -29,11 +25,16 @@
   }
 }
 
-.asterix:before {
+.asterix:after {
   content: '*';
   color: red;
-  margin-right: 5px;
+  margin-left: 5px;
   font-size: 30px;
   // push down
   vertical-align: -20%;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 5px;
 }
