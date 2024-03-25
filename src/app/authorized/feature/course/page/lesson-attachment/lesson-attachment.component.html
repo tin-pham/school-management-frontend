@@ -1,6 +1,10 @@
 <div>
   <div>
-    <app-lesson-download (onDelete)="onDelete()" *ngFor="let attachment of attachments" [attachment]="attachment"></app-lesson-download>
+    <app-lesson-download
+      [isStudent]="isStudent()"
+      (onDelete)="onDelete()"
+      *ngFor="let attachment of attachments"
+      [attachment]="attachment"></app-lesson-download>
 
     <mat-paginator
       *ngIf="totalItems > 0"

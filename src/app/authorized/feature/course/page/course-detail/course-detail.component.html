@@ -10,7 +10,7 @@
   <div class="outcome mb-3">
     <div class="mb-2 d-flex">
       <h5>Bạn sẽ học được gì?</h5>
-      <div>
+      <div *ngIf="!isStudent()">
         <mat-icon *ngIf="!showOutcomeTextbox" class="add-icon" (click)="showOutcomeTextbox = true">add</mat-icon>
         <mat-icon *ngIf="showOutcomeTextbox" class="minus-icon" (click)="showOutcomeTextbox = false">remove</mat-icon>
       </div>
@@ -21,7 +21,7 @@
       <app-secondary-button [disabled]="!courseOutcomeName?.trim()" (click)="createOutcome()">Thêm</app-secondary-button>
     </div>
 
-    <app-course-outcome-list (onDelete)="deleteOutcome($event)" [outcomes]="outcomes"></app-course-outcome-list>
+    <app-course-outcome-list [isStudent]="isStudent()" (onDelete)="deleteOutcome($event)" [outcomes]="outcomes"></app-course-outcome-list>
   </div>
 
   <div class="list">

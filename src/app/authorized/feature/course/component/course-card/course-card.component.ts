@@ -11,7 +11,8 @@ export class CourseCardComponent {
   @Input() isEdit: boolean;
   @Input() option: IImageCardOption;
   @Input() course: CourseGetListDataRO;
-  @Input() assignmentIcon: boolean = true;
+  @Input() assignmentIcon = true;
+  @Input() showStudentCount = true;
 
   @Output() onDelete = new EventEmitter();
   delete() {

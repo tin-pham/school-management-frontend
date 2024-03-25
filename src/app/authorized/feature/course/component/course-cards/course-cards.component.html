@@ -8,6 +8,7 @@
       *ngFor="let course of courses"
       [assignmentIcon]="assignmentIcon"
       [routerLink]="['/course', course.id]"
+      [showStudentCount]="showStudentCount"
       [course]="course"
       [isEdit]="!isStudent()"
       [option]="options"></app-course-card>

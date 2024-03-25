@@ -1,20 +1,7 @@
-<!-- <app-expansion-list -->
-<!--   [showIcons]="showIcons" -->
-<!--   [expandIcon]="true" -->
-<!--   [editIcon]="true" -->
-<!--   [deleteIcon]="true" -->
-<!--   [addIcon]="true" -->
-<!--   (delete)="delete()" -->
-<!--   [editRoute]="'/course/' + courseId + '/section/' + section.id" -->
-<!--   [addRoute]="'/course/' + courseId + '/section/' + section.id + '/lesson'" -->
-<!--   [title]="section.name" -->
-<!--   [items]="lessonItems" -->
-<!--   (editClicked)="editLesson($event)" -->
-<!--   (itemClicked)="navigateToDetail($event)"></app-expansion-list> -->
 <div>
   <div class="item" (click)="toggle = !toggle">
     <a matLine>
-      <span class="me-2" *ngIf="showIcons">
+      <span class="me-2">
         <mat-icon class="align-middle" *ngIf="!toggle">expand_more</mat-icon>
         <mat-icon class="align-middle" *ngIf="toggle">expand_less</mat-icon>
       </span>
@@ -29,12 +16,6 @@
     </span>
   </div>
   <div [@expandCollapse]="toggle ? 'expanded' : 'collapsed'">
-    <!-- <app-basic-list -->
-    <!--   class="item-list" -->
-    <!--   (itemClick)="navigateToDetail($event)" -->
-    <!--   (editClick)="editLesson($event)" -->
-    <!--   [editIcon]="showIcons" -->
-    <!--   [items]="section.lessons"></app-basic-list> -->
     <app-course-lesson-item [isStudent]="isStudent" [sectionId]="section.id" [lessons]="section.lessons"></app-course-lesson-item>
   </div>
 </div>

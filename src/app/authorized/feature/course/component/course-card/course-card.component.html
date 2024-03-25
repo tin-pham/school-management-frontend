@@ -11,7 +11,7 @@
 
   <div class="course-info">
     <div class="course-name">{{ course.name }}</div>
-    <div>
+    <div *ngIf="showStudentCount">
       <mat-icon class="icon">group</mat-icon>
       {{ course.studentCount }}
     </div>

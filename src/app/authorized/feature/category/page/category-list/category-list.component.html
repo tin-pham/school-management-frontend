@@ -3,7 +3,11 @@
   <app-search-bar label="Tìm theo tên" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
 </div>
 <div class="list">
-  <app-category-item *ngFor="let category of categories" [category]="category"></app-category-item>
+  <app-category-item
+    role="button"
+    *ngFor="let category of categories"
+    [category]="category"
+    [routerLink]="['/category', category.id]"></app-category-item>
 </div>
 
 <mat-paginator

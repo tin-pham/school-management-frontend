@@ -13,6 +13,7 @@ export class CourseCardsComponent {
   @Input() courses: CourseGetListDataRO[] = [];
   @Input() options: IImageCardOption;
   @Input() assignmentIcon: boolean;
+  @Input() showStudentCount: boolean;
 
   constructor(
     private router: Router,

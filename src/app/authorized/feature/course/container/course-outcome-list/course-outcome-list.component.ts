@@ -8,6 +8,7 @@ import { CourseOutcomeGetListDataRO } from '@shared/models/ro/course-outcome.ro'
 })
 export class CourseOutcomeListComponent {
   @Input() outcomes: CourseOutcomeGetListDataRO[];
+  @Input() isStudent: boolean;
   isEdit = false;
 
   @Output() onDelete = new EventEmitter();

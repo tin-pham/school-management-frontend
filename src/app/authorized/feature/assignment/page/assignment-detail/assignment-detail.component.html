@@ -10,7 +10,7 @@
           >
         </h1>
         <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
-        <p class="assignment-points">100 points</p>
+        <p class="assignment-points">{{ assignment.submissionGrade }}</p>
       </div>
     </div>
     <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>

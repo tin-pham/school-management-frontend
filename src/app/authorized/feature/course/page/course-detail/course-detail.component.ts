@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { CourseOutcomeService } from '@core/services/api/course-outcome.service';
 import { CourseStudentService } from '@core/services/api/course-student.service';
 import { CourseService } from '@core/services/api/course.service';
@@ -30,6 +31,7 @@ export class CourseDetailComponent {
     private _courseService: CourseService,
     private _courseStudentService: CourseStudentService,
     private _courseOutcomeService: CourseOutcomeService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -97,5 +99,9 @@ export class CourseDetailComponent {
         this.outcomes.splice(index, 1);
       }
     });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }
