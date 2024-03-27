@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { NotificationCommentModule } from '@features/notification/component/notification-comment/notification-comment.module';
+import { NotificationExerciseModule } from '@features/notification/component/notification-exercise/notification-exercise.module';
 import { TranslateLoaderService } from './services/translate-loader.service';
 import { BaseService } from './services/api/base.service';
 import { AuthService } from './services/api/auth.service';
@@ -32,6 +34,10 @@ export function createTranslateLoader(http: HttpBackend) {
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule,
+
+    NotificationCommentModule,
+    NotificationExerciseModule,
+
     TranslateModule.forRoot({
       defaultLanguage: 'vn',
       loader: {

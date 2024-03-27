@@ -1,0 +1,17 @@
+<div role="button" class="notification-exercise" (click)="routeToExercise()">
+  <img
+    [src]="
+      'https://images.unsplash.com/photo-1633409361618-c73427e4e206?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    "
+    [alt]="notification.courseName"
+    class="image" />
+
+  <h3 class="dropdown-item-title mb-0">
+    {{ notification.courseName }}
+  </h3>
+
+  <div>
+    <p class="text-sm mb-0 content">{{ notification.content }}</p>
+    <p class="text-sm text-muted mb-0"><mat-icon class="me-1 align-middle">access_time</mat-icon> {{ dateAgo(notification) }}</p>
+  </div>
+</div>

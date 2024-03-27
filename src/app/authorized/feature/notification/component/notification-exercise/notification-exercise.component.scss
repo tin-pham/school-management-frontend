@@ -1,0 +1,27 @@
+.checked {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background */
+  /* Additional styling for selected state */
+}
+
+.notification-exercise {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  .image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  // ...
+  .content {
+    // truncate
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
@@ -8,6 +8,7 @@ import { ExerciseService } from '@core/services/api/exercise.service';
 import { StudentExerciseGradeService } from '@core/services/api/student-exercise-grade.service';
 import { StudentExerciseService } from '@core/services/api/student-exercise.service';
 import { ExerciseDetailHeaderComponent } from '@features/exercise/container/exercise-detail-header/exercise-detail-header.component';
+import { ExerciseSubmittedListComponent } from '@features/exercise/container/exercise-submitted-list/exercise-submitted-list.component';
 import { QuestionListComponent } from '@features/question/container/question-list/question-list.component';
 import { StudentQuestionListComponent } from '@features/question/container/student-question-list/student-question-list.component';
 import { ExerciseGetDetailDTO, ExerciseUpdateDTO } from '@shared/models/dto/exercise.dto';
@@ -29,6 +30,7 @@ export class ExerciseDetailComponent implements OnInit {
   @ViewChild('exerciseDetailHeader') exerciseDetailHeader: ExerciseDetailHeaderComponent;
   @ViewChild('questionList') questionListComponent: QuestionListComponent;
   @ViewChild('studentQuestionList') studentQuestionList: StudentQuestionListComponent;
+  @ViewChild('exerciseSubmittedList') exerciseSubmittedList: ExerciseSubmittedListComponent;
   totalItems = 0;
 
   studentExerciseSubmitDTO: StudentExerciseSubmitDTO = {
@@ -161,6 +163,7 @@ export class ExerciseDetailComponent implements OnInit {
       })
       .subscribe(() => {
         this.toast.success('Chấm điểm thành công');
+        this.exerciseSubmittedList.loadGrades();
       });
   }
 }

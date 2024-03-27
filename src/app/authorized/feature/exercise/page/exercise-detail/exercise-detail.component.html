@@ -36,7 +36,7 @@
   </div>
 
   <div *ngIf="!isStudent()" class="exercise-submitteed-list">
-    <app-exercise-submitted-list [exerciseId]="exerciseId"></app-exercise-submitted-list>
+    <app-exercise-submitted-list #exerciseSubmittedList [exerciseId]="exerciseId"></app-exercise-submitted-list>
   </div>
 
   <div class="exercise-footer">

@@ -7,4 +7,4 @@ import { QuestionOptionWithoutCheckboxComponent } from './question-option-withou
   declarations: [QuestionOptionWithoutCheckboxComponent],
   exports: [QuestionOptionWithoutCheckboxComponent],
 })
-export class QuestionnOptionWithoutCheckboxModule {}
+export class QuestionOptionWithoutCheckboxModule {}

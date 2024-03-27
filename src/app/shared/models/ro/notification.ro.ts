@@ -21,6 +21,8 @@ export class NotificationGetListDataRO {
   commentOwnerId?: number;
   commentOwnerDisplayName?: string;
   commentOwnerImageUrl?: string;
+  studentExerciseNotificationId?: number;
+  exerciseId?: number;
 }
 
 export class NotificationGetListRO extends PaginateRO<NotificationGetListDataRO> {

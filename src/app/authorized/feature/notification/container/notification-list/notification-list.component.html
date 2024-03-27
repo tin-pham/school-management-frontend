@@ -1,4 +1,4 @@
-<div class="list">
+<div class="container">
   <div class="toolbar mb-3 d-flex">
     <app-warn-button class="delete-button" *ngIf="notificationIdsChecked.length > 0" (click)="deleteSelectedNotifications()"
       >Xóa</app-warn-button
@@ -6,10 +6,18 @@
     <!-- Other toolbar actions here -->
   </div>
 
-  <app-notification-item
-    (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-    *ngFor="let notification of notifications"
-    [notification]="notification"></app-notification-item>
+  <div class="list">
+    <ng-container *ngFor="let notification of notifications">
+      <app-notification-comment
+        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
+        *ngIf="notification.commentOwnerId"
+        [notification]="notification"></app-notification-comment>
+      <app-notification-exercise
+        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
+        *ngIf="notification.studentExerciseNotificationId"
+        [notification]="notification"></app-notification-exercise>
+    </ng-container>
+  </div>
 
   <mat-paginator
     *ngIf="totalItems > 0"
@@ -20,4 +28,4 @@
     (page)="handlePageChange($event)"></mat-paginator>
 </div>
 
-<p class="text">Không có thông báo nào</p>
+<p *ngIf="totalItems === 0" class="text">Không có thông báo nào</p>

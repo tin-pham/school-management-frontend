@@ -22,6 +22,7 @@ export class ExerciseDetailHeaderComponent {
 
   ngOnInit() {
     // Initialize the countdown timer here, for example, 5 minutes.
+    console.log(this.exercise);
     if (this.exercise.isStartDoing && !this.exercise.isSubmitted) {
       this.startCountdown();
     }
@@ -93,8 +94,19 @@ export class ExerciseDetailHeaderComponent {
   }
 
   @Output() gradeClick = new EventEmitter();
-
   onGradeClick() {
-    this.gradeClick.emit();
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Chấm điểm?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.gradeClick.emit();
+    });
   }
 }

@@ -14,6 +14,10 @@ export class ExerciseSubmittedListComponent {
   constructor(private _studentExerciseService: StudentExerciseService) {}
 
   ngOnInit() {
+    this.loadGrades();
+  }
+
+  loadGrades() {
     this._studentExerciseService.getSubmittedList({ exerciseId: this.exerciseId }).subscribe(res => {
       this.exercices = res.data;
     });

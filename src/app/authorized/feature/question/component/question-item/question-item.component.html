@@ -2,7 +2,9 @@
   <div class="question-header">
     <div class="question-text">
       <span class="question-number"> {{ questionNumber }} </span>
-      {{ question.text }}
+      <span class="question-name">
+        {{ question.text }}
+      </span>
 
       <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" (change)="checkBoxChange($event)"> </mat-checkbox>
     </div>
@@ -15,13 +17,12 @@
     </div>
   </div>
   <div class="question-options">
-    <app-question-option
+    <app-question-option-without-checkbox
+      class="question-option"
       *ngFor="let option of question.options; let i = index"
       [showAutorenew]="false"
       [showTrash]="false"
-      [isMultipleChoice]="question.isMultipleChoice"
-      [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
-      [label]="getOptionLabel(i) + '. ' + option.text">
-    </app-question-option>
+      [label]="getOptionLabel(i) + '. ' + option.text"
+      [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"></app-question-option-without-checkbox>
   </div>
 </div>
