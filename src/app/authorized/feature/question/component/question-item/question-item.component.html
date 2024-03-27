@@ -17,8 +17,7 @@
   <div class="question-options">
     <app-question-option
       *ngFor="let option of question.options; let i = index"
-      [showClose]="false"
-      [showCorrect]="false"
+      [showAutorenew]="false"
       [showTrash]="false"
       [isMultipleChoice]="question.isMultipleChoice"
       [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"

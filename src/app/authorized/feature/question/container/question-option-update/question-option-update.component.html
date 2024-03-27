@@ -16,14 +16,11 @@
     </div>
   </div>
 
-  <app-question-option
+  <app-question-option-without-checkbox
     class="question-option"
     *ngFor="let option of options; let i = index"
-    (onCorrectClick)="correctOption(i)"
-    (onUncorrectClick)="incorrectOption(i)"
+    (onToggleCorrect)="toggleCorrectOption(i)"
     (onRemoveClick)="removeOption(i)"
-    [isMultipleChoice]="true"
-    [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"
-    [label]="getOptionLabel(i) + '. ' + option.text">
-  </app-question-option>
+    [label]="getOptionLabel(i) + '. ' + option.text"
+    [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"></app-question-option-without-checkbox>
 </div>

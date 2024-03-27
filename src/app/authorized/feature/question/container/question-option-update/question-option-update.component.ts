@@ -61,28 +61,17 @@ export class QuestionOptionUpdateComponent {
 
   @Input() updateOptions: { id: number; dto: QuestionOptionUpdateDTO }[] = [];
   @Output() updateOptionsChange = new EventEmitter();
-  correctOption(index: number) {
-    this.options[index].isCorrect = true;
-    if (!this.updateOptions[index]) {
-      this.updateOptions.push({
-        id: this.options[index].id,
-        dto: { isCorrect: true },
-      });
-    } else {
-      this.updateOptions[index].dto.isCorrect = true;
-    }
-    this.updateOptionsChange.emit(this.updateOptions);
-  }
 
-  incorrectOption(index: number) {
-    this.options[index].isCorrect = false;
+  toggleCorrectOption(index: number) {
+    const toggleTo = !this.options[index].isCorrect;
+    this.options[index].isCorrect = toggleTo;
     if (!this.updateOptions[index]) {
       this.updateOptions.push({
         id: this.options[index].id,
-        dto: { isCorrect: false },
+        dto: { isCorrect: toggleTo },
       });
     } else {
-      this.updateOptions[index].dto.isCorrect = false;
+      this.updateOptions[index].dto.isCorrect = toggleTo;
     }
     this.updateOptionsChange.emit(this.updateOptions);
   }
