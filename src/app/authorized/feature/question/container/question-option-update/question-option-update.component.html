@@ -2,7 +2,7 @@
   <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
   <label class="label" [for]="name" [class.asterix]="required">{{ label }}</label>
   <div *ngIf="!createShow" class="add" (click)="createShow = true">+</div>
-  <div class="update" *ngIf="createShow">
+  <form (ngSubmit)="createOption()" class="update" *ngIf="createShow">
     <app-text-input-group [label]="'Tiêu đề câu trả lời'" [(value)]="option.text" [name]="'option'"></app-text-input-group>
     <div class="radio">
       <mat-radio-group [(ngModel)]="option.isCorrect" [name]="name">
@@ -12,14 +12,14 @@
     </div>
     <mat-icon (click)="createShow = false" class="close">close</mat-icon>
     <div class="d-flex">
-      <app-secondary-button (click)="createOption()">Thêm</app-secondary-button>
+      <app-secondary-button type="submit" [disabled]="!option.text?.trim()">Thêm</app-secondary-button>
     </div>
-  </div>
+  </form>
 
   <app-question-option-without-checkbox
     class="question-option"
     *ngFor="let option of options; let i = index"
-    (onToggleCorrect)="toggleCorrectOption(i)"
+    (onToggleCorrect)="toggleCorrectOption(i, $event, option.id)"
     (onRemoveClick)="removeOption(i)"
     [label]="getOptionLabel(i) + '. ' + option.text"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"></app-question-option-without-checkbox>

@@ -24,12 +24,18 @@ export class QuestionOptionWithoutCheckboxComponent {
 
   @Output() onToggleCorrect = new EventEmitter();
   toggleCorrect() {
+    this.rotateButton();
     if (this.status === IQuestionOptionStatus.CORRECT) {
       this.status = IQuestionOptionStatus.INCORRECT;
+      this.onToggleCorrect.emit(false);
     } else {
       this.status = IQuestionOptionStatus.CORRECT;
+      this.onToggleCorrect.emit(true);
     }
+  }
 
-    this.onToggleCorrect.emit();
+  rotateButton() {
+    const element = document.querySelector('.autorenew');
+    element.classList.toggle('rotate'); // Add the 'rotate' class to start the animation
   }
 }

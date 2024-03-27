@@ -8,7 +8,6 @@ export class QuestionStoreOptionDTO {
 export class QuestionStoreDTO {
   text: string;
   difficultyId: number;
-  isMultipleChoice: boolean = false;
   questionCategoryIds?: number[];
   options?: QuestionStoreOptionDTO[];
 }
@@ -17,28 +16,34 @@ export class QuestionGetListDTO extends PaginateDTO {
   questionCategoryId?: number;
   exerciseId?: number;
   excludeExerciseId?: number;
-  difficultyId?: number;
+  difficultyId: number;
+  withExerciseStudentOption?: boolean;
 }
 
 export class QuestionStudentGetListDTO extends PaginateDTO {
   exerciseId?: number;
-
-  constructor(data?: QuestionStudentGetListDTO) {
-    super(data);
-    Object.assign(this, data);
-  }
+  studentExerciseId?: number;
 }
 
-export class QuestionUpdateOptionRO {
+export class QuestionUpdateOptionCreateDTO {
   isCorrect: boolean;
   text: string;
+}
+
+export class QuestionUpdateOptionUpdateDataDTO {
+  isCorrect?: boolean;
+  text?: string;
+}
+
+export class QuestionUpdateOptionUpdateDTO {
+  id: number;
+  data: QuestionUpdateOptionUpdateDataDTO;
 }
 
 export class QuestionUpdateDTO {
   text?: string;
   difficultyId?: number;
-  questionCategoryIds?: number[];
-  isMultipleChoice?: boolean;
-  options: QuestionUpdateOptionRO[];
-  removeOptionIds?: number[];
+  createOptions: QuestionUpdateOptionCreateDTO[];
+  removeOptionIds: number[];
+  updateOptions: QuestionUpdateOptionUpdateDTO[];
 }

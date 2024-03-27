@@ -32,3 +32,8 @@
     color: #ef5350; // Red color for delete icon
   }
 }
+
+.rotate {
+  transition: transform 0.5s ease;
+  transform: rotate(180deg);
+}
