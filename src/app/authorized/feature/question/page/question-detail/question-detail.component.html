@@ -1,23 +1,36 @@
-<form *ngIf="question">
+<div class="form">
   <h1 class="title">Cập nhật câu hỏi</h1>
-  <app-text-input-group [label]="'Tiêu đề'" [(value)]="dto.text" [name]="'text'" [required]="true"></app-text-input-group>
+  <form *ngIf="question" (ngSubmit)="update()">
+    <app-text-input-group
+      icon="help_outline"
+      [label]="'Tiêu đề'"
+      [(value)]="dto.text"
+      [name]="'text'"
+      [required]="true"></app-text-input-group>
 
-  <app-select-list
-    [options]="difficulties"
-    [(selected)]="dto.difficultyId"
-    [label]="'Độ khó'"
-    [name]="'difficulty'"
-    [required]="true"></app-select-list>
+    <app-select-list
+      icon="star"
+      [options]="difficulties"
+      [(selected)]="dto.difficultyId"
+      [label]="'Độ khó'"
+      [name]="'difficulty'"
+      [required]="true"></app-select-list>
 
-  <app-question-option-update
-    [required]="true"
-    [(options)]="question.options"
-    [(createOptions)]="dto.options"
-    [(removeOptionIds)]="dto.removeOptionIds"
-    [label]="'Câu trả lời'"
-    [name]="'option'"></app-question-option-update>
+    <app-question-option-update
+      icon="list"
+      [required]="true"
+      [(options)]="question.options"
+      [(createOptions)]="dto.options"
+      [(removeOptionIds)]="dto.removeOptionIds"
+      [(updateOptions)]="updateOptions"
+      [label]="'Câu trả lời'"
+      [name]="'option'"></app-question-option-update>
 
-  <div class="d-flex">
-    <app-primary-button (click)="update()">Cập nhật</app-primary-button>
-  </div>
-</form>
+    <div class="d-flex">
+      <app-primary-button [disabled]="!dto.text?.trim() || !dto.difficultyId || !question.options.length" type="submit"
+        >Cập nhật</app-primary-button
+      >
+      <app-secondary-button (click)="restore()" type="button">Khôi phục</app-secondary-button>
+    </div>
+  </form>
+</div>

@@ -32,6 +32,7 @@ import { PasswordInputGroupComponent } from './form-group/password-input-group/p
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { TextEditorViewerComponent } from './text-editor-viewer/text-editor-viewer.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DifficultyBadgeComponent } from './difficulty-badge/difficulty-badge.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -60,6 +61,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   TextEditorComponent,
   TextEditorViewerComponent,
   SearchBarComponent,
+  DifficultyBadgeComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

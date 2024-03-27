@@ -2,18 +2,21 @@
   <h1 class="mb-3 title">Tạo giáo viên</h1>
   <form>
     <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
       icon="school"
       name="displayName"
       [required]="true"
       label="Tên giáo viên"
       [(value)]="dto.displayName"></app-text-input-group>
     <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
       icon="person"
       name="username"
       [required]="true"
       label="Tên đăng nhập"
       [(value)]="dto.username"></app-text-input-group>
     <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
       icon="lock"
       name="password"
       [required]="true"

@@ -17,6 +17,7 @@ export class QuestionGetListDataRO {
   id: number;
   text: string;
   difficultyId: number;
+  difficultyName: string;
   isMultipleChoice: boolean;
   options: QuestionGetListOptionRO[];
 }

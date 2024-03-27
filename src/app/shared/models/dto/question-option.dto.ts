@@ -17,4 +17,17 @@ export class QuestionOptionGetListDTO extends PaginateDTO {
 export class QuestionOptionUpdateDTO {
   text?: string;
   isCorrect?: boolean;
+
+  constructor(data?: QuestionOptionUpdateDTO) {
+    Object.assign(this, data);
+  }
+}
+
+export class QuestionOptionBulkUpdateDataDTO {
+  id: number;
+  dto: QuestionOptionUpdateDTO;
+}
+
+export class QuestionOptionBulkUpdateDTO {
+  data: QuestionOptionBulkUpdateDataDTO[];
 }

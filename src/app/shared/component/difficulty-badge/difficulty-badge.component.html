@@ -1,0 +1,8 @@
+<span
+  class="difficulty"
+  [class.easy]="difficulty.id === DIFFICULTY.EASY"
+  [class.medium]="difficulty.id === DIFFICULTY.MEDIUM"
+  [class.hard]="difficulty.id === DIFFICULTY.HARD"
+  [class.very-hard]="difficulty.id === DIFFICULTY.VERY_HARD"
+  >{{ difficulty.name | titlecase }}</span
+>

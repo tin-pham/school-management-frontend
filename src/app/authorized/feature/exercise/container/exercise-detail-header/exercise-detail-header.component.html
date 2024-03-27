@@ -26,5 +26,6 @@
     <app-secondary-button [routerLink]="['/exercise', exerciseId, 'question-category']">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
     <app-primary-button *ngIf="!exercise.isActive && totalItems > 0" (click)="activateClicked()">Kích hoạt</app-primary-button>
     <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeClicked()">Xóa khỏi bài tập này</app-warn-button>
+    <app-primary-button *ngIf="exercise.isActive" (click)="onGradeClick()">Chấm điểm</app-primary-button>
   </div>
 </div>

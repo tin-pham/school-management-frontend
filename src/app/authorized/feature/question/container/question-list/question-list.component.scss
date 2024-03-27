@@ -3,3 +3,11 @@
   align-items: center;
   gap: 1em;
 }
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  .filter {
+    margin-top: 20px;
+  }
+}

@@ -16,7 +16,7 @@
       [(value)]="dto.description"></app-textarea-group>
 
     <div class="d-flex">
-      <app-primary-button [disabled]="!dto?.name.trim()">Tạo</app-primary-button>
+      <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
     </div>
   </form>
 </div>

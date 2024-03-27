@@ -1,4 +1,5 @@
 <div class="mb-3">
+  <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
   <label class="label" [for]="name" [class.asterix]="required">{{ label }}</label>
   <div *ngIf="!createShow" class="add" (click)="createShow = true">+</div>
   <div class="update" *ngIf="createShow">
@@ -18,9 +19,11 @@
   <app-question-option
     class="question-option"
     *ngFor="let option of options; let i = index"
+    (onCorrectClick)="correctOption(i)"
+    (onUncorrectClick)="incorrectOption(i)"
+    (onRemoveClick)="removeOption(i)"
     [isMultipleChoice]="true"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"
-    (onRemoveClick)="removeOption(i)"
     [label]="getOptionLabel(i) + '. ' + option.text">
   </app-question-option>
 </div>

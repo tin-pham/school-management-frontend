@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IQuestionOptionStatus } from '@features/question/component/question-option/question-option.component';
-import { QuestionOptionStoreDTO } from '@shared/models/dto/question-option.dto';
+import { QuestionOptionStoreDTO, QuestionOptionUpdateDTO } from '@shared/models/dto/question-option.dto';
 import { QuestionUpdateOptionRO } from '@shared/models/dto/question.dto';
 import { QuestionGetDetailOptionRO } from '@shared/models/ro/question.ro';
 
@@ -14,6 +14,7 @@ export class QuestionOptionUpdateComponent {
   @Input() name: string;
   @Input() label: string;
   @Input() required: boolean;
+  @Input() icon: string;
   @Input() options: QuestionGetDetailOptionRO[] = [];
   @Output() optionsChange = new EventEmitter<QuestionGetDetailOptionRO[]>();
 
@@ -56,5 +57,33 @@ export class QuestionOptionUpdateComponent {
     this.options.splice(index, 1);
     this.removeOptionIdsChange.emit(this.removeOptionIds);
     this.optionsChange.emit(this.options);
+  }
+
+  @Input() updateOptions: { id: number; dto: QuestionOptionUpdateDTO }[] = [];
+  @Output() updateOptionsChange = new EventEmitter();
+  correctOption(index: number) {
+    this.options[index].isCorrect = true;
+    if (!this.updateOptions[index]) {
+      this.updateOptions.push({
+        id: this.options[index].id,
+        dto: { isCorrect: true },
+      });
+    } else {
+      this.updateOptions[index].dto.isCorrect = true;
+    }
+    this.updateOptionsChange.emit(this.updateOptions);
+  }
+
+  incorrectOption(index: number) {
+    this.options[index].isCorrect = false;
+    if (!this.updateOptions[index]) {
+      this.updateOptions.push({
+        id: this.options[index].id,
+        dto: { isCorrect: false },
+      });
+    } else {
+      this.updateOptions[index].dto.isCorrect = false;
+    }
+    this.updateOptionsChange.emit(this.updateOptions);
   }
 }

@@ -1,0 +1,36 @@
+// difficulty-badge.component.scss
+
+/* Nesting difficulty levels within the .badge class */
+.difficulty {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  color: #fff; // White text for all badges
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+  /* Easy difficulty: soft green background */
+  &.easy {
+    background-color: #28a745;
+  }
+
+  /* Medium difficulty: vibrant yellow background */
+  &.medium {
+    background-color: #ffc107;
+  }
+
+  /* Hard difficulty: modern red background */
+  &.hard {
+    background-color: #dc3545;
+  }
+
+  /* Very Hard difficulty: deep purple background */
+  &.very-hard {
+    background-color: #6f42c1;
+  }
+}

@@ -1,6 +1,7 @@
 <div *ngIf="exercise">
   <app-exercise-detail-header
     #exerciseDetailHeader
+    (gradeClick)="bulkGrade()"
     (onRemoveClicked)="removeQuestionsFromExercise()"
     (onActivateClicked)="activateExercise()"
     [totalItems]="totalItems"
@@ -13,6 +14,9 @@
     <app-question-list
       *ngIf="!isStudent()"
       #questionList
+      [showDifficulty]="false"
+      [showDifficultyFilter]="false"
+      [showSearchBar]="false"
       [showTrash]="false"
       [showCheckBox]="!exercise.isActive"
       [showEdit]="!exercise.isActive"

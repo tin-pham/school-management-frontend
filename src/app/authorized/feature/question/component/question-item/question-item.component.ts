@@ -16,13 +16,14 @@ export class QuestionItemComponent {
   @Input() showCheckBox = false;
   @Input() showTrash = true;
   @Input() showEdit = true;
+  @Input() showDifficulty = true;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
   constructor(private dialog: MatDialog) {}
 
   @Output() onDeleteClick = new EventEmitter<number>();
-  deleteClick() {
+  deleteClick(event) {
     event.stopPropagation();
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 

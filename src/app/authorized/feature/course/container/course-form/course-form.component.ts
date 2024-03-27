@@ -9,7 +9,7 @@ import { ISelectOption } from '@shared/component/form-group/select-list/select-l
 import { SelectSearchOption } from '@shared/component/form-group/select-search/select-search.component';
 import { CourseStoreDTO } from '@shared/models/dto/course.dto';
 import { ToastrService } from '@shared/toastr/toastr.service';
-import { of, switchMap } from 'rxjs';
+import { delay, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-course-form',
@@ -86,7 +86,7 @@ export class CourseFormComponent implements OnInit {
         next: () => {
           this.toast.success('Tạo khóa học thành công');
           this.cacheStorage.remove();
-          this.router.navigate(['/course']);
+          window.history.back();
         },
       });
   }

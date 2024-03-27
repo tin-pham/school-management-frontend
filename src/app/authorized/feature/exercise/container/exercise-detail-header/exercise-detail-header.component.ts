@@ -91,4 +91,10 @@ export class ExerciseDetailHeaderComponent {
       this.timerSubscription.unsubscribe();
     }
   }
+
+  @Output() gradeClick = new EventEmitter();
+
+  onGradeClick() {
+    this.gradeClick.emit();
+  }
 }

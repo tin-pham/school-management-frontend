@@ -1,11 +1,23 @@
 <div>
   <mat-divider class="my-3"></mat-divider>
 
-  <app-search-bar [value]="search$.value" label="Tìm theo tên" (valueChange)="setSearch($event)"></app-search-bar>
+  <div class="toolbar">
+    <app-search-bar *ngIf="showSearchBar" [value]="search$.value" label="Tìm theo tên" (valueChange)="setSearch($event)"></app-search-bar>
+
+    <app-question-list-difficulty-filter
+      *ngIf="showDifficultyFilter"
+      class="filter"
+      (onFilter)="applyFilter($event)"></app-question-list-difficulty-filter>
+  </div>
+
   <app-question-item
+    [showDifficulty]="showDifficulty"
     [showTrash]="showTrash"
     [showEdit]="showEdit"
     [showCheckBox]="showCheckBox"
+    (onCorrectOption)="loadData(getDto())"
+    (onUncorrectOption)="loadData(getDto())"
+    (onRemoveOption)="loadData(getDto())"
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"
     (onCheckBoxChange)="checkBoxChecked($event, question.id)"

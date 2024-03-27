@@ -152,4 +152,15 @@ export class ExerciseDetailComponent implements OnInit {
         });
     });
   }
+
+  bulkGrade() {
+    this._studentExerciseGradeService
+      .bulkCalculate({
+        exerciseId: this.exerciseId,
+        basePoint: 100,
+      })
+      .subscribe(() => {
+        this.toast.success('Chấm điểm thành công');
+      });
+  }
 }

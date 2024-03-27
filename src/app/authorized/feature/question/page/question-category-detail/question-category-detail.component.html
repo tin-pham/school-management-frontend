@@ -9,6 +9,8 @@
   </div>
 
   <app-question-list
+    [showEdit]="true"
+    [showTrash]="true"
     [questionCategoryId]="questionCategoryId"
     (onEdit)="routeToQuestion($event)"
     (onDelete)="deleteQuestion($event)"></app-question-list>

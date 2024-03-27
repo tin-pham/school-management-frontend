@@ -3,10 +3,14 @@
     <div class="question-text">
       <span class="question-number"> {{ questionNumber }} </span>
       {{ question.text }}
+
       <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" (change)="checkBoxChange($event)"> </mat-checkbox>
     </div>
     <div class="icons">
-      <mat-icon *ngIf="showTrash" (click)="deleteClick()">delete</mat-icon>
+      <app-difficulty-badge
+        *ngIf="showDifficulty"
+        [difficulty]="{ id: question.difficultyId, name: question.difficultyName }"></app-difficulty-badge>
+      <mat-icon *ngIf="showTrash" (click)="deleteClick($event)">delete</mat-icon>
       <mat-icon *ngIf="showEdit" (click)="editClick()">edit</mat-icon>
     </div>
   </div>
@@ -14,6 +18,8 @@
     <app-question-option
       *ngFor="let option of question.options; let i = index"
       [showClose]="false"
+      [showCorrect]="false"
+      [showTrash]="false"
       [isMultipleChoice]="question.isMultipleChoice"
       [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.NORMAL"
       [label]="getOptionLabel(i) + '. ' + option.text">

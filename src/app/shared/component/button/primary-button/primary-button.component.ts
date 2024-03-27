@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class PrimaryButtonComponent {
   @Input() disabled: boolean;
+  @Input() type: string;
 }

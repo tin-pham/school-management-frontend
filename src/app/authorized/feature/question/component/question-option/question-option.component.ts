@@ -16,7 +16,9 @@ export class QuestionOptionComponent {
   @Input() status?: IQuestionOptionStatus;
   @Input() name: string;
   @Input() label: string;
-  @Input() showClose: boolean = true;
+  @Input() showClose = true;
+  @Input() showCorrect = true;
+  @Input() showTrash = true;
   @Input() isMultipleChoice: boolean;
   @Input() disabled: boolean;
 
@@ -31,6 +33,18 @@ export class QuestionOptionComponent {
   @Output() onRemoveClick = new EventEmitter();
   removeClick() {
     this.onRemoveClick.emit();
+  }
+
+  @Output() onCorrectClick = new EventEmitter();
+  correctClick() {
+    this.status = IQuestionOptionStatus.CORRECT;
+    this.onCorrectClick.emit();
+  }
+
+  @Output() onUncorrectClick = new EventEmitter();
+  uncorrectClick() {
+    this.status = IQuestionOptionStatus.INCORRECT;
+    this.onUncorrectClick.emit();
   }
 
   checkboxClick($event) {

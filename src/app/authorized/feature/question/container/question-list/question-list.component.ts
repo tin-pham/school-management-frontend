@@ -13,11 +13,14 @@ export class QuestionListComponent extends PaginateComponent {
   questions: QuestionGetListDataRO[];
   dto: QuestionGetListDTO;
 
+  @Input() showSearchBar = true;
   @Input() questionCategoryId: number;
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
   @Input() showTrash: boolean;
   @Input() showEdit: boolean;
+  @Input() showDifficulty = true;
+  @Input() showDifficultyFilter = true;
 
   @Input() selectedQuestionIds: number[];
   @Output() selectedQuestionIdsChange = new EventEmitter<number[]>();
@@ -100,5 +103,13 @@ export class QuestionListComponent extends PaginateComponent {
     }
 
     return dto;
+  }
+
+  applyFilter(dto: QuestionGetListDTO) {
+    this.page = 1;
+    this.loadData({
+      ...this.getDto(),
+      ...dto,
+    });
   }
 }

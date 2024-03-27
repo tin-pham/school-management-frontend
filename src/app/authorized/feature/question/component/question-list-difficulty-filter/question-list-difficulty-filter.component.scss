@@ -26,15 +26,11 @@
 }
 
 /* Style adjustments for the close icon */
-.buttons {
-  margin-left: auto; /* Pushes the icon to the right */
-  display: flex;
-}
-
 .close {
+  margin-left: auto; /* Pushes the icon to the right */
+  padding: 4px; /* Makes it easier to click/tap */
   border-radius: 50%; /* Circular background for the icon */
   color: rgba(0, 0, 0, 0.54); /* Icon color */
-  background-color: #ffcdd2; /* Softer red for incorrect options */
 }
 
 .close:hover {
