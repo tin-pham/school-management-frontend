@@ -10,4 +10,8 @@ export class ExerciseQuestionSnapshotService extends BaseService {
   studentGetList(dto: ExerciseQuestionSnapshotGetListDTO): Observable<ExerciseQuestionSnapshotGetListRO> {
     return this.get(API.EXERCISE_QUESTION_SNAPSHOT.CONTROLLER + '/' + API.EXERCISE_QUESTION_SNAPSHOT.STUDENT_GET_LIST.ROUTE, dto);
   }
+
+  getList(dto: ExerciseQuestionSnapshotGetListDTO): Observable<ExerciseQuestionSnapshotGetListRO> {
+    return this.get(API.EXERCISE_QUESTION_SNAPSHOT.CONTROLLER + '/' + API.EXERCISE_QUESTION_SNAPSHOT.GET_LIST.ROUTE, dto);
+  }
 }

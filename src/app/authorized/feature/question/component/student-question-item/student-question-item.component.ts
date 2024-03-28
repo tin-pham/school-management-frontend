@@ -14,7 +14,8 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
 export class StudentQuestionItemComponent {
   @Input() question: ExerciseQuestionSnapshotGetListDataRO;
   @Input() questionNumber: number;
-  @Input() isSubmitted = false;
+  @Input() isSubmitted: boolean;
+  @Input() isGraded: boolean;
 
   @Input() snapshotQuestion: StudentExerciseSubmitSnapshotQuestionDTO;
   @Output() snapshotQuestionChange = new EventEmitter<StudentExerciseSubmitSnapshotQuestionDTO>();

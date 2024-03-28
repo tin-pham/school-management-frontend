@@ -57,6 +57,7 @@ export class ExerciseGetDetailRO {
   correctCount?: number;
   studentExerciseGradeId: number;
   instantMark: boolean;
+  isGraded: boolean;
 }
 
 export class ExerciseUpdateRO {

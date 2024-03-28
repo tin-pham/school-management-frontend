@@ -1,28 +1,8 @@
-.question-option {
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
-  margin: 8px 0;
-  border-radius: 4px;
-  transition: background-color 0.3s ease; /* Smooth transition for background color change */
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24); /* Subtle shadow for depth */
-}
-
 /* Enhance the visual feedback for different states */
 .selected,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-radio-checked .mat-radio-outer-circle {
   background-color: #e0e0e0 !important; /* Override Material styles for consistency */
-}
-
-.correct {
-  background-color: #c8e6c9; /* Softer green for correct options */
-}
-
-.incorrect {
-  background-color: #ffcdd2; /* Softer red for incorrect options */
 }
 
 /* Style adjustments for the close icon */
@@ -49,4 +29,15 @@ mat-radio-button {
 .question-option .mat-radio-label-content {
   display: flex;
   align-items: center;
+}
+.question-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 8px 0;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
 }

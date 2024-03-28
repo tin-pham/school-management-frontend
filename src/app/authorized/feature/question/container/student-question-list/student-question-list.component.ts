@@ -4,6 +4,7 @@ import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-que
 import { ExerciseQuestionSnapshotGetListDTO } from '@shared/models/dto/exercise-question-snapshot.dto';
 import { StudentExerciseSubmitDTO, StudentExerciseSubmitSnapshotQuestionDTO } from '@shared/models/dto/student-exercise.dto';
 import { ExerciseQuestionSnapshotGetListDataRO } from '@shared/models/ro/exercise-question-snapshot.ro';
+import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 
 @Component({
   selector: 'app-student-question-list',
@@ -14,8 +15,7 @@ export class StudentQuestionListComponent {
   questions: ExerciseQuestionSnapshotGetListDataRO[] = [];
   dto: ExerciseQuestionSnapshotGetListDTO;
 
-  @Input() exerciseId: number;
-  @Input() isSubmitted: boolean;
+  @Input() exercise: ExerciseGetDetailRO;
 
   itemsPerPage = 5;
   page = 1;
@@ -69,7 +69,7 @@ export class StudentQuestionListComponent {
     const dto = new ExerciseQuestionSnapshotGetListDTO({
       limit: this.itemsPerPage,
       page: this.page,
-      exerciseId: this.exerciseId,
+      exerciseId: this.exercise.id,
     });
 
     return dto;

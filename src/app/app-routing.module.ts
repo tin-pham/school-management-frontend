@@ -31,6 +31,11 @@ export const routes: Routes = [
       import('./authorized/feature/course/page/course-lesson-detail/course-lesson-detail.module').then(m => m.CourseLessonDetailModule),
     canActivate: [roleGuard([ROLE.STUDENT])],
   },
+  {
+    path: 'exercise',
+    loadChildren: () => import('./authorized/feature/exercise/exercise.module').then(m => m.ExerciseModule),
+    canActivate: [roleGuard([ROLE.STUDENT])],
+  },
 ];
 
 const config: ExtraOptions = {

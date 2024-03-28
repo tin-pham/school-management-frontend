@@ -14,9 +14,12 @@ export enum IQuestionOptionStatus {
 })
 export class QuestionOptionWithoutCheckboxComponent {
   @Input() status?: IQuestionOptionStatus;
+  @Input() isSelected: boolean;
   @Input() label: string;
+  @Input() optionLabel: string;
   @Input() showAutorenew = true;
   @Input() showTrash = true;
+  @Input() showIncorrect = true;
   IQuestionOptionStatus = IQuestionOptionStatus;
 
   @Output() onRemoveClick = new EventEmitter();

@@ -4,7 +4,8 @@
     *ngFor="let question of questions; let i = index"
     [question]="question"
     [questionNumber]="i + 1"
-    [isSubmitted]="isSubmitted"
+    [isSubmitted]="exercise.isSubmitted"
+    [isGraded]="exercise.isGraded"
     [(snapshotQuestion)]="studentExerciseSubmitDTO.snapshotQuestions[i]"></app-student-question-item>
 
   <mat-paginator

@@ -1,48 +1,52 @@
-<div *ngIf="exercise">
-  <app-exercise-detail-header
-    #exerciseDetailHeader
-    (gradeClick)="bulkGrade()"
-    (onRemoveClicked)="removeQuestionsFromExercise()"
-    (onActivateClicked)="activateExercise()"
-    [totalItems]="totalItems"
-    [exercise]="exercise"
-    [exerciseId]="exerciseId"
-    [selectedQuestionIds]="selectedQuestionIds"
-    [isStudent]="isStudent()"></app-exercise-detail-header>
-
-  <div *ngIf="!isStudent() || exercise.isStartDoing" class="exercise-body">
-    <app-question-list
-      *ngIf="!isStudent()"
-      #questionList
-      [showDifficulty]="false"
-      [showDifficultyFilter]="false"
-      [showSearchBar]="false"
-      [showTrash]="false"
-      [showCheckBox]="!exercise.isActive"
-      [showEdit]="!exercise.isActive"
-      [(totalItems)]="totalItems"
-      [(selectedQuestionIds)]="selectedQuestionIds"
-      (onEdit)="routeToQuestion($event)"
-      [exerciseId]="exerciseId"></app-question-list>
-
-    <app-student-question-list
-      #studentQuestionList
-      *ngIf="isStudent() && (!exercise.isSubmitted || exercise.point)"
+<div class="background">
+  <div *ngIf="exercise" class="exercise-container">
+    <app-exercise-detail-header
+      #exerciseDetailHeader
+      (gradeClick)="bulkGrade()"
+      (onRemoveClicked)="removeQuestionsFromExercise()"
+      (onActivateClicked)="activateExercise()"
+      [totalItems]="totalItems"
+      [exercise]="exercise"
       [exerciseId]="exerciseId"
-      [isSubmitted]="exercise.isSubmitted"
-      [(studentExerciseSubmitDTO)]="studentExerciseSubmitDTO"></app-student-question-list>
+      [selectedQuestionIds]="selectedQuestionIds"
+      [isStudent]="isStudent()"></app-exercise-detail-header>
 
-    <app-exercise-detail-done *ngIf="isStudent() && exercise.isSubmitted && !exercise.point"></app-exercise-detail-done>
-  </div>
+    <div *ngIf="!isStudent() || exercise.isStartDoing" class="exercise-body">
+      <app-question-list
+        *ngIf="!isStudent()"
+        #questionList
+        [showDifficulty]="false"
+        [showDifficultyFilter]="false"
+        [showSearchBar]="false"
+        [showTrash]="false"
+        [showCheckBox]="!exercise.isActive"
+        [showEdit]="!exercise.isActive"
+        [isActive]="exercise.isActive"
+        [(totalItems)]="totalItems"
+        [(selectedQuestionIds)]="selectedQuestionIds"
+        (onEdit)="routeToQuestion($event)"
+        [exerciseId]="exerciseId"></app-question-list>
 
-  <div *ngIf="!isStudent()" class="exercise-submitteed-list">
-    <app-exercise-submitted-list #exerciseSubmittedList [exerciseId]="exerciseId"></app-exercise-submitted-list>
-  </div>
+      <app-student-question-list
+        #studentQuestionList
+        *ngIf="isStudent() && (!exercise.isSubmitted || exercise.point)"
+        [exercise]="exercise"
+        [(studentExerciseSubmitDTO)]="studentExerciseSubmitDTO"></app-student-question-list>
 
-  <div class="exercise-footer">
-    <app-primary-button *ngIf="isStudent() && exercise.isStartDoing && !exercise.isSubmitted" (click)="submitExercise()"
-      >Nộp bài</app-primary-button
-    >
-    <app-primary-button *ngIf="isStudent() && !exercise.isStartDoing" (click)="storeStudentExercise()">Bắt đầu làm bài</app-primary-button>
+      <app-exercise-detail-done *ngIf="isStudent() && exercise.isSubmitted && !exercise.point"></app-exercise-detail-done>
+    </div>
+
+    <div *ngIf="!isStudent()" class="exercise-submitteed-list">
+      <app-exercise-submitted-list #exerciseSubmittedList [exerciseId]="exerciseId"></app-exercise-submitted-list>
+    </div>
+
+    <div class="exercise-footer">
+      <app-primary-button *ngIf="isStudent() && exercise.isStartDoing && !exercise.isSubmitted" (click)="submitExercise()"
+        >Nộp bài</app-primary-button
+      >
+      <app-primary-button *ngIf="isStudent() && !exercise.isStartDoing" (click)="storeStudentExercise()"
+        >Bắt đầu làm bài</app-primary-button
+      >
+    </div>
   </div>
 </div>

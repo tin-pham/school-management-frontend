@@ -22,7 +22,9 @@
       *ngFor="let option of question.options; let i = index"
       [showAutorenew]="false"
       [showTrash]="false"
-      [label]="getOptionLabel(i) + '. ' + option.text"
+      [showIncorrect]="false"
+      [optionLabel]="getOptionLabel(i)"
+      [label]="option.text"
       [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"></app-question-option-without-checkbox>
   </div>
 </div>

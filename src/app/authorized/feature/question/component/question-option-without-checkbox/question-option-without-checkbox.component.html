@@ -1,11 +1,11 @@
-<div class="question-option" [class.selected]="status === IQuestionOptionStatus.SELECTED">
+<div class="question-option" [class.selected]="isSelected">
   <div class="status-icon">
     <mat-icon *ngIf="status === IQuestionOptionStatus.CORRECT" class="correct">check_circle</mat-icon>
-    <!-- <mat-icon *ngIf="status === IQuestionOptionStatus.INCORRECT" class="incorrect">cancel</mat-icon> -->
+    <mat-icon *ngIf="status === IQuestionOptionStatus.INCORRECT && showIncorrect" class="incorrect">cancel</mat-icon>
   </div>
 
   <p>
-    {{ label }}
+    <b>{{ optionLabel }}.</b> {{ label }}
   </p>
 
   <div class="buttons">

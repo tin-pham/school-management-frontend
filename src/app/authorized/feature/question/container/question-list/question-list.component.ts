@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PaginateComponent } from '@core/base/search.base';
+import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
@@ -13,10 +14,12 @@ export class QuestionListComponent extends PaginateComponent {
   questions: QuestionGetListDataRO[];
   dto: QuestionGetListDTO;
 
-  @Input() showSearchBar = true;
   @Input() questionCategoryId: number;
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
+  @Input() isActive: boolean;
+
+  @Input() showSearchBar = true;
   @Input() showTrash: boolean;
   @Input() showEdit: boolean;
   @Input() showDifficulty = true;
@@ -43,17 +46,27 @@ export class QuestionListComponent extends PaginateComponent {
   constructor(
     private cd: ChangeDetectorRef,
     private _questionService: QuestionService,
+    private _exerciseQuestionSnapshotService: ExerciseQuestionSnapshotService,
   ) {
     super();
   }
 
   loadData(dto: QuestionGetListDTO) {
-    this._questionService.getList(dto).subscribe(response => {
-      this.totalItems = response.meta.totalItems;
-      this.totalItemsChange.emit(this.totalItems);
-      this.questions = response.data;
-      this.cd.markForCheck();
-    });
+    if (this.isActive) {
+      this._exerciseQuestionSnapshotService.getList(dto).subscribe(response => {
+        this.totalItems = response.meta.totalItems;
+        this.totalItemsChange.emit(this.totalItems);
+        this.questions = response.data;
+        this.cd.markForCheck();
+      });
+    } else {
+      this._questionService.getList(dto).subscribe(response => {
+        this.totalItems = response.meta.totalItems;
+        this.totalItemsChange.emit(this.totalItems);
+        this.questions = response.data;
+        this.cd.markForCheck();
+      });
+    }
   }
 
   @Output() onDelete = new EventEmitter();
