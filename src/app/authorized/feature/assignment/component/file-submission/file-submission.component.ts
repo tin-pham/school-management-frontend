@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
+import {
+  DocumentViewerDialogComponent,
+  DocumentViewerDialogModel,
+} from '@shared/component/document-viewer-dialog/document-viewer-dialog.component';
 import { AssignmentGetSubmissionRO } from '@shared/models/ro/assignment.ro';
 
 @Component({
@@ -32,6 +36,23 @@ export class FileSubmissionComponent {
       }
 
       this.onDelete.emit();
+    });
+  }
+
+  view() {
+    // Ensure you're passing the attachmentUrl to the dialog data
+    const dialogData = new DocumentViewerDialogModel(this.submission.attachmentUrl);
+
+    const dialogRef = this.dialog.open(DocumentViewerDialogComponent, {
+      data: dialogData,
+      width: '80vw', // 80% of the viewport width
+      height: '95vh', // 80% of the viewport height
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
     });
   }
 

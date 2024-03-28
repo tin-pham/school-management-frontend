@@ -1,20 +1,32 @@
-<app-select-list (selectedChange)="optionChange($event)" [options]="options"></app-select-list>
-<div class="container-fluid">
-  <div class="row">
-    <!-- Report Card 1 -->
-    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let submission of submissions">
-      <div class="report-card">
-        <div class="report-info">
-          <div class="student-name">
-            <img class="student-avatar" src="https://via.placeholder.com/50" alt="" />
-            {{ submission.studentName }}
-          </div>
-          <div class="attachment-info" role="button" (click)="attachmentClick(submission.id)">{{ submission.attachmentName }}</div>
-          <div class="status-info">{{ submission.attachmentCreatedAt | date: 'dd/MM/yyyy' }}</div>
-        </div>
-      </div>
-    </div>
+<!-- <app-select-list (selectedChange)="optionChange($event)" [options]="options"></app-select-list> -->
+<!-- <div class="container-fluid"> -->
+<!--   <div class="row"> -->
+<!--     <!-- Report Card 1 -->
+<!--     <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let submission of submissions"> -->
+<!--       <div class="report-card"> -->
+<!--         <div class="report-info"> -->
+<!--           <div class="student-name"> -->
+<!--             <img class="student-avatar" src="https://via.placeholder.com/50" alt="" /> -->
+<!--             {{ submission.studentName }} -->
+<!--           </div> -->
+<!--           <div class="attachment-info" role="button" (click)="attachmentClick(submission.id)">{{ submission.attachmentName }}</div> -->
+<!--           <div class="status-info">{{ submission.attachmentCreatedAt | date: 'dd/MM/yyyy' }}</div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!---->
+<!--     <!-- Repeat the above block for each report card, changing the student info as needed -->
+<!--   </div> -->
+<!-- </div> -->
 
-    <!-- Repeat the above block for each report card, changing the student info as needed -->
+<div class="submitted-exercises">
+  <div class="header">
+    <h3>Danh sách nộp</h3>
+  </div>
+
+  <!-- TODO: Add filter -->
+  <!-- <app-exercise-submitted-item *ngFor="let exercise of exercices" [exercise]="exercise"></app-exercise-submitted-item> -->
+  <div class="list">
+    <app-assignment-report-item *ngFor="let submission of submissions" [assignmentSubmit]="submission"></app-assignment-report-item>
   </div>
 </div>

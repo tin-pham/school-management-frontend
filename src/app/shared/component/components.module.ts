@@ -33,6 +33,7 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
 import { TextEditorViewerComponent } from './text-editor-viewer/text-editor-viewer.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { DifficultyBadgeComponent } from './difficulty-badge/difficulty-badge.component';
+import { DocumentViewerDialogComponent } from './document-viewer-dialog/document-viewer-dialog.component';
 
 export const SHARED_COMPONENTS: Array<Type<any>> = [
   ClearableInputComponent,
@@ -62,6 +63,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   TextEditorViewerComponent,
   SearchBarComponent,
   DifficultyBadgeComponent,
+  DocumentViewerDialogComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

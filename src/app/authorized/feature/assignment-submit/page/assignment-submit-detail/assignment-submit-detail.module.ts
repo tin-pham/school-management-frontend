@@ -5,6 +5,7 @@ import { AssignmentSubmitGradeFormModule } from '@features/assignment-submit/con
 import { AssignmentSubmitGradeModule } from '@features/assignment-submit/container/assignment-submit-grade/assignment-submit-grade.module';
 import { AssignmentSubmitGradeService } from '@core/services/api/assignment-submit-grade.service';
 import { AssignmentSubmitNotGradedModule } from '@features/assignment-submit/component/assignment-submit-not-graded/assignment-submit-not-graded.module';
+import { AssignmentSubmitGradeFormDialogModule } from '@features/assignment-submit/container/assignment-submit-grade-form-dialog/assignment-submit-grade-form-dialog.module';
 import { AssignmentSubmitDetailComponent } from './assignment-submit-detail.component';
 import { AssignmentSubmitDetailRoutingModule } from './assignment-submit-detail-routing.module';
 
@@ -13,7 +14,7 @@ import { AssignmentSubmitDetailRoutingModule } from './assignment-submit-detail-
   imports: [
     AssignmentSubmitDetailRoutingModule,
     SharedModule,
-    AssignmentSubmitGradeFormModule,
+    AssignmentSubmitGradeFormDialogModule,
     AssignmentSubmitGradeModule,
     AssignmentSubmitNotGradedModule,
   ],

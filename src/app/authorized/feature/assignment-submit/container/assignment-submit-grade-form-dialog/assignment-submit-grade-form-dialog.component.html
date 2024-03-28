@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+  <!-- Use your form component here, pass any required @Input properties -->
+  <app-assignment-submit-grade-form
+    [submissionId]="data.submissionId"
+    (gradeChange)="dialogRef.close($event)"></app-assignment-submit-grade-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Hủy</button>
+</div>

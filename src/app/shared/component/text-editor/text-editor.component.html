@@ -1,5 +1,6 @@
 <div class="mb-3">
-  <p [class.asterix]="required">{{ label }}</p>
+  <mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
+  <span [class.asterix]="required" class="label">{{ label }}</span>
   <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
   <ngx-editor [editor]="editor" [ngModel]="value" (ngModelChange)="onValueChange($event)" [disabled]="false" placeholder=""></ngx-editor>
 </div>

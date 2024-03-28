@@ -1,14 +1,16 @@
 <div class="detail" *ngIf="submission">
-  <app-document-viewer class="document" [url]="submission.attachmentUrl"></app-document-viewer>
   <div>
-    <div class="student" *ngIf="submission">
-      <img class="student-image" [src]="submission.userImageUrl || 'https://via.placeholder.com/50'" [alt]="submission.studentName" />
-      <span class="student-name">{{ submission.studentName }}</span>
-    </div>
-    <app-assignment-submit-not-graded *ngIf="!grade && isStudent()"></app-assignment-submit-not-graded>
-    <app-assignment-submit-grade-form
-      *ngIf="!grade && !isStudent()"
-      (onGradeClick)="submitGrade($event)"></app-assignment-submit-grade-form>
+    <!-- <div class="student" *ngIf="submission"> -->
+    <!--   <img class="student-image" [src]="submission.userImageUrl || 'https://via.placeholder.com/50'" [alt]="submission.studentName" /> -->
+    <!--   <span class="student-name">{{ submission.studentName }}</span> -->
+    <!-- </div> -->
+    <!-- <app-assignment-submit-not-graded *ngIf="!grade && isStudent()"></app-assignment-submit-not-graded> -->
+    <!-- <app-assignment-submit-grade-form *ngIf="!grade && !isStudent()" [(grade)]="grade"></app-assignment-submit-grade-form> -->
     <app-assignment-submit-grade *ngIf="grade" [grade]="grade" (onDeleteClick)="delete()"></app-assignment-submit-grade>
+
+    <div class="d-flex" *ngIf="!grade">
+      <app-primary-button (click)="onGrade()">Chấm điểm</app-primary-button>
+    </div>
   </div>
+  <app-document-viewer class="document" [url]="submission.attachmentUrl"></app-document-viewer>
 </div>

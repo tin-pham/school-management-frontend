@@ -9,6 +9,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() label: string;
   @Input() required: boolean;
+  @Input() icon: string;
 
   editor: Editor;
   @Input() value: object;

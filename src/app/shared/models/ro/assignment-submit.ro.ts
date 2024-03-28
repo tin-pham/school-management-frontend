@@ -7,6 +7,8 @@ export class AssignmentSubmitGetListDataRO {
   attachmentCreatedAt: string;
   attachmentCreatedBy: number;
   studentName: string;
+  userImageUrl: string;
+  grade: number;
 }
 
 export class AssignmentSubmitGetListRO extends PaginateRO<AssignmentSubmitGetListDataRO> {

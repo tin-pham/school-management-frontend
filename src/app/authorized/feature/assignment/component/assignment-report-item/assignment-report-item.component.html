@@ -1,0 +1,33 @@
+<div class="assignment-card">
+  <div class="assignment-info">
+    <img
+      class="user-avatar"
+      [src]="assignmentSubmit.userImageUrl || 'http://www.gravatar.com/avatar/placeholder?d=identicon'"
+      [alt]="assignmentSubmit.studentName" />
+    <span class="user-name">{{ assignmentSubmit.studentName }}</span>
+  </div>
+
+  <div class="submission-details">
+    <p>
+      <mat-icon class="icon-schedule">schedule</mat-icon>
+      Nộp vào: {{ assignmentSubmit.attachmentCreatedAt | date: 'dd/MM/yyyy' }}
+    </p>
+    <!-- <p *ngIf="exercise.isLate" class="late-submission">Late</p> -->
+
+    <p>
+      <mat-icon class="icon-attachment">attachment</mat-icon>
+      File:
+      <span class="attachment" role="button" [routerLink]="['/assignment-submit', assignmentSubmit.id]">
+        {{ assignmentSubmit.attachmentName }}
+      </span>
+    </p>
+  </div>
+
+  <div class="grading-info">
+    <p class="point" *ngIf="assignmentSubmit.grade">
+      <mat-icon class="icon-grade">grade</mat-icon>
+      Điểm:
+      <span class="point-value"> {{ assignmentSubmit.grade }} </span>
+    </p>
+  </div>
+</div>

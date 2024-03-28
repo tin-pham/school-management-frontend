@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AssignmentSubmitGradeService } from '@core/services/api/assignment-submit-grade.service';
 import { AssignmentSubmitGradeStoreDTO } from '@shared/models/dto/aassignment-submit-grade.dto';
+import { AssignmentSubmitGetGradeRO } from '@shared/models/ro/assignment-submit.ro';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-assignment-submit-grade-form',
@@ -8,9 +11,22 @@ import { AssignmentSubmitGradeStoreDTO } from '@shared/models/dto/aassignment-su
 })
 export class AssignmentSubmitGradeFormComponent {
   dto = new AssignmentSubmitGradeStoreDTO();
+  @Input() grade: AssignmentSubmitGetGradeRO;
+  @Input() submissionId: number;
+  @Output() gradeChange = new EventEmitter<AssignmentSubmitGetGradeRO>();
+  onGradeChange(newGrade: AssignmentSubmitGetGradeRO) {
+    this.gradeChange.emit(newGrade);
+  }
 
-  @Output() onGradeClick = new EventEmitter();
-  gradeClick() {
-    this.onGradeClick.emit(this.dto);
+  constructor(
+    private toast: ToastrService,
+    private _assignmentSubmitGradeService: AssignmentSubmitGradeService,
+  ) {}
+
+  submitGrade() {
+    this._assignmentSubmitGradeService.store({ ...this.dto, assignmentSubmitId: this.submissionId }).subscribe(response => {
+      this.toast.success('Chấm điểm thành công');
+      this.onGradeChange(response);
+    });
   }
 }

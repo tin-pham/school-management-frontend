@@ -1,5 +1,7 @@
 <div class="grade">
-  <p class="grade-point">Điểm: {{ grade?.grade }}</p>
-  <p class="grade-message">{{ grade?.message }}</p>
-  <app-warn-button *ngIf="warnButtonShow()" (click)="deleteClick()">Chấm lại</app-warn-button>
+  <div>
+    <p class="grade-point">Điểm: {{ grade?.grade }}</p>
+    <p class="grade-message">{{ grade?.message }}</p>
+  </div>
+  <app-primary-button type="button" *ngIf="warnButtonShow()" (click)="deleteClick()">Chấm lại</app-primary-button>
 </div>

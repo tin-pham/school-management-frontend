@@ -1,9 +1,17 @@
-<form>
-  <app-text-input-group [required]="true" [label]="'Tiêu đề'" [name]="'name'" [(value)]="dto.name"></app-text-input-group>
-  <!-- <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group> -->
+<div class="form">
+  <h1 class="title">Tạo assignment</h1>
+  <form (ngSubmit)="create()">
+    <app-text-input-group
+      icon="assignment"
+      [required]="true"
+      [label]="'Tiêu đề'"
+      [name]="'name'"
+      [(value)]="dto.name"></app-text-input-group>
+    <!-- <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group> -->
 
-  <app-text-editor label="Nội dung" [(value)]="dto.description"></app-text-editor>
-  <app-date-picker [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
+    <app-text-editor icon="description" label="Nội dung" [(value)]="dto.description"></app-text-editor>
+    <app-date-picker icon="date_range" [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
 
-  <app-primary-button (click)="create()">Tạo</app-primary-button>
-</form>
+    <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
+  </form>
+</div>
