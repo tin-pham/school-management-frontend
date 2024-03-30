@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BASE_URL } from '@core/constants/api.constant';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from '@shared/toastr/toastr.service';
@@ -12,6 +13,7 @@ export class BaseService {
 
   constructor(
     private readonly http: HttpClient,
+    private readonly router: Router,
     private readonly translate: TranslateService,
     private readonly toastService: ToastrService,
   ) {}
@@ -83,6 +85,7 @@ export class BaseService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.log(error);
     if (Array.isArray(error.error.code)) {
       error.error.code.forEach(code => {
         this.translate.get(code).subscribe((translatedError: string) => {
@@ -92,8 +95,8 @@ export class BaseService {
       // You may want to throw an error or handle this scenario differently
       return throwError(() => new Error('Multiple errors occurred'));
     } else {
-      if (error.status === 403 && !error.error?.code) {
-        this.toastService.error('Bạn không có quyền thực hiện hành động này');
+      if (error.status === 403 && error.error?.code) {
+        this.router.navigate(['/403'], { replaceUrl: true });
       }
       return this.translate.get(error.error.code).pipe(
         map((translatedError: string) => {

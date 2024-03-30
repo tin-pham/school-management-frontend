@@ -12,15 +12,15 @@
   </div>
 
   <ul>
-    <li>
+    <li *ngIf="course.levelName">
       <mat-icon class="me-1 align-middle">bar_chart</mat-icon>
       Trình độ <b>{{ course.levelName }}</b>
     </li>
-    <li>
+    <li *ngIf="course.lessonCount">
       <mat-icon class="me-1 align-middle">school</mat-icon>
       Tổng số <b>{{ course.lessonCount || 0 }} </b>bài học
     </li>
-    <li>
+    <li *ngIf="course.hours">
       <mat-icon class="me-1 align-middle">access_time</mat-icon>
       Thời lượng <b>{{ course.hours }} </b>tiếng
     </li>

@@ -8,6 +8,8 @@ import { SharedModule } from '@shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { NotificationCommentModule } from '@features/notification/component/notification-comment/notification-comment.module';
 import { NotificationExerciseModule } from '@features/notification/component/notification-exercise/notification-exercise.module';
+import { NotificationAssignmentModule } from '@features/notification/component/notification-assignment/notification-assignment.module';
+import { NotificationLessonModule } from '@features/notification/component/notification-lesson/notification-lesson.module';
 import { TranslateLoaderService } from './services/translate-loader.service';
 import { BaseService } from './services/api/base.service';
 import { AuthService } from './services/api/auth.service';
@@ -37,6 +39,8 @@ export function createTranslateLoader(http: HttpBackend) {
 
     NotificationCommentModule,
     NotificationExerciseModule,
+    NotificationAssignmentModule,
+    NotificationLessonModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'vn',

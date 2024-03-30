@@ -16,6 +16,11 @@
         (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
         *ngIf="notification.studentExerciseNotificationId"
         [notification]="notification"></app-notification-exercise>
+
+      <app-notification-lesson
+        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
+        *ngIf="notification.lessonId"
+        [notification]="notification"></app-notification-lesson>
     </ng-container>
   </div>
 

@@ -44,6 +44,7 @@ export class NotificationDropdownComponent implements OnInit {
   loadNotifications(dto: NotificationGetListDTO) {
     this._notificationService.getList(dto).subscribe(response => {
       this.notificationsPaginated = response;
+      console.log(this.notificationsPaginated.data);
     });
   }
 

@@ -1,18 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
 import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 
 @Component({
-  selector: 'app-notification-comment',
-  styleUrls: ['notification-comment.component.scss'],
-  templateUrl: 'notification-comment.component.html',
+  selector: 'app-notification-assignment',
+  styleUrls: ['notification-assignment.component.scss'],
+  templateUrl: 'notification-assignment.component.html',
 })
-export class NotificationCommentComponent {
+export class NotificationAssignmentComponent {
   @Input() notification: NotificationGetListDataRO;
   @Input() showCheckbox = true;
-
-  constructor(private router: Router) {}
 
   @Output() onCheckBoxChange = new EventEmitter();
   checkBoxChange(event: MatCheckboxChange) {
@@ -33,11 +30,5 @@ export class NotificationCommentComponent {
     } else {
       return `${Math.floor(seconds / 86400)} ngày trước`;
     }
-  }
-
-  routeToComment() {
-    this.router.navigate(['comment', this.notification.commentParentId || this.notification.commentId], {
-      queryParams: { highlightedCommentId: this.notification.commentId },
-    });
   }
 }

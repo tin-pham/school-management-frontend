@@ -21,11 +21,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log(error);
         if (error.status === 401) {
           // Handle 401 error: Redirect to login, refresh token, etc.
           // This is a simple redirect to login example:
           this.router.navigate(['/login']);
           return throwError(() => new Error('Unauthorized'));
+        } else if (error.status === 403) {
+          this.router.navigate(['/403']);
+          return throwError(() => new Error('Forbidden'));
         } else {
           return throwError(() => error);
         }

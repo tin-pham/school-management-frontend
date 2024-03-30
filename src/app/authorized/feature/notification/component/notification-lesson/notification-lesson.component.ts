@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 
 @Component({
-  selector: 'app-notification-comment',
-  styleUrls: ['notification-comment.component.scss'],
-  templateUrl: 'notification-comment.component.html',
+  selector: 'app-notification-lesson',
+  styleUrls: ['notification-lesson.component.scss'],
+  templateUrl: 'notification-lesson.component.html',
 })
-export class NotificationCommentComponent {
+export class NotificationLessonComponent {
   @Input() notification: NotificationGetListDataRO;
-  @Input() showCheckbox = true;
 
   constructor(private router: Router) {}
 
@@ -35,9 +34,14 @@ export class NotificationCommentComponent {
     }
   }
 
-  routeToComment() {
-    this.router.navigate(['comment', this.notification.commentParentId || this.notification.commentId], {
-      queryParams: { highlightedCommentId: this.notification.commentId },
-    });
+  routeToLesson() {
+    this.router.navigate([
+      '/course',
+      this.notification.courseId,
+      'section',
+      this.notification.sectionId,
+      'lesson',
+      this.notification.lessonId,
+    ]);
   }
 }

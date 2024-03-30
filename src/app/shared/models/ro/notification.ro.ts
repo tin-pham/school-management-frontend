@@ -14,7 +14,6 @@ export class NotificationGetListDataRO {
   createdAt: Date;
   courseId?: number;
   courseName?: string;
-  assignmentId?: number;
   isRead?: boolean;
   commentId?: number;
   commentParentId?: number;
@@ -22,7 +21,15 @@ export class NotificationGetListDataRO {
   commentOwnerDisplayName?: string;
   commentOwnerImageUrl?: string;
   studentExerciseNotificationId?: number;
-  exerciseId?: number;
+  exerciseSubmitId?: number;
+  assignmentSubmitNotificationId?: number;
+  assignmentId?: number;
+  assignmentName: string;
+  lessonId: number;
+  sectionId: number;
+  assignmentNotificationId: number;
+  exerciseId: number;
+  exerciseName: number;
 }
 
 export class NotificationGetListRO extends PaginateRO<NotificationGetListDataRO> {

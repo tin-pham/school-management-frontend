@@ -1,4 +1,4 @@
-<div role="button" class="notification-exercise" (click)="routeToExercise()">
+<div role="button" class="notification-lesson" (click)="routeToLesson()">
   <div class="header">
     <img
       [src]="
@@ -11,7 +11,6 @@
       {{ notification.title }}
     </h3>
   </div>
-
   <div>
     <p class="text-sm mb-0 content">{{ notification.content }}</p>
     <p class="text-sm text-muted mb-0"><mat-icon class="me-1 align-middle">access_time</mat-icon> {{ dateAgo(notification) }}</p>

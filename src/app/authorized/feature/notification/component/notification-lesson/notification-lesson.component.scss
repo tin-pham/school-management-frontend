@@ -2,24 +2,23 @@
   background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background */
   /* Additional styling for selected state */
 }
-.notification-comment {
+
+.notification-lesson {
   display: flex;
   flex-direction: column;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
   .image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
 
   // ...

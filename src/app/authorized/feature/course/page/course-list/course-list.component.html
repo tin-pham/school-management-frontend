@@ -1,7 +1,9 @@
 <div class="header">
-  <h1>Khóa học</h1>
-  <app-secondary-button (click)="routeToCreateCategory()">Tạo danh mục</app-secondary-button>
+  <h1 class="title">Khóa học</h1>
+  <app-primary-button (click)="routeToCreateCategory()">Tạo danh mục</app-primary-button>
 </div>
+
+<mat-divider class="mb-3"></mat-divider>
 
 <app-course-group
   (categoryDeleted)="onCategoryDeleted($event)"

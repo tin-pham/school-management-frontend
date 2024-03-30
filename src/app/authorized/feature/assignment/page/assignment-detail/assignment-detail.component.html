@@ -1,26 +1,33 @@
-<div class="assignment-container" *ngIf="assignment">
-  <div class="text">
-    <div class="assignment-header">
-      <mat-icon class="assignment-icon">assignment</mat-icon>
-      <div class="assignment-info">
-        <h1 class="assignment-title">
-          {{ assignment.name }}
-          <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle"
-            >edit</mat-icon
-          >
-        </h1>
-        <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
-        <p class="assignment-points">{{ assignment.submissionGrade }}</p>
-      </div>
-    </div>
-    <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>
-  </div>
+<div class="assignment-detail" *ngIf="assignment">
+  <a [routerLink]="['/course', assignment.courseId, 'section', assignment.sectionId, 'lesson', assignment.lessonId, 'assignment']">
+    <mat-icon class="icon">arrow_back</mat-icon>
+    {{ assignment.lessonTitle }}</a
+  >
 
-  <app-assignment-submit-box
-    *ngIf="isStudent()"
-    [assignment]="assignment"
-    [(submission)]="submission"
-    class="submit"></app-assignment-submit-box>
+  <div class="container">
+    <div class="text">
+      <div class="assignment-header">
+        <mat-icon class="assignment-icon">assignment</mat-icon>
+        <div class="assignment-info">
+          <h1 class="assignment-title">
+            {{ assignment.name }}
+            <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle"
+              >edit</mat-icon
+            >
+          </h1>
+          <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
+          <p class="assignment-points">{{ assignment.submissionGrade }}</p>
+        </div>
+      </div>
+      <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>
+    </div>
+
+    <app-assignment-submit-box
+      *ngIf="isStudent()"
+      [assignment]="assignment"
+      [(submission)]="submission"
+      class="submit"></app-assignment-submit-box>
+  </div>
 </div>
 
 <app-assignment-report *ngIf="showReport()" [assignmentId]="assignmentId"></app-assignment-report>

@@ -61,6 +61,11 @@ const routes: Routes = [
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
+        path: 'exercise',
+        loadChildren: () => import('./feature/exercise/exercise.module').then(m => m.ExerciseModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
+      {
         path: 'question',
         loadChildren: () => import('./feature/question/question.module').then(m => m.QuestionModule),
         canActivate: [roleGuard([ROLE.TEACHER])],

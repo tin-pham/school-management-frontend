@@ -23,6 +23,9 @@ export class CourseLessonCreateComponent implements OnInit {
   }
 
   create() {
+    if (!this.dto.videoUrl?.trim()) {
+      delete this.dto.videoUrl;
+    }
     this._lessonService.store(this.dto).subscribe(() => {
       this.toast.success('Tạo bài học thành công');
       window.history.back();

@@ -42,6 +42,10 @@ export class AssignmentGetDetailRO {
   submissionId?: number;
   submissionDate?: Date;
   submissionGrade?: number;
+  lessonId?: number;
+  lessonTitle?: string;
+  sectionId?: number;
+  courseId?: number;
 
   constructor(data?: AssignmentGetDetailRO) {
     Object.assign(this, data);

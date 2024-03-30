@@ -1,4 +1,9 @@
 .notification-dropdown {
-  max-width: 500px;
-  overflow-y: auto;
+  max-width: 550px;
+  width: 400px;
+  .dropdown-item {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 }

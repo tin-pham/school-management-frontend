@@ -16,7 +16,7 @@
       aria-label="Select page of users"></mat-paginator>
   </div>
 
-  <div *ngIf="!isStudent()">
+  <form *ngIf="!isStudent()" (ngSubmit)="upload()">
     <app-files-input-group
       [accept]="'*'"
       [files]="attachmentsCreating"
@@ -24,7 +24,7 @@
       [label]="'Đính kèm'"></app-files-input-group>
 
     <div class="d-flex">
-      <app-primary-button (click)="upload()">Tải lên</app-primary-button>
+      <app-primary-button [disabled]="!attachmentsCreating">Tải lên</app-primary-button>
     </div>
-  </div>
+  </form>
 </div>

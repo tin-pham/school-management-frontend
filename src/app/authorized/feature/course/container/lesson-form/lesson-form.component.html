@@ -16,7 +16,7 @@
     <app-text-editor label="Nội dung bài học" [(value)]="body" (valueChange)="onBodyChange($event)"></app-text-editor>
 
     <div class="d-flex">
-      <app-primary-button [disabled]="!title">{{ buttonAction }}</app-primary-button>
+      <app-primary-button [disabled]="!title?.trim()">{{ buttonAction }}</app-primary-button>
     </div>
   </form>
 </div>
