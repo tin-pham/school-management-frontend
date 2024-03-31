@@ -6,6 +6,7 @@ import { MaterialModule } from './material/material.module';
 import { ToastrModule } from './toastr/toastr.module';
 import { SharedComponentsModule } from './component/components.module';
 import { VideoModule } from './component/video/video.module';
+import { BootstrapModule } from './bootstrap/bootstrap.module';
 
 const SHARED_MODULES = [
   CommonModule,
@@ -16,6 +17,7 @@ const SHARED_MODULES = [
   SharedComponentsModule,
   RouterModule,
   VideoModule,
+  BootstrapModule,
 ];
 
 @NgModule({

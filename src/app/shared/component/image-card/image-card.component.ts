@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 
@@ -13,7 +13,9 @@ export interface IImageCardOption {
   styleUrls: ['image-card.component.scss'],
   templateUrl: 'image-card.component.html',
 })
-export class ImageCardComponent {
+export class ImageCardComponent implements OnInit {
+  @Input() id: number;
+  @Input() thumnailText: string;
   @Input() src: string;
   @Input() alt: string;
   // @Input() name: string;
@@ -27,6 +29,10 @@ export class ImageCardComponent {
   };
 
   constructor(private dialog: MatDialog) {}
+
+  ngOnInit() {
+    console.log(this.src);
+  }
 
   @Output() checkChange = new EventEmitter();
   check() {
@@ -69,5 +75,18 @@ export class ImageCardComponent {
     });
 
     event.stopPropagation();
+  }
+
+  getBackgroundStyle(): string {
+    if (!this.src) {
+      // Only generate background if 'src' is not present
+      const multiplier = 137; // Prime number as a multiplier to spread out hues more evenly
+      const hash = (this.id * multiplier) % 360; // Multiply 'id' by a larger factor before modulo operation
+      const color1 = `hsl(${hash}, 100%, 50%)`; // First color
+      const color2 = `hsl(${(hash + 45) % 360}, 100%, 50%)`; // Second color, offset by 45 degrees
+
+      return `linear-gradient(to right, ${color1}, ${color2})`;
+    }
+    return ''; // Return an empty string if 'src' is present, meaning no need for a generated background
   }
 }

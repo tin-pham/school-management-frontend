@@ -10,8 +10,9 @@
       (change)="check()"
       aria-label="Select" />
   </div>
-  <div class="card-image" tabindex="0">
-    <img [src]="src" />
+  <div class="card-image" tabindex="0" [ngStyle]="{ background: getBackgroundStyle() }">
+    <div *ngIf="!src" class="thumbnail-text">{{ thumnailText }}</div>
+    <img *ngIf="src" [src]="src" />
   </div>
   <!-- <div class="card-description"> -->
   <!--   <h2>{{ name }}</h2> -->

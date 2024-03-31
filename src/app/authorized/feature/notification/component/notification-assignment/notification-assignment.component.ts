@@ -31,4 +31,10 @@ export class NotificationAssignmentComponent {
       return `${Math.floor(seconds / 86400)} ngày trước`;
     }
   }
+
+  @Output() onRoute = new EventEmitter();
+  route() {
+    console.log('oke');
+    this.onRoute.emit();
+  }
 }

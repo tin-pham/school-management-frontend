@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
 import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 
 @Component({
@@ -10,8 +9,7 @@ import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 })
 export class NotificationExerciseComponent {
   @Input() notification: NotificationGetListDataRO;
-
-  constructor(private router: Router) {}
+  @Input() showCheckbox: boolean;
 
   @Output() onCheckBoxChange = new EventEmitter();
   checkBoxChange(event: MatCheckboxChange) {
@@ -33,8 +31,8 @@ export class NotificationExerciseComponent {
       return `${Math.floor(seconds / 86400)} ngày trước`;
     }
   }
-
-  routeToExercise() {
-    this.router.navigate(['/exercise', this.notification.exerciseId]);
+  @Output() onRoute = new EventEmitter();
+  route() {
+    this.onRoute.emit();
   }
 }

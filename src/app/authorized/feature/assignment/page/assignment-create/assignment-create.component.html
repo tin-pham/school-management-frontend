@@ -10,8 +10,11 @@
     <!-- <app-textarea-group [required]="true" [label]="'Ghi chú'" [name]="'description'" [(value)]="dto.description"></app-textarea-group> -->
 
     <app-text-editor icon="description" label="Nội dung" [(value)]="dto.description"></app-text-editor>
-    <app-date-picker icon="date_range" [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker>
+    <!-- <app-date-picker icon="date_range" [label]="'Deadline'" [name]="'dueDate'" [(value)]="dto.dueDate"></app-date-picker> -->
+    <bootstrap-date-time-picker icon="date_range" [(ngModel)]="dto.dueDate" name="dueDate" label="Deadline"></bootstrap-date-time-picker>
 
-    <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
+    <div class="d-flex justify-content-end mt-3">
+      <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
+    </div>
   </form>
 </div>

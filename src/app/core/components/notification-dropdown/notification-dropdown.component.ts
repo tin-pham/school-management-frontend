@@ -13,7 +13,7 @@ import { NotificationGetListDataRO, NotificationGetListRO } from '@shared/models
 })
 export class NotificationDropdownComponent implements OnInit {
   notificationsPaginated: NotificationGetListRO;
-  limit = 5;
+  limit = 3;
 
   constructor(
     private router: Router,
@@ -44,7 +44,6 @@ export class NotificationDropdownComponent implements OnInit {
   loadNotifications(dto: NotificationGetListDTO) {
     this._notificationService.getList(dto).subscribe(response => {
       this.notificationsPaginated = response;
-      console.log(this.notificationsPaginated.data);
     });
   }
 
@@ -60,6 +59,10 @@ export class NotificationDropdownComponent implements OnInit {
       this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
     } else if (notification.assignmentId) {
       this.router.navigate(['assignment', notification.assignmentId]);
+    } else if (notification.lessonId) {
+      this.router.navigate(['/course', notification.courseId, 'section', notification.sectionId, 'lesson', notification.lessonId]);
+    } else if (notification.exerciseId) {
+      this.router.navigate(['/exercise', notification.exerciseId]);
     }
   }
 }

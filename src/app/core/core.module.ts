@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 import { NotificationCommentModule } from '@features/notification/component/notification-comment/notification-comment.module';
 import { NotificationExerciseModule } from '@features/notification/component/notification-exercise/notification-exercise.module';
 import { NotificationAssignmentModule } from '@features/notification/component/notification-assignment/notification-assignment.module';

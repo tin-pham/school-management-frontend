@@ -1,5 +1,7 @@
 <div class="course-card" *ngIf="course">
   <app-image-card
+    [thumnailText]="course.name"
+    [id]="course.id"
     (onDeleteClick)="delete()"
     (onCloseClick)="remove()"
     class="image-card"
@@ -11,7 +13,7 @@
 
   <div class="course-info">
     <div class="course-name">{{ course.name }}</div>
-    <div *ngIf="showStudentCount">
+    <div>
       <mat-icon class="icon">group</mat-icon>
       {{ course.studentCount }}
     </div>

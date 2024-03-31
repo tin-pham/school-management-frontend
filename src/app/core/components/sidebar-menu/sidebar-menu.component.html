@@ -9,51 +9,51 @@
     <mat-divider></mat-divider>
 
     <div *ngIf="isAdmin()">
-      <button mat-button class="menu-button" routerLink="/dashboard">
+      <button mat-button class="menu-button" routerLink="/dashboard" routerLinkActive="active">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/student">
+      <button mat-button class="menu-button" routerLink="/student" routerLinkActive="active">
         <mat-icon>person</mat-icon>
         <span>Học sinh</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/teacher">
+      <button mat-button class="menu-button" routerLink="/teacher" routerLinkActive="active">
         <mat-icon>school</mat-icon>
         <span>Giáo viên</span>
       </button>
     </div>
 
     <div *ngIf="isTeacher()">
-      <button mat-button class="menu-button" routerLink="/home">
+      <button mat-button class="menu-button" routerLink="/home" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span>Trang chủ</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/course">
+      <button mat-button class="menu-button" routerLink="/course" routerLinkActive="active">
         <mat-icon>book</mat-icon>
         <span>Khóa học</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/category">
+      <button mat-button class="menu-button" routerLink="/category" routerLinkActive="active">
         <mat-icon>category</mat-icon>
         <span>Danh mục</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/question">
+      <button mat-button class="menu-button" routerLink="/question" routerLinkActive="active">
         <mat-icon>live_help</mat-icon>
         <span>Bộ câu hỏi</span>
       </button>
     </div>
 
     <div *ngIf="isStudent()">
-      <button mat-button class="menu-button" routerLink="/home">
+      <button mat-button class="menu-button" routerLink="/home" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span>Trang chủ</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="/course">
+      <button mat-button class="menu-button" routerLink="/course" routerLinkActive="active">
         <mat-icon>book</mat-icon>
         <span>Khóa học</span>
       </button>

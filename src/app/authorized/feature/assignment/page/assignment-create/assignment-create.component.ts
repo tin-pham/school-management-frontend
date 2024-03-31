@@ -21,6 +21,7 @@ export class AssignmentCreateComponent implements OnInit {
   ngOnInit() {
     this.dto.courseId = +this.route.snapshot.queryParamMap.get('courseId');
     this.dto.lessonId = +this.route.snapshot.queryParamMap.get('lessonId');
+    this.dto.dueDate = new Date();
   }
 
   create() {

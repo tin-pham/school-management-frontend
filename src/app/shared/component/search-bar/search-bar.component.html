@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <div class="label">{{ label }}</div>
+  <div *ngIf="label" class="label">{{ label }}</div>
   <div class="searchBar">
     <input
       id="searchQueryInput"
       type="text"
       name="searchQueryInput"
-      placeholder=""
+      [placeholder]="placeholder"
       [(ngModel)]="value"
       (ngModelChange)="onValueChange($event)" />
     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">

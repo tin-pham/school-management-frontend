@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { NotificationService } from '@core/services/api/notification.service';
 import { UserNotificationService } from '@core/services/api/user-notification.service';
 import { NotificationGetListDTO } from '@shared/models/dto/notification.dto';
+import { UserNotificationBulkUpdateDTO } from '@shared/models/dto/user-notification.dto';
 import { NotificationGetListDataRO, NotificationGetListRO } from '@shared/models/ro/notification.ro';
 
 @Component({
@@ -24,6 +26,7 @@ export class NotificationListComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     private dialog: MatDialog,
+    private router: Router,
     private _notificationService: NotificationService,
     private _userNotificationService: UserNotificationService,
   ) {}
@@ -91,5 +94,28 @@ export class NotificationListComponent implements OnInit {
         this.notificationIdsChecked = [];
       });
     });
+  }
+
+  routeToNotification(notification: NotificationGetListDataRO) {
+    console.log(notification);
+    const dto = new UserNotificationBulkUpdateDTO();
+    dto.notificationIds = [notification.id];
+    dto.isRead = true;
+    this._userNotificationService.bulkUpdate(dto).subscribe(() => {
+      this.loadNotifications({
+        limit: this.itemsPerPage,
+        page: this.page,
+      });
+    });
+
+    if (notification.commentId) {
+      this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
+    } else if (notification.assignmentId) {
+      this.router.navigate(['assignment', notification.assignmentId]);
+    } else if (notification.lessonId) {
+      this.router.navigate(['/course', notification.courseId, 'section', notification.sectionId, 'lesson', notification.lessonId]);
+    } else if (notification.exerciseId) {
+      this.router.navigate(['/exercise', notification.exerciseId]);
+    }
   }
 }

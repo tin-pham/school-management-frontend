@@ -5,7 +5,7 @@ export class ExerciseStoreDTO {
   difficultyId: number;
   lessonId: number;
   time?: number;
-  dueDate?: string;
+  dueDate?: Date;
   instantMark: boolean;
 }
 

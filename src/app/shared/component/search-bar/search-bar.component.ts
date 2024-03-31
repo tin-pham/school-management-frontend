@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SearchBarComponent {
   @Input() label: string;
+  @Input() placeholder: string;
 
   @Input() value: string;
   @Output() valueChange = new EventEmitter<string>();

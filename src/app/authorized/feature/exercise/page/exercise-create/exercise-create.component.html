@@ -1,16 +1,36 @@
 <div class="form">
   <h1 class="title">Tạo bài tập trắc nghiệm</h1>
-  <form>
-    <app-text-input-group icon="help_outline" [required]="true" [label]="'Tên'" [(value)]="dto.name"></app-text-input-group>
-    <app-select-list
-      icon="star"
+  <form (ngSubmit)="store()">
+    <app-text-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="help_outline"
       [required]="true"
+      [label]="'Tên'"
+      [(value)]="dto.name"></app-text-input-group>
+    <app-select-list
+      (valueChange)="saveToTemporaryStorage()"
+      icon="star"
       [label]="'Độ khó'"
       [options]="difficulties"
       [(selected)]="dto.difficultyId"></app-select-list>
-    <app-number-input-group icon="access_time" [label]="'Thời gian (phút)'" [(value)]="dto.time"></app-number-input-group>
-    <app-date-picker [(value)]="dto.dueDate" [label]="'Ngày hết hạn'"></app-date-picker>
-    <app-checkbox-input-group [(checked)]="dto.instantMark" [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
-    <app-primary-button (click)="store()">Tạo</app-primary-button>
+    <app-number-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      icon="access_time"
+      [label]="'Thời gian (phút)'"
+      [(value)]="dto.time"></app-number-input-group>
+    <!-- <bootstrap-date-time-picker icon="date_range" [(ngModel)]="dto.dueDate" name="dueDate" label="Deadline"></bootstrap-date-time-picker> -->
+    <app-date-time-picker
+      (valueChange)="saveToTemporaryStorage()"
+      icon="date_range"
+      name="dueDate"
+      [(datetime)]="dto.dueDate"
+      label="Deadline"></app-date-time-picker>
+    <app-checkbox-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      [(checked)]="dto.instantMark"
+      [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
+    <div class="d-flex justify-content-end mt-3">
+      <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
+    </div>
   </form>
 </div>

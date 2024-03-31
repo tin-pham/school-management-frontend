@@ -1,5 +1,11 @@
-<div role="button" class="notification-lesson" (click)="routeToLesson()">
+<div role="button" class="notification-lesson" (click)="route()">
   <div class="header">
+    <mat-checkbox
+      *ngIf="showCheckbox"
+      name="notificationSelect"
+      class="me-3"
+      (change)="checkBoxChange($event)"
+      (click)="$event.stopPropagation()" />
     <img
       [src]="
         'https://images.unsplash.com/photo-1633409361618-c73427e4e206?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'

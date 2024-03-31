@@ -37,7 +37,7 @@
       label="Email"
       [(value)]="dto.email"></app-text-input-group>
 
-    <div class="d-flex">
+    <div class="d-flex justify-content-end mt-3">
       <app-primary-button [disabled]="!dto.displayName || !dto.username || !dto.password || !dto.phone || !dto.email" (click)="create()"
         >Tạo</app-primary-button
       >

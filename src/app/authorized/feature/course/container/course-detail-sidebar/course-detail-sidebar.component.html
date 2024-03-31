@@ -1,11 +1,10 @@
 <div *ngIf="course" class="d-flex flex-column justify-content-center">
-  <div class="thumpnail mb-2">
-    <img
-      [src]="
-        course.imageUrl ||
-        'https://plus.unsplash.com/premium_photo-1681319553238-9860299dfb0f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2Vic2l0ZXxlbnwwfHwwfHx8MA%3D%3D'
-      " />
-  </div>
+  <!-- <img -->
+  <!--   [src]=" -->
+  <!--     course.imageUrl || -->
+  <!--     'https://plus.unsplash.com/premium_photo-1681319553238-9860299dfb0f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2Vic2l0ZXxlbnwwfHwwfHx8MA%3D%3D' -->
+  <!--   " /> -->
+  <app-image-card [src]="course.imageUrl" [id]="course.id" [src]="course.imageUrl" [thumnailText]="course.name"></app-image-card>
   <div *ngIf="isStudent()">
     <app-primary-button *ngIf="!isRegisted" (click)="registerClick()">Đăng ký</app-primary-button>
     <app-warn-button *ngIf="isRegisted" (click)="unRegisterClick()">Hủy đăng ký</app-warn-button>

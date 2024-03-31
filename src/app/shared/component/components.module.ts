@@ -55,6 +55,7 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   DateTimePickerComponent,
   SelectListComponent,
   DocumentViewerComponent,
+  DocumentViewerDialogComponent,
   NumberInputGroupComponent,
   SecondaryButtonComponent,
   CheckboxInputGroupComponent,
@@ -63,7 +64,6 @@ export const SHARED_COMPONENTS: Array<Type<any>> = [
   TextEditorViewerComponent,
   SearchBarComponent,
   DifficultyBadgeComponent,
-  DocumentViewerDialogComponent,
 ];
 
 const SHARED_MODULES: Array<Type<any>> = [

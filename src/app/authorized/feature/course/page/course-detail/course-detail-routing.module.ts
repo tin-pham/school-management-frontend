@@ -6,6 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: CourseDetailComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../course-detail-home/course-detail-home.module').then(m => m.CourseDetailHomeModule),
+      },
+    ],
   },
 ];
 

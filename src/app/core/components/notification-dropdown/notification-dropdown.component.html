@@ -18,6 +18,7 @@
         <app-notification-comment
           [showCheckbox]="false"
           *ngIf="notification.commentOwnerId"
+          (route)="routeToNotification(notification)"
           [notification]="notification"></app-notification-comment>
 
         <app-notification-exercise *ngIf="notification.courseId" [notification]="notification"></app-notification-exercise>
@@ -25,9 +26,14 @@
         <app-notification-assignment
           *ngIf="notification.assignmentNotificationId"
           [showCheckbox]="false"
+          (route)="routeToNotification(notification)"
           [notification]="notification"></app-notification-assignment>
 
-        <app-notification-lesson *ngIf="notification.lessonId" [notification]="notification"></app-notification-lesson>
+        <app-notification-lesson
+          *ngIf="notification.lessonId"
+          [notification]="notification"
+          [showCheckbox]="false"
+          (route)="routeToNotification(notification)"></app-notification-lesson>
         <!-- Message End -->
       </a>
     </li>

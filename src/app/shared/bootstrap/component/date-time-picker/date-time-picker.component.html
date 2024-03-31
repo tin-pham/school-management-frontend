@@ -1,0 +1,49 @@
+<mat-icon *ngIf="icon" class="icon">{{ icon }}</mat-icon>
+<label [for]="name" class="form-label label" [class.asterix]="required">{{ label }}</label>
+<div class="input-group mr-2">
+  <input
+    [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
+    class="form-control"
+    [name]="name"
+    (blur)="inputBlur()"
+    [ngModel]="dateString | date: inputDatetimeFormat"
+    (change)="onInputChange($event)"
+    [disabled]="disabled" />
+
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" [ngbPopover]="calendarContent" [disabled]="disabled" type="button">
+      <mat-icon>date_range</mat-icon>
+    </button>
+  </div>
+</div>
+
+<ng-template #calendarContent>
+  <div>
+    <div *ngIf="!showTimePickerToggle">
+      <ngb-datepicker #datePickerRef name="datepicker" [ngModel]="datetime" (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+      <button class="btn btn-block btn-outline-secondary" [disabled]="!datetime?.day" type="button" (click)="toggleDateTimeState($event)">
+        <mat-icon>access_time</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="showTimePickerToggle">
+      <button
+        class="btn btn-block btn-outline-secondary"
+        [ngbPopover]="calendarContent"
+        type="button"
+        (click)="toggleDateTimeState($event)">
+        <mat-icon>date_range</mat-icon>
+      </button>
+      <div class="mt-auto">
+        <ngb-timepicker
+          #tp
+          name="timepicker"
+          [ngModel]="datetime"
+          (ngModelChange)="onTimeChange($event)"
+          [seconds]="seconds"
+          [hourStep]="hourStep"
+          [minuteStep]="minuteStep"
+          [secondStep]="secondStep"></ngb-timepicker>
+      </div>
+    </div>
+  </div>
+</ng-template>

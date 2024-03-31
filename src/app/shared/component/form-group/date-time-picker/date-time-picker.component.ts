@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MtxCalendarView, MtxDatetimepickerMode, MtxDatetimepickerType } from '@ng-matero/extensions/datetimepicker';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'app-date-time-picker',
@@ -6,13 +8,23 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
   styleUrl: 'date-time-picker.component.scss',
 })
 export class DateTimePickerComponent {
-  @ViewChild('picker') picker: any;
+  type: MtxDatetimepickerType = 'datetime';
+  mode: MtxDatetimepickerMode = 'auto';
+  startView: MtxCalendarView = 'month';
+  multiYearSelector = false;
+  touchUi = false;
+  twelvehour = true;
+  timeInterval = 1;
+  timeInput = true;
 
-  @Input() value: string;
-  @Output() valueChange = new EventEmitter();
-  onValueChange(value: string) {
-    this.valueChange.emit(value);
+  @Input() datetime = new Date();
+  @Output() datetimeChange = new EventEmitter<Date>();
+  onDatetimeChange(moment: Moment) {
+    this.datetimeChange.emit(moment.toDate());
   }
 
   @Input() label: string;
+  @Input() required: boolean;
+  @Input() name: string;
+  @Input() icon: string;
 }

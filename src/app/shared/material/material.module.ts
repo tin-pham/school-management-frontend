@@ -20,6 +20,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import {
+  MtxDatetimepicker,
+  MtxDatetimepickerInput,
+  MtxDatetimepickerModule,
+  MtxDatetimepickerToggle,
+} from '@ng-matero/extensions/datetimepicker';
+import { provideMomentDatetimeAdapter } from '@ng-matero/extensions-moment-adapter';
 
 @NgModule({
   exports: [
@@ -45,7 +52,33 @@ import { MatRadioModule } from '@angular/material/radio';
     MatTooltipModule,
     MatCheckboxModule,
     MatRadioModule,
+
+    // Extension
+    MtxDatetimepickerModule,
   ],
-  providers: [MatDatepickerModule],
+  imports: [MtxDatetimepicker, MtxDatetimepickerInput, MtxDatetimepickerToggle],
+  providers: [
+    MatDatepickerModule,
+    provideMomentDatetimeAdapter({
+      parse: {
+        dateInput: 'YYYY-MM-DD',
+        monthInput: 'MMMM',
+        yearInput: 'YYYY',
+        timeInput: 'HH:mm',
+        datetimeInput: 'YYYY-MM-DD HH:mm',
+      },
+      display: {
+        dateInput: 'YYYY-MM-DD',
+        monthInput: 'MMMM',
+        yearInput: 'YYYY',
+        timeInput: 'HH:mm',
+        datetimeInput: 'YYYY-MM-DD HH:mm',
+        monthYearLabel: 'YYYY MMMM',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+        popupHeaderDateLabel: 'MMM DD, ddd',
+      },
+    }),
+  ],
 })
 export class MaterialModule {}

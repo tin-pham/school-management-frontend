@@ -1,6 +1,6 @@
 <div class="form">
   <h1 class="mb-3 title">Tạo giáo viên</h1>
-  <form>
+  <form (ngSubmit)="create()">
     <app-text-input-group
       (valueChange)="saveToTemporaryStorage()"
       icon="school"
@@ -26,8 +26,8 @@
     <app-text-input-group icon="phone" name="phone" type="phone" label="SĐT" [(value)]="dto.phone"></app-text-input-group>
     <app-text-input-group icon="email" name="email" type="email" label="Email" [(value)]="dto.email"></app-text-input-group>
 
-    <div class="d-flex">
-      <app-primary-button (click)="create()">Tạo</app-primary-button>
+    <div class="d-flex justify-content-end mt-3">
+      <app-primary-button [disabled]="!dto.displayName || !dto.password">Tạo</app-primary-button>
     </div>
   </form>
 </div>

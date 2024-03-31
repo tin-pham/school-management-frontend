@@ -19,15 +19,6 @@
   }
 }
 
-.search-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  mat-form-field {
-    min-width: 500px;
-  }
-}
-
 // Mobile search
 .mobile-header {
   position: absolute;
