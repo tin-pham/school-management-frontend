@@ -14,6 +14,9 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   editor: Editor;
   @Input() value: object;
   @Output() valueChange = new EventEmitter();
+
+  @Input() showAttachment = true;
+
   onValueChange(html: object) {
     this.valueChange.emit(html);
   }
@@ -24,13 +27,15 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     ['code', 'blockquote'],
     ['ordered_list', 'bullet_list'],
     [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
   ngOnInit(): void {
     this.editor = new Editor();
+    if (this.showAttachment) {
+      this.toolbar.push(['link', 'image']);
+    }
   }
 
   ngOnDestroy(): void {

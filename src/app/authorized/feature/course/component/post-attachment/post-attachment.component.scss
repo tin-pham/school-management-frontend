@@ -1,0 +1,23 @@
+.post-attachment {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px;
+
+  .attachment {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    &:hover {
+      // modern orange
+      color: #e53935;
+      text-decoration: underline;
+    }
+  }
+  .type {
+    text-transform: uppercase;
+  }
+}

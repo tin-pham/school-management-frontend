@@ -1,0 +1,17 @@
+.asterix:after {
+  content: '*';
+  color: red;
+  margin-left: 5px;
+  font-size: 30px;
+  // push down
+  vertical-align: -20%;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.label {
+  font-weight: 600;
+}

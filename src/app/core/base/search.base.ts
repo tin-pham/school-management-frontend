@@ -6,6 +6,7 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged } from 'rxjs';
 export abstract class PaginateComponent implements OnInit {
   abstract page: number;
   abstract itemsPerPage: number;
+  abstract totalItems: number;
   search$ = new BehaviorSubject<string>('');
 
   setSearch(value: string) {

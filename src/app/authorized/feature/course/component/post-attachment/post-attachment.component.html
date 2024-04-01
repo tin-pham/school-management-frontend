@@ -1,0 +1,6 @@
+<div
+  class="post-attachment"
+  [ngStyle]="{ 'border-left-color': getBorderColor(), 'border-left-width': '4px', 'border-left-style': 'solid' }">
+  <a class="attachment" [href]="attachment.url">{{ attachment.name }}</a>
+  <span class="type">{{ attachment.type }}</span>
+</div>

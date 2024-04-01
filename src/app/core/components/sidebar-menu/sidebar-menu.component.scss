@@ -41,7 +41,8 @@ mat-sidenav-content {
   justify-content: flex-start;
   font-size: 1rem;
   &.active {
-    background-color: #f0f0f0; /* Example background color */
+    // modern blue
+    background-color: rgba(63, 81, 181, 0.5);
     color: #333; /* Example text color */
     font-weight: bold; /* Make the text bold */
   }

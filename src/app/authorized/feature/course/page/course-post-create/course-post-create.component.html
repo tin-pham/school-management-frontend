@@ -1,0 +1,18 @@
+<div class="form">
+  <h1 class="title">Tạo thông báo</h1>
+
+  <form (ngSubmit)="create()">
+    <app-text-editor [(value)]="dto.content" icon="description" label="Nội dung" [showAttachment]="false"></app-text-editor>
+
+    <app-files-input-group
+      icon="file_copy"
+      [accept]="'*'"
+      [files]="attachmentsCreating"
+      (filesChange)="onFilesChange($event)"
+      [label]="'Đính kèm'"></app-files-input-group>
+
+    <div class="d-flex justify-content-end mt-3">
+      <app-primary-button [disabled]="!dto.content">Tạo</app-primary-button>
+    </div>
+  </form>
+</div>

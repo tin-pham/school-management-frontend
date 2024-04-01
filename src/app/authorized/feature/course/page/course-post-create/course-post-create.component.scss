@@ -1,0 +1,8 @@
+.course-post {
+  padding: 1rem;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

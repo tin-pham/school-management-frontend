@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class FilesInputGroupComponent {
   @Input() name: string;
+  @Input() icon: string;
   @Input() label: string;
   @Input() files: File[] = [];
   @Input() accept: string;

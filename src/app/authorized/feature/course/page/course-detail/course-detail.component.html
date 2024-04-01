@@ -1,2 +1,15 @@
-hello
-<router-outlet></router-outlet>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" class="nav">
+  <a
+    mat-tab-link
+    #rla="routerLinkActive"
+    *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    routerLinkActive
+    [active]="rla.isActive"
+    [routerLinkActiveOptions]="{ exact: true }">
+    {{ link.label }}
+  </a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
