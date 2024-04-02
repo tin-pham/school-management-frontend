@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
-import { PostAttachmentModule } from '../post-attachment/post-attachment.module';
+import { AttachmentListModule } from '../attachment-list/attachment-list.module';
 import { PostItemComponent } from './post-item.component';
 
 @NgModule({
-  imports: [SharedModule, PostAttachmentModule],
+  imports: [SharedModule, AttachmentListModule],
   declarations: [PostItemComponent],
   exports: [PostItemComponent],
 })

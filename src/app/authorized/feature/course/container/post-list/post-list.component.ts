@@ -1,8 +1,10 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PaginateComponent } from '@core/base/search.base';
+import { AuthService } from '@core/services/api/auth.service';
 import { PostService } from '@core/services/api/post.service';
 import { PostGetListDTO } from '@shared/models/dto/post.dto';
 import { PostGetListDataRO } from '@shared/models/ro/post.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +22,9 @@ export class PostListComponent extends PaginateComponent {
 
   constructor(
     private cd: ChangeDetectorRef,
+    private toast: ToastrService,
     private _postService: PostService,
+    private _authService: AuthService,
   ) {
     super();
   }
@@ -37,5 +41,20 @@ export class PostListComponent extends PaginateComponent {
       this.posts = response.data;
       this.cd.markForCheck();
     });
+  }
+
+  delete(id: number) {
+    this._postService.delete(id).subscribe(() => {
+      this.toast.success('Xóa bài thành công');
+      this.loadData(this.getDto());
+    });
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
+  }
+
+  getUserId() {
+    return this._authService.getUserId();
   }
 }

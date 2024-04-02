@@ -5,11 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared/shared.module';
-import { RouterLinkActive, RouterModule } from '@angular/router';
-import { NotificationCommentModule } from '@features/notification/component/notification-comment/notification-comment.module';
-import { NotificationExerciseModule } from '@features/notification/component/notification-exercise/notification-exercise.module';
-import { NotificationAssignmentModule } from '@features/notification/component/notification-assignment/notification-assignment.module';
-import { NotificationLessonModule } from '@features/notification/component/notification-lesson/notification-lesson.module';
+import { RouterModule } from '@angular/router';
+import { NotificationItemsModule } from '@features/notification/container/notification-items/notification-items.module';
 import { TranslateLoaderService } from './services/translate-loader.service';
 import { BaseService } from './services/api/base.service';
 import { AuthService } from './services/api/auth.service';
@@ -37,10 +34,7 @@ export function createTranslateLoader(http: HttpBackend) {
     HttpClientModule,
     RouterModule,
 
-    NotificationCommentModule,
-    NotificationExerciseModule,
-    NotificationAssignmentModule,
-    NotificationLessonModule,
+    NotificationItemsModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'vn',

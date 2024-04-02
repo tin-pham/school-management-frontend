@@ -1,0 +1,23 @@
+<div class="post-item">
+  <div class="post-item__header">
+    <img class="avatar" [src]="post.createdByImageUrl" [alt]="post.createdByDisplayName" />
+    <div class="info">
+      <span class="author">{{ post.createdByDisplayName }}</span>
+      <span class="date"
+        >{{ post.createdAt | date: 'dd/MM/yyyy' }}
+        <span *ngIf="post.updatedAt">(Cập nhật: {{ post.updatedAt | date: 'dd/MM/yyyy' }})</span>
+      </span>
+    </div>
+
+    <div *ngIf="post.createdBy === userId && !isStudent">
+      <mat-icon class="icon" (click)="routeToEdit($event)">edit</mat-icon>
+      <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+    </div>
+  </div>
+
+  <div class="post-item__body">
+    <app-text-editor-viewer [value]="post.content"></app-text-editor-viewer>
+
+    <app-attachment-list [attachments]="post.attachments" [courseCreatedBy]="post.createdBy"></app-attachment-list>
+  </div>
+</div>

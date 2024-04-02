@@ -1,4 +1,5 @@
 .post-item {
+  cursor: pointer;
   &__header {
     display: flex;
     .avatar {
@@ -25,8 +26,5 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .attachments {
-      display: flex;
-    }
   }
 }

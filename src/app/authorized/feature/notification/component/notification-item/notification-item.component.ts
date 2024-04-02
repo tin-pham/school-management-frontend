@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
-import { UserNotificationBulkUpdateDTO } from '@shared/models/dto/user-notification.dto';
-import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 
 @Component({
   selector: 'app-notification-item',
@@ -10,14 +7,16 @@ import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
   templateUrl: 'notification-item.component.html',
 })
 export class NotificationItemComponent {
-  @Input() notification: NotificationGetListDataRO;
+  @Input() showCheckbox = true;
+  @Input() imageUrl: string;
+  @Input() title: string;
+  @Input() content: string;
+  @Input() createdAt: Date;
   isChecked = false;
 
-  constructor(private router: Router) {}
-
-  dateAgo(notification: NotificationGetListDataRO) {
+  dateAgo() {
     const now = new Date();
-    const createdAtDate = new Date(notification.createdAt);
+    const createdAtDate = new Date(this.createdAt);
     const seconds = Math.floor((now.getTime() - createdAtDate.getTime()) / 1000);
 
     if (seconds < 60) {
@@ -34,17 +33,5 @@ export class NotificationItemComponent {
   @Output() onCheckBoxChange = new EventEmitter<boolean>();
   checkBoxChange(event: MatCheckboxChange) {
     this.onCheckBoxChange.emit(event.checked);
-  }
-
-  routeToNotification(notification: NotificationGetListDataRO) {
-    const dto = new UserNotificationBulkUpdateDTO();
-    dto.notificationIds = [notification.id];
-    dto.isRead = true;
-
-    if (notification.commentId) {
-      this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
-    } else if (notification.assignmentId) {
-      this.router.navigate(['assignment', notification.assignmentId]);
-    }
   }
 }

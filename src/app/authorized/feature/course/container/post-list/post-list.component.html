@@ -1,11 +1,21 @@
-<div class="post-list">
-  <app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+<div class="post-list" *ngIf="totalItems > 0">
+  <div class="list">
+    <app-post-item
+      *ngFor="let post of posts"
+      [post]="post"
+      (onDelete)="delete($event)"
+      [isStudent]="isStudent()"
+      [routerLink]="[post.id]"
+      [userId]="getUserId()"></app-post-item>
+  </div>
+
+  <mat-paginator
+    *ngIf="totalItems > 0"
+    [pageSizeOptions]="[5, 10]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"></mat-paginator>
 </div>
 
-<mat-paginator
-  *ngIf="totalItems > 0"
-  [pageSizeOptions]="[5, 10]"
-  [pageIndex]="page - 1"
-  [pageSize]="itemsPerPage"
-  [length]="totalItems"
-  (page)="handlePageChange($event)"></mat-paginator>
+<p class="empty" *ngIf="totalItems === 0">Không có thông báo nào</p>

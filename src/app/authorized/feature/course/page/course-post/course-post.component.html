@@ -1,5 +1,5 @@
 <div class="course-post">
-  <div class="course-post__header">
+  <div class="course-post__header" *ngIf="!isStudent()">
     <app-primary-button type="button" routerLink="create">Tạo</app-primary-button>
   </div>
 

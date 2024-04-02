@@ -5,4 +5,8 @@ export class PostAttachmentBulkStoreDTO {
 
 export class PostAttachmentBulkDeleteDTO {
   attachmentIds: number[];
+
+  constructor(data?: PostAttachmentBulkDeleteDTO) {
+    Object.assign(this, data);
+  }
 }

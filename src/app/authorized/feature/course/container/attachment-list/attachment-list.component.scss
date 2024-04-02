@@ -1,0 +1,9 @@
+.attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  .attachment {
+    flex: 0 1 200px;
+    overflow: hidden;
+  }
+}

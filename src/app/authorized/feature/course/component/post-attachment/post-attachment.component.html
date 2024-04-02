@@ -1,6 +1,8 @@
 <div
   class="post-attachment"
   [ngStyle]="{ 'border-left-color': getBorderColor(), 'border-left-width': '4px', 'border-left-style': 'solid' }">
-  <a class="attachment" [href]="attachment.url">{{ attachment.name }}</a>
+  <a class="attachment-link" [href]="attachment.url" matTooltip="{{ attachment.name }}">{{ attachment.name }}</a>
   <span class="type">{{ attachment.type }}</span>
+
+  <mat-icon *ngIf="showDelete" class="delete" aria-label="Delete attachment" (click)="delete()">delete</mat-icon>
 </div>

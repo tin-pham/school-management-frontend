@@ -9,33 +9,7 @@
   </button>
   <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end notification-dropdown">
     <li>
-      <a
-        (click)="routeToNotification(notification)"
-        role="button"
-        class="dropdown-item"
-        *ngFor="let notification of notificationsPaginated.data">
-        <!-- Message Start -->
-        <app-notification-comment
-          [showCheckbox]="false"
-          *ngIf="notification.commentOwnerId"
-          (route)="routeToNotification(notification)"
-          [notification]="notification"></app-notification-comment>
-
-        <app-notification-exercise *ngIf="notification.courseId" [notification]="notification"></app-notification-exercise>
-
-        <app-notification-assignment
-          *ngIf="notification.assignmentNotificationId"
-          [showCheckbox]="false"
-          (route)="routeToNotification(notification)"
-          [notification]="notification"></app-notification-assignment>
-
-        <app-notification-lesson
-          *ngIf="notification.lessonId"
-          [notification]="notification"
-          [showCheckbox]="false"
-          (route)="routeToNotification(notification)"></app-notification-lesson>
-        <!-- Message End -->
-      </a>
+      <app-notification-items [notifications]="notificationsPaginated.data"></app-notification-items>
     </li>
     <div>
       <li *ngIf="notificationsPaginated.meta.totalItems"><mat-divider></mat-divider></li>

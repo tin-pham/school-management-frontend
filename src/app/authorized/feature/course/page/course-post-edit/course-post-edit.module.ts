@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { PostAttachmentService } from '@core/services/api/post-attachment.service';
 import { PostService } from '@core/services/api/post.service';
-import { CoursePostCreateComponent } from './course-post-create.component';
-import { CoursePostCreateRoutingModule } from './course-post-create-routing.module';
+import { AttachmentListModule } from '@features/course/container/attachment-list/attachment-list.module';
+import { CoursePostEditRoutingModule } from './course-post-edit-routing.module';
+import { CoursePostEditComponent } from './course-post-edit.component';
 
 @NgModule({
-  declarations: [CoursePostCreateComponent],
-  imports: [CoursePostCreateRoutingModule, SharedModule],
+  declarations: [CoursePostEditComponent],
+  imports: [CoursePostEditRoutingModule, SharedModule, AttachmentListModule],
   providers: [PostService, PostAttachmentService],
 })
-export class CoursePostCreateModule {}
+export class CoursePostEditModule {}

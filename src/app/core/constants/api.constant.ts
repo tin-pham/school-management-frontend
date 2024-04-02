@@ -752,6 +752,10 @@ export const API = {
       ROUTE: '',
       OPERATION: 'Get list posts',
     },
+    GET_DETAIL: {
+      ROUTE: ':id',
+      OPERATION: 'Get post detail',
+    },
   },
   POST_ATTACHMENT: {
     TAGS: 'PostAttachment',

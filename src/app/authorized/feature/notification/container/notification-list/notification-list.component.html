@@ -7,37 +7,7 @@
   </div>
 
   <div class="list">
-    <ng-container *ngFor="let notification of notifications">
-      <app-notification-lesson
-        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-        *ngIf="notification.lessonId"
-        (route)="routeToNotification(notification)"
-        [notification]="notification"></app-notification-lesson>
-
-      <app-notification-comment
-        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-        *ngIf="notification.commentOwnerId"
-        (route)="routeToNotification(notification)"
-        [notification]="notification"></app-notification-comment>
-
-      <app-notification-exercise
-        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-        *ngIf="notification.courseId"
-        (route)="routeToNotification(notification)"
-        [notification]="notification"></app-notification-exercise>
-
-      <app-notification-assignment
-        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-        *ngIf="notification.assignmentNotificationId"
-        (route)="routeToNotification(notification)"
-        [notification]="notification"></app-notification-assignment>
-
-      <app-notification-lesson
-        (onCheckBoxChange)="checkBoxChecked($event, notification.id)"
-        *ngIf="notification.lessonId"
-        [notification]="notification"
-        (route)="routeToNotification(notification)"></app-notification-lesson>
-    </ng-container>
+    <app-notification-items [notifications]="notifications"></app-notification-items>
   </div>
 
   <mat-paginator

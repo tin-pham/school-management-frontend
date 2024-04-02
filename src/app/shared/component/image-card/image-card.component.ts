@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 
@@ -13,13 +13,11 @@ export interface IImageCardOption {
   styleUrls: ['image-card.component.scss'],
   templateUrl: 'image-card.component.html',
 })
-export class ImageCardComponent implements OnInit {
+export class ImageCardComponent {
   @Input() id: number;
   @Input() thumnailText: string;
   @Input() src: string;
   @Input() alt: string;
-  // @Input() name: string;
-  // @Input() description: string;
   @Input() isEdit: boolean;
   @Input() isCheck: boolean;
   @Input() option: IImageCardOption = {
@@ -29,10 +27,6 @@ export class ImageCardComponent implements OnInit {
   };
 
   constructor(private dialog: MatDialog) {}
-
-  ngOnInit() {
-    console.log(this.src);
-  }
 
   @Output() checkChange = new EventEmitter();
   check() {

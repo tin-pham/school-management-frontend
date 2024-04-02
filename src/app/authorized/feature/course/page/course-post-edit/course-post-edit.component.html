@@ -1,1 +1,20 @@
-<div></div>
+<div class="form" *ngIf="dto && post">
+  <h1 class="title">Chỉnh sửa thông báo</h1>
+
+  <form (ngSubmit)="update()">
+    <app-text-editor [(value)]="dto.content" icon="description" label="Nội dung" [showAttachment]="false"></app-text-editor>
+
+    <app-files-input-group
+      icon="file_copy"
+      [accept]="'*'"
+      [files]="attachmentsCreating"
+      (filesChange)="onFilesChange($event)"
+      [label]="'Đính kèm'"></app-files-input-group>
+
+    <app-attachment-list [attachments]="post.attachments" [courseCreatedBy]="post.createdBy"></app-attachment-list>
+
+    <div class="d-flex justify-content-end mt-3">
+      <app-primary-button [disabled]="!dto.content">Cập nhật</app-primary-button>
+    </div>
+  </form>
+</div>

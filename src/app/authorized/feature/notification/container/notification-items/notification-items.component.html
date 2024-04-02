@@ -1,0 +1,42 @@
+<a (click)="routeToNotification(notification)" role="button" class="dropdown-item" *ngFor="let notification of notifications">
+  <app-notification-item
+    *ngIf="notification.commentOwnerId"
+    [createdAt]="notification.createdAt"
+    [title]="notification.commentOwnerDisplayName"
+    [content]="notification.content"
+    [imageUrl]="notification.commentOwnerImageUrl"
+    [showCheckbox]="false"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="notification.exerciseId"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    [imageUrl]="exerciseImageUrl"
+    [showCheckbox]="false"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="notification.assignmentNotificationId"
+    [createdAt]="notification.createdAt"
+    [title]="notification.assignmentName"
+    [content]="notification.content"
+    [imageUrl]="exerciseImageUrl"
+    [showCheckbox]="false"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="notification.lessonId"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    [imageUrl]="exerciseImageUrl"
+    [showCheckbox]="false"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="notification.postId"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    [imageUrl]="exerciseImageUrl"
+    [showCheckbox]="false"></app-notification-item>
+  <!-- Message End -->
+</a>

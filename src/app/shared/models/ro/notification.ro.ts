@@ -30,6 +30,8 @@ export class NotificationGetListDataRO {
   assignmentNotificationId: number;
   exerciseId: number;
   exerciseName: number;
+  postNotificationId: number;
+  postId: number;
 }
 
 export class NotificationGetListRO extends PaginateRO<NotificationGetListDataRO> {

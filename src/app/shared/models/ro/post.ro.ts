@@ -6,6 +6,7 @@ export class PostStoreRO {
 }
 
 export class PostGetListDataAttachmentRO {
+  id: number;
   name: string;
   url: string;
   type: string;
@@ -24,4 +25,21 @@ export class PostGetListDataRO {
 
 export class PostGetListRO extends PaginateRO<PostGetListDataRO> {
   data: PostGetListDataRO[];
+}
+export class PostGetDetailAttachmentRO {
+  id: number;
+  url: string;
+  name: string;
+  type: string;
+}
+
+export class PostGetDetailRO {
+  id: number;
+  content: object;
+  attachments: PostGetDetailAttachmentRO[];
+  createdByDisplayName: string;
+  createdBy: number;
+  createdAt: Date;
+  updatedAt: Date;
+  createdByImageUrl: string;
 }
