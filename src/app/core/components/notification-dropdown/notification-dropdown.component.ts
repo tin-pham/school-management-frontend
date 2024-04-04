@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { NotificationService } from '@core/services/api/notification.service';
-import { UserNotificationService } from '@core/services/api/user-notification.service';
 import { NotificationGetListDTO } from '@shared/models/dto/notification.dto';
-import { UserNotificationBulkUpdateDTO } from '@shared/models/dto/user-notification.dto';
-import { NotificationGetListDataRO, NotificationGetListRO } from '@shared/models/ro/notification.ro';
+import { NotificationGetListRO } from '@shared/models/ro/notification.ro';
 import { Socket, io } from 'socket.io-client';
 
 @Component({
@@ -18,10 +15,8 @@ export class NotificationDropdownComponent implements OnInit {
   limit = 3;
   client: Socket;
   constructor(
-    private router: Router,
     private _authService: AuthService,
     private _notificationService: NotificationService,
-    private _userNotificationService: UserNotificationService,
   ) {}
   async socketInit() {}
 

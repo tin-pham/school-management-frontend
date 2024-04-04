@@ -25,14 +25,19 @@ const routes: Routes = [
         canActivate: [roleGuard([ROLE.TEACHER])],
       },
       {
-        path: ':id',
-        loadChildren: () => import('./page/course-detail/course-detail.module').then(m => m.CourseDetailModule),
+        path: 'deleted',
+        loadChildren: () => import('./page/course-deleted/course-deleted.module').then(m => m.CourseDeletedModule),
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
-        path: ':id/edit',
-        loadChildren: () => import('./page/course-detail-edit/course-detail-edit.module').then(m => m.CourseDetailEditModule),
-        canActivate: [roleGuard([ROLE.TEACHER])],
+        path: 'lesson-deleted',
+        loadChildren: () => import('./page/lesson-deleted/lesson-deleted.module').then(m => m.LessonDeletedModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
+      },
+      {
+        path: ':id',
+        loadChildren: () => import('./page/course-detail/course-detail.module').then(m => m.CourseDetailModule),
+        canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
         path: ':id/section/:sectionId',

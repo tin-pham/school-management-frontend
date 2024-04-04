@@ -4,7 +4,7 @@
   </div>
 
   <div class="category-body">
-    <p>
+    <p *ngIf="category.description">
       <mat-icon class="icon">description</mat-icon>
       {{ category.description }}
     </p>

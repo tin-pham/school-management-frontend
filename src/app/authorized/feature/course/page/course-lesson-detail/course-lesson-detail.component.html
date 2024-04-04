@@ -3,6 +3,7 @@
     <h1 class="title">
       <mat-icon class="icon" (click)="goBack()">arrow_back</mat-icon>
       {{ lesson.title }}
+      <mat-icon class="icon" (click)="routeToEdit($event)">edit</mat-icon>
     </h1>
   </div>
   <div class="body">
@@ -16,7 +17,7 @@
             mat-tab-link
             *ngFor="let link of navLinks"
             [routerLink]="link.link"
-            routerLinkActive
+            routerLinkActive="active"
             #rla="routerLinkActive"
             [routerLinkActiveOptions]="{ exact: true }">
             {{ link.label }}

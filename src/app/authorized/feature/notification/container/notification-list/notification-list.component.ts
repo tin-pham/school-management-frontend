@@ -60,17 +60,6 @@ export class NotificationListComponent implements OnInit {
       });
   }
 
-  checkBoxChecked(isChecked: boolean, notificationId: number) {
-    if (isChecked) {
-      this.notificationIdsChecked.push(notificationId);
-    } else {
-      const index = this.notificationIdsChecked.indexOf(notificationId);
-      if (index > -1) {
-        this.notificationIdsChecked.splice(index, 1);
-      }
-    }
-  }
-
   deleteSelectedNotifications() {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa thông báo không?');
 

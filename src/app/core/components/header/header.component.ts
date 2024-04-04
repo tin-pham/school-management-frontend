@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   mobileSearchVisibility = false;
+  searchTerm: string;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   showMobileSearch() {
     this.mobileSearchVisibility = true;
@@ -19,5 +26,11 @@ export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter();
   onToggleSidebar() {
     this.toggleSidebar.emit();
+  }
+
+  routeToSearch() {
+    if (this.searchTerm) {
+      this.router.navigate(['/course/search'], { queryParams: { search: this.searchTerm } });
+    }
   }
 }

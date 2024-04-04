@@ -14,4 +14,9 @@ export class SearchBarComponent {
   onValueChange(value: string) {
     this.valueChange.emit(value);
   }
+
+  @Output() onSearch = new EventEmitter();
+  search() {
+    this.onSearch.emit();
+  }
 }

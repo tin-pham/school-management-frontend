@@ -68,4 +68,9 @@ export class CourseLessonDetailComponent implements OnInit {
   goBack() {
     this.router.navigate(['course', this.courseId]);
   }
+
+  routeToEdit(event: MouseEvent) {
+    this.router.navigate([this.basePath, 'edit'], { relativeTo: this.route.parent });
+    event.stopPropagation();
+  }
 }

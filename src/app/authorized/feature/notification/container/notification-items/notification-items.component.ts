@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserNotificationService } from '@core/services/api/user-notification.service';
 import { UserNotificationBulkUpdateDTO } from '@shared/models/dto/user-notification.dto';
@@ -11,6 +11,13 @@ import { NotificationGetListDataRO } from '@shared/models/ro/notification.ro';
 })
 export class NotificationItemsComponent {
   @Input() notifications: NotificationGetListDataRO[] = [];
+  @Input() showCheckbox = true;
+  @Input() notificationIdsChecked: number[] = [];
+
+  @Output() notificationIdsCheckedChange = new EventEmitter<number[]>();
+  onCheckNotificationIdsChange() {
+    this.notificationIdsCheckedChange.emit(this.notificationIdsChecked);
+  }
 
   exerciseImageUrl =
     'https://images.unsplash.com/photo-1633409361618-c73427e4e206?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
@@ -38,11 +45,32 @@ export class NotificationItemsComponent {
     } else if (notification.assignmentId) {
       this.router.navigate(['assignment', notification.assignmentId]);
     } else if (notification.lessonId) {
+      if (!notification.courseId) {
+        this.router.navigate(['/course/deleted']);
+      }
+
+      if (!notification.sectionId || !notification.lessonId) {
+        this.router.navigate(['/course/lesson-deleted']);
+      }
+
       this.router.navigate(['/course', notification.courseId, 'section', notification.sectionId, 'lesson', notification.lessonId]);
     } else if (notification.exerciseId) {
       this.router.navigate(['/exercise', notification.exerciseId]);
     } else if (notification.postId) {
       this.router.navigate(['/course', notification.courseId, 'post', notification.postId]);
     }
+  }
+
+  onCheckBoxChange(checked: boolean, id: number) {
+    if (checked) {
+      this.notificationIdsChecked.push(id);
+    } else {
+      const index = this.notificationIdsChecked.indexOf(id);
+      if (index > -1) {
+        this.notificationIdsChecked.splice(index, 1);
+      }
+    }
+
+    this.onCheckNotificationIdsChange();
   }
 }

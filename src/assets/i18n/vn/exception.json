@@ -40,7 +40,8 @@
     "VIDEO_URL": {
       "FORMAT_IS_NOT_VALID": "Định dạng địa chỉ không hợp lệ",
       "IS_NOT_BLANK": "Địa chỉ video không được chứa rỗng"
-    }
+    },
+    "INVALID_VIDEO_URL": "Định dạng địa chỉ video không hợp lệ"
   },
   "ASSIGNMENT": {
     "NAME": {

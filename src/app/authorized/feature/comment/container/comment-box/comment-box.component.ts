@@ -104,6 +104,11 @@ export class CommentBoxComponent implements OnInit, OnDestroy {
       parentId: this.comment.id,
       lessonId: this.comment.lessonId,
     });
+
+    if (!this.comment.replies) {
+      this.comment.replies = [];
+    }
+
     this._lessonCommentService.store(dto).subscribe(newComment => {
       this.toast.success('Phản hồi thành công');
       this.comment.replies.push({

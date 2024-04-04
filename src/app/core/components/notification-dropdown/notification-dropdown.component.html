@@ -9,7 +9,7 @@
   </button>
   <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end notification-dropdown">
     <li>
-      <app-notification-items [notifications]="notificationsPaginated.data"></app-notification-items>
+      <app-notification-items [showCheckbox]="false" [notifications]="notificationsPaginated.data"></app-notification-items>
     </li>
     <div>
       <li *ngIf="notificationsPaginated.meta.totalItems"><mat-divider></mat-divider></li>

@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
 import { CourseStudentService } from '@core/services/api/course-student.service';
+import { LessonService } from '@core/services/api/lesson.service';
 import { SectionService } from '@core/services/api/section.service';
-import { IBasicListItem } from '@shared/component/basic-list/basic-list.component';
 import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
@@ -39,7 +39,6 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class CourseSectionComponent implements OnInit {
   private _section: SectionGetListDataRO;
-  lessonItems: IBasicListItem[];
   courseId: number;
 
   toggle = false;
@@ -54,6 +53,7 @@ export class CourseSectionComponent implements OnInit {
     private _sectionService: SectionService,
     private _authService: AuthService,
     private _courseStudentService: CourseStudentService,
+    private _lessonService: LessonService,
   ) {}
 
   ngOnInit() {
@@ -67,10 +67,6 @@ export class CourseSectionComponent implements OnInit {
   @Input()
   set section(section: SectionGetListDataRO) {
     this._section = section;
-    this.lessonItems = section.lessons.map(lesson => ({
-      id: lesson.id,
-      name: lesson.title,
-    }));
   }
 
   get section() {
@@ -107,6 +103,13 @@ export class CourseSectionComponent implements OnInit {
   navigateToDetail(id: number) {
     this._courseStudentService.checkRegistered({ courseId: this.courseId }).subscribe(() => {
       this.router.navigate(['/course', this.courseId, 'section', this.section.id, 'lesson', id]);
+    });
+  }
+
+  deleteLesson(id: number) {
+    this._lessonService.delete(id).subscribe(() => {
+      this.toast.success('Xóa thành công');
+      this.section.lessons = this.section.lessons.filter(lesson => lesson.id !== id);
     });
   }
 }

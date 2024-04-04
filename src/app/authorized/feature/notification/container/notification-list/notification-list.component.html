@@ -7,7 +7,7 @@
   </div>
 
   <div class="list">
-    <app-notification-items [notifications]="notifications"></app-notification-items>
+    <app-notification-items [(notificationIdsChecked)]="notificationIdsChecked" [notifications]="notifications"></app-notification-items>
   </div>
 
   <mat-paginator
