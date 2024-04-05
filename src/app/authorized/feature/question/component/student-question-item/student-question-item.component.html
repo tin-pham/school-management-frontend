@@ -4,7 +4,7 @@
     {{ question.text }}
   </p>
 
-  <ng-container *ngIf="!isGraded">
+  <ng-container *ngIf="!isGraded && !isSubmitted">
     <ng-container *ngIf="question.isMultipleChoice">
       <app-question-option-checkbox
         *ngFor="let option of question.options; let i = index"
@@ -20,6 +20,7 @@
       <app-question-option-radio
         (valueChange)="onRadioChange($event)"
         [showClose]="false"
+        [questionId]="question.id"
         [disabled]="isSubmitted"
         [options]="question.options"></app-question-option-radio>
     </ng-container>

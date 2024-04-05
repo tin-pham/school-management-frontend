@@ -46,6 +46,8 @@ export class StudentQuestionListComponent {
       this.cd.markForCheck();
 
       // Initialize with selected option IDs if any
+      this.studentExerciseSubmitDTO.snapshotQuestions = [];
+      // Initialize with selected option IDs if any
       this.questions.forEach(question => {
         const snapshotQuestion: StudentExerciseSubmitSnapshotQuestionDTO = {
           id: question.id,

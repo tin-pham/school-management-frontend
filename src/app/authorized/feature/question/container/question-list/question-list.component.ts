@@ -20,8 +20,8 @@ export class QuestionListComponent extends PaginateComponent {
   @Input() isActive: boolean;
 
   @Input() showSearchBar = true;
-  @Input() showTrash: boolean;
-  @Input() showEdit: boolean;
+  @Input() showTrash = true;
+  @Input() showEdit = true;
   @Input() showDifficulty = true;
   @Input() showDifficultyFilter = true;
 

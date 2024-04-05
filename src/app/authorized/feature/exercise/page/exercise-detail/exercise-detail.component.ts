@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
@@ -15,7 +15,7 @@ import { ExerciseGetDetailDTO, ExerciseUpdateDTO } from '@shared/models/dto/exer
 import { StudentExerciseSubmitDTO } from '@shared/models/dto/student-exercise.dto';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
-import { tap } from 'rxjs';
+import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-exercise-detail',
@@ -27,6 +27,7 @@ export class ExerciseDetailComponent implements OnInit {
   exerciseId: number;
   selectedQuestionIds: number[] = [];
   showTrash = false;
+  dto = new ExerciseGetDetailDTO();
   @ViewChild('exerciseDetailHeader') exerciseDetailHeader: ExerciseDetailHeaderComponent;
   @ViewChild('questionList') questionListComponent: QuestionListComponent;
   @ViewChild('studentQuestionList') studentQuestionList: StudentQuestionListComponent;
@@ -51,13 +52,8 @@ export class ExerciseDetailComponent implements OnInit {
 
   ngOnInit() {
     this.exerciseId = +this.route.snapshot.paramMap.get('id');
-    const dto = new ExerciseGetDetailDTO();
-    if (this.isStudent()) {
-      dto.includeGrade = true;
-    }
-    this._exerciseService.getDetail(this.exerciseId, dto).subscribe((response: ExerciseGetDetailRO) => {
-      this.exercise = response;
-    });
+    this.dto.includeGrade = true;
+    this.loadExercise(this.exerciseId, this.dto);
   }
 
   activateExercise() {
@@ -70,7 +66,23 @@ export class ExerciseDetailComponent implements OnInit {
   }
 
   routeToQuestion(questionId: number) {
-    this.router.navigate(['/question', questionId]);
+    if (this.exercise.isActive) {
+      const dialogData = new ConfirmDialogModel('Xác nhận', 'Chỉnh sửa câu hỏi là sẽ chấm điểm lại?');
+
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: dialogData,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (!result) {
+          return;
+        }
+
+        this.router.navigate(['/question', questionId], { queryParams: { exerciseId: this.exerciseId } });
+      });
+    } else {
+      this.router.navigate(['/question', questionId]);
+    }
   }
 
   removeQuestionsFromExercise() {
@@ -79,6 +91,15 @@ export class ExerciseDetailComponent implements OnInit {
         exerciseIds: [this.exerciseId],
         questionIds: this.selectedQuestionIds,
       })
+      .pipe(
+        switchMap(() => {
+          if (this.exercise.isActive) {
+            return this._exerciseService.sync(this.exerciseId);
+          } else {
+            return of(null);
+          }
+        }),
+      )
       .subscribe(() => {
         this.toast.success('Xóa thành công khỏi bài tập này');
         this.selectedQuestionIds = [];
@@ -116,6 +137,7 @@ export class ExerciseDetailComponent implements OnInit {
                   this.exercise.point = response.point;
                   this.exercise.totalCount = response.totalCount;
                   this.exercise.correctCount = response.correctCount;
+                  this.exercise.isGraded = true;
                 });
             }
           }),
@@ -164,6 +186,43 @@ export class ExerciseDetailComponent implements OnInit {
       .subscribe(() => {
         this.toast.success('Chấm điểm thành công');
         this.exerciseSubmittedList.loadGrades();
+      });
+  }
+
+  loadExercise(id: number, dto: ExerciseGetDetailDTO) {
+    this._exerciseService.getDetail(id, dto).subscribe((response: ExerciseGetDetailRO) => {
+      this.exercise = response;
+    });
+  }
+
+  sync() {
+    this._exerciseService.sync(this.exerciseId).subscribe(() => {
+      this.questionListComponent.loadData(this.questionListComponent.getDto());
+      this.toast.success('Đồng bộ thành công');
+    });
+  }
+
+  redoExercise() {
+    // delete student exercise
+    this._studentExerciseService
+      .delete(this.exercise.studentExerciseId)
+      .pipe(
+        switchMap(() => {
+          // Start  doing
+          return this._studentExerciseService.store({
+            exerciseId: this.exerciseId,
+          });
+        }),
+      )
+      .subscribe(response => {
+        this.exercise.studentExerciseId = response.id;
+        this.exercise.isGraded = false;
+        this.exercise.isSubmitted = false;
+        delete this.exercise.point;
+        this.exercise.startDoingAt = response.startDoingAt;
+        this.exerciseDetailHeader.startCountdown();
+
+        this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
       });
   }
 }

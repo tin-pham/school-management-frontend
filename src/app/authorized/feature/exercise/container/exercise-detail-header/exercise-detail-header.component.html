@@ -21,12 +21,15 @@
       {{ countdown }}
     </div>
 
+    <div *ngIf="isStudent && !isCountdownActive" class="buttons">
+      <app-primary-button *ngIf="exercise.isSubmitted" (click)="redoClicked()">Làm bài lại</app-primary-button>
+    </div>
+
     <div *ngIf="!isStudent" class="buttons">
-      <app-secondary-button *ngIf="!exercise.isActive" routerLink]="['/exercise', exerciseId, 'question-category']"
-        >Chọn câu hỏi từ bộ câu hỏi</app-secondary-button
-      >
-      <app-primary-button *ngIf="!exercise.isActive && totalItems > 0" (click)="activateClicked()">Kích hoạt</app-primary-button>
+      <app-secondary-button (click)="routeToQuestionCategory()">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
+      <app-primary-button *ngIf="!exercise.isActive" (click)="activateClicked()">Kích hoạt</app-primary-button>
       <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeClicked()">Xóa khỏi bài tập này</app-warn-button>
+      <app-secondary-button *ngIf="exercise.isActive" (click)="sync()">Đồng bộ</app-secondary-button>
       <app-primary-button *ngIf="exercise.isActive" (click)="onGradeClick()">Chấm điểm</app-primary-button>
     </div>
   </div>

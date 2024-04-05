@@ -14,7 +14,7 @@
     <div>
       <li *ngIf="notificationsPaginated.meta.totalItems"><mat-divider></mat-divider></li>
       <!-- Repeat for each message, update the link and img source as needed -->
-      <li><a routerLink="/notification" class="dropdown-item dropdown-footer">Xem tất cả</a></li>
+      <li><a (click)="routeToNotification()" class="dropdown-item dropdown-footer">Xem tất cả</a></li>
     </div>
   </ul>
 </li>

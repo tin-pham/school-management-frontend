@@ -16,7 +16,7 @@ export class QuestionGetListDTO extends PaginateDTO {
   questionCategoryId?: number;
   exerciseId?: number;
   excludeExerciseId?: number;
-  difficultyId: number;
+  difficultyId?: number;
   withExerciseStudentOption?: boolean;
 }
 

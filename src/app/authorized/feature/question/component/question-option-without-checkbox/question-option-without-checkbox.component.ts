@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 export enum IQuestionOptionStatus {
   NORMAL = 'normal',
@@ -20,6 +20,7 @@ export class QuestionOptionWithoutCheckboxComponent {
   @Input() showAutorenew = true;
   @Input() showTrash = true;
   @Input() showIncorrect = true;
+  @ViewChild('rotateIcon') rotateIcon: ElementRef;
   IQuestionOptionStatus = IQuestionOptionStatus;
 
   @Output() onRemoveClick = new EventEmitter();
@@ -28,8 +29,8 @@ export class QuestionOptionWithoutCheckboxComponent {
   }
 
   @Output() onToggleCorrect = new EventEmitter();
-  toggleCorrect() {
-    this.rotateButton();
+  toggleCorrect(event: MouseEvent) {
+    this.rotateButton(event);
     if (this.status === IQuestionOptionStatus.CORRECT) {
       this.status = IQuestionOptionStatus.INCORRECT;
       this.onToggleCorrect.emit(false);
@@ -39,8 +40,8 @@ export class QuestionOptionWithoutCheckboxComponent {
     }
   }
 
-  rotateButton() {
-    const element = document.querySelector('.autorenew');
+  rotateButton(event: MouseEvent) {
+    const element = event.target as HTMLElement;
     element.classList.toggle('rotate'); // Add the 'rotate' class to start the animation
   }
 }

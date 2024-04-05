@@ -18,6 +18,15 @@
     [showCheckbox]="showCheckbox"></app-notification-item>
 
   <app-notification-item
+    *ngIf="notification.exerciseSubmitId && !notification.isRead"
+    (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    [imageUrl]="exerciseImageUrl"
+    [showCheckbox]="showCheckbox"></app-notification-item>
+
+  <app-notification-item
     *ngIf="notification.assignmentNotificationId && !notification.isRead"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"

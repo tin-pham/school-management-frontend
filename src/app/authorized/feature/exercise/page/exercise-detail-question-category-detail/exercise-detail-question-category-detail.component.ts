@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseQuestionService } from '@core/services/api/exercise-question.service';
+import { ExerciseService } from '@core/services/api/exercise.service';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionService } from '@core/services/api/question.service';
+import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-exercise-detail-question-category-detail',
@@ -16,6 +19,7 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
   questionCategoryId: number;
   questionCategory: QuestionCategoryGetDetailRO;
   exerciseId: number;
+  exercise: ExerciseGetDetailRO;
 
   constructor(
     private toast: ToastrService,
@@ -24,6 +28,7 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
     private _questionService: QuestionService,
     private _exerciseQuestionService: ExerciseQuestionService,
     private _questionCategoryService: QuestionCategoryService,
+    private _exerciseService: ExerciseService,
   ) {}
 
   ngOnInit() {
@@ -31,6 +36,9 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
     this.questionCategoryId = +this.route.snapshot.paramMap.get('questionCategoryId');
     this._questionCategoryService.getDetail(this.questionCategoryId).subscribe(response => {
       this.questionCategory = response;
+    });
+    this._exerciseService.getDetail(this.exerciseId).subscribe(response => {
+      this.exercise = response;
     });
   }
 
@@ -50,6 +58,15 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
         exerciseIds: [this.exerciseId],
         questionIds: this.selectedQuestionIds,
       })
+      .pipe(
+        switchMap(() => {
+          if (this.exercise.isActive) {
+            return this._exerciseService.sync(this.exerciseId);
+          } else {
+            return of(null);
+          }
+        }),
+      )
       .subscribe(() => {
         this.toast.success('Chọn câu hỏi cho bài tập thành công');
         this.router.navigate(['/exercise', this.exerciseId]);

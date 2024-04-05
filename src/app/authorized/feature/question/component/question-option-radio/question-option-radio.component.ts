@@ -16,6 +16,7 @@ export enum IQuestionOptionStatus {
 })
 export class QuestionOptionRadioComponent {
   @Input() name: string;
+  @Input() questionId: number;
   @Input() label: string;
   @Input() showClose: boolean = true;
   @Input() disabled: boolean;

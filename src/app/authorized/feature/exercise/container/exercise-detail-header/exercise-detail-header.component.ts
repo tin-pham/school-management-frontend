@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { Subscription, timer } from 'rxjs';
@@ -18,11 +19,12 @@ export class ExerciseDetailHeaderComponent {
   @Input() isSubmitted: boolean;
   isCountdownActive: boolean = false; // New property to track countdown status
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    // Initialize the countdown timer here, for example, 5 minutes.
-    console.log(this.exercise);
     if (this.exercise.isStartDoing && !this.exercise.isSubmitted) {
       this.startCountdown();
     }
@@ -47,7 +49,23 @@ export class ExerciseDetailHeaderComponent {
 
   @Output() onRemoveClicked = new EventEmitter();
   removeClicked() {
-    this.onRemoveClicked.emit();
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Xóa khỏi bài tập này?');
+
+    if (this.exercise.isActive) {
+      dialogData.message = 'Xóa khỏi bài tập này sẽ chấm điểm lại?';
+    }
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.onRemoveClicked.emit();
+    });
   }
 
   countdown: string;
@@ -59,7 +77,6 @@ export class ExerciseDetailHeaderComponent {
     }
 
     this.isCountdownActive = true; // Set to true when countdown starts
-    console.log(this.exercise.startDoingAt);
     const startTime = new Date(this.exercise.startDoingAt).getTime();
     const duration = this.exercise.time * 60000; // Convert minutes to milliseconds
     const endTime = startTime + duration;
@@ -107,6 +124,60 @@ export class ExerciseDetailHeaderComponent {
       }
 
       this.gradeClick.emit();
+    });
+  }
+
+  @Output() onSync = new EventEmitter();
+  sync() {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Đồng bộ?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.onSync.emit();
+    });
+  }
+
+  routeToQuestionCategory() {
+    if (this.exercise.isActive) {
+      const dialogData = new ConfirmDialogModel('Xác nhận', 'Thêm câu hỏi mới vào sẽ xóa hết cấc bài nộp?');
+
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: dialogData,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (!result) {
+          return;
+        }
+
+        this.router.navigate(['/exercise', this.exercise.id, 'question-category']);
+      });
+    } else {
+      this.router.navigate(['/exercise', this.exercise.id, 'question-category']);
+    }
+  }
+
+  @Output() onRedoClicked = new EventEmitter();
+  redoClicked() {
+    const dialogData = new ConfirmDialogModel('Xác nhận', 'Làm bài lại?');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
+      this.onRedoClicked.emit();
     });
   }
 }

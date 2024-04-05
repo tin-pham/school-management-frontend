@@ -9,7 +9,7 @@
   </p>
 
   <div class="buttons">
-    <mat-icon *ngIf="showAutorenew" class="autorenew" (click)="toggleCorrect()">autorenew</mat-icon>
+    <mat-icon *ngIf="showAutorenew" class="autorenew" (click)="toggleCorrect($event)">autorenew</mat-icon>
     <mat-icon *ngIf="showTrash" class="trash" (click)="removeClick()">delete</mat-icon>
   </div>
 </div>

@@ -58,6 +58,8 @@ export class NotificationItemsComponent {
       this.router.navigate(['/exercise', notification.exerciseId]);
     } else if (notification.postId) {
       this.router.navigate(['/course', notification.courseId, 'post', notification.postId]);
+    } else if (notification.exerciseSubmitId) {
+      this.router.navigate(['/exercise', notification.exerciseSubmitId]);
     }
   }
 

@@ -308,6 +308,10 @@ export const API = {
       ROUTE: 'activate/:id',
       OPERATION: 'Activate exercise',
     },
+    SYNC: {
+      ROUTE: 'sync/:id',
+      OPERATION: 'Sync exercise',
+    },
   },
   EXERCISE_QUESTION: {
     TAGS: 'ExerciseQuestion',
@@ -683,6 +687,10 @@ export const API = {
     GET_SUBMITTED_LIST: {
       ROUTE: 'submit',
       OPERATION: 'Get submitted list student exercise',
+    },
+    DELETE: {
+      ROUTE: ':id',
+      OPERATION: 'Delete student exercise',
     },
   },
   EXERCISE_QUESTION_SNAPSHOT: {

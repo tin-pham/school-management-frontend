@@ -28,7 +28,11 @@ export class ExerciseService extends BaseService {
     return this._delete(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.DELETE.ROUTE.replace(':id', id.toString()));
   }
 
-  getDetail(id: number, dto: ExerciseGetDetailDTO): Observable<ExerciseGetDetailRO> {
+  getDetail(id: number, dto?: ExerciseGetDetailDTO): Observable<ExerciseGetDetailRO> {
     return this.get(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.GET_DETAIL.ROUTE.replace(':id', id.toString()), dto);
+  }
+
+  sync(id: number): Observable<ResultRO> {
+    return this.post(API.EXERCISE.CONTROLLER + '/' + API.EXERCISE.SYNC.ROUTE.replace(':id', id.toString()));
   }
 }

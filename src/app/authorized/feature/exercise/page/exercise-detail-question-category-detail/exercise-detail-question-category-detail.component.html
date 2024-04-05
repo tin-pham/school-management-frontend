@@ -1,13 +1,11 @@
 <div>
   <div class="header" *ngIf="questionCategory">
-    <div class="d-flex justify-content-between">
-      <h1>{{ questionCategory.name }}</h1>
-      <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
-        >Tạo câu hỏi</app-primary-button
-      >
+    <h1>{{ questionCategory.name }}</h1>
+    <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
+      >Tạo câu hỏi</app-primary-button
+    >
 
-      <app-secondary-button (click)="chooseQuestions()" *ngIf="selectedQuestionIds?.length > 0">Chọn</app-secondary-button>
-    </div>
+    <app-secondary-button (click)="chooseQuestions()" *ngIf="selectedQuestionIds?.length > 0">Chọn</app-secondary-button>
   </div>
   <app-question-list
     (onEdit)="routeToQuestion($event)"

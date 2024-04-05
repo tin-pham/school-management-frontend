@@ -23,4 +23,8 @@ export class StudentExerciseService extends BaseService {
   getSubmittedList(dto: StudentExerciseGetListSubmittedDTO): Observable<StudentExerciseGetListSubmittedRO> {
     return this.get(API.STUDENT_EXERCISE.CONTROLLER + '/' + API.STUDENT_EXERCISE.GET_SUBMITTED_LIST.ROUTE, dto);
   }
+
+  delete(id: number): Observable<ResultRO> {
+    return this._delete(API.STUDENT_EXERCISE.CONTROLLER + '/' + API.STUDENT_EXERCISE.DELETE.ROUTE.replace(':id', id.toString()));
+  }
 }

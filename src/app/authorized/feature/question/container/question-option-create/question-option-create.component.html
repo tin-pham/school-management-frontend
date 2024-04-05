@@ -23,6 +23,7 @@
     [isMultipleChoice]="true"
     [status]="option.isCorrect ? IQuestionOptionStatus.CORRECT : IQuestionOptionStatus.INCORRECT"
     (onRemoveClick)="removeOption(i)"
+    [showAutorenew]="false"
     [label]="getOptionLabel(i) + '. ' + option.text">
   </app-question-option>
 </div>
