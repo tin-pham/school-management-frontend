@@ -12,8 +12,8 @@ import { CourseGetListRO } from '@shared/models/ro/course.ro';
 })
 export class CategoryDetailComponent implements OnInit {
   category: CategoryGetDetailRO;
+  categoryId: number;
   coursePaginated: CourseGetListRO;
-  edit = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,24 +22,18 @@ export class CategoryDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.edit = false;
-
-    const id = +this.route.snapshot.paramMap.get('id');
-    this._categoryService.getDetail(id).subscribe(data => {
+    this.categoryId = +this.route.snapshot.paramMap.get('id');
+    this._categoryService.getDetail(this.categoryId).subscribe(data => {
       this.category = data;
     });
     this._courseService
       .getList({
-        categoryId: Number(id),
+        categoryId: Number(this.categoryId),
       })
       .subscribe({
         next: (response: CourseGetListRO) => {
           this.coursePaginated = response;
         },
       });
-  }
-
-  onEdit() {
-    this.edit = true;
   }
 }

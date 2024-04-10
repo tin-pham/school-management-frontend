@@ -16,7 +16,7 @@ export class TeacherListComponent implements OnInit {
   teachers: TeacherGetListDataRO[] = [];
   search$ = new BehaviorSubject<string>('');
 
-  itemsPerPage = 5;
+  itemsPerPage = 4;
   page = 1;
   totalItems = 0;
 
@@ -66,7 +66,6 @@ export class TeacherListComponent implements OnInit {
   }
 
   getDto() {
-    console.log(this.search$.value, this.page, this.itemsPerPage);
     return {
       search: this.search$.value,
       page: this.page,

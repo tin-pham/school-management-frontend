@@ -1,11 +1,13 @@
 <h1>Danh sách danh mục</h1>
 <div class="toolbar">
   <app-search-bar label="Tìm theo tên" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
+  <app-primary-button [routerLink]="['/category/create']">Thêm danh mục</app-primary-button>
 </div>
 <div class="list">
   <app-category-item
     role="button"
     *ngFor="let category of categories"
+    (onDelete)="delete(category.id)"
     [category]="category"
     [routerLink]="['/category', category.id]"></app-category-item>
 </div>

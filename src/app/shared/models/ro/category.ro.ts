@@ -3,7 +3,6 @@ import { PaginateRO } from './paginate.ro';
 export class CategoryStoreRO {
   id: number;
   name: string;
-  description: string;
 
   constructor(data?: CategoryStoreRO) {
     Object.assign(this, data);
@@ -13,13 +12,11 @@ export class CategoryStoreRO {
 export class CategoryGetListDataCourseRO {
   id: number;
   name: string;
-  description: string;
 }
 
 export class CategoryGetListDataRO {
   id: number;
   name: string;
-  description: string;
   courseCount?: number;
 }
 
@@ -30,7 +27,7 @@ export class CategoryGetListRO extends PaginateRO<CategoryGetListDataRO> {
 export class CategoryGetDetailRO {
   id: number;
   name: string;
-  description: string;
+  description: object;
   constructor(data?: CategoryGetDetailRO) {
     Object.assign(this, data);
   }
@@ -39,7 +36,6 @@ export class CategoryGetDetailRO {
 export class CategoryUpdateRO {
   id: number;
   name: string;
-  description: string;
 
   constructor(data?: CategoryUpdateRO) {
     Object.assign(this, data);

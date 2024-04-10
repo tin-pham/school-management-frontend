@@ -98,6 +98,19 @@ li {
     text-align: center;
   }
 }
+.buttons {
+  // moderrn red
+  .delete {
+    color: #e74c3c;
+  }
+
+  .edit {
+    color: #3498db;
+  }
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private _authService: AuthService,
   ) {}
 
   showMobileSearch() {
@@ -32,5 +34,9 @@ export class HeaderComponent {
     if (this.searchTerm) {
       this.router.navigate(['/course/search'], { queryParams: { search: this.searchTerm } });
     }
+  }
+
+  isAdmin() {
+    return this._authService.isAdmin();
   }
 }

@@ -1,7 +1,1 @@
-<div class="header">
-  <h1>Danh mục</h1>
-  <mat-icon *ngIf="!edit" (click)="onEdit()">edit</mat-icon>
-</div>
-
-<app-category-edit *ngIf="edit" [(edit)]="edit" [(category)]="category"></app-category-edit>
-<app-category-group [coursePaginated]="coursePaginated" [isEdit]="edit" [category]="category"></app-category-group>
+<app-category-group [coursePaginated]="coursePaginated" [category]="category" [categoryId]="categoryId"></app-category-group>

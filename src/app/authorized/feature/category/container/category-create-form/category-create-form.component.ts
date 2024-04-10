@@ -22,6 +22,7 @@ export class CategoryCreateFormComponent extends CacheForm<CategoryStoreDTO> {
   }
 
   onSubmit() {
+    console.log(this.dto);
     this._categoryService.store(this.dto).subscribe({
       next: () => {
         this.toast.success('Tạo danh mục thành công');

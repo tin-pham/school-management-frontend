@@ -14,7 +14,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class StudentListComponent extends PaginateComponent {
   students: StudentGetListDataRO[] = [];
 
-  itemsPerPage = 5;
+  itemsPerPage = 4;
   page = 1;
   totalItems = 0;
 

@@ -2,7 +2,7 @@ import { PaginateDTO } from './paginate.dto';
 
 export class CourseStoreDTO {
   name: string;
-  description?: string;
+  description?: object;
   categoryIds?: number[];
   levelId: number;
   hours: number;
@@ -20,7 +20,7 @@ export class CourseGetDetailDTO {
 
 export class CourseUpdateDTO {
   name?: string;
-  description?: string;
+  description?: object;
   categoryIds: number[];
   levelId: number;
   hours?: number;

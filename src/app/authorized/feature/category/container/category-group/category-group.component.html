@@ -1,6 +1,12 @@
-<div *ngIf="!isEdit">
-  <h2>{{ category?.name }}</h2>
-  <p>{{ category?.description }}</p>
+<div *ngIf="category">
+  <div class="header">
+    <h2 class="title">
+      {{ category.name }}
+      <mat-icon class="icon" [routerLink]="['/category', categoryId, 'edit']">edit</mat-icon>
+    </h2>
+    <app-primary-button (click)="createCourse()">Tạo khóa học</app-primary-button>
+  </div>
+  <app-text-editor-viewer [value]="category.description"></app-text-editor-viewer>
 </div>
 <div *ngIf="coursePaginated">
   <app-course-cards [courses]="coursePaginated.data" [options]="courseCardOption" (onDelete)="delete($event)"></app-course-cards>

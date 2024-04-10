@@ -3,7 +3,6 @@ import { PaginateRO } from './paginate.ro';
 export class CourseStoreRO {
   id: number;
   name: string;
-  description?: string;
   levelId?: number;
   hours?: number;
 }
@@ -11,7 +10,6 @@ export class CourseStoreRO {
 export class CourseGetListDataRO {
   id: number;
   name: string;
-  description?: string;
   imageUrl: string;
   unsubmittedPendingCount?: number;
   levelName?: string;
@@ -27,7 +25,7 @@ export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {
 export class CourseGetDetailRO {
   id: number;
   name: string;
-  description?: string;
+  description?: object;
   imageUrl?: string;
   categoryIds: number[];
   levelName?: string;
@@ -41,7 +39,6 @@ export class CourseGetDetailRO {
 export class CourseUpdateRO {
   id: number;
   name: string;
-  description?: string;
   levelId?: number;
   hours?: number;
 }
@@ -53,7 +50,6 @@ export class CourseDeleteRO {
 export class CourseTeacherGetListDataRO {
   id: number;
   name: string;
-  description: string;
   imageUrl: string;
   levelName: string;
   levelId: number;

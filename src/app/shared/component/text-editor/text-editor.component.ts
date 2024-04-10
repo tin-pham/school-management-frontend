@@ -18,6 +18,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   @Input() showAttachment = true;
 
   onValueChange(html: object) {
+    console.log(html);
     this.valueChange.emit(html);
   }
 

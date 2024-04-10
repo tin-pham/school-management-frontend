@@ -40,6 +40,11 @@ const routes: Routes = [
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
+        path: ':id/edit',
+        loadChildren: () => import('./page/course-edit/course-edit.module').then(m => m.CourseEditModule),
+        canActivate: [roleGuard([ROLE.TEACHER])],
+      },
+      {
         path: ':id/section/:sectionId',
         loadChildren: () => import('./page/course-section-detail/course-section-detail.module').then(m => m.CourseSectionDetailModule),
         canActivate: [roleGuard([ROLE.STUDENT])],

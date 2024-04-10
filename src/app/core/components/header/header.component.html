@@ -3,6 +3,7 @@
     <mat-icon class="menu" (click)="onToggleSidebar()">menu</mat-icon>
     <span class="navbar-brand mb-0 h1">Elearning</span>
     <app-search-bar
+      *ngIf="!isAdmin()"
       (onSearch)="routeToSearch()"
       [(value)]="searchTerm"
       class="search-bar"

@@ -12,7 +12,7 @@ export class CategoryGetListDTO extends PaginateDTO {
 
 export class CategoryStoreDTO {
   name: string;
-  description?: string;
+  description?: object;
 
   constructor(data?: CategoryStoreDTO) {
     Object.assign(this, data);
@@ -21,7 +21,7 @@ export class CategoryStoreDTO {
 
 export class CategoryUpdateDTO {
   name: string;
-  description: string;
+  description: object;
 
   constructor(data?: CategoryUpdateDTO) {
     Object.assign(this, data);

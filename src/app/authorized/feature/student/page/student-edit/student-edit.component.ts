@@ -40,6 +40,7 @@ export class StudentEditComponent implements OnInit {
   update() {
     this._studentService.update(this.studentId, this.dto).subscribe(() => {
       this.toast.success('Cập nhật thành công');
+      window.history.back();
     });
   }
 }

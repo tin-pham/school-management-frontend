@@ -8,12 +8,14 @@
       [label]="'Tên'"
       [(value)]="dto.name"
       [required]="true"></app-text-input-group>
-    <app-textarea-group
-      (valueChange)="saveToTemporaryStorage()"
-      icon="description"
-      [name]="'description'"
-      [label]="'Mô tả'"
-      [(value)]="dto.description"></app-textarea-group>
+    <!-- <app-textarea-group -->
+    <!--   (valueChange)="saveToTemporaryStorage()" -->
+    <!--   icon="description" -->
+    <!--   [name]="'description'" -->
+    <!--   [label]="'Mô tả'" -->
+    <!--   [(value)]="dto.description"></app-textarea-group> -->
+
+    <app-text-editor icon="description" label="Nội dung" [(value)]="dto.description"></app-text-editor>
 
     <div class="d-flex justify-content-end mt-3">
       <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>

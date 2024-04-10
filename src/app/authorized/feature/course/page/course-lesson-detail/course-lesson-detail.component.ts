@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { LessonService } from '@core/services/api/lesson.service';
 import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 import { Editor } from 'ngx-editor';
@@ -21,6 +22,7 @@ export class CourseLessonDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _lessonService: LessonService,
+    private _authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -72,5 +74,9 @@ export class CourseLessonDetailComponent implements OnInit {
   routeToEdit(event: MouseEvent) {
     this.router.navigate([this.basePath, 'edit'], { relativeTo: this.route.parent });
     event.stopPropagation();
+  }
+
+  isStudent() {
+    return this._authService.isStudent();
   }
 }

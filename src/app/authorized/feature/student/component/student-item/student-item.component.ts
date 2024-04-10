@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { StudentGetListDataRO } from '@shared/models/ro/student.ro';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 
 @Component({
   selector: 'app-student-item',
@@ -33,5 +34,9 @@ export class StudentItemComponent {
   @Output() onEdit = new EventEmitter();
   edit() {
     this.onEdit.emit();
+  }
+
+  getAvatarUrl() {
+    return this.student.userImageUrl || getGravatarUrl(this.student.id, this.student.username);
   }
 }

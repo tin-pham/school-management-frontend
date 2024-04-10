@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { CourseService } from '@core/services/api/course.service';
 import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CourseGetListDTO } from '@shared/models/dto/course.dto';
@@ -16,7 +17,7 @@ export class CategoryGroupComponent {
   private _coursePaginated: CourseGetListRO;
 
   @Input() category: CategoryGetDetailRO;
-  @Input() isEdit: boolean;
+  @Input() categoryId: number;
   courseCardOption: IImageCardOption = {
     haveClose: true,
     haveDelete: true,
@@ -28,6 +29,7 @@ export class CategoryGroupComponent {
   constructor(
     private cd: ChangeDetectorRef,
     private toast: ToastrService,
+    private router: Router,
     private _courseService: CourseService,
   ) {}
 
@@ -69,5 +71,9 @@ export class CategoryGroupComponent {
     this._courseService.delete(courseId).subscribe(() => {
       this.toast.success('Xóa khóa học thành công');
     });
+  }
+
+  createCourse() {
+    this.router.navigate(['/course', 'create'], { queryParams: { categoryId: this.categoryId } });
   }
 }

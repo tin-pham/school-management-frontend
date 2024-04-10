@@ -9,6 +9,7 @@ import { UserGetProfileRO } from '@shared/models/ro/user.ro';
 import { Subject, takeUntil } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -102,5 +103,9 @@ export class SidebarMenuComponent implements OnInit, OnDestroy {
 
   isStudent() {
     return this._user?.roles.includes(ROLE.STUDENT);
+  }
+
+  getAvatarUrl() {
+    return this.profile?.imageUrl || getGravatarUrl(this._user?.id, this._user?.username);
   }
 }
