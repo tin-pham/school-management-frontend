@@ -18,12 +18,12 @@
 
   <form *ngIf="!isStudent()" (ngSubmit)="upload()">
     <app-files-input-group
-      [accept]="'*'"
+      accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*"
       [files]="attachmentsCreating"
       (filesChange)="onFilesChange($event)"
       [label]="'Đính kèm'"></app-files-input-group>
 
-    <div class="d-flex">
+    <div class="d-flex justify-content-end">
       <app-primary-button [disabled]="!attachmentsCreating">Tải lên</app-primary-button>
     </div>
   </form>

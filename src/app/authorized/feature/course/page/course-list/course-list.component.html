@@ -1,10 +1,3 @@
-<div class="header">
-  <h1 class="title">Khóa học</h1>
-  <app-primary-button (click)="routeToCreateCategory()">Tạo danh mục</app-primary-button>
-</div>
-
-<mat-divider class="mb-3"></mat-divider>
-
 <app-course-group
   (categoryDeleted)="onCategoryDeleted($event)"
   [assignmentIcon]="!isStudent()"
@@ -13,7 +6,7 @@
 <div>
   <div class="title">
     <h2>Khóa học khác</h2>
-    <mat-icon class="icon" *ngIf="!isStudent()" routerLink="/course/create">add</mat-icon>
+    <mat-icon class="add" *ngIf="!isStudent()" routerLink="/course/create">add</mat-icon>
   </div>
   <app-course-cards
     (onDelete)="delete($event)"

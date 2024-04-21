@@ -5,7 +5,7 @@
     <span class="file-status">{{ submission.attachmentCreatedAt | date: 'dd/MM/yyyy' }}</span>
   </div>
 
-  <div class="buttons">
+  <div class="button-container">
     <mat-icon *ngIf="isYourFile()" (click)="delete()" class="delete" role="button">close</mat-icon>
     <mat-icon class="view" role="button" (click)="view()">remove_red_eye</mat-icon>
   </div>

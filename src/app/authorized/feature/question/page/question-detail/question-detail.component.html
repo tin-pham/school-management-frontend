@@ -26,7 +26,7 @@
       [label]="'Câu trả lời'"
       [name]="'option'"></app-question-option-update>
 
-    <div class="d-flex">
+    <div class="d-flex justify-content-end">
       <app-primary-button [disabled]="!dto.text?.trim() || !dto.difficultyId || !question.options.length" type="submit"
         >Cập nhật</app-primary-button
       >

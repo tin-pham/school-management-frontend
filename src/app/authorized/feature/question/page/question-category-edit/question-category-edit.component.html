@@ -1,0 +1,9 @@
+<div class="form">
+  <h1 class="title">Sửa danh mục câu hỏi</h1>
+  <form (ngSubmit)="update()">
+    <app-text-input-group icon="category" label="Tên" [(value)]="dto.name" name="name" [required]="true"></app-text-input-group>
+    <div class="d-flex justify-content-end">
+      <app-primary-button [disabled]="!dto.name?.trim()">Cập nhật</app-primary-button>
+    </div>
+  </form>
+</div>

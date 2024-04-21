@@ -22,7 +22,7 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: () => import('./page/course-search/course-search.module').then(m => m.CourseSearchModule),
-        canActivate: [roleGuard([ROLE.TEACHER])],
+        canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {
         path: 'deleted',

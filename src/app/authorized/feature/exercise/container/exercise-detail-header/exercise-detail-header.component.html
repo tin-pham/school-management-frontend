@@ -2,30 +2,31 @@
   <div class="exercise-header">
     <div class="exercise-title">
       <h1>{{ exercise.name }}</h1>
-      <mat-icon *ngIf="!isStudent" class="badge bg-dark">edit</mat-icon>
+      <mat-icon *ngIf="!isStudent" class="edit" [routerLink]="['/exercise', exercise.id, 'edit']">edit</mat-icon>
     </div>
     <div class="exercise-info">
       <span class="badge bg-dark">
         {{ exercise.difficultyName | titlecase }}
       </span>
-      <span class="badge bg-dark" *ngIf="exercise.time">{{ exercise.time }} phút </span>
+      <span class="badge bg-dark" *ngIf="exercise.time"> {{ exercise.time }} phút </span>
     </div>
   </div>
 
   <div *ngIf="exercise.dueDate" class="exercise-secondary">
     <div>
       <p class="deadline">Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
-      <p *ngIf="exercise.point" class="point">Điểm: {{ exercise.point }}</p>
+      <p *ngIf="exercise.point" class="point">Điểm: {{ exercise.point }} / {{ exercise.basePoint }}</p>
     </div>
     <div class="countdown" *ngIf="exercise.isStartDoing && isCountdownActive">
+      <mat-icon class="icon">schedule</mat-icon>
       {{ countdown }}
     </div>
 
-    <div *ngIf="isStudent && !isCountdownActive" class="buttons">
-      <app-primary-button *ngIf="exercise.isSubmitted" (click)="redoClicked()">Làm bài lại</app-primary-button>
+    <div *ngIf="isStudent && !isCountdownActive" class="button-container">
+      <app-primary-button *ngIf="exercise.isSubmitted && exercise.allowRedo" (click)="redoClicked()">Làm bài lại</app-primary-button>
     </div>
 
-    <div *ngIf="!isStudent" class="buttons">
+    <div *ngIf="!isStudent" class="button-container">
       <app-secondary-button (click)="routeToQuestionCategory()">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
       <app-primary-button *ngIf="!exercise.isActive" (click)="activateClicked()">Kích hoạt</app-primary-button>
       <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeClicked()">Xóa khỏi bài tập này</app-warn-button>

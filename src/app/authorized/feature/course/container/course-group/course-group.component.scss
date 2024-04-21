@@ -10,4 +10,14 @@
 
 .view-more {
   margin-left: auto;
+  display: inline-block;
+  text-align: right;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+  font-style: italic;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -1,0 +1,26 @@
+<div class="form" *ngIf="exercise && difficulties">
+  <h1 class="title">Sửa bài trắc nghiệm</h1>
+
+  <form (ngSubmit)="update()">
+    <app-text-input-group
+      icon="assignment"
+      [required]="true"
+      [label]="'Tên bài tập'"
+      [(value)]="exercise.name"
+      [name]="'name'"></app-text-input-group>
+
+    <app-select-list icon="star" [label]="'Độ khó'" [options]="difficulties" [(selected)]="dto.difficultyId"></app-select-list>
+
+    <app-number-input-group icon="access_time" [label]="'Thời gian (phút)'" [(value)]="dto.time"></app-number-input-group>
+
+    <app-date-time-picker icon="date_range" name="dueDate" [(datetime)]="dto.dueDate" label="Deadline"></app-date-time-picker>
+
+    <app-checkbox-input-group [(checked)]="dto.instantMark" [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
+
+    <app-checkbox-input-group [(checked)]="dto.allowRedo" [label]="'Cho phép làm lại'"></app-checkbox-input-group>
+
+    <div class="d-flex justify-content-end">
+      <app-primary-button [disabled]="!exercise.name?.trim()">Cập nhật</app-primary-button>
+    </div>
+  </form>
+</div>

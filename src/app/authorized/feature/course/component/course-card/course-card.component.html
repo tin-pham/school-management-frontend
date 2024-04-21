@@ -2,8 +2,6 @@
   <app-image-card
     [thumnailText]="course.name"
     [id]="course.id"
-    (onDeleteClick)="delete()"
-    (onCloseClick)="remove()"
     class="image-card"
     role="button"
     [option]="option"
@@ -12,10 +10,17 @@
     [alt]="course.name"></app-image-card>
 
   <div class="course-info">
-    <div class="course-name">{{ course.name }}</div>
     <div>
-      <mat-icon class="icon">group</mat-icon>
-      {{ course.studentCount }}
+      <h5 class="course-name">{{ course.name }}</h5>
+      <div>
+        <mat-icon class="icon">group</mat-icon>
+        {{ course.studentCount }}
+      </div>
+    </div>
+
+    <div class="buttons">
+      <mat-icon (click)="delete($event)" class="icon delete" *ngIf="option.haveDelete && !isStudent()" aria-label="Delete">delete</mat-icon>
+      <mat-icon (click)="remove($event)" class="icon close" *ngIf="option.haveClose && !isStudent()" aria-label="Close">close</mat-icon>
     </div>
   </div>
 

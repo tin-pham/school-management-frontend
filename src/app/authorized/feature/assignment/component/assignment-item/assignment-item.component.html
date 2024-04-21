@@ -7,7 +7,7 @@
     <p class="assignment-due">Hạn nộp: {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
   </div>
 
-  <div class="buttons">
+  <div class="button-container">
     <!-- <app-warn-button *ngIf="!isStudent()" (click)="delete()">Xóa</app-warn-button> -->
     <mat-icon class="delete-icon" *ngIf="!isStudent()" (click)="delete($event)">delete</mat-icon>
     <div *ngIf="isStudent()" class="d-flex">

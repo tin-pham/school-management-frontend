@@ -26,7 +26,7 @@ export class CourseSectionCreateComponent implements OnInit {
   create() {
     const dto = new SectionStoreDTO({ name: this.name, courseId: this.courseId });
     this.sectionService.store(dto).subscribe(() => {
-      this.toast.success('Tạo học phần thành công');
+      this.toast.success('Tạo chương thành công');
       window.history.back();
     });
   }

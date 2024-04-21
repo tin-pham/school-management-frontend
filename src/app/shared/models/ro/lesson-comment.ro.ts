@@ -8,6 +8,7 @@ export class LessonCommentStoreRO {
   lessonId: number;
   parentId?: number;
   userId: number;
+  username: string;
   userDisplayName: string;
   userImageUrl?: string;
 
@@ -24,6 +25,7 @@ export class LessonCommentGetListDataRO {
   lessonId: number;
   parentId?: number;
   userId: number;
+  username: string;
   userDisplayName: string;
   userImageUrl?: string;
   depth: number;

@@ -58,6 +58,8 @@ export class ExerciseGetDetailRO {
   studentExerciseGradeId: number;
   instantMark: boolean;
   isGraded: boolean;
+  allowRedo: boolean;
+  basePoint: number;
 }
 
 export class ExerciseUpdateRO {
@@ -67,6 +69,9 @@ export class ExerciseUpdateRO {
   activatedAt: Date;
   time?: number;
   dueDate?: Date;
+  allowRedo?: boolean;
+  instantMark?: boolean;
+  difficultyId: number;
 }
 
 export class ExerciseDeleteRO {

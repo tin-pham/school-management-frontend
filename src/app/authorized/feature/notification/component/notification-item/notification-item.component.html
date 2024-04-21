@@ -6,7 +6,7 @@
       class="me-3"
       (change)="checkBoxChange($event)"
       (click)="$event.stopPropagation()" />
-    <img [src]="imageUrl" class="rounded-circle me-3" style="width: 40px" />
+    <img [src]="getAvatarUrl()" class="rounded-circle me-3" style="width: 40px" />
     <h3 class="dropdown-item-title mb-0">
       {{ title }}
     </h3>

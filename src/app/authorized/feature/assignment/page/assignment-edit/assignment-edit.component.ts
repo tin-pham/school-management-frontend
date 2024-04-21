@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@core/services/api/assignment.service';
 import { AssignmentGetDetailRO } from '@shared/models/ro/assignment.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-assignment-edit',
@@ -14,6 +15,7 @@ export class AssignmentEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private toast: ToastrService,
     private _assignmentService: AssignmentService,
   ) {}
 
@@ -26,9 +28,7 @@ export class AssignmentEditComponent implements OnInit {
 
   update() {
     this._assignmentService.update(this.assignmentId, this.assignment).subscribe(() => {
-      this._assignmentService.getDetail(this.assignmentId).subscribe(assignment => {
-        this.assignment = assignment;
-      });
+      this.toast.success('Cập nhật thành công');
     });
   }
 }

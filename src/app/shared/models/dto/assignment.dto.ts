@@ -13,6 +13,11 @@ export class AssignmentGetListDTO extends PaginateDTO {
   lessonId?: number;
   courseId?: number;
   withSubmission?: boolean;
+
+  constructor(data?: AssignmentGetListDTO) {
+    super(data);
+    Object.assign(this, data);
+  }
 }
 
 export class AssignmentUpdateDTO {

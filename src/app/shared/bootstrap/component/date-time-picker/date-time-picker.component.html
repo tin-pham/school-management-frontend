@@ -20,7 +20,13 @@
 <ng-template #calendarContent>
   <div>
     <div *ngIf="!showTimePickerToggle">
-      <ngb-datepicker #datePickerRef name="datepicker" [ngModel]="datetime" (ngModelChange)="onDateChange($event)"></ngb-datepicker>
+      <ngb-datepicker
+        #datePickerRef
+        name="datepicker"
+        [ngModel]="datetime"
+        (ngModelChange)="
+          onDateChange($event); datePickerRef.navigateTo({ year: this.datetime.year, month: this.datetime.month })
+        "></ngb-datepicker>
       <button class="btn btn-block btn-outline-secondary" [disabled]="!datetime?.day" type="button" (click)="toggleDateTimeState($event)">
         <mat-icon>access_time</mat-icon>
       </button>

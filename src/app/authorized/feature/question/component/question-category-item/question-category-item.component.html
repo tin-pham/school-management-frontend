@@ -1,4 +1,16 @@
 <div class="item">
-  <p class="text">{{ questionCategory.name }}</p>
-  <p>{{ questionCategory.questionCount }} câu hỏi</p>
+  <div class="header">
+    <h5 class="name">{{ questionCategory.name }}</h5>
+  </div>
+
+  <div class="body">
+    <p>
+      <mat-icon class="icon">help</mat-icon>
+      {{ questionCategory.questionCount }} câu hỏi
+    </p>
+  </div>
+
+  <div class="buttons">
+    <mat-icon (click)="delete($event)" class="icon delete">delete</mat-icon>
+  </div>
 </div>

@@ -3,6 +3,7 @@ import { PaginateComponent } from '@core/base/search.base';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionCategoryGetListDTO } from '@shared/models/dto/question-category.dto';
 import { QuestionCategoryGetListDataRO, QuestionCategoryGetListRO } from '@shared/models/ro/question-category.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-question-category-list',
@@ -19,6 +20,7 @@ export class QuestionCategoryListComponent extends PaginateComponent {
 
   constructor(
     private cd: ChangeDetectorRef,
+    private toast: ToastrService,
     private _questionCategoryService: QuestionCategoryService,
   ) {
     super();
@@ -35,7 +37,10 @@ export class QuestionCategoryListComponent extends PaginateComponent {
   }
 
   delete(id: number) {
-    this._questionCategoryService.delete(id).subscribe(() => this.loadData(this.getDto()));
+    this._questionCategoryService.delete(id).subscribe(() => {
+      this.loadData(this.getDto());
+      this.toast.success('Xóa thành công');
+    });
   }
 
   getDto() {

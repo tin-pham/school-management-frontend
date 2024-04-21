@@ -7,6 +7,7 @@
       (onActivateClicked)="activateExercise()"
       (onRedoClicked)="redoExercise()"
       (onSync)="sync()"
+      (onTimeOut)="onTimeOut()"
       [totalItems]="totalItems"
       [exercise]="exercise"
       [exerciseId]="exerciseId"
@@ -43,7 +44,7 @@
     </div>
 
     <div class="exercise-footer">
-      <app-primary-button *ngIf="isStudent() && exercise.isStartDoing && !exercise.isSubmitted" (click)="submitExercise()"
+      <app-primary-button *ngIf="isStudent() && exercise.isStartDoing && !exercise.isSubmitted" (click)="confirmAndSubmitExercise()"
         >Nộp bài</app-primary-button
       >
       <app-primary-button *ngIf="isStudent() && !exercise.isStartDoing" (click)="storeStudentExercise()"

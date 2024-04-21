@@ -29,6 +29,11 @@
       (valueChange)="saveToTemporaryStorage()"
       [(checked)]="dto.instantMark"
       [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
+
+    <app-checkbox-input-group
+      (valueChange)="saveToTemporaryStorage()"
+      [(checked)]="dto.allowRedo"
+      [label]="'Cho phép làm lại'"></app-checkbox-input-group>
     <div class="d-flex justify-content-end mt-3">
       <app-primary-button [disabled]="!dto.name?.trim()">Tạo</app-primary-button>
     </div>

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '@core/services/api/auth.service';
 import { LessonCommentGetListDataRO } from '@shared/models/ro/lesson-comment.ro';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 
 @Component({
   selector: 'app-comment-item',
@@ -81,5 +82,9 @@ export class CommentItemComponent {
 
   haveReplies() {
     return this.comment.replies && this.comment.replies.length > 0;
+  }
+
+  getAvatarUrl() {
+    return this.comment?.userImageUrl || getGravatarUrl(this.comment?.userId, this.comment?.username);
   }
 }

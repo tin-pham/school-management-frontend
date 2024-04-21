@@ -1,0 +1,25 @@
+.background {
+  background-color: #333333; /* Example using Dark Gray */
+  min-height: 100vh; /* Optional: Making sure it covers full viewport height */
+  padding: 20px; /* Providing some spacing around the inner content */
+}
+.exercise-container {
+  max-width: 1200px; /* Adjust this value based on your preference */
+  margin: 0 auto; /* This centers the container */
+  padding: 20px;
+  background-color: #f9f9f9; /* Light grey background for subtle contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  .exercise-body,
+  .exercise-submitted-list {
+    background-color: #ffffff; /* Ensures content areas are distinctly white */
+    padding: 15px;
+    border-radius: 6px; /* Optional: Adds rounded corners to inner containers */
+    margin-bottom: 20px; /* Adds space between sections */
+  }
+}
+.exercise-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
+import { AuthService } from '@core/services/api/auth.service';
 import { PostGetListDataRO } from '@shared/models/ro/post.ro';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 
 @Component({
   selector: 'app-post-item',
@@ -19,9 +21,10 @@ export class PostItemComponent {
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
+    private _authService: AuthService,
   ) {}
 
-  delete() {
+  delete(event: MouseEvent) {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -35,10 +38,18 @@ export class PostItemComponent {
 
       this.onDelete.emit(this.post.id);
     });
+
+    event.stopPropagation();
   }
 
   routeToEdit(event: MouseEvent) {
     this.router.navigate([this.post.id, 'edit'], { relativeTo: this.route });
     event.stopPropagation();
+  }
+
+  getAvatarUrl() {
+    const userId = this._authService.getUserId();
+    const username = this._authService.getUsername();
+    return this.post.createdByImageUrl || getGravatarUrl(userId, username);
   }
 }

@@ -26,8 +26,8 @@
     </mat-radio-button>
   </mat-radio-group>
 
-  <div class="buttons">
+  <div class="button-container">
     <mat-icon *ngIf="showAutorenew" (click)="toggleCorrect()">autorenew</mat-icon>
-    <mat-icon *ngIf="showTrash" class="trash" (click)="removeClick()">delete</mat-icon>
+    <mat-icon *ngIf="showTrash" class="delete" (click)="removeClick()">delete</mat-icon>
   </div>
 </li>

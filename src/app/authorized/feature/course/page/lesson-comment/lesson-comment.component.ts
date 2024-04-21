@@ -57,9 +57,9 @@ export class LessonCommentComponent implements OnInit {
   }
 
   delete(id: number) {
-    this._lessonCommentService.delete(id).subscribe(response => {
+    this._lessonCommentService.delete(id).subscribe(() => {
       this.toast.success('Xóa bình luận thành công');
-      this.comments = this.comments.filter(comment => comment.id !== response.id);
+      this.loadComments();
     });
   }
 }

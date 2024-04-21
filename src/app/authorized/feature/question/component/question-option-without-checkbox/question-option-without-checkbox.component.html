@@ -8,8 +8,8 @@
     <b>{{ optionLabel }}.</b> {{ label }}
   </p>
 
-  <div class="buttons">
+  <div class="button-container">
     <mat-icon *ngIf="showAutorenew" class="autorenew" (click)="toggleCorrect($event)">autorenew</mat-icon>
-    <mat-icon *ngIf="showTrash" class="trash" (click)="removeClick()">delete</mat-icon>
+    <mat-icon *ngIf="showTrash" class="delete" (click)="removeClick()">delete</mat-icon>
   </div>
 </div>

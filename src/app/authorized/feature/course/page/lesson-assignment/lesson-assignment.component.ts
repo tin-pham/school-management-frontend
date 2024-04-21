@@ -28,26 +28,17 @@ export class LessonAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.lessonId = +this.route.snapshot.paramMap.get('lessonId');
-    this.loadAssignments({
-      limit: this.itemsPerPage,
-      page: this.page,
-      lessonId: this.lessonId,
-    });
+    this.loadAssignments(this.getDto());
   }
 
   handlePageChange(event: PageEvent) {
     this.page = event.pageIndex + 1;
     this.itemsPerPage = event.pageSize;
-    this.loadAssignments({
-      limit: this.itemsPerPage,
-      page: this.page,
-      lessonId: this.lessonId,
-    });
+    this.loadAssignments(this.getDto());
   }
 
   loadAssignments(dto: AssignmentGetListDTO) {
-    const { limit, page, lessonId } = dto;
-    this._assignmentService.getList({ limit, page, lessonId }).subscribe({
+    this._assignmentService.getList(dto).subscribe({
       next: (response: AssignmentGetListRO) => {
         this.totalItems = response.meta.totalItems;
         this.assignments = response.data;
@@ -59,16 +50,26 @@ export class LessonAssignmentComponent implements OnInit {
   delete(id: number) {
     this._assignmentService.delete(id).subscribe({
       next: () => {
-        this.loadAssignments({
-          limit: this.itemsPerPage,
-          page: this.page,
-          lessonId: this.lessonId,
-        });
+        this.loadAssignments(this.getDto());
       },
     });
   }
 
   isStudent() {
     return this._authService.isStudent();
+  }
+
+  getDto() {
+    const dto = new AssignmentGetListDTO({
+      limit: this.itemsPerPage,
+      page: this.page,
+      lessonId: this.lessonId,
+    });
+
+    if (this.isStudent()) {
+      dto.withSubmission = true;
+    }
+
+    return dto;
   }
 }

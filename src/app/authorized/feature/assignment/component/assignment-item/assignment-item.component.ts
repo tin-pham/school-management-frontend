@@ -50,6 +50,7 @@ export class AssignmentItemComponent {
   isMissing(assignment: AssignmentGetListDataRO) {
     const dueDate = new Date(assignment.dueDate);
     const currentDate = new Date();
+    console.log(assignment);
     return !assignment.submissionId && currentDate > dueDate;
   }
 }

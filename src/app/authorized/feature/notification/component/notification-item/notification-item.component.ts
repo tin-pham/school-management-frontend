@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 
 @Component({
   selector: 'app-notification-item',
@@ -12,6 +13,8 @@ export class NotificationItemComponent {
   @Input() title: string;
   @Input() content: string;
   @Input() createdAt: Date;
+  @Input() userId: number;
+  @Input() username: string;
   isChecked = false;
 
   dateAgo() {
@@ -33,5 +36,9 @@ export class NotificationItemComponent {
   @Output() onCheckBoxChange = new EventEmitter<boolean>();
   checkBoxChange(event: MatCheckboxChange) {
     this.onCheckBoxChange.emit(event.checked);
+  }
+
+  getAvatarUrl() {
+    return this.imageUrl || getGravatarUrl(this.userId, this.username);
   }
 }

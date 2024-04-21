@@ -20,7 +20,6 @@ export class CourseSearchComponent extends PaginateComponent implements OnInit {
   loadData(dto: CourseGetListDTO): void {
     this._courseService.getList(dto).subscribe(res => {
       this.items = res.data;
-      console.log(this.items);
       this.totalItems = res.meta.totalItems;
       this.cd.markForCheck();
     });

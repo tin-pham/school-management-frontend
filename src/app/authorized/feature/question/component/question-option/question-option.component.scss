@@ -5,6 +5,7 @@
   margin: 8px 0;
   border-radius: 4px;
   transition: background-color 0.3s ease; /* Smooth transition for background color change */
+  position: relative;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.24); /* Subtle shadow for depth */
@@ -26,7 +27,7 @@
 }
 
 /* Style adjustments for the close icon */
-.buttons {
+.button-container {
   margin-left: auto; /* Pushes the icon to the right */
   display: flex;
 }

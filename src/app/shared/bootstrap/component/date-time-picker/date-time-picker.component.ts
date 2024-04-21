@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, forwardRef, ViewChild, AfterViewInit, Injector } from '@angular/core';
-import { NgbTimeStruct, NgbDateStruct, NgbPopoverConfig, NgbPopover, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimeStruct, NgbDateStruct, NgbPopoverConfig, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { noop } from 'rxjs';
@@ -39,7 +39,7 @@ export class DateTimePickerComponent implements ControlValueAccessor, OnInit, Af
   public datetime: DateTimeModel = new DateTimeModel();
   public firstTimeAssign = true;
 
-  @ViewChild('datePickerRef') private dp: NgbDatepicker;
+  //@ViewChild('datePickerRef') private dp: NgbDatepicker;
   @ViewChild(NgbPopover) private popover: NgbPopover;
 
   private onTouched: () => void = noop;
@@ -63,7 +63,6 @@ export class DateTimePickerComponent implements ControlValueAccessor, OnInit, Af
     this.popover.hidden.subscribe(() => {
       this.showTimePickerToggle = false;
     });
-    console.log(this.dp);
   }
 
   writeValue(newModel: string) {
@@ -130,8 +129,7 @@ export class DateTimePickerComponent implements ControlValueAccessor, OnInit, Af
     this.datetime.month = date.month;
     this.datetime.day = date.day;
 
-    console.log(this.dp);
-    this.dp.navigateTo({ year: this.datetime.year, month: this.datetime.month });
+    //this.dp.navigateTo({ year: this.datetime.year, month: this.datetime.month });
     this.setDateStringModel();
   }
 

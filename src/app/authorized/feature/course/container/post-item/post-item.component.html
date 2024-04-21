@@ -1,6 +1,6 @@
 <div class="post-item" *ngIf="post">
   <div class="post-item__header">
-    <img class="avatar" [src]="post.createdByImageUrl" [alt]="post.createdByDisplayName" />
+    <img class="avatar" [src]="getAvatarUrl()" [alt]="post.createdByDisplayName" />
     <div class="info">
       <span class="author">{{ post.createdByDisplayName }}</span>
       <span class="date"
@@ -10,8 +10,8 @@
     </div>
 
     <div *ngIf="post.createdBy === userId && !isStudent">
-      <mat-icon class="icon" (click)="routeToEdit($event)">edit</mat-icon>
-      <mat-icon class="icon" (click)="delete()">delete</mat-icon>
+      <mat-icon class="icon edit" (click)="routeToEdit($event)">edit</mat-icon>
+      <mat-icon class="icon delete" (click)="delete($event)">delete</mat-icon>
     </div>
   </div>
 

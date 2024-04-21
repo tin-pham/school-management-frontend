@@ -10,9 +10,9 @@
       </span>
     </a>
     <span *ngIf="showIcons" class="align-middle">
-      <mat-icon [routerLink]="'/course/' + courseId + '/section/' + section.id">edit</mat-icon>
-      <mat-icon (click)="delete($event)">delete</mat-icon>
-      <mat-icon [routerLink]="'/course/' + courseId + '/section/' + section.id + '/lesson'">add</mat-icon>
+      <mat-icon class="edit" [routerLink]="'/course/' + courseId + '/section/' + section.id">edit</mat-icon>
+      <mat-icon class="delete" (click)="delete($event)">delete</mat-icon>
+      <mat-icon class="add" [routerLink]="'/course/' + courseId + '/section/' + section.id + '/lesson'">add</mat-icon>
     </span>
   </div>
   <div [@expandCollapse]="toggle ? 'expanded' : 'collapsed'">

@@ -1,8 +1,16 @@
 <div *ngIf="lesson">
-  <app-lesson-form
-    (onSubmit)="update()"
-    [buttonAction]="'Cập nhật'"
-    [(title)]="lesson.title"
-    [(body)]="lesson.body"
-    [(videoUrl)]="lesson.videoUrl"></app-lesson-form>
+  <div class="form">
+    <h1 class="title">Sửa bài học</h1>
+    <form (ngSubmit)="update()">
+      <app-text-input-group [label]="'Tiêu đề'" [name]="'title'" [(value)]="lesson.title" [required]="true"></app-text-input-group>
+
+      <app-text-input-group [label]="'Đường dẫn video'" [name]="'videoUrl'" [(value)]="lesson.videoUrl"></app-text-input-group>
+
+      <app-text-editor label="Nội dung bài học" [(value)]="lesson.body"></app-text-editor>
+
+      <div class="d-flex">
+        <app-primary-button [disabled]="!lesson.title?.trim()">Cập nhật</app-primary-button>
+      </div>
+    </form>
+  </div>
 </div>

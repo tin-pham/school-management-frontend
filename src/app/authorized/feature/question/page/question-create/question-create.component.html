@@ -22,7 +22,7 @@
       [(options)]="dto.options"
       [label]="'Câu trả lời'"
       [name]="'option'"></app-question-option-create>
-    <div class="d-flex">
+    <div class="d-flex justify-content-end">
       <app-primary-button [disabled]="!dto.text?.trim() || !dto.difficultyId || !dto.options?.length">Tạo</app-primary-button>
     </div>
   </form>

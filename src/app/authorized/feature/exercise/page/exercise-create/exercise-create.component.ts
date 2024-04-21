@@ -30,6 +30,7 @@ export class ExerciseCreateComponent extends CacheForm<ExerciseStoreDTO> impleme
   ngOnInit() {
     this.dto.lessonId = +this.route.snapshot.queryParamMap.get('lessonId');
     this.dto.instantMark = false;
+    this.dto.allowRedo = false;
     this._difficultyService.getList().subscribe(response => {
       this.difficulties = response.data.map(difficulty => ({ label: difficulty.name, value: difficulty.id }));
     });

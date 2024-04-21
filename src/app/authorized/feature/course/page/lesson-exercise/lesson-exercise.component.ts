@@ -5,6 +5,7 @@ import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
 import { ExerciseGetListDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetListDataRO, ExerciseGetListRO } from '@shared/models/ro/exercise.ro';
+import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
   selector: 'app-lesson-exercise',
@@ -22,6 +23,7 @@ export class LessonExerciseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
+    private toast: ToastrService,
     private _exerciseService: ExerciseService,
     private _authService: AuthService,
   ) {}
@@ -51,6 +53,7 @@ export class LessonExerciseComponent implements OnInit {
     this._exerciseService.delete(id).subscribe({
       next: () => {
         this.loadExercises(this.getDto());
+        this.toast.success('Xóa thành công');
       },
     });
   }

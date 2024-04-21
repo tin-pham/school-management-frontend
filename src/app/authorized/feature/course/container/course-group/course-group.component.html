@@ -15,13 +15,7 @@
       (onRemove)="removeCourseFromCategory($event)"
       (onDelete)="deleteCourse($event)"></app-course-cards>
 
-    <a
-      *ngIf="courses.length !== 0"
-      [routerLink]="['/category', category.id]"
-      class="view-more link-opacity-100 text-center text-md-end d-block"
-      role="button"
-      >Xem thêm</a
-    >
+    <a *ngIf="courses.length !== 0" [routerLink]="['/category', category.id]" class="view-more" role="button">Xem thêm</a>
   </div>
 
   <mat-divider class="mb-3"></mat-divider>

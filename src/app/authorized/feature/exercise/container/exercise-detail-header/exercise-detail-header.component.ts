@@ -71,6 +71,7 @@ export class ExerciseDetailHeaderComponent {
   countdown: string;
   private timerSubscription: Subscription;
 
+  @Output() onTimeOut = new EventEmitter();
   startCountdown() {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe(); // Clear the existing timer if any
@@ -88,7 +89,8 @@ export class ExerciseDetailHeaderComponent {
       if (distance < 0) {
         this.timerSubscription.unsubscribe();
         this.countdown = '00:00:00';
-        // Handle timeout, for example, auto-submitting the exercise
+        this.isCountdownActive = false;
+        this.onTimeOut.emit();
       } else {
         // Time calculations for hours, minutes and seconds
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

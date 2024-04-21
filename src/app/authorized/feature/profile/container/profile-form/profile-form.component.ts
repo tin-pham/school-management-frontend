@@ -54,6 +54,7 @@ export class ProfileFormComponent implements OnInit {
       )
       .subscribe(() => {
         this.toast.success('Lưu thay đổi thành công');
+        this.userUpdating = new UserUpdateDTO();
         this.loadProfile();
       });
     // Delete current image if it already have

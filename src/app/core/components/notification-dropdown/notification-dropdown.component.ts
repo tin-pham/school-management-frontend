@@ -4,7 +4,6 @@ import { AuthService } from '@core/services/api/auth.service';
 import { NotificationService } from '@core/services/api/notification.service';
 import { UserNotificationService } from '@core/services/api/user-notification.service';
 import { NotificationGetListDTO } from '@shared/models/dto/notification.dto';
-import { UserNotificationBulkUpdateDTO } from '@shared/models/dto/user-notification.dto';
 import { NotificationGetListRO } from '@shared/models/ro/notification.ro';
 import { Socket, io } from 'socket.io-client';
 
@@ -52,12 +51,13 @@ export class NotificationDropdownComponent implements OnInit {
   routeToNotification() {
     // Read all
 
-    const dto = new UserNotificationBulkUpdateDTO();
-    dto.notificationIds = this.notificationsPaginated.data.map(notification => notification.id);
-    dto.isRead = true;
-    this._userNotificationService.bulkUpdate(dto).subscribe(() => {
+    // const dto = new UserNotificationBulkUpdateDTO();
+    // dto.notificationIds = this.notificationsPaginated.data.map(notification => notification.id);
+    // dto.isRead = true;
+
+    this._userNotificationService.readAll().subscribe(() => {
       this.notificationsPaginated.data = [];
-      this.notificationsPaginated.meta.totalItems = 0
+      this.notificationsPaginated.meta.totalItems = 0;
       this.router.navigate(['/notification']);
     });
   }

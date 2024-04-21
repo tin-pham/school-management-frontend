@@ -21,9 +21,9 @@
     }
   },
   "SECTION": {
-    "GET_LIST_FAILED": "Không thể lấy danh sách học phần, vui quay lại sau",
+    "GET_LIST_FAILED": "Không thể lấy danh sách chương, vui quay lại sau",
     "NAME": {
-      "IS_NOT_EMPTY": "Học phần không được để trống"
+      "IS_NOT_EMPTY": "Chương không được để trống"
     }
   },
   "LESSON": {
@@ -44,6 +44,7 @@
     "INVALID_VIDEO_URL": "Định dạng địa chỉ video không hợp lệ"
   },
   "ASSIGNMENT": {
+    "ALREADY_EXIST": "Bài tập đã tồn tại",
     "NAME": {
       "IS_NOT_EMPTY": "Tên bài giao không được trống"
     },
@@ -115,6 +116,15 @@
     },
     "EMAIL": {
       "FORMAT_IS_NOT_VALID": "Email không hợp lệ"
+    },
+    "USERNAME": {
+      "LENGTH_5": "Username ít nhất 5 ký tự"
+    },
+    "PASSWORD": {
+      "LENGTH_5": "Password ít nhất 5 ký tự"
+    },
+    "DISPLAY_NAME": {
+      "IS_NOT_EMPTY": "Tên không được rỗng"
     }
   }
 }

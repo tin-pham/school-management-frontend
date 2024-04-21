@@ -41,7 +41,11 @@ export class NotificationItemsComponent {
     });
 
     if (notification.commentId) {
-      this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
+      if (notification.commentParentId) {
+        this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
+      } else {
+        this.router.navigate(['comment', notification.commentId]);
+      }
     } else if (notification.assignmentId) {
       this.router.navigate(['assignment', notification.assignmentId]);
     } else if (notification.lessonId) {

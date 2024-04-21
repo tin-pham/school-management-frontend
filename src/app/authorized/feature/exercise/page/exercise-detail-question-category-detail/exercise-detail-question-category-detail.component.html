@@ -1,6 +1,9 @@
 <div>
   <div class="header" *ngIf="questionCategory">
-    <h1>{{ questionCategory.name }}</h1>
+    <h1>
+      {{ questionCategory.name }}
+      <mat-icon class="icon edit">edit</mat-icon>
+    </h1>
     <app-primary-button [routerLink]="['/question/create']" [queryParams]="{ questionCategoryId: questionCategoryId }"
       >Tạo câu hỏi</app-primary-button
     >

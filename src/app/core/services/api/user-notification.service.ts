@@ -14,4 +14,8 @@ export class UserNotificationService extends BaseService {
   bulkDelete(dto: UserNotificationBulkDeleteDTO): Observable<ResultRO> {
     return this._delete<ResultRO>(API.USER_NOTIFICATION.CONTROLLER + '/' + API.USER_NOTIFICATION.BULK_DELETE.ROUTE, dto);
   }
+
+  readAll(): Observable<ResultRO> {
+    return this.post<ResultRO>(API.USER_NOTIFICATION.CONTROLLER + '/' + API.USER_NOTIFICATION.READ_ALL.ROUTE);
+  }
 }

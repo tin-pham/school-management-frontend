@@ -1,5 +1,5 @@
 <div *ngIf="lesson">
-  <a [routerLink]="['/', 'course', lesson.courseId, 'section', lesson.sectionId, 'lesson', lesson.id]"
+  <a [routerLink]="['/', 'course', lesson.courseId, 'section', lesson.sectionId, 'lesson', lesson.id, 'comment']"
     ><mat-icon class="align-middle">arrow_back</mat-icon> {{ lesson?.title }}</a
   >
   <mat-divider class="mb-3"></mat-divider>

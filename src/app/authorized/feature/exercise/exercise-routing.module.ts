@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('./page/exercise-create/exercise-create.module').then(m => m.ExerciseCreateModule),
       },
       {
+        path: ':id/edit',
+        loadChildren: () => import('./page/exercise-edit/exercise-edit.module').then(m => m.ExerciseEditModule),
+      },
+      {
         path: ':id/question-category',
         loadChildren: () =>
           import('./page/exercise-detail-question-category/exercise-detail-question-category.module').then(

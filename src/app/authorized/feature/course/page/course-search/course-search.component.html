@@ -1,5 +1,5 @@
 <div class="list">
-  <app-course-card class="item" *ngFor="let item of items" [course]="item"></app-course-card>
+  <app-course-card [option]="{ haveDelete: true }" class="item" *ngFor="let item of items" [course]="item"></app-course-card>
 </div>
 
 <mat-paginator

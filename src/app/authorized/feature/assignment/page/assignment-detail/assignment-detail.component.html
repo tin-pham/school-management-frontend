@@ -1,5 +1,7 @@
 <div class="assignment-detail" *ngIf="assignment">
-  <a [routerLink]="['/course', assignment.courseId, 'section', assignment.sectionId, 'lesson', assignment.lessonId, 'assignment']">
+  <a
+    [routerLink]="['/course', assignment.courseId, 'section', assignment.sectionId, 'lesson', assignment.lessonId, 'assignment']"
+    class="go-back">
     <mat-icon class="icon">arrow_back</mat-icon>
     {{ assignment.lessonTitle }}</a
   >
@@ -11,12 +13,12 @@
         <div class="assignment-info">
           <h1 class="assignment-title">
             {{ assignment.name }}
-            <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle"
+            <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle edit"
               >edit</mat-icon
             >
           </h1>
-          <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy' }}</p>
-          <p class="assignment-points">{{ assignment.submissionGrade }}</p>
+          <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy, h:mm' }}</p>
+          <p class="assignment-points">{{ assignment.submissionGrade }} điểm</p>
         </div>
       </div>
       <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>

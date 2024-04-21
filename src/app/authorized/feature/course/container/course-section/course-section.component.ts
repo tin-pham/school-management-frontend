@@ -88,7 +88,7 @@ export class CourseSectionComponent implements OnInit {
       }
 
       this._sectionService.delete(this.section.id).subscribe(response => {
-        this.toast.success('Xóa học phần thành công');
+        this.toast.success('Xóa chương thành công');
         this.onDelete.emit(response.id);
       });
     });

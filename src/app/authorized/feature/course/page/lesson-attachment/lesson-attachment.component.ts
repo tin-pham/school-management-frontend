@@ -50,6 +50,14 @@ export class LessonAttachmentComponent implements OnInit {
       return;
     }
 
+    // this should have been in the back end
+    for (const attachment of this.attachmentsCreating) {
+      // limit 50mb
+      if (attachment.size > 50 * 1024 * 1024) {
+        this.toast.error('Tập tin không được vượt quá 50mb');
+      }
+    }
+
     this._s3Service
       .bulkUpload({
         files: this.attachmentsCreating,

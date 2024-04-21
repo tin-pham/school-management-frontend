@@ -7,6 +7,7 @@ export class ExerciseStoreDTO {
   time?: number;
   dueDate?: Date;
   instantMark: boolean;
+  allowRedo: boolean;
 }
 
 export class ExerciseGetListDTO extends PaginateDTO {
@@ -28,6 +29,9 @@ export class ExerciseUpdateDTO {
   isActive: boolean;
   time?: number;
   dueDate?: Date;
+  allowRedo: boolean;
+  difficultyId: number;
+  instantMark: boolean;
 }
 
 export class ExerciseGetDetailDTO {

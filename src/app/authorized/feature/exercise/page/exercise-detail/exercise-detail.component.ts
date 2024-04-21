@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { of, switchMap, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
@@ -15,7 +16,6 @@ import { ExerciseGetDetailDTO, ExerciseUpdateDTO } from '@shared/models/dto/exer
 import { StudentExerciseSubmitDTO } from '@shared/models/dto/student-exercise.dto';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
-import { of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-exercise-detail',
@@ -54,6 +54,7 @@ export class ExerciseDetailComponent implements OnInit {
     this.exerciseId = +this.route.snapshot.paramMap.get('id');
     this.dto.includeGrade = true;
     this.loadExercise(this.exerciseId, this.dto);
+    // Listen to the router events
   }
 
   activateExercise() {
@@ -85,6 +86,10 @@ export class ExerciseDetailComponent implements OnInit {
     }
   }
 
+  onTimeOut() {
+    this.submitExercise();
+  }
+
   removeQuestionsFromExercise() {
     this._exerciseQuestionService
       .bulkDelete({
@@ -111,7 +116,7 @@ export class ExerciseDetailComponent implements OnInit {
     return this._authService.isStudent();
   }
 
-  submitExercise() {
+  confirmAndSubmitExercise() {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Xác nhận nộp bài');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -123,32 +128,37 @@ export class ExerciseDetailComponent implements OnInit {
         return;
       }
 
-      this._studentExerciseService
-        .submit(this.exercise.studentExerciseId, this.studentExerciseSubmitDTO)
-        .pipe(
-          tap(() => {
-            if (this.exercise.instantMark) {
-              this._studentExerciseGradeService
-                .calculate({
-                  studentExerciseId: this.exercise.studentExerciseId,
-                  basePoint: 100,
-                })
-                .subscribe(response => {
-                  this.exercise.point = response.point;
-                  this.exercise.totalCount = response.totalCount;
-                  this.exercise.correctCount = response.correctCount;
-                  this.exercise.isGraded = true;
-                });
-            }
-          }),
-        )
-        .subscribe(() => {
-          this.toast.success('Đã nộp bài');
-          this.exerciseDetailHeader.stopCountdown();
-          this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
-          this.exercise.isSubmitted = true;
-        });
+      this.submitExercise();
     });
+  }
+
+  submitExercise() {
+    this._studentExerciseService
+      .submit(this.exercise.studentExerciseId, this.studentExerciseSubmitDTO)
+      .pipe(
+        tap(() => {
+          if (this.exercise.instantMark) {
+            this._studentExerciseGradeService
+              .calculate({
+                studentExerciseId: this.exercise.studentExerciseId,
+                basePoint: 100,
+              })
+              .subscribe(response => {
+                this.exercise.point = response.point;
+                this.exercise.totalCount = response.totalCount;
+                this.exercise.correctCount = response.correctCount;
+                this.exercise.isGraded = true;
+                this.exercise.basePoint = 100;
+              });
+          }
+        }),
+      )
+      .subscribe(() => {
+        this.toast.success('Đã nộp bài');
+        this.exerciseDetailHeader.stopCountdown();
+        this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
+        this.exercise.isSubmitted = true;
+      });
   }
 
   storeStudentExercise() {

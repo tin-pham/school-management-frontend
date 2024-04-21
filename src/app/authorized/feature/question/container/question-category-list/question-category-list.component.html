@@ -7,10 +7,13 @@
 
   <app-search-bar label="Tìm theo tên" [value]="search$.value" (valueChange)="setSearch($event)"></app-search-bar>
 
-  <app-question-category-item
-    *ngFor="let questionCategory of questionCategories"
-    (click)="questionCategoryItemClicked(questionCategory.id)"
-    [questionCategory]="questionCategory"></app-question-category-item>
+  <div class="list">
+    <app-question-category-item
+      *ngFor="let questionCategory of questionCategories"
+      (onDelete)="delete(questionCategory.id)"
+      (click)="questionCategoryItemClicked(questionCategory.id)"
+      [questionCategory]="questionCategory"></app-question-category-item>
+  </div>
 
   <mat-paginator
     *ngIf="totalItems > 0"

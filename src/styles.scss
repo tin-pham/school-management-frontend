@@ -100,16 +100,21 @@ li {
 }
 .buttons {
   // moderrn red
-  .delete {
-    color: #e74c3c;
-  }
-
-  .edit {
-    color: #3498db;
-  }
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+.delete {
+  color: #e74c3c;
+}
+
+.edit {
+  color: #3498db;
+}
+
+.add {
+  color: #27ae60;
 }
 
 ::-webkit-scrollbar-track {

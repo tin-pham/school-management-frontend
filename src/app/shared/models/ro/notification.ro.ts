@@ -19,6 +19,7 @@ export class NotificationGetListDataRO {
   commentParentId?: number;
   commentOwnerId?: number;
   commentOwnerDisplayName?: string;
+  commentOwnerUsername?: string;
   commentOwnerImageUrl?: string;
   studentExerciseNotificationId?: number;
   exerciseSubmitId?: number;

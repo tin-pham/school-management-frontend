@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./page/question-detail/question-detail.module').then(m => m.QuestionDetailModule),
       },
       {
+        path: 'question-category/:id/edit',
+        loadChildren: () => import('./page/question-category-edit/question-category-edit.module').then(m => m.QuestionCategoryEditModule),
+      },
+      {
         path: 'question-category/create',
         loadChildren: () =>
           import('./page/question-category-create/question-category-create.module').then(m => m.QuestionCategoryCreateModule),

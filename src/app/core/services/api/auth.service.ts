@@ -101,4 +101,14 @@ export class AuthService extends BaseService {
   isTeacher() {
     return this.getCurrentRoles().includes(ROLE.TEACHER);
   }
+
+  getUsername() {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      return null;
+    }
+
+    const decodedToken = jwtDecode(accessToken) as IJwtPayload;
+    return decodedToken.username;
+  }
 }

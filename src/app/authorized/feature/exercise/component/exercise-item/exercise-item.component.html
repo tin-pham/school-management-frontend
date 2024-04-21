@@ -6,7 +6,7 @@
     <p class="exercise-name">{{ exercise.name }}</p>
   </div>
 
-  <div class="buttons">
+  <div class="button-container">
     <div *ngIf="exercise.point && isStudent()" class="grade">{{ exercise.point }} Điểm</div>
     <app-warn-button *ngIf="!isStudent()" (click)="delete($event)">Xóa</app-warn-button>
     <div *ngIf="isStudent()" class="status">
