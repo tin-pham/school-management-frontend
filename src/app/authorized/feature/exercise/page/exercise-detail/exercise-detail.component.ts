@@ -202,6 +202,7 @@ export class ExerciseDetailComponent implements OnInit {
   loadExercise(id: number, dto: ExerciseGetDetailDTO) {
     this._exerciseService.getDetail(id, dto).subscribe((response: ExerciseGetDetailRO) => {
       this.exercise = response;
+      console.log(response);
     });
   }
 
