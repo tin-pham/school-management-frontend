@@ -4,8 +4,8 @@ import { QuestionItemModule } from '@features/question/component/question-item/q
 import { QuestionService } from '@core/services/api/question.service';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionListDifficultyFilterModule } from '@features/question/component/question-list-difficulty-filter/question-list-difficulty-filter.module';
-import { QuestionListComponent } from './question-list.component';
 import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
+import { QuestionListComponent } from './question-list.component';
 
 @NgModule({
   imports: [SharedModule, QuestionItemModule, QuestionListDifficultyFilterModule],

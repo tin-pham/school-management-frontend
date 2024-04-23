@@ -87,8 +87,6 @@ export class QuestionListComponent extends PaginateComponent {
   }
 
   checkBoxChecked(checked: boolean, questionId: number) {
-    console.log(this.selectedQuestionIds);
-    console.log(checked);
     if (checked) {
       this.selectedQuestionIds.push(questionId);
     } else {

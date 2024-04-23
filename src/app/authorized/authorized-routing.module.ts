@@ -63,6 +63,7 @@ const routes: Routes = [
       {
         path: 'exercise',
         loadChildren: () => import('./feature/exercise/exercise.module').then(m => m.ExerciseModule),
+
         canActivate: [roleGuard([ROLE.STUDENT])],
       },
       {

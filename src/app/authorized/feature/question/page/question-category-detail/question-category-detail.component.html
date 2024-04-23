@@ -14,6 +14,7 @@
   <app-question-list
     [showEdit]="true"
     [showTrash]="true"
+    [inExercise]="false"
     [questionCategoryId]="questionCategoryId"
     (onEdit)="routeToQuestion($event)"
     (onDelete)="deleteQuestion($event)"></app-question-list>

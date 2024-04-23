@@ -20,7 +20,7 @@
     (onRemoveOption)="loadData(getDto())"
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"
-    [selected]="getSelected(question.id)"
+    [selected]="inExercise && getSelected(question.id)"
     (selectedChange)="checkBoxChecked($event, question.id)"
     *ngFor="let question of questions; let i = index"
     [questionNumber]="inExercise ? i + 1 : question.id"

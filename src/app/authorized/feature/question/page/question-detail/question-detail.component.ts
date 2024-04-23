@@ -59,7 +59,6 @@ export class QuestionDetailComponent implements OnInit {
           }
         }),
         switchMap(response => {
-          console.log(response);
           if (response?.result) {
             return this._studentExerciseGradeService.bulkCalculate({
               exerciseId: this.exerciseId,
