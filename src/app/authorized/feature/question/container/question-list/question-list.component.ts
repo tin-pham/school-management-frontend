@@ -18,6 +18,7 @@ export class QuestionListComponent extends PaginateComponent {
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
   @Input() isActive: boolean;
+  @Input() inExercise: boolean;
 
   @Input() showSearchBar = true;
   @Input() showTrash = true;
@@ -81,7 +82,13 @@ export class QuestionListComponent extends PaginateComponent {
     this.onEdit.emit(questionId);
   }
 
+  getSelected(questionId: number) {
+    return this.selectedQuestionIds.includes(questionId);
+  }
+
   checkBoxChecked(checked: boolean, questionId: number) {
+    console.log(this.selectedQuestionIds);
+    console.log(checked);
     if (checked) {
       this.selectedQuestionIds.push(questionId);
     } else {

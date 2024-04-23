@@ -35,4 +35,8 @@ export class AttachmentListComponent {
       this.toast.success('Xóa thành công');
     });
   }
+
+  isStudent() {
+    return this._authService.isStudent();
+  }
 }

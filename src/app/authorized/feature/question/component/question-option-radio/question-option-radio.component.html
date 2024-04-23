@@ -5,7 +5,7 @@
   *ngFor="let option of options; let i = index">
   <mat-radio-button
     [value]="option.id"
-    [checked]="option.isChosen"
+    [checked]="option.isChosen || getSelected(option.id)"
     class="question-option"
     [class.correct]="getOptionStatus(option) === IQuestionOptionStatus.CORRECT"
     [class.incorrect]="getOptionStatus(option) === IQuestionOptionStatus.INCORRECT">

@@ -12,7 +12,7 @@
         (selectedChange)="onOptionChange(option.id, $event)"
         [status]="getOptionStatus(option)"
         [disabled]="isSubmitted"
-        [(selected)]="option.isChosen"
+        [selected]="option.isChosen || getSelected(option.id)"
         [label]="getOptionLabel(i) + '. ' + option.text"></app-question-option-checkbox>
     </ng-container>
 
@@ -22,6 +22,7 @@
         [showClose]="false"
         [questionId]="question.id"
         [disabled]="isSubmitted"
+        [snapshotOptionIds]="snapshotQuestion.snapshotOptionIds"
         [options]="question.options"></app-question-option-radio>
     </ng-container>
   </ng-container>

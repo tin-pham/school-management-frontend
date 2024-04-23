@@ -17,6 +17,7 @@ export class QuestionItemComponent {
   @Input() showTrash = true;
   @Input() showEdit = true;
   @Input() showDifficulty = true;
+  @Input() selected: boolean;
 
   IQuestionOptionStatus = IQuestionOptionStatus;
 
@@ -45,9 +46,9 @@ export class QuestionItemComponent {
     this.onEditClick.emit(this.question.id);
   }
 
-  @Output() onCheckBoxChange = new EventEmitter<boolean>();
-  checkBoxChange(event: MatCheckboxChange) {
-    this.onCheckBoxChange.emit(event.checked);
+  @Output() selectedChange = new EventEmitter<boolean>();
+  onSelectedChange(event: MatCheckboxChange) {
+    this.selectedChange.emit(event.checked);
   }
 
   getOptionLabel(index: number): string {

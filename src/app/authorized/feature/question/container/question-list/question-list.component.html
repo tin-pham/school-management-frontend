@@ -20,9 +20,10 @@
     (onRemoveOption)="loadData(getDto())"
     (onEditClick)="edit($event)"
     (onDeleteClick)="delete($event)"
-    (onCheckBoxChange)="checkBoxChecked($event, question.id)"
+    [selected]="getSelected(question.id)"
+    (selectedChange)="checkBoxChecked($event, question.id)"
     *ngFor="let question of questions; let i = index"
-    [questionNumber]="question.id"
+    [questionNumber]="inExercise ? i + 1 : question.id"
     [question]="question"></app-question-item>
 
   <mat-paginator

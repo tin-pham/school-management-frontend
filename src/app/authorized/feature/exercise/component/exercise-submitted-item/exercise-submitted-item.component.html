@@ -1,9 +1,6 @@
 <div class="exercise-card">
   <div class="exercise-info">
-    <img
-      class="user-avatar"
-      [src]="exercise.userImageUrl || 'http://www.gravatar.com/avatar/placeholder?d=identicon'"
-      [alt]="exercise.userDisplayName" />
+    <img class="user-avatar" [src]="getAvatarUrl()" [alt]="exercise.userDisplayName" />
     <span class="user-name">{{ exercise.userDisplayName }}</span>
   </div>
 

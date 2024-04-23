@@ -3,5 +3,6 @@
     class="attachment"
     *ngFor="let attachment of attachments"
     (onDelete)="delete($event)"
+    [showDelete]="!isStudent()"
     [attachment]="attachment"></app-post-attachment>
 </div>

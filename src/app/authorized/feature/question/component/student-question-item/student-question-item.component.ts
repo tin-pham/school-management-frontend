@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   ExerciseQuestionSnapshotGetListDataRO,
   ExerciseQuestionSnapshotGetListOptionRO,
@@ -11,7 +11,7 @@ import { IQuestionOptionStatus } from '../question-option/question-option.compon
   styleUrls: ['student-question-item.component.scss'],
   templateUrl: 'student-question-item.component.html',
 })
-export class StudentQuestionItemComponent {
+export class StudentQuestionItemComponent implements OnInit {
   @Input() question: ExerciseQuestionSnapshotGetListDataRO;
   @Input() questionNumber: number;
   @Input() isSubmitted: boolean;
@@ -19,6 +19,10 @@ export class StudentQuestionItemComponent {
 
   @Input() snapshotQuestion: StudentExerciseSubmitSnapshotQuestionDTO;
   @Output() snapshotQuestionChange = new EventEmitter<StudentExerciseSubmitSnapshotQuestionDTO>();
+
+  ngOnInit() {
+    console.log(this.snapshotQuestion);
+  }
 
   onSnapshotQuestionChange() {
     this.snapshotQuestionChange.emit(this.snapshotQuestion);
@@ -60,7 +64,12 @@ export class StudentQuestionItemComponent {
   }
 
   onRadioChange(optionId: number) {
+    console.log(this.snapshotQuestion);
     this.snapshotQuestion.snapshotOptionIds = [optionId];
     this.onSnapshotQuestionChange();
+  }
+
+  getSelected(optionId: number) {
+    return this.snapshotQuestion.snapshotOptionIds.includes(optionId);
   }
 }

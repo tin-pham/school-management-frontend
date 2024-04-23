@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
 import { ExerciseQuestionSnapshotGetListDTO } from '@shared/models/dto/exercise-question-snapshot.dto';
 import { StudentExerciseSubmitDTO, StudentExerciseSubmitSnapshotQuestionDTO } from '@shared/models/dto/student-exercise.dto';
@@ -36,16 +35,10 @@ export class StudentQuestionListComponent {
 
   ngOnInit() {
     const dto = this.getDto();
-    this.loadQuestions(dto);
-  }
-
-  loadQuestions(dto: ExerciseQuestionSnapshotGetListDTO) {
+    // Initialize with selected option IDs if any
     this._exerciseQuestionSnapshotService.studentGetList(dto).subscribe(response => {
       this.totalItems = response.meta.totalItems;
       this.questions = response.data;
-      this.cd.markForCheck();
-
-      // Initialize with selected option IDs if any
       this.studentExerciseSubmitDTO.snapshotQuestions = [];
       // Initialize with selected option IDs if any
       this.questions.forEach(question => {
@@ -56,21 +49,32 @@ export class StudentQuestionListComponent {
         this.studentExerciseSubmitDTO.snapshotQuestions.push(snapshotQuestion);
       });
 
+      this.cd.markForCheck();
       this.onStudentExerciseSubmitDTOChange(this.studentExerciseSubmitDTO);
     });
   }
 
-  handlePageChange(event: PageEvent) {
+  loadQuestions(dto: ExerciseQuestionSnapshotGetListDTO) {
+    this._exerciseQuestionSnapshotService.studentGetList(dto).subscribe(response => {
+      this.totalItems = response.meta.totalItems;
+      this.questions = response.data;
+      this.cd.markForCheck();
+      this.onStudentExerciseSubmitDTOChange(this.studentExerciseSubmitDTO);
+    });
+  }
+
+  handlePageChange(event: any) {
     this.page = event.pageIndex + 1;
-    this.itemsPerPage = event.pageSize;
-    const dto = this.getDto();
-    this.loadQuestions(dto);
+  }
+
+  getDisplayedQuestions(): ExerciseQuestionSnapshotGetListDataRO[] {
+    const startIndex = (this.page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.questions.slice(startIndex, endIndex);
   }
 
   getDto() {
     const dto = new ExerciseQuestionSnapshotGetListDTO({
-      limit: this.itemsPerPage,
-      page: this.page,
       exerciseId: this.exercise.id,
     });
 

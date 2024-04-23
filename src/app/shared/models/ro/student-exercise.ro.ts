@@ -14,6 +14,8 @@ export class StudentExerciseGetListSubmittedDataRO {
   isLate: boolean;
   userDisplayName: string;
   userImageUrl: string;
+  userId: number;
+  username: string;
   point: number;
   totalCount: number;
   correctCount: number;

@@ -6,7 +6,8 @@
         {{ question.text }}
       </span>
 
-      <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" (change)="checkBoxChange($event)"> </mat-checkbox>
+      <mat-checkbox *ngIf="showCheckBox" class="question-checkbox" [(ngModel)]="selected" (change)="onSelectedChange($event)">
+      </mat-checkbox>
     </div>
     <div class="icons">
       <app-difficulty-badge
