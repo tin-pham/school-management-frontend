@@ -1,0 +1,27 @@
+<div *ngIf="questions">
+  <mat-divider class="my-3"></mat-divider>
+
+  <app-question-item
+    [showDifficulty]="false"
+    [showTrash]="false"
+    [showEdit]="true"
+    [showCheckBox]="true"
+    (onCorrectOption)="loadData(getDto())"
+    (onUncorrectOption)="loadData(getDto())"
+    (onRemoveOption)="loadData(getDto())"
+    (onEditClick)="edit($event)"
+    (onDeleteClick)="delete($event)"
+    [selected]="getSelected(question.id)"
+    (selectedChange)="checkBoxChecked($event, question.id)"
+    *ngFor="let question of getDisplayedQuestions(); let i = index"
+    [questionNumber]="(page - 1) * itemsPerPage + i + 1"
+    [question]="question"></app-question-item>
+
+  <mat-paginator
+    *ngIf="totalItems > 0"
+    [pageSizeOptions]="[5]"
+    [pageIndex]="page - 1"
+    [pageSize]="itemsPerPage"
+    [length]="totalItems"
+    (page)="handlePageChange($event)"></mat-paginator>
+</div>

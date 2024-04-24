@@ -4,6 +4,7 @@ import { ExerciseQuestionService } from '@core/services/api/exercise-question.se
 import { ExerciseService } from '@core/services/api/exercise.service';
 import { QuestionCategoryService } from '@core/services/api/question-category.service';
 import { QuestionService } from '@core/services/api/question.service';
+import { StudentExerciseService } from '@core/services/api/student-exercise.service';
 import { ExerciseGetDetailRO } from '@shared/models/ro/exercise.ro';
 import { QuestionCategoryGetDetailRO } from '@shared/models/ro/question-category.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
@@ -29,6 +30,7 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
     private _exerciseQuestionService: ExerciseQuestionService,
     private _questionCategoryService: QuestionCategoryService,
     private _exerciseService: ExerciseService,
+    private _studentExerciseService: StudentExerciseService,
   ) {}
 
   ngOnInit() {
@@ -65,6 +67,11 @@ export class ExerciseDetailQuestionCategoryDetailComponent implements OnInit {
           } else {
             return of(null);
           }
+        }),
+        switchMap(() => {
+          return this._studentExerciseService.bulkDelete({
+            exerciseId: this.exerciseId,
+          });
         }),
       )
       .subscribe(() => {

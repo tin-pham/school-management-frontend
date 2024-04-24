@@ -696,6 +696,10 @@ export const API = {
       ROUTE: ':id',
       OPERATION: 'Delete student exercise',
     },
+    BULK_DELETE: {
+      ROUTE: 'bulk-delete',
+      OPERATION: 'Bulk delete student exercise',
+    },
   },
   EXERCISE_QUESTION_SNAPSHOT: {
     TAGS: 'ExerciseQuestionSnapshot',
@@ -723,6 +727,10 @@ export const API = {
     DELETE: {
       ROUTE: ':id',
       OPERATION: 'Delete student exercise grade',
+    },
+    DELETE_ALL: {
+      ROUTE: 'delete-all',
+      OPERATION: 'Delete all student exercise grade',
     },
   },
   COURSE_OUTCOME: {

@@ -126,5 +126,8 @@
     "DISPLAY_NAME": {
       "IS_NOT_EMPTY": "Tên không được rỗng"
     }
+  },
+  "EXERCISE_SUBMIT_GRADE": {
+    "DOES_NOT_EXIST": "Chưa có bài nộp nào để chấm điểm"
   }
 }

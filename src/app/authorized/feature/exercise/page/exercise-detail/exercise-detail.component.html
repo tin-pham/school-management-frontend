@@ -15,21 +15,14 @@
       [isStudent]="isStudent()"></app-exercise-detail-header>
 
     <div *ngIf="!isStudent() || exercise.isStartDoing" class="exercise-body">
-      <app-question-list
+      <app-teacher-question-list
         *ngIf="!isStudent()"
         #questionList
-        [showDifficulty]="false"
-        [showDifficultyFilter]="false"
-        [showSearchBar]="false"
-        [showTrash]="false"
-        [showCheckBox]="true"
-        [showEdit]="true"
         [isActive]="exercise.isActive"
-        [inExercise]="true"
         [(totalItems)]="totalItems"
         [(selectedQuestionIds)]="selectedQuestionIds"
         (onEdit)="routeToQuestion($event)"
-        [exerciseId]="exerciseId"></app-question-list>
+        [exerciseId]="exerciseId"></app-teacher-question-list>
 
       <app-student-question-list
         #studentQuestionList

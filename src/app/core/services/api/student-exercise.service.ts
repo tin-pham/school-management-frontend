@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  StudentExerciseBulkDeleteDTO,
   StudentExerciseGetListSubmittedDTO,
   StudentExerciseStoreDTO,
   StudentExerciseSubmitDTO,
@@ -26,5 +27,9 @@ export class StudentExerciseService extends BaseService {
 
   delete(id: number): Observable<ResultRO> {
     return this._delete(API.STUDENT_EXERCISE.CONTROLLER + '/' + API.STUDENT_EXERCISE.DELETE.ROUTE.replace(':id', id.toString()));
+  }
+
+  bulkDelete(dto: StudentExerciseBulkDeleteDTO): Observable<ResultRO> {
+    return this.post(API.STUDENT_EXERCISE.CONTROLLER + '/' + API.STUDENT_EXERCISE.BULK_DELETE.ROUTE, dto);
   }
 }

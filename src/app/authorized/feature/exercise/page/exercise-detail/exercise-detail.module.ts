@@ -9,6 +9,7 @@ import { StudentExerciseService } from '@core/services/api/student-exercise.serv
 import { StudentExerciseGradeService } from '@core/services/api/student-exercise-grade.service';
 import { ExerciseDetailDoneModule } from '@features/exercise/container/exercise-detail-done/exercise-detail-done.module';
 import { ExerciseSubmittedListModule } from '@features/exercise/container/exercise-submitted-list/exercise-submitted-list.module';
+import { TeacherQuestionListModule } from '@features/question/container/teacher-question-list/taecher-question-list.module';
 import { ExerciseDetailComponent } from './exercise-detail.component';
 import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
 
@@ -22,6 +23,7 @@ import { ExerciseDetailRoutingModule } from './exercise-detail-routing.module';
     ExerciseDetailHeaderModule,
     ExerciseDetailDoneModule,
     ExerciseSubmittedListModule,
+    TeacherQuestionListModule,
   ],
   providers: [ExerciseService, ExerciseQuestionService, StudentExerciseService, StudentExerciseGradeService],
 })

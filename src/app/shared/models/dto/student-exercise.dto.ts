@@ -16,3 +16,7 @@ export class StudentExerciseSubmitDTO {
 export class StudentExerciseGetListSubmittedDTO extends PaginateDTO {
   exerciseId: number;
 }
+
+export class StudentExerciseBulkDeleteDTO {
+  exerciseId: number;
+}

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PaginateComponent } from '@core/base/search.base';
 import { ExerciseQuestionSnapshotService } from '@core/services/api/exercise-question-snapshot.service';
 import { QuestionService } from '@core/services/api/question.service';
@@ -6,11 +6,12 @@ import { QuestionGetListDTO } from '@shared/models/dto/question.dto';
 import { QuestionGetListDataRO } from '@shared/models/ro/question.ro';
 
 @Component({
-  selector: 'app-question-list',
-  styleUrls: ['question-list.component.scss'],
-  templateUrl: 'question-list.component.html',
+  selector: 'app-teacher-question-list',
+  styleUrls: ['teacher-question-list.component.scss'],
+  templateUrl: 'teacher-question-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionListComponent extends PaginateComponent {
+export class TeacherQuestionListComponent extends PaginateComponent {
   questions: QuestionGetListDataRO[];
   dto: QuestionGetListDTO;
 
@@ -18,22 +19,12 @@ export class QuestionListComponent extends PaginateComponent {
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
   @Input() isActive: boolean;
-  @Input() inExercise: boolean;
-
-  @Input() showSearchBar = true;
-  @Input() showTrash = true;
-  @Input() showEdit = true;
-  @Input() showDifficulty = true;
-  @Input() showDifficultyFilter = true;
-
   @Input() selectedQuestionIds: number[];
   @Output() selectedQuestionIdsChange = new EventEmitter<number[]>();
 
   onSelectedQuestionIdsChange() {
     this.selectedQuestionIdsChange.emit(this.selectedQuestionIds);
   }
-
-  @Input() showCheckBox = false;
 
   itemsPerPage = 5;
   page = 1;
@@ -128,5 +119,15 @@ export class QuestionListComponent extends PaginateComponent {
       ...this.getDto(),
       ...dto,
     });
+  }
+
+  getDisplayedQuestions() {
+    const startIndex = (this.page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.questions.slice(startIndex, endIndex);
+  }
+
+  handlePageChange(event: any) {
+    this.page = event.pageIndex + 1;
   }
 }

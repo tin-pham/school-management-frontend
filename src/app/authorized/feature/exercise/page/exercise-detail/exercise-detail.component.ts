@@ -98,10 +98,22 @@ export class ExerciseDetailComponent implements OnInit {
       })
       .pipe(
         switchMap(() => {
-          if (this.exercise.isActive) {
+          if (this.exercise.isActive && this.totalItems > 1) {
             return this._exerciseService.sync(this.exerciseId);
           } else {
             return of(null);
+          }
+        }),
+        switchMap(() => {
+          if (this.totalItems > 1) {
+            return this._studentExerciseGradeService.bulkCalculate({
+              exerciseId: this.exerciseId,
+              basePoint: 100,
+            });
+          } else {
+            return this._studentExerciseGradeService.deleteAll({
+              exerciseId: this.exerciseId,
+            });
           }
         }),
       )
@@ -109,6 +121,7 @@ export class ExerciseDetailComponent implements OnInit {
         this.toast.success('Xóa thành công khỏi bài tập này');
         this.selectedQuestionIds = [];
         this.questionListComponent.loadData(this.questionListComponent.getDto());
+        this.exerciseSubmittedList.loadGrades();
       });
   }
 
