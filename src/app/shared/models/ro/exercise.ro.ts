@@ -60,6 +60,7 @@ export class ExerciseGetDetailRO {
   isGraded: boolean;
   allowRedo: boolean;
   basePoint: number;
+  createdBy: number;
 }
 
 export class ExerciseUpdateRO {

@@ -6,9 +6,13 @@
     <!-- </div> -->
     <!-- <app-assignment-submit-not-graded *ngIf="!grade && isStudent()"></app-assignment-submit-not-graded> -->
     <!-- <app-assignment-submit-grade-form *ngIf="!grade && !isStudent()" [(grade)]="grade"></app-assignment-submit-grade-form> -->
-    <app-assignment-submit-grade *ngIf="grade" [grade]="grade" (onDeleteClick)="delete()"></app-assignment-submit-grade>
+    <app-assignment-submit-grade
+      [isYourCourse]="isYourCourse()"
+      *ngIf="grade"
+      [grade]="grade"
+      (onDeleteClick)="delete()"></app-assignment-submit-grade>
 
-    <div class="d-flex" *ngIf="!grade">
+    <div class="d-flex" *ngIf="!grade && isYourCourse()">
       <app-primary-button (click)="onGrade()">Chấm điểm</app-primary-button>
     </div>
   </div>

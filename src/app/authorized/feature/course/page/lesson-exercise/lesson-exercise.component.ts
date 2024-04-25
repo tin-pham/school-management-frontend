@@ -3,8 +3,10 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { ExerciseService } from '@core/services/api/exercise.service';
+import { LessonService } from '@core/services/api/lesson.service';
 import { ExerciseGetListDTO } from '@shared/models/dto/exercise.dto';
 import { ExerciseGetListDataRO, ExerciseGetListRO } from '@shared/models/ro/exercise.ro';
+import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 
 @Component({
@@ -14,6 +16,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 })
 export class LessonExerciseComponent implements OnInit {
   lessonId: number;
+  lesson: LessonGetDetailRO;
   exercises: ExerciseGetListDataRO[];
 
   itemsPerPage = 5;
@@ -26,11 +29,15 @@ export class LessonExerciseComponent implements OnInit {
     private toast: ToastrService,
     private _exerciseService: ExerciseService,
     private _authService: AuthService,
+    private _lessonService: LessonService,
   ) {}
 
   ngOnInit() {
     this.lessonId = +this.route.snapshot.paramMap.get('lessonId');
     this.loadExercises(this.getDto());
+    this._lessonService.getDetail(this.lessonId).subscribe(response => {
+      this.lesson = response;
+    });
   }
 
   handlePageChange(event: PageEvent) {
@@ -81,5 +88,9 @@ export class LessonExerciseComponent implements OnInit {
       exerciseGetListDto.isActive = true;
     }
     return exerciseGetListDto;
+  }
+
+  isYourCourse() {
+    return this.lesson.createdBy === this._authService.getUserId();
   }
 }

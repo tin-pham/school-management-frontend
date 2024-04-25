@@ -11,6 +11,6 @@
   </div>
 
   <div class="buttons">
-    <mat-icon (click)="delete($event)" class="icon delete">delete</mat-icon>
+    <mat-icon (click)="delete($event)" class="icon delete" *ngIf="isYourCategory">delete</mat-icon>
   </div>
 </div>

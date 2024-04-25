@@ -39,6 +39,7 @@ export class AssignmentGetDetailRO {
   description: object;
   dueDate: string;
   createdByDisplayName: string;
+  createdBy: number;
   submissionId?: number;
   submissionDate?: Date;
   submissionGrade?: number;

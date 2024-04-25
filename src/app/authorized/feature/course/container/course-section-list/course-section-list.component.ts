@@ -10,7 +10,7 @@ import { SectionGetListDataRO } from '@shared/models/ro/section.ro';
 })
 export class CourseSectionListComponent implements OnInit {
   @Input() courseId: number;
-  @Input() courseCreatedById: number;
+  @Input() isYourCourse: boolean;
 
   sections: SectionGetListDataRO[];
 
@@ -41,9 +41,5 @@ export class CourseSectionListComponent implements OnInit {
 
   get isStudent() {
     return this._authService.isStudent();
-  }
-
-  get isYourCourse() {
-    return this.courseCreatedById === this._authService.getUserId();
   }
 }

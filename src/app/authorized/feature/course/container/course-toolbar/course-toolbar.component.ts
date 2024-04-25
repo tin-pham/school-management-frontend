@@ -9,6 +9,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/con
 })
 export class CourseToolbarComponent {
   @Input() categoryId: number;
+  @Input() isYourCategory: boolean;
 
   @Output() delete = new EventEmitter<void>();
 

@@ -1,7 +1,8 @@
-<div>
+<div *ngIf="lesson">
   <div>
     <app-lesson-download
       [isStudent]="isStudent()"
+      [isYourCourse]="isYourCourse()"
       (onDelete)="onDelete()"
       *ngFor="let attachment of attachments"
       [attachment]="attachment"></app-lesson-download>
@@ -16,7 +17,7 @@
       aria-label="Select page of users"></mat-paginator>
   </div>
 
-  <form *ngIf="!isStudent()" (ngSubmit)="upload()">
+  <form *ngIf="!isStudent() && isYourCourse()" (ngSubmit)="upload()">
     <app-files-input-group
       accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*"
       [files]="attachmentsCreating"

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { SectionGetListDataLessonRO } from '@shared/models/ro/section.ro';
 
@@ -10,24 +10,24 @@ import { SectionGetListDataLessonRO } from '@shared/models/ro/section.ro';
   templateUrl: 'course-lesson-item.component.html',
 })
 export class CourseLessonItemComponent {
-  @Input() isStudent: boolean;
   @Input() sectionId: number;
+  @Input() courseId: number;
+  @Input() showIcons: boolean;
 
   @Input() lessons: SectionGetListDataLessonRO[];
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
   ) {}
 
   routeToEdit(event: MouseEvent, lessonId: number) {
-    this.router.navigate(['section', this.sectionId, 'lesson', lessonId, 'edit'], { relativeTo: this.route.parent });
+    this.router.navigate(['course', this.courseId, 'section', this.sectionId, 'lesson', lessonId, 'edit']);
     event.stopPropagation();
   }
 
   routeToLesson(lessonId: number) {
-    this.router.navigate(['section', this.sectionId, 'lesson', lessonId], { relativeTo: this.route.parent });
+    this.router.navigate(['course', this.courseId, 'section', this.sectionId, 'lesson', lessonId]);
   }
 
   @Output() onDelete = new EventEmitter();

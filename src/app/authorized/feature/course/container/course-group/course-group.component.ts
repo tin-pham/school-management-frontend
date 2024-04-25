@@ -87,4 +87,8 @@ export class CourseGroupComponent implements OnInit {
         this.courses = this.courses.filter(course => course.id !== courseId);
       });
   }
+
+  isYourCategory() {
+    return this.category.createdBy === this._authService.getUserId();
+  }
 }

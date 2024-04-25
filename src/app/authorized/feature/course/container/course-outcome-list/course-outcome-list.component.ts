@@ -8,6 +8,7 @@ import { CourseOutcomeGetListDataRO } from '@shared/models/ro/course-outcome.ro'
 })
 export class CourseOutcomeListComponent {
   @Input() outcomes: CourseOutcomeGetListDataRO[];
+  @Input() isYourCourse: boolean;
   @Input() isStudent: boolean;
   isEdit = false;
 

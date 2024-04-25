@@ -104,4 +104,8 @@ export class CourseDetailHomeComponent {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  isYourCourse() {
+    return this.course.createdBy === this._authService.getUserId();
+  }
 }

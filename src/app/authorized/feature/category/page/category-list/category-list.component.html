@@ -4,12 +4,14 @@
   <app-primary-button [routerLink]="['/category/create']">Thêm danh mục</app-primary-button>
 </div>
 <div class="list">
-  <app-category-item
-    role="button"
-    *ngFor="let category of categories"
-    (onDelete)="delete(category.id)"
-    [category]="category"
-    [routerLink]="['/category', category.id]"></app-category-item>
+  <ng-container *ngFor="let category of categories">
+    <app-category-item
+      role="button"
+      [isYourCategory]="isYourCategory(category)"
+      (onDelete)="delete(category.id)"
+      [category]="category"
+      [routerLink]="['/category', category.id]"></app-category-item>
+  </ng-container>
 </div>
 
 <mat-paginator

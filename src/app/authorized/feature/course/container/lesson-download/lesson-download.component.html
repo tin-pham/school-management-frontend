@@ -16,6 +16,6 @@
     <!-- <app-primary-button class="button">Tải xuống</app-primary-button> -->
     <!-- <app-warn-button class="button" (click)="delete()">Xóa</app-warn-button> -->
     <mat-icon class="icon icon-download" (click)="download()">download</mat-icon>
-    <mat-icon class="icon icon-delete" (click)="delete()" *ngIf="!isStudent">delete</mat-icon>
+    <mat-icon class="icon icon-delete" (click)="delete()" *ngIf="!isStudent && isYourCourse">delete</mat-icon>
   </div>
 </div>

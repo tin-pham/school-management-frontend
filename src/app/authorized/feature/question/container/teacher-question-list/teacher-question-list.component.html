@@ -4,8 +4,8 @@
   <app-question-item
     [showDifficulty]="false"
     [showTrash]="false"
-    [showEdit]="true"
-    [showCheckBox]="true"
+    [showEdit]="isYourCourse"
+    [showCheckBox]="isYourCourse"
     (onCorrectOption)="loadData(getDto())"
     (onUncorrectOption)="loadData(getDto())"
     (onRemoveOption)="loadData(getDto())"

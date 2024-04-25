@@ -11,6 +11,7 @@ import { AssignmentSubmitGetGradeRO } from '@shared/models/ro/assignment-submit.
 })
 export class AssignmentSubmitGradeComponent {
   @Input() grade: AssignmentSubmitGetGradeRO;
+  @Input() isYourCourse: boolean;
 
   constructor(
     private dialog: MatDialog,

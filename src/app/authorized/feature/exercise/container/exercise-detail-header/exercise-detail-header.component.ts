@@ -13,6 +13,7 @@ import { Subscription, timer } from 'rxjs';
 export class ExerciseDetailHeaderComponent {
   @Input() exercise: ExerciseGetDetailRO;
   @Input() exerciseId: number;
+  @Input() isYourCourse: boolean;
   @Input() selectedQuestionIds: number[];
   @Input() isStudent: boolean;
   @Input() totalItems: number;

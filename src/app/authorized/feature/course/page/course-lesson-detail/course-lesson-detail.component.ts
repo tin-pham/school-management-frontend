@@ -79,4 +79,8 @@ export class CourseLessonDetailComponent implements OnInit {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  isYourCourse() {
+    return this.lesson.createdBy === this._authService.getUserId();
+  }
 }

@@ -8,6 +8,7 @@
       (onRedoClicked)="redoExercise()"
       (onSync)="sync()"
       (onTimeOut)="onTimeOut()"
+      [isYourCourse]="isYourCourse()"
       [totalItems]="totalItems"
       [exercise]="exercise"
       [exerciseId]="exerciseId"
@@ -20,6 +21,7 @@
         #questionList
         [isActive]="exercise.isActive"
         [(totalItems)]="totalItems"
+        [isYourCourse]="isYourCourse()"
         [(selectedQuestionIds)]="selectedQuestionIds"
         (onEdit)="routeToQuestion($event)"
         [exerciseId]="exerciseId"></app-teacher-question-list>

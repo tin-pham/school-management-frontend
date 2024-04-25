@@ -3,6 +3,7 @@
     <h2>{{ category.name }}</h2>
     <app-course-toolbar
       *ngIf="!isStudent()"
+      [isYourCategory]="isYourCategory()"
       (addCourse)="routeToAddCourse()"
       (delete)="deleteCategory()"
       [categoryId]="category.id"></app-course-toolbar>

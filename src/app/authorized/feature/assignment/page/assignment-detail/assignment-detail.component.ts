@@ -34,4 +34,8 @@ export class AssignmentDetailComponent implements OnInit {
   showReport() {
     return this._authService.isTeacher() || this._authService.isAdmin();
   }
+
+  isYourCourse() {
+    return this.assignment.createdBy === this._authService.getUserId();
+  }
 }

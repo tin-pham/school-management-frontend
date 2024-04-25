@@ -1,5 +1,6 @@
-<div>
+<div *ngIf="lesson">
   <app-assignment-item
+    [isYourCourse]="isYourCourse()"
     [routerLink]="['/assignment', assignment.id]"
     (onDelete)="delete(assignment.id)"
     *ngFor="let assignment of assignments"
@@ -14,7 +15,7 @@
     (page)="handlePageChange($event)"
     aria-label="Select page of users"></mat-paginator>
 
-  <div class="d-flex justify-content-end" *ngIf="!isStudent()">
+  <div class="d-flex justify-content-end" *ngIf="!isStudent() && isYourCourse()">
     <app-primary-button [routerLink]="['/assignment/create']" [queryParams]="{ lessonId: lessonId }">Tạo</app-primary-button>
   </div>
 </div>

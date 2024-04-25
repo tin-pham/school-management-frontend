@@ -18,7 +18,8 @@
   <div [@expandCollapse]="toggle ? 'expanded' : 'collapsed'">
     <app-course-lesson-item
       (onDelete)="deleteLesson($event)"
-      [isStudent]="isStudent"
+      [showIcons]="showIcons"
+      [courseId]="courseId"
       [sectionId]="section.id"
       [lessons]="section.lessons"></app-course-lesson-item>
   </div>

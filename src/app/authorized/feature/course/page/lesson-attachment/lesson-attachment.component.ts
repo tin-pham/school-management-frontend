@@ -3,9 +3,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AttachmentService } from '@core/services/api/attachment.service';
 import { AuthService } from '@core/services/api/auth.service';
+import { LessonService } from '@core/services/api/lesson.service';
 import { S3Service } from '@core/services/api/s3.service';
 import { LessonAttachmentBulkStoreDTO, LessonAttachmentGetListDTO } from '@shared/models/dto/lesson-attachment.dto';
 import { LessonAttachmentGetListDataRO } from '@shared/models/ro/lesson-attachment.ro';
+import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
 import { first, switchMap, tap } from 'rxjs';
 
@@ -16,6 +18,7 @@ import { first, switchMap, tap } from 'rxjs';
 })
 export class LessonAttachmentComponent implements OnInit {
   lessonId: number;
+  lesson: LessonGetDetailRO;
   attachmentsCreating: File[];
   attachments: LessonAttachmentGetListDataRO[];
 
@@ -29,6 +32,7 @@ export class LessonAttachmentComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private _s3Service: S3Service,
     private _attachmentService: AttachmentService,
+    private _lessonService: LessonService,
     private _authService: AuthService,
   ) {}
 
@@ -38,6 +42,9 @@ export class LessonAttachmentComponent implements OnInit {
       limit: this.itemsPerPage,
       page: this.page,
       lessonId: this.lessonId,
+    });
+    this._lessonService.getDetail(this.lessonId).subscribe(response => {
+      this.lesson = response;
     });
   }
 
@@ -115,5 +122,9 @@ export class LessonAttachmentComponent implements OnInit {
 
   isStudent() {
     return this._authService.isStudent();
+  }
+
+  isYourCourse() {
+    return this.lesson.createdBy === this._authService.getUserId();
   }
 }

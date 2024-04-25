@@ -18,9 +18,9 @@
       </div>
     </div>
 
-    <div class="buttons">
-      <mat-icon (click)="delete($event)" class="icon delete" *ngIf="option.haveDelete && !isStudent()" aria-label="Delete">delete</mat-icon>
-      <mat-icon (click)="remove($event)" class="icon close" *ngIf="option.haveClose && !isStudent()" aria-label="Close">close</mat-icon>
+    <div class="buttons" *ngIf="!isStudent() && isYourCourse()">
+      <mat-icon (click)="delete($event)" class="icon delete" *ngIf="option.haveDelete" aria-label="Delete">delete</mat-icon>
+      <mat-icon (click)="remove($event)" class="icon close" *ngIf="option.haveClose" aria-label="Close">close</mat-icon>
     </div>
   </div>
 

@@ -13,7 +13,11 @@
         <div class="assignment-info">
           <h1 class="assignment-title">
             {{ assignment.name }}
-            <mat-icon *ngIf="!isStudent()" [routerLink]="['/assignment', assignment.id, 'edit']" role="button" class="align-middle edit"
+            <mat-icon
+              *ngIf="!isStudent() && isYourCourse()"
+              [routerLink]="['/assignment', assignment.id, 'edit']"
+              role="button"
+              class="align-middle edit"
               >edit</mat-icon
             >
           </h1>

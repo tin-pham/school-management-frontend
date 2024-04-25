@@ -248,4 +248,8 @@ export class ExerciseDetailComponent implements OnInit {
         this.studentQuestionList.loadQuestions(this.studentQuestionList.getDto());
       });
   }
+
+  isYourCourse() {
+    return this.exercise.createdBy === this._authService.getUserId();
+  }
 }

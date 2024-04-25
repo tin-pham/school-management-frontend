@@ -2,7 +2,7 @@
   <div class="exercise-header">
     <div class="exercise-title">
       <h1>{{ exercise.name }}</h1>
-      <mat-icon *ngIf="!isStudent" class="edit" [routerLink]="['/exercise', exercise.id, 'edit']">edit</mat-icon>
+      <mat-icon *ngIf="!isStudent && isYourCourse" class="edit" [routerLink]="['/exercise', exercise.id, 'edit']">edit</mat-icon>
     </div>
     <div class="exercise-info">
       <span class="badge bg-dark">
@@ -26,7 +26,7 @@
       <app-primary-button *ngIf="exercise.isSubmitted && exercise.allowRedo" (click)="redoClicked()">Làm bài lại</app-primary-button>
     </div>
 
-    <div *ngIf="!isStudent" class="button-container">
+    <div *ngIf="!isStudent && isYourCourse" class="button-container">
       <app-secondary-button (click)="routeToQuestionCategory()">Chọn câu hỏi từ bộ câu hỏi</app-secondary-button>
       <app-primary-button *ngIf="!exercise.isActive" (click)="activateClicked()">Kích hoạt</app-primary-button>
       <app-warn-button *ngIf="selectedQuestionIds?.length > 0" (click)="removeClicked()">Xóa khỏi bài tập này</app-warn-button>

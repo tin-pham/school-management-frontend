@@ -11,6 +11,7 @@ import { ExerciseGetListDataRO } from '@shared/models/ro/exercise.ro';
 })
 export class ExerciseItemComponent {
   @Input() exercise: ExerciseGetListDataRO;
+  @Input() isYourCourse: boolean;
 
   constructor(
     private dialog: MatDialog,

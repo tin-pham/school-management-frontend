@@ -16,6 +16,7 @@ export class TeacherQuestionListComponent extends PaginateComponent {
   dto: QuestionGetListDTO;
 
   @Input() questionCategoryId: number;
+  @Input() isYourCourse: boolean;
   @Input() exerciseId: number;
   @Input() excludeExerciseId: number;
   @Input() isActive: boolean;

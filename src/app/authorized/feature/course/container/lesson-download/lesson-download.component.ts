@@ -14,6 +14,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class LessonDownloadComponent {
   @Input() attachment: LessonAttachmentGetListDataRO;
   @Input() isStudent: boolean;
+  @Input() isYourCourse: boolean;
 
   constructor(
     private toast: ToastrService,

@@ -16,6 +16,7 @@ export class CourseGetListDataRO {
   levelId?: number;
   hours?: number;
   studentCount: number;
+  createdBy?: number;
 }
 
 export class CourseGetListRO extends PaginateRO<CourseGetListDataRO> {

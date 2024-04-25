@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PaginateComponent } from '@core/base/search.base';
+import { AuthService } from '@core/services/api/auth.service';
 import { CategoryService } from '@core/services/api/category.service';
 import { CategoryGetListDTO } from '@shared/models/dto/category.dto';
 import { CategoryGetListDataRO, CategoryGetListRO } from '@shared/models/ro/category.ro';
@@ -22,6 +22,7 @@ export class CategoryListComponent extends PaginateComponent {
     private cd: ChangeDetectorRef,
     private toast: ToastrService,
     private _categoryService: CategoryService,
+    private _authService: AuthService,
   ) {
     super();
   }
@@ -53,5 +54,9 @@ export class CategoryListComponent extends PaginateComponent {
         this.cd.markForCheck();
       },
     });
+  }
+
+  isYourCategory(category: CategoryGetListDataRO) {
+    return category.createdBy === this._authService.getUserId();
   }
 }

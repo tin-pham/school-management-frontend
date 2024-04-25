@@ -3,8 +3,10 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@core/services/api/assignment.service';
 import { AuthService } from '@core/services/api/auth.service';
+import { LessonService } from '@core/services/api/lesson.service';
 import { AssignmentGetListDTO } from '@shared/models/dto/assignment.dto';
 import { AssignmentGetListDataRO, AssignmentGetListRO } from '@shared/models/ro/assignment.ro';
+import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
 
 @Component({
   selector: 'app-lesson-assignment',
@@ -13,6 +15,7 @@ import { AssignmentGetListDataRO, AssignmentGetListRO } from '@shared/models/ro/
 })
 export class LessonAssignmentComponent implements OnInit {
   lessonId: number;
+  lesson: LessonGetDetailRO;
   assignments: AssignmentGetListDataRO[];
 
   itemsPerPage = 5;
@@ -23,12 +26,16 @@ export class LessonAssignmentComponent implements OnInit {
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef,
     private _assignmentService: AssignmentService,
+    private _lessonService: LessonService,
     private _authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.lessonId = +this.route.snapshot.paramMap.get('lessonId');
     this.loadAssignments(this.getDto());
+    this._lessonService.getDetail(this.lessonId).subscribe(response => {
+      this.lesson = response;
+    });
   }
 
   handlePageChange(event: PageEvent) {
@@ -71,5 +78,9 @@ export class LessonAssignmentComponent implements OnInit {
     }
 
     return dto;
+  }
+
+  isYourCourse() {
+    return this.lesson.createdBy === this._authService.getUserId();
   }
 }

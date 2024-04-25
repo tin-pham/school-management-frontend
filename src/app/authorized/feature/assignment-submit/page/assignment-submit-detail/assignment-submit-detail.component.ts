@@ -63,4 +63,8 @@ export class AssignmentSubmitDetailComponent implements OnInit {
   isStudent() {
     return this._authService.isStudent();
   }
+
+  isYourCourse() {
+    return this.submission.assignemntCreatedBy === this._authService.getUserId();
+  }
 }

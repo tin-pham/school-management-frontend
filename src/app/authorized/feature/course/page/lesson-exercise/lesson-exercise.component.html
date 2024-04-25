@@ -1,8 +1,9 @@
-<div>
-  <app-exercise-filter-student *ngIf="isStudent()" (onFilter)="applyFilter($event)"></app-exercise-filter-student>
-  <app-exercise-filter-teacher *ngIf="!isStudent()" (onFilter)="applyFilter($event)"></app-exercise-filter-teacher>
+<div *ngIf="lesson">
+  <app-exercise-filter-student *ngIf="isStudent() && totalItems" (onFilter)="applyFilter($event)"></app-exercise-filter-student>
+  <app-exercise-filter-teacher *ngIf="!isStudent() && totalItems" (onFilter)="applyFilter($event)"></app-exercise-filter-teacher>
   <app-exercise-item
     [routerLink]="['/exercise', exercise.id]"
+    [isYourCourse]="isYourCourse()"
     (onDelete)="delete(exercise.id)"
     *ngFor="let exercise of exercises"
     [exercise]="exercise"></app-exercise-item>
@@ -16,7 +17,7 @@
     (page)="handlePageChange($event)"
     aria-label="Select page of users"></mat-paginator>
 
-  <div class="d-flex" *ngIf="!isStudent()">
+  <div class="d-flex" *ngIf="!isStudent() && isYourCourse()">
     <app-primary-button [routerLink]="['/exercise/create']" [queryParams]="{ lessonId: lessonId }"
       >Tạo bài tập trắc nghiệm</app-primary-button
     >

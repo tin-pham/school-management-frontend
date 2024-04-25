@@ -3,7 +3,7 @@
     <h1 class="title">
       <mat-icon class="icon" (click)="goBack()">arrow_back</mat-icon>
       {{ lesson.title }}
-      <mat-icon *ngIf="!isStudent()" class="icon" (click)="routeToEdit($event)">edit</mat-icon>
+      <mat-icon *ngIf="!isStudent() && isYourCourse()" class="icon" (click)="routeToEdit($event)">edit</mat-icon>
     </h1>
   </div>
   <div class="body">
@@ -32,7 +32,7 @@
     </div>
     <div class="right">
       <h4 class="list-title">Nội dung khóa học</h4>
-      <app-course-section-list [courseId]="courseId" [courseCreatedById]="lesson.createdBy"></app-course-section-list>
+      <app-course-section-list [courseId]="courseId" [isYourCourse]="isYourCourse()"></app-course-section-list>
     </div>
   </div>
 </div>

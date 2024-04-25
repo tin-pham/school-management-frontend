@@ -8,7 +8,7 @@
 
   <div class="button-container">
     <div *ngIf="exercise.point && isStudent()" class="grade">{{ exercise.point }} Điểm</div>
-    <app-warn-button *ngIf="!isStudent()" (click)="delete($event)">Xóa</app-warn-button>
+    <app-warn-button *ngIf="!isStudent() && isYourCourse" (click)="delete($event)">Xóa</app-warn-button>
     <div *ngIf="isStudent()" class="status">
       <div *ngIf="exercise.dueDate && isStudent() && !isMissing() && !exercise.isSubmitted" class="exercise-time">
         <mat-icon class="align-middle">access_time</mat-icon>

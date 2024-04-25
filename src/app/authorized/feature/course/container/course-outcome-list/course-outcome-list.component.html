@@ -2,6 +2,6 @@
   <p *ngFor="let outcome of outcomes" class="outcome-text">
     <mat-icon class="icon">done</mat-icon>
     {{ outcome.name }}
-    <mat-icon *ngIf="!isStudent" (click)="delete(outcome.id)" class="icon delete">delete</mat-icon>
+    <mat-icon *ngIf="!isStudent && isYourCourse" (click)="delete(outcome.id)" class="icon delete">delete</mat-icon>
   </p>
 </div>

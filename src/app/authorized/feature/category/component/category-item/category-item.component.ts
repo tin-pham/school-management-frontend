@@ -11,6 +11,8 @@ import { CategoryGetListDataRO } from '@shared/models/ro/category.ro';
 export class CategoryItemComponent {
   constructor(private dialog: MatDialog) {}
 
+  @Input() isYourCategory: boolean;
+
   @Input() category: CategoryGetListDataRO;
   @Output() onDelete = new EventEmitter();
   delete(event: MouseEvent) {

@@ -18,6 +18,7 @@ export class CategoryGetListDataRO {
   id: number;
   name: string;
   courseCount?: number;
+  createdBy: number;
 }
 
 export class CategoryGetListRO extends PaginateRO<CategoryGetListDataRO> {
