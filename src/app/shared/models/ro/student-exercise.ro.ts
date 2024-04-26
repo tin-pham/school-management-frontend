@@ -19,6 +19,7 @@ export class StudentExerciseGetListSubmittedDataRO {
   point: number;
   totalCount: number;
   correctCount: number;
+  basePoint: number;
 }
 
 export class StudentExerciseGetListSubmittedRO extends PaginateRO<StudentExerciseGetListSubmittedDataRO> {

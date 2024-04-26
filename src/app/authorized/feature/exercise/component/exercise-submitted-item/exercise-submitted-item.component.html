@@ -1,4 +1,4 @@
-<div class="exercise-card">
+<div class="exercise-card" *ngIf="exercise">
   <div class="exercise-info">
     <img class="user-avatar" [src]="getAvatarUrl()" [alt]="exercise.userDisplayName" />
     <span class="user-name">{{ exercise.userDisplayName }}</span>
@@ -17,6 +17,10 @@
       <mat-icon class="icon-grade">grade</mat-icon>
       Điểm:
       <span class="point-value"> {{ exercise.point }} </span>
+      /
+      <span class="point-value">
+        {{ exercise.basePoint }}
+      </span>
     </p>
     <p class="correct-count" *ngIf="exercise.correctCount">
       <mat-icon class="icon-check">check</mat-icon>

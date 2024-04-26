@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { AuthService } from '@core/services/api/auth.service';
 import { CourseService } from '@core/services/api/course.service';
 import { IImageCardOption } from '@shared/component/image-card/image-card.component';
 import { CourseGetListDTO } from '@shared/models/dto/course.dto';
@@ -14,6 +15,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
   styleUrls: ['./category-group.component.scss'],
 })
 export class CategoryGroupComponent {
+  ko;
   private _coursePaginated: CourseGetListRO;
 
   @Input() category: CategoryGetDetailRO;
@@ -31,6 +33,7 @@ export class CategoryGroupComponent {
     private toast: ToastrService,
     private router: Router,
     private _courseService: CourseService,
+    private _authService: AuthService,
   ) {}
 
   @Input()
@@ -75,5 +78,9 @@ export class CategoryGroupComponent {
 
   createCourse() {
     this.router.navigate(['/course', 'create'], { queryParams: { categoryId: this.categoryId } });
+  }
+
+  isYourCategory() {
+    return this.category.createdBy === this._authService.getUserId();
   }
 }

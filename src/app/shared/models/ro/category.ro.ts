@@ -29,6 +29,7 @@ export class CategoryGetDetailRO {
   id: number;
   name: string;
   description: object;
+  createdBy: number;
   constructor(data?: CategoryGetDetailRO) {
     Object.assign(this, data);
   }

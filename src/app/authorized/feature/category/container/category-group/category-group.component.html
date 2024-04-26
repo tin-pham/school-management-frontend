@@ -2,7 +2,7 @@
   <div class="header">
     <h2 class="title">
       {{ category.name }}
-      <mat-icon class="icon" [routerLink]="['/category', categoryId, 'edit']">edit</mat-icon>
+      <mat-icon *ngIf="isYourCategory()" class="icon" [routerLink]="['/category', categoryId, 'edit']">edit</mat-icon>
     </h2>
     <app-primary-button (click)="createCourse()">Tạo khóa học</app-primary-button>
   </div>

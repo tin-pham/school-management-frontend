@@ -17,6 +17,7 @@ export class PostGetListDataRO {
   content: object;
   attachments: PostGetListDataAttachmentRO[];
   createdByDisplayName: string;
+  createdByUsername: string;
   createdBy: number;
   createdAt: Date;
   updatedAt: Date;
@@ -38,6 +39,7 @@ export class PostGetDetailRO {
   content: object;
   attachments: PostGetDetailAttachmentRO[];
   createdByDisplayName: string;
+  createdByUsername: string;
   createdBy: number;
   createdAt: Date;
   updatedAt: Date;

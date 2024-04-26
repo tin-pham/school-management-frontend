@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
-import { AuthService } from '@core/services/api/auth.service';
 import { PostGetListDataRO } from '@shared/models/ro/post.ro';
 import { getGravatarUrl } from '@shared/util/random-avatar';
 
@@ -21,7 +20,6 @@ export class PostItemComponent {
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private _authService: AuthService,
   ) {}
 
   delete(event: MouseEvent) {
@@ -48,8 +46,8 @@ export class PostItemComponent {
   }
 
   getAvatarUrl() {
-    const userId = this._authService.getUserId();
-    const username = this._authService.getUsername();
+    const userId = this.post.createdBy;
+    const username = this.post.createdByUsername;
     return this.post.createdByImageUrl || getGravatarUrl(userId, username);
   }
 }

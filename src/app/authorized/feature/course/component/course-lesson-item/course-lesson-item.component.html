@@ -3,13 +3,13 @@
     <mat-icon *ngIf="lesson.videoDuration" class="icon">videocam</mat-icon>
     <mat-icon *ngIf="!lesson.videoDuration" class="icon">article</mat-icon>
     {{ lesson.title }}
+  </span>
+
+  <div>
     <span *ngIf="showIcons">
       <mat-icon (click)="routeToEdit($event, lesson.id)" class="icon edit">edit</mat-icon>
       <mat-icon (click)="delete($event, lesson.id)" class="icon delete">delete</mat-icon>
     </span>
-  </span>
-
-  <span>
     {{ lesson.videoDuration }}
-  </span>
+  </div>
 </div>

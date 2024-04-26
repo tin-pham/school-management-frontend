@@ -4,6 +4,7 @@ import { UserService } from '@core/services/api/user.service';
 import { UserUpdateDTO } from '@shared/models/dto/user.dto';
 import { UserGetProfileRO } from '@shared/models/ro/user.ro';
 import { ToastrService } from '@shared/toastr/toastr.service';
+import { getGravatarUrl } from '@shared/util/random-avatar';
 import { of, switchMap } from 'rxjs';
 
 @Component({
@@ -88,5 +89,9 @@ export class ProfileFormComponent implements OnInit {
 
   onFileInputChange(event) {
     this.image = event.target.files[0];
+  }
+
+  getAvatarUrl() {
+    return this.user?.imageUrl || getGravatarUrl(this.user?.id, this.user?.username);
   }
 }
