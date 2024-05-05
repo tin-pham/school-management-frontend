@@ -47,6 +47,10 @@ export class ExerciseItemComponent {
   }
 
   isMissing() {
+    if (!this.exercise.dueDate) {
+      return false;
+    }
+
     const dueDate = new Date(this.exercise.dueDate);
     const currentDate = new Date();
     return !this.exercise.isSubmitted && currentDate > dueDate;
