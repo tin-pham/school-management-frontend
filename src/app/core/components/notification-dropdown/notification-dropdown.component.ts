@@ -48,7 +48,7 @@ export class NotificationDropdownComponent implements OnInit {
     });
   }
 
-  routeToNotification() {
+  routeToNotifications() {
     // Read all
 
     // const dto = new UserNotificationBulkUpdateDTO();
@@ -58,7 +58,16 @@ export class NotificationDropdownComponent implements OnInit {
     this._userNotificationService.readAll().subscribe(() => {
       this.notificationsPaginated.data = [];
       this.notificationsPaginated.meta.totalItems = 0;
+      const oldLocation = this.router.url;
       this.router.navigate(['/notification']);
+
+      if (oldLocation === '/notification') {
+        location.reload();
+      }
     });
+  }
+
+  routeToNotification() {
+    this.loadNotifications({ limit: this.limit, byUser: true, withRead: false });
   }
 }

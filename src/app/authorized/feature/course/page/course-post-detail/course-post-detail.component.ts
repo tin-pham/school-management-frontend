@@ -13,6 +13,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class CoursePostDetailComponent implements OnInit {
   post: PostGetDetailRO;
   postId: number;
+  courseId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +24,7 @@ export class CoursePostDetailComponent implements OnInit {
 
   ngOnInit() {
     this.postId = Number(this.route.snapshot.paramMap.get('postId'));
+    this.courseId = Number(this.route.snapshot.paramMap.get('id'));
     this._postService.getDetail(this.postId).subscribe(response => {
       this.post = response;
     });

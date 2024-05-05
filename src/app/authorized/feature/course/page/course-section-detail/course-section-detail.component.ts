@@ -25,6 +25,9 @@ export class CourseSectionDetailComponent implements OnInit {
   }
 
   updateSection() {
-    this._sectionService.update(this.section.id, this.section).subscribe(() => this.toast.success('Cập nhật thành công'));
+    this._sectionService.update(this.section.id, this.section).subscribe(() => {
+      this.toast.success('Cập nhật thành công');
+      window.history.back();
+    });
   }
 }

@@ -1,6 +1,6 @@
 <a (click)="routeToNotification(notification)" role="button" class="dropdown-item" *ngFor="let notification of notifications">
   <app-notification-item
-    *ngIf="notification.commentOwnerId && !notification.isRead"
+    *ngIf="notification.commentOwnerId"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"
     [title]="notification.commentOwnerDisplayName"
@@ -11,48 +11,66 @@
     [showCheckbox]="showCheckbox"></app-notification-item>
 
   <app-notification-item
-    *ngIf="notification.exerciseId && !notification.isRead"
+    *ngIf="notification.exerciseId"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"
     [title]="notification.title"
     [content]="notification.content"
-    [imageUrl]="exerciseImageUrl"
+    imageUrl="assets/images/book.png"
     [showCheckbox]="showCheckbox"></app-notification-item>
 
   <app-notification-item
-    *ngIf="notification.exerciseSubmitId && !notification.isRead"
+    *ngIf="notification.exerciseSubmitId"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"
     [title]="notification.title"
     [content]="notification.content"
-    [imageUrl]="exerciseImageUrl"
+    imageUrl="assets/images/check-mark.jpg"
     [showCheckbox]="showCheckbox"></app-notification-item>
 
   <app-notification-item
-    *ngIf="notification.assignmentNotificationId && !notification.isRead"
-    (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
-    [createdAt]="notification.createdAt"
-    [title]="notification.assignmentName"
-    [content]="notification.content"
-    [imageUrl]="exerciseImageUrl"
-    [showCheckbox]="showCheckbox"></app-notification-item>
-
-  <app-notification-item
-    *ngIf="notification.lessonId && !notification.isRead"
+    *ngIf="notification.assignmentId || notification.assignmentSubmitAssignmentId"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"
     [title]="notification.title"
     [content]="notification.content"
-    [imageUrl]="exerciseImageUrl"
+    imageUrl="assets/images/assignment.png"
     [showCheckbox]="showCheckbox"></app-notification-item>
 
   <app-notification-item
-    *ngIf="notification.postId && !notification.isRead"
+    *ngIf="notification.lessonId"
     (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
     [createdAt]="notification.createdAt"
     [title]="notification.title"
     [content]="notification.content"
-    [imageUrl]="exerciseImageUrl"
+    imageUrl="assets/images/new-lesson.png"
+    [showCheckbox]="showCheckbox"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="
+      !notification.lessonId &&
+      !notification.commentOwnerId &&
+      !notification.postId &&
+      !notification.exerciseId &&
+      !notification.exerciseSubmitId &&
+      !notification.assignmentId &&
+      !notification.assignmentSubmitAssignmentId &&
+      notification.courseId
+    "
+    (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    imageUrl="assets/images/new-lesson.png"
+    [showCheckbox]="showCheckbox"></app-notification-item>
+
+  <app-notification-item
+    *ngIf="notification.postId"
+    (onCheckBoxChange)="onCheckBoxChange($event, notification.id)"
+    [createdAt]="notification.createdAt"
+    [title]="notification.title"
+    [content]="notification.content"
+    imageUrl="assets/images/post.png"
     [showCheckbox]="showCheckbox"></app-notification-item>
   <!-- Message End -->
 </a>

@@ -16,6 +16,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class ExerciseCreateComponent extends CacheForm<ExerciseStoreDTO> implements OnInit {
   difficulties: ISelectOption[] = [];
   dto = new ExerciseStoreDTO();
+  haveDueDate: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +35,6 @@ export class ExerciseCreateComponent extends CacheForm<ExerciseStoreDTO> impleme
     this._difficultyService.getList().subscribe(response => {
       this.difficulties = response.data.map(difficulty => ({ label: difficulty.name, value: difficulty.id }));
     });
-    this.dto.dueDate = new Date();
   }
 
   store() {
@@ -48,5 +48,14 @@ export class ExerciseCreateComponent extends CacheForm<ExerciseStoreDTO> impleme
   clearForm(): void {
     this.dto = new ExerciseStoreDTO();
     this.removeCache();
+  }
+
+  haveDueDateChange(checked: boolean): void {
+    this.haveDueDate = checked;
+    if (this.haveDueDate) {
+      this.dto.dueDate = new Date();
+    } else {
+      delete this.dto.dueDate;
+    }
   }
 }

@@ -9,12 +9,15 @@
   </button>
   <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end notification-dropdown">
     <li>
-      <app-notification-items [showCheckbox]="false" [notifications]="notificationsPaginated.data"></app-notification-items>
+      <app-notification-items
+        (onRouteToNotification)="routeToNotification()"
+        [showCheckbox]="false"
+        [notifications]="notificationsPaginated.data"></app-notification-items>
     </li>
     <div>
       <li *ngIf="notificationsPaginated.meta.totalItems"><mat-divider></mat-divider></li>
       <!-- Repeat for each message, update the link and img source as needed -->
-      <li><a (click)="routeToNotification()" class="dropdown-item dropdown-footer">Xem tất cả</a></li>
+      <li><a (click)="routeToNotifications()" class="dropdown-item dropdown-footer">Xem tất cả</a></li>
     </div>
   </ul>
 </li>

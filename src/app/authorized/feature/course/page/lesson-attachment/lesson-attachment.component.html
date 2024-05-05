@@ -5,6 +5,7 @@
       [isYourCourse]="isYourCourse()"
       (onDelete)="onDelete()"
       *ngFor="let attachment of attachments"
+      (click)="view(attachment.url)"
       [attachment]="attachment"></app-lesson-download>
 
     <mat-paginator

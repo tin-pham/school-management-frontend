@@ -14,7 +14,7 @@ export class QuestionCategoryListComponent extends PaginateComponent {
   questionCategories: QuestionCategoryGetListDataRO[];
   @Input() excludeExerciseId: number;
 
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   page = 1;
   totalItems = 0;
 

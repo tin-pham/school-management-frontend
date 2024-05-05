@@ -37,7 +37,7 @@ export class CourseGroupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._courseService.getList({ categoryId: this.category.id, limit: 5 }).subscribe(response => (this.courses = response.data));
+    this._courseService.getList({ categoryId: this.category.id, limit: 3 }).subscribe(response => (this.courses = response.data));
   }
 
   deleteCategory() {

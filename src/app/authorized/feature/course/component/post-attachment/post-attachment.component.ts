@@ -30,7 +30,7 @@ export class PostAttachmentComponent {
   }
 
   @Output() onDelete = new EventEmitter();
-  delete() {
+  delete($event: MouseEvent) {
     const dialogData = new ConfirmDialogModel('Xác nhận', 'Bạn có muốn xác nhận xóa không?');
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -44,5 +44,11 @@ export class PostAttachmentComponent {
 
       this.onDelete.emit(this.attachment.id);
     });
+
+    $event.stopPropagation();
+  }
+
+  click($event: MouseEvent) {
+    $event.stopPropagation();
   }
 }

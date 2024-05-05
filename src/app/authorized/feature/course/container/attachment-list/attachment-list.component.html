@@ -1,6 +1,7 @@
 <div class="attachments" *ngIf="attachments && attachments.length">
   <app-post-attachment
     class="attachment"
+    (click)="view(attachment.url)"
     *ngFor="let attachment of attachments"
     (onDelete)="delete($event)"
     [showDelete]="showDelete()"

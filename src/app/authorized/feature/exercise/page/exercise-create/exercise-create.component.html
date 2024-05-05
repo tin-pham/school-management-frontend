@@ -19,7 +19,12 @@
       [label]="'Thời gian (phút)'"
       [(value)]="dto.time"></app-number-input-group>
     <!-- <bootstrap-date-time-picker icon="date_range" [(ngModel)]="dto.dueDate" name="dueDate" label="Deadline"></bootstrap-date-time-picker> -->
+    <app-checkbox-input-group
+      (checkedChange)="haveDueDateChange($event)"
+      [(checked)]="haveDueDate"
+      [label]="'Có deadline'"></app-checkbox-input-group>
     <app-date-time-picker
+      *ngIf="haveDueDate"
       (valueChange)="saveToTemporaryStorage()"
       icon="date_range"
       name="dueDate"

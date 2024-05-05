@@ -24,6 +24,8 @@ export class NotificationGetListDataRO {
   studentExerciseNotificationId?: number;
   exerciseSubmitId?: number;
   assignmentSubmitNotificationId?: number;
+  assignmentSubmitAssignmentId: number;
+  assignmentSubmitAssignmentName: string;
   assignmentId?: number;
   assignmentName: string;
   lessonId: number;

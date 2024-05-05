@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '@core/components/confirm-dialog/confirm-dialog.component';
 import { PostGetListDataRO } from '@shared/models/ro/post.ro';
 import { getGravatarUrl } from '@shared/util/random-avatar';
@@ -14,12 +14,12 @@ export class PostItemComponent {
   @Input() post: PostGetListDataRO;
   @Input() isStudent: boolean;
   @Input() userId: number;
+  @Input() courseId: number;
   @Output() onDelete = new EventEmitter();
 
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute,
   ) {}
 
   delete(event: MouseEvent) {
@@ -41,7 +41,8 @@ export class PostItemComponent {
   }
 
   routeToEdit(event: MouseEvent) {
-    this.router.navigate([this.post.id, 'edit'], { relativeTo: this.route });
+    console.log(this.post.id);
+    this.router.navigate(['course', this.courseId, 'post', this.post.id, 'edit']);
     event.stopPropagation();
   }
 

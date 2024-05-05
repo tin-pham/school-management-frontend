@@ -35,6 +35,7 @@ export class AssignmentSubmitDetailComponent implements OnInit {
     });
     this._assignmentSubmitService.getGrade(id).subscribe(grade => {
       this.grade = grade;
+      console.log(grade);
     });
   }
 
@@ -65,6 +66,6 @@ export class AssignmentSubmitDetailComponent implements OnInit {
   }
 
   isYourCourse() {
-    return this.submission.assignemntCreatedBy === this._authService.getUserId();
+    return this.submission.assignmentCreatedBy === this._authService.getUserId();
   }
 }

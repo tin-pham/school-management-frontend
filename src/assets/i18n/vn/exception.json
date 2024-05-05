@@ -27,6 +27,7 @@
     }
   },
   "LESSON": {
+    "NOT_FOUND": "Bài học không tìm thấy hoặc đã bị xóa",
     "DOES_NOT_EXIST": "Bài học không tồn tại",
     "TITLE": {
       "IS_NOT_EMPTY": "Tên bài học không được trống"
@@ -69,6 +70,7 @@
     }
   },
   "EXERCISE": {
+    "NOT_FOUND": "Bài kiểm tra không tồn tại hoặc đã bị xóa",
     "NAME": {
       "IS_NOT_EMPTY": "Tên bài trắc nghiệm không được trống"
     },
@@ -100,6 +102,7 @@
     "IS_CORRECT_DIVERSITY_REQUIRED": "Phải có đúng và sai"
   },
   "QUESTION_CATEGORY": {
+    "ALREADY_EXIST": "Danh mục câu hỏi đã tồn tại",
     "NAME": {
       "IS_NOT_EMPTY": "Danh mục câu hỏi không được để trống"
     }
@@ -129,5 +132,11 @@
   },
   "EXERCISE_SUBMIT_GRADE": {
     "DOES_NOT_EXIST": "Chưa có bài nộp nào để chấm điểm"
+  },
+  "LESSON_COMMENT": {
+    "NOT_FOUND": "Bình luận không tồn tại hoặc đã bị xóa"
+  },
+  "POST": {
+    "NOT_FOUND": "Bài đăng không tồn tại hay đã bị xóa"
   }
 }

@@ -27,7 +27,7 @@ export class TeacherCourseListComponent implements OnInit {
     private _courseService: CourseService,
   ) {}
 
-  itemsPerPage = 3;
+  itemsPerPage = 5;
   page = 1;
   totalItems = 0;
 

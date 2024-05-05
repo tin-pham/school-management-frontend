@@ -43,7 +43,7 @@ export class LoginFormComponent {
         next: response => {
           this.toast.success('Đăng nhập thành công');
           if (response.user.roles.includes(ROLE.ADMIN)) {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/student']);
           } else if (response.user.roles.includes(ROLE.STUDENT) || response.user.roles.includes(ROLE.TEACHER)) {
             this.router.navigate(['/home']);
           }

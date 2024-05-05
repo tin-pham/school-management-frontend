@@ -26,7 +26,7 @@ export class AssignmentSubmitGetDetailRO {
   id: number;
   createdAt: Date;
   createdBy: number;
-  assignemntCreatedBy: number;
+  assignmentCreatedBy: number;
   attachmentUrl: string;
   attachmentName: string;
   studentName: string;

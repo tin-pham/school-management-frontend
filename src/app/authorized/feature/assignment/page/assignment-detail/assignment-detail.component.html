@@ -22,7 +22,7 @@
             >
           </h1>
           <p class="assignment-subtitle">{{ assignment.createdByDisplayName }} • {{ assignment.dueDate | date: 'dd/MM/yyyy, h:mm' }}</p>
-          <p class="assignment-points">{{ assignment.submissionGrade }} điểm</p>
+          <p class="assignment-points" *ngIf="isStudent() && assignment.submissionGrade">{{ assignment.submissionGrade }} điểm</p>
         </div>
       </div>
       <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>

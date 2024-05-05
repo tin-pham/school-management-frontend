@@ -12,8 +12,8 @@
     </div>
   </div>
 
-  <div *ngIf="exercise.dueDate" class="exercise-secondary">
-    <div>
+  <div class="exercise-secondary">
+    <div *ngIf="exercise.dueDate">
       <p class="deadline">Deadline: {{ exercise.dueDate | date: 'dd/MM/yyyy' }}</p>
       <p *ngIf="exercise.point" class="point">Điểm: {{ exercise.point }} / {{ exercise.basePoint }}</p>
     </div>

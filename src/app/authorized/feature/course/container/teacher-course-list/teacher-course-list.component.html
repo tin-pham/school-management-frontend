@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="course-list">
     <app-course-card
-      class="col-6 col-md-4"
+      class="course-card"
       (onAssignmentClick)="routeToAssignment(course.id)"
       (onDelete)="delete(course.id)"
       *ngFor="let course of courses"
@@ -14,7 +14,7 @@
 
   <mat-paginator
     *ngIf="totalItems > 0"
-    [pageSizeOptions]="[3, 5, 10]"
+    [pageSizeOptions]="[5, 10]"
     [pageIndex]="page - 1"
     [pageSize]="itemsPerPage"
     [length]="totalItems"

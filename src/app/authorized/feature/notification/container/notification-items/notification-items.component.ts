@@ -27,6 +27,7 @@ export class NotificationItemsComponent {
     private router: Router,
   ) {}
 
+  @Output() onRouteToNotification = new EventEmitter();
   routeToNotification(notification: NotificationGetListDataRO) {
     const dto = new UserNotificationBulkUpdateDTO();
     dto.notificationIds = [notification.id];
@@ -40,14 +41,16 @@ export class NotificationItemsComponent {
       });
     });
 
+    this.onRouteToNotification.emit();
+
     if (notification.commentId) {
       if (notification.commentParentId) {
         this.router.navigate(['comment', notification.commentParentId], { queryParams: { highlightedCommentId: notification.commentId } });
       } else {
         this.router.navigate(['comment', notification.commentId]);
       }
-    } else if (notification.assignmentId) {
-      this.router.navigate(['assignment', notification.assignmentId]);
+    } else if (notification.assignmentId || notification.assignmentSubmitAssignmentId) {
+      this.router.navigate(['assignment', notification.assignmentId || notification.assignmentSubmitAssignmentId]);
     } else if (notification.lessonId) {
       if (!notification.courseId) {
         this.router.navigate(['/course/deleted']);

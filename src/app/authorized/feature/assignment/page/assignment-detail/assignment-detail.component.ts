@@ -36,6 +36,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   isYourCourse() {
+    console.log(this.assignment.createdBy, this._authService.getUserId());
     return this.assignment.createdBy === this._authService.getUserId();
   }
 }

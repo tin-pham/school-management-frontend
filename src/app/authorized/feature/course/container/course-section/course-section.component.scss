@@ -8,6 +8,10 @@
   border-radius: 4px;
   cursor: pointer;
 
+  .item-link {
+    flex: 1 1 77%;
+  }
+
   a {
     text-decoration: none;
     color: black;

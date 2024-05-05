@@ -37,7 +37,7 @@ export class StudentListComponent extends PaginateComponent {
 
   deleteStudent(id: string) {
     this.studentService.delete(id).subscribe(() => {
-      this.toast.success('Student successfully deleted');
+      this.toast.success('Học sinh xóa thành công');
       this.loadData(this.getDto());
     });
   }

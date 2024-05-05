@@ -1,10 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { AttachmentService } from '@core/services/api/attachment.service';
 import { AuthService } from '@core/services/api/auth.service';
 import { LessonService } from '@core/services/api/lesson.service';
 import { S3Service } from '@core/services/api/s3.service';
+import {
+  DocumentViewerDialogComponent,
+  DocumentViewerDialogModel,
+} from '@shared/component/document-viewer-dialog/document-viewer-dialog.component';
 import { LessonAttachmentBulkStoreDTO, LessonAttachmentGetListDTO } from '@shared/models/dto/lesson-attachment.dto';
 import { LessonAttachmentGetListDataRO } from '@shared/models/ro/lesson-attachment.ro';
 import { LessonGetDetailRO } from '@shared/models/ro/lesson.ro';
@@ -30,6 +35,7 @@ export class LessonAttachmentComponent implements OnInit {
     private route: ActivatedRoute,
     private toast: ToastrService,
     private cd: ChangeDetectorRef,
+    private dialog: MatDialog,
     private _s3Service: S3Service,
     private _attachmentService: AttachmentService,
     private _lessonService: LessonService,
@@ -126,5 +132,22 @@ export class LessonAttachmentComponent implements OnInit {
 
   isYourCourse() {
     return this.lesson.createdBy === this._authService.getUserId();
+  }
+
+  view(url: string) {
+    // Ensure you're passing the attachmentUrl to the dialog data
+    const dialogData = new DocumentViewerDialogModel(url);
+
+    const dialogRef = this.dialog.open(DocumentViewerDialogComponent, {
+      data: dialogData,
+      width: '80vw', // 80% of the viewport width
+      height: '95vh', // 80% of the viewport height
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+    });
   }
 }

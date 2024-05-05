@@ -21,7 +21,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   uncategorizedCourses: CourseGetListDataRO[] = [];
 
   courseCardOption: IImageCardOption = {
-    haveDelete: false,
+    haveDelete: true,
   };
 
   constructor(
