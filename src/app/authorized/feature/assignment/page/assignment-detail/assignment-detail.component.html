@@ -25,6 +25,9 @@
           <p class="assignment-points" *ngIf="isStudent() && assignment.submissionGrade">{{ assignment.submissionGrade }} điểm</p>
         </div>
       </div>
+      <p *ngIf="assignment.submissionMessage">
+        Nhận xét: <span>{{ assignment.submissionMessage }}</span>
+      </p>
       <app-text-editor-viewer class="assignment-description" [value]="assignment.description"></app-text-editor-viewer>
     </div>
 

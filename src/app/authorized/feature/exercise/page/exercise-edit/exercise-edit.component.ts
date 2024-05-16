@@ -15,7 +15,7 @@ import { ToastrService } from '@shared/toastr/toastr.service';
 export class ExerciseEditComponent implements OnInit {
   exercise: ExerciseGetDetailRO;
   exerciseId: number;
-
+  haveDueDate: boolean;
   difficulties: ISelectOption[];
 
   dto: ExerciseUpdateDTO;
@@ -46,5 +46,14 @@ export class ExerciseEditComponent implements OnInit {
       this.toast.success('Sửa bài trắc nghiệm thành công');
       window.history.back();
     });
+  }
+
+  haveDueDateChange(checked: boolean): void {
+    this.haveDueDate = checked;
+    if (this.haveDueDate) {
+      this.dto.dueDate = new Date();
+    } else {
+      delete this.dto.dueDate;
+    }
   }
 }

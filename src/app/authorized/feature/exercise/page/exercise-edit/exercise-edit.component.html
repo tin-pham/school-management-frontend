@@ -13,7 +13,17 @@
 
     <app-number-input-group icon="access_time" [label]="'Thời gian (phút)'" [(value)]="dto.time"></app-number-input-group>
 
-    <app-date-time-picker icon="date_range" name="dueDate" [(datetime)]="dto.dueDate" label="Deadline"></app-date-time-picker>
+    <app-checkbox-input-group
+      (checkedChange)="haveDueDateChange($event)"
+      [(checked)]="haveDueDate"
+      [label]="'Có deadline'"></app-checkbox-input-group>
+
+    <app-date-time-picker
+      *ngIf="haveDueDate"
+      icon="date_range"
+      name="dueDate"
+      [(datetime)]="dto.dueDate"
+      label="Deadline"></app-date-time-picker>
 
     <app-checkbox-input-group [(checked)]="dto.instantMark" [label]="'Chấm điểm ngay'"></app-checkbox-input-group>
 

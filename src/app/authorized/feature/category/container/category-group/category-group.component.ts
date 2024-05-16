@@ -83,4 +83,8 @@ export class CategoryGroupComponent {
   isYourCategory() {
     return this.category.createdBy === this._authService.getUserId();
   }
+
+  isStudent() {
+    return this._authService.isStudent();
+  }
 }

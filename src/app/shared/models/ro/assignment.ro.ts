@@ -43,6 +43,7 @@ export class AssignmentGetDetailRO {
   submissionId?: number;
   submissionDate?: Date;
   submissionGrade?: number;
+  submissionMessage?: string;
   lessonId?: number;
   lessonTitle?: string;
   sectionId?: number;

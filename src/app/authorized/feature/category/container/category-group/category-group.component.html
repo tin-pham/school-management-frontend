@@ -4,7 +4,7 @@
       {{ category.name }}
       <mat-icon *ngIf="isYourCategory()" class="icon" [routerLink]="['/category', categoryId, 'edit']">edit</mat-icon>
     </h2>
-    <app-primary-button (click)="createCourse()">Tạo khóa học</app-primary-button>
+    <app-primary-button *ngIf="!isStudent()" (click)="createCourse()">Tạo khóa học</app-primary-button>
   </div>
   <app-text-editor-viewer [value]="category.description"></app-text-editor-viewer>
 </div>
